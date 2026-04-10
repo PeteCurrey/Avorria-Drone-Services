@@ -2,7 +2,7 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
-import { gsap, registerGSAP, ScrollTrigger } from '@/lib/gsap-init'
+import { gsap, registerGSAP,  } from '@/lib/gsap-init'
 import VideoBackground from '@/components/ui/VideoBackground'
 import SectionTag from '@/components/ui/SectionTag'
 import FeatureTags from '@/components/ui/FeatureTags'

@@ -179,6 +179,10 @@ export default function ContactSection() {
       <footer className="absolute bottom-0 left-0 w-full px-10 md:px-20 py-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
         <div className="font-ui text-[10px] tracking-[0.1em] text-white/20 text-center md:text-left">
           © {new Date().getFullYear()} Avorria Drone. CAA Permission for Commercial Operations.
+          <span className="mx-4 opacity-50">|</span>
+          <a href="https://avorria.com" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors">
+            Build by Avorria Digital Marketing. A Signature Build.
+          </a>
         </div>
         <div className="flex gap-8 font-ui text-[10px] tracking-[0.2em] uppercase">
           {['Privacy', 'Fleet', 'Briefing', 'Login'].map(link => (

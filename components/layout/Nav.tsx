@@ -3,29 +3,30 @@
 
 import { useEffect, useState, useRef } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { useLenis } from '@/lib/lenis'
 import { gsap } from '@/lib/gsap-init'
 import { ChevronDown, BarChart3, Camera, Map, Construction, Rocket } from 'lucide-react'
 
 const SERVICES = [
-  { name: 'Drone Inspection', slug: 'inspection', icon: BarChart3, desc: 'Structural surveys & thermal reporting.' },
-  { name: 'Aerial Photography', slug: 'photography', icon: Camera, desc: 'Cinematic 4K marketing & estates.' },
-  { name: 'Surveying & Mapping', slug: 'surveying', icon: Map, desc: 'Topographical data & 3D photogrammetry.' },
-  { name: 'Construction Monitor', slug: 'construction', icon: Construction, desc: 'Progress tracking & time-lapse.' },
+  { name: 'Drone Inspection', slug: 'inspection', icon: BarChart3, desc: 'Structural surveys & thermal reporting.', image: '/images/inspection_poster.png' },
+  { name: 'Aerial Photography', slug: 'photography', icon: Camera, desc: 'Cinematic 4K marketing & estates.', image: '/images/photography_poster.png' },
+  { name: 'Surveying & Mapping', slug: 'surveying', icon: Map, desc: 'Topographical data & 3D photogrammetry.', image: '/images/surveying_poster.png' },
+  { name: 'Construction Monitor', slug: 'construction', icon: Construction, desc: 'Progress tracking & time-lapse.', image: '/images/construction_poster.png' },
 ]
 
 const FLEET = [
-  { name: 'DJI Matrice 350 RTK', slug: 'm350-rtk', type: 'Flagship Industrial' },
-  { name: 'DJI Matrice 30T', slug: 'm30t', type: 'Tactical Thermal' },
-  { name: 'DJI Matrice 300 RTK', slug: 'm300-rtk', type: 'Heavy Lift Support' },
-  { name: 'DJI Mavic 3 Enterprise', slug: 'mavic-3e', type: 'Precision Mapping' },
+  { name: 'DJI Matrice 350 RTK', slug: 'm350-rtk', type: 'Flagship Industrial', image: '/images/fleet_m350.png' },
+  { name: 'DJI Matrice 30T', slug: 'm30t', type: 'Tactical Thermal', image: '/images/inspection_poster.png' },
+  { name: 'DJI Matrice 300 RTK', slug: 'm300-rtk', type: 'Heavy Lift Support', image: '/images/fleet_m350.png' },
+  { name: 'DJI Mavic 3 Enterprise', slug: 'mavic-3e', type: 'Precision Mapping', image: '/images/surveying_poster.png' },
 ]
 
 const PAYLOADS = [
-  { name: 'Zenmuse H20T', slug: 'h20t', type: 'Quad-Sensor / Optic' },
-  { name: 'Zenmuse L1', slug: 'l1', type: 'LiDAR / Mapping' },
-  { name: 'Zenmuse P1', slug: 'p1', type: 'Photogrammetry' },
-  { name: 'Zenmuse Z30', slug: 'z30', type: 'Optical Zoom' },
+  { name: 'Zenmuse H20T', slug: 'h20t', type: 'Quad-Sensor / Optic', image: '/images/inspection_poster.png' },
+  { name: 'Zenmuse L1', slug: 'l1', type: 'LiDAR / Mapping', image: '/images/surveying_poster.png' },
+  { name: 'Zenmuse P1', slug: 'p1', type: 'Photogrammetry', image: '/images/photography_poster.png' },
+  { name: 'Zenmuse Z30', slug: 'z30', type: 'Optical Zoom', image: '/images/inspection_poster.png' },
 ]
 
 export default function Nav() {
@@ -139,8 +140,17 @@ export default function Nav() {
                     href={`/services/${item.slug}`}
                     className="group"
                   >
-                    <div className="mb-4 bg-white/5 p-4 w-fit group-hover:bg-accent transition-colors duration-500">
-                      <item.icon className="w-5 h-5 text-accent group-hover:text-dark transition-colors duration-500" />
+                    <div className="relative aspect-video bg-white/5 border border-white/10 overflow-hidden mb-6">
+                      <Image 
+                        src={item.image} 
+                        alt={item.name} 
+                        fill
+                        className="object-cover opacity-60 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700" 
+                      />
+                      <div className="absolute inset-0 bg-dark/40" />
+                      <div className="absolute top-4 left-4 bg-accent p-2">
+                        <item.icon className="w-4 h-4 text-dark" />
+                      </div>
                     </div>
                     <div className="font-display text-xl tracking-wider text-white mb-2">{item.name}</div>
                     <p className="font-body text-[13px] text-white/40 leading-relaxed group-hover:text-white/60 transition-colors">
@@ -159,9 +169,14 @@ export default function Nav() {
                     href={`/fleet/${item.slug}`}
                     className="flex gap-6 group"
                   >
-                    <div className="h-16 aspect-video bg-white/5 border border-white/10 overflow-hidden relative flex items-center justify-center">
-                      <div className="font-display text-[20px] text-white opacity-5 select-none tracking-tighter">SPEC</div>
-                      <div className="absolute inset-0 bg-accent/20 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <div className="h-20 aspect-video bg-white/5 border border-white/10 overflow-hidden relative">
+                      <Image 
+                        src={item.image} 
+                        alt={item.name} 
+                        fill
+                        className="object-cover opacity-40 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" 
+                      />
+                      <div className="absolute inset-0 bg-dark/20 group-hover:bg-transparent" />
                     </div>
                     <div>
                       <div className="font-display text-lg tracking-wider text-white mb-0.5">{item.name}</div>
@@ -181,9 +196,14 @@ export default function Nav() {
                     href={`/fleet/${item.slug}`}
                     className="flex gap-6 group"
                   >
-                    <div className="h-16 aspect-video bg-white/5 border border-white/10 overflow-hidden relative flex items-center justify-center">
-                      <div className="font-display text-[20px] text-white opacity-5 select-none tracking-tighter">DATA</div>
-                      <div className="absolute inset-0 bg-accent/20 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <div className="h-20 aspect-video bg-white/5 border border-white/10 overflow-hidden relative">
+                      <Image 
+                        src={item.image} 
+                        alt={item.name} 
+                        fill
+                        className="object-cover opacity-40 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" 
+                      />
+                      <div className="absolute inset-0 bg-dark/20 group-hover:bg-transparent" />
                     </div>
                     <div>
                       <div className="font-display text-lg tracking-wider text-white mb-0.5">{item.name}</div>

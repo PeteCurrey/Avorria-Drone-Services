@@ -52,7 +52,7 @@ export default function RootLayout({
       <body className="bg-dark text-white selection:bg-accent selection:text-dark">
         <LenisProvider>
           <Nav />
-          <ProgressDots totalSections={6} />
+          <ProgressDots totalSections={9} />
           {children}
         </LenisProvider>
       </body>

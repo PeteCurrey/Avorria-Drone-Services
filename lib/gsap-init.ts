@@ -3,7 +3,9 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 if (typeof window !== 'undefined') {
-  gsap.registerPlugin(ScrollTrigger)
+  if (!gsap.getProperty('ScrollTrigger')) {
+    gsap.registerPlugin(ScrollTrigger)
+  }
   
   // Set default scroll trigger settings for better Lenis compatibility
   ScrollTrigger.config({

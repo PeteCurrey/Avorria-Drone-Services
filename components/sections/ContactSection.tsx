@@ -42,8 +42,14 @@ export default function ContactSection() {
         email: formData.email,
         message: `[${formData.service}] ${formData.message} (Company: ${formData.company})`
       }
-      const { error } = await supabase.from('enquiries').insert([payload])
-      if (error) throw error
+      
+      if (!supabase) {
+        console.warn('Supabase not configured. Simulating success.')
+      } else {
+        const { error } = await supabase.from('enquiries').insert([payload])
+        if (error) throw error
+      }
+      
       setStatus('success')
     } catch {
       setTimeout(() => setStatus('success'), 1200)

@@ -1,5 +1,6 @@
 // app/case-studies/page.tsx
 import Link from 'next/link'
+import Image from 'next/image'
 import { Filter, Search, ArrowUpRight } from 'lucide-react'
 
 const PROJECTS = [
@@ -69,10 +70,11 @@ export default function CaseStudiesPage() {
           {PROJECTS.map((project) => (
             <div key={project.id} className="group cursor-pointer">
               <div className="relative aspect-[16/10] bg-white/5 border border-white/10 overflow-hidden mb-8">
-                <img 
+                <Image 
                   src={project.image} 
                   alt={project.title} 
-                  className="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
+                  fill
+                  className="object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
                 />
                 <div className="absolute inset-0 bg-dark/20 group-hover:bg-transparent transition-colors" />
                 <div className="absolute top-6 left-6 font-ui text-[10px] tracking-[0.3em] uppercase bg-dark/60 backdrop-blur-md px-3 py-1.5 text-white/80 border border-white/10">

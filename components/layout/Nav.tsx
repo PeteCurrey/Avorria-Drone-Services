@@ -5,7 +5,7 @@ import { useEffect, useState, useRef } from 'react'
 import Link from 'next/link'
 import { useLenis } from '@/lib/lenis'
 import { gsap } from '@/lib/gsap-init'
-import { ChevronDown, BarChart3, Camera, Map, Construction, Rocket, Briefcase } from 'lucide-react'
+import { ChevronDown, BarChart3, Camera, Map, Construction, Rocket } from 'lucide-react'
 
 const SERVICES = [
   { name: 'Drone Inspection', slug: 'inspection', icon: BarChart3, desc: 'Structural surveys & thermal reporting.' },

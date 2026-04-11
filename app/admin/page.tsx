@@ -3,12 +3,13 @@
 
 import { useEffect, useState } from 'react'
 import { supabase } from '@/lib/supabase'
-import { LayoutDashboard, Mail, FileText, Settings, LogOut, ExternalLink, Trash2 } from 'lucide-react'
+import { Mail, FileText, Settings, LogOut, ExternalLink, Trash2 } from 'lucide-react'
+import { Enquiry, ProjectBrief } from '@/types'
 
 export default function AdminDashboard() {
   const [activeTab, setActiveTab] = useState<'enquiries' | 'briefs'>('enquiries')
-  const [enquiries, setEnquiries] = useState<any[]>([])
-  const [briefs, setBriefs] = useState<any[]>([])
+  const [enquiries, setEnquiries] = useState<Enquiry[]>([])
+  const [briefs, setBriefs] = useState<ProjectBrief[]>([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {

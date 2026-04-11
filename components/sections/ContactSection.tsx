@@ -56,7 +56,7 @@ export default function ContactSection() {
     }
   }
 
-  const handleInputChange = (e: any) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target
     setFormData(prev => ({ ...prev, [name]: value }))
   }
@@ -121,16 +121,13 @@ export default function ContactSection() {
               { id: 'company', label: 'Company', type: 'text' },
             ].map((field) => (
               <div key={field.id} className="group flex flex-col pt-6 border-b border-white/10 focus-within:border-accent transition-colors duration-300">
-                <label className="font-ui text-[10px] tracking-[0.3em] uppercase text-white/28 mb-2">
-                  {field.label}
-                </label>
+                <label className="font-ui text-[10px] tracking-[0.3em] uppercase text-white/40 mb-3 block">{field.label}</label>
                 <input 
-                  required
+                  type={field.type} 
                   name={field.id}
-                  type={field.type}
-                  value={(formData as any)[field.id]}
+                  value={formData[field.id as keyof typeof formData]}
                   onChange={handleInputChange}
-                  className="bg-transparent border-none outline-none font-body text-[15px] font-light text-white pb-4"
+                  className="w-full bg-white/5 border border-white/10 px-6 py-4 font-body text-white/80 outline-none focus:border-accent/40 transition-all"
                 />
               </div>
             ))}

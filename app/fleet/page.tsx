@@ -1,7 +1,6 @@
-// app/fleet/page.tsx
 import Link from 'next/link'
+import Image from 'next/image'
 import { ArrowRight, ShieldCheck, Cpu, Zap, Activity } from 'lucide-react'
-import VideoBackground from '@/components/ui/VideoBackground'
 
 const TECHNOLOGY = [
   {
@@ -27,10 +26,12 @@ export default function FleetOverviewPage() {
       <section className="relative h-[85vh] flex items-center justify-start px-10 md:px-20 pt-32 md:pt-40 overflow-hidden">
         {/* Using the M350 RTK image as requested for the fleet main page visual */}
         <div className="absolute inset-0 z-0">
-          <img 
+          <Image 
             src="/images/fleet_m350.png" 
             alt="DJI Matrice 350 RTK" 
-            className="w-full h-full object-cover opacity-50"
+            fill
+            priority
+            className="object-cover opacity-50"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-dark via-dark/40 to-transparent" />
         </div>
@@ -63,9 +64,14 @@ export default function FleetOverviewPage() {
           {TECHNOLOGY.map((item) => (
             <div key={item.slug} className="bg-dark group">
               <div className="relative aspect-[16/9] overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-700">
-                <img src={item.image} alt={item.name} className="w-full h-full object-cover opacity-40 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" />
-                <div className="absolute inset-0 bg-dark/20 group-hover:bg-transparent" />
-              </div>
+              <Image 
+                src={item.image} 
+                alt={item.name} 
+                fill
+                className="object-cover opacity-40 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" 
+              />
+              <div className="absolute inset-0 bg-dark/20 group-hover:bg-transparent" />
+            </div>
               <div className="p-12">
                 <div className="font-ui text-[10px] tracking-[0.3em] uppercase text-accent mb-4">{item.type}</div>
                 <h3 className="font-display text-4xl text-white mb-6 tracking-wide">{item.name}</h3>

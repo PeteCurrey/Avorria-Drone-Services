@@ -3,8 +3,9 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { Cpu, Zap, Wind, Battery, Maximize, ArrowRight } from 'lucide-react'
 import VideoBackground from '@/components/ui/VideoBackground'
+import { FleetItem } from '@/types'
 
-const FLEET_DATA: Record<string, any> = {
+const FLEET_DATA: Record<string, FleetItem> = {
   'm350-rtk': {
     name: 'DJI Matrice 350 RTK',
     subtitle: 'The Enterprise Workhorse',
@@ -63,7 +64,7 @@ export default async function FleetPage({ params }: { params: Promise<{ slug: st
             <p className="font-display text-2xl text-white/40 tracking-wider italic">{drone.subtitle}</p>
           </div>
           <div className="flex gap-10 border-l border-white/10 pl-10">
-            {drone.specs.map((spec: any) => (
+            {drone.specs.map((spec) => (
               <div key={spec.label}>
                 <div className="font-ui text-[9px] tracking-[0.2em] uppercase text-accent mb-1">{spec.label}</div>
                 <div className="font-display text-xl text-white">{spec.value}</div>
@@ -81,7 +82,7 @@ export default async function FleetPage({ params }: { params: Promise<{ slug: st
             {drone.desc} We operate this platform across a variety of industrial sectors, leveraging its specific capabilities to deliver maximum value.
           </p>
           <div className="grid grid-cols-2 gap-8">
-            {drone.technical.map((tech: any) => (
+            {drone.technical.map((tech) => (
               <div key={tech.title} className="p-6 bg-white/5 border border-white/5 group hover:border-accent/30 transition-colors">
                 <tech.icon className="w-5 h-5 text-accent mb-4" />
                 <h3 className="font-display text-lg text-white mb-2 tracking-wide uppercase">{tech.title}</h3>

@@ -1,11 +1,12 @@
 // app/services/[slug]/page.tsx
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import { Rocket, Shield, Target, Clock, Globe, ArrowRight } from 'lucide-react'
+import { Shield, Target, Clock, Globe, ArrowRight } from 'lucide-react'
+import { ServiceItem } from '@/types'
 import VideoBackground from '@/components/ui/VideoBackground'
 import FeatureTags from '@/components/ui/FeatureTags'
 
-const SERVICES_DATA: Record<string, any> = {
+const SERVICES_DATA: Record<string, ServiceItem> = {
   'inspection': {
     title: 'Industrial Drone Inspection',
     hero: 'PRECISE. SAFE. UNLIMITED.',
@@ -83,7 +84,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
           <h1 className="font-display text-hero text-white mb-6 leading-none">{service.title}</h1>
           <p className="font-body text-xl font-light text-white/50 max-w-[600px] mb-12 italic">{service.hero}</p>
           <div className="flex flex-wrap gap-8">
-            {service.specs.map((spec: any) => (
+            {service.specs.map((spec) => (
               <div key={spec.label}>
                 <div className="font-ui text-[10px] tracking-[0.2em] uppercase text-accent mb-1">{spec.label}</div>
                 <div className="font-display text-2xl text-white">{spec.value}</div>

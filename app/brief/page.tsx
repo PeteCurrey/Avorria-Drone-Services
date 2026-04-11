@@ -5,6 +5,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { ArrowRight, ArrowLeft, Check, Compass, Layers, Calendar, User, FileText } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
+import { ProjectBrief } from '@/types'
 
 const STEPS = [
   { id: 'mission', label: 'Mission Type', icon: Compass },
@@ -15,10 +16,10 @@ const STEPS = [
 
 export default function ProjectBriefPage() {
   const [currentStep, setCurrentStep] = useState(0)
-  const [formData, setFormData] = useState({
-    missionType: '',
+  const [formData, setFormData] = useState<Omit<ProjectBrief, 'id' | 'created_at'>>({
+    missionType: 'Inspection',
     location: '',
-    scale: '',
+    scale: 'Small',
     deadline: '',
     name: '',
     email: '',
@@ -47,7 +48,7 @@ export default function ProjectBriefPage() {
     }
   }
 
-  const handleInputChange = (e: any) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target
     setFormData(prev => ({ ...prev, [name]: value }))
   }

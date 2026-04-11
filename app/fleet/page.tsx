@@ -18,11 +18,49 @@ const TECHNOLOGY = [
     image: '/images/inspection_poster.png'
   },
   {
+    name: 'DJI Matrice 300 RTK',
+    slug: 'm300-rtk',
+    type: 'Legacy Enterprise',
+    desc: 'Proven reliability in the field. The M300 RTK remains a pillar of infrastructure auditing, offering high payload modularity and consistent performance.',
+    image: '/images/fleet_m350.png'
+  },
+  {
     name: 'DJI Mavic 3 Enterprise',
     slug: 'mavic-3e',
     type: 'Precision Mapping',
     desc: 'Portable power optimized for high-speed surveying. Featuring a mechanical shutter and RTK module for centimeter-level photogrammetry without GCPs.',
     image: '/images/surveying_poster.png'
+  }
+]
+
+const PAYLOADS = [
+  {
+    name: 'Zenmuse H20T',
+    slug: 'h20t',
+    type: 'Quad-Sensor Payload',
+    desc: 'Thermal, Zoom, Wide, and Laser Rangefinder in one integrated solution.',
+    image: '/images/inspection_poster.png'
+  },
+  {
+    name: 'Zenmuse L1',
+    slug: 'l1',
+    type: 'LiDAR + RGB',
+    desc: 'High-accuracy digital twin generation with real-time true-color point clouds.',
+    image: '/images/surveying_poster.png'
+  },
+  {
+    name: 'Zenmuse P1',
+    slug: 'p1',
+    type: 'Full-Frame Photogrammetry',
+    desc: '45MP sensor with global shutter for unprecedented mapping detail.',
+    image: '/images/photography_poster.png'
+  },
+  {
+    name: 'Zenmuse Z30',
+    slug: 'z30',
+    type: 'Aerial Zoom',
+    desc: '30x optical zoom for safe distance monitoring of critical assets.',
+    image: '/images/inspection_poster.png'
   }
 ]
 
@@ -66,19 +104,23 @@ export default function FleetOverviewPage() {
       </section>
 
       {/* Hardware Selection Grid */}
-      <section className="py-32 px-10 md:px-20">
+      <section id="flight-platforms" className="py-32 px-10 md:px-20">
+        <div className="flex items-center gap-4 mb-16">
+          <div className="w-12 h-[1px] bg-accent" />
+          <span className="font-ui text-[11px] tracking-[0.4em] uppercase text-accent">Flight Platforms</span>
+        </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-px bg-white/10 border border-white/5">
           {TECHNOLOGY.map((item) => (
             <div key={item.slug} className="bg-dark group">
               <div className="relative aspect-[16/9] overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-700">
-              <Image 
-                src={item.image} 
-                alt={item.name} 
-                fill
-                className="object-cover opacity-40 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" 
-              />
-              <div className="absolute inset-0 bg-dark/20 group-hover:bg-transparent" />
-            </div>
+                <Image 
+                  src={item.image} 
+                  alt={item.name} 
+                  fill
+                  className="object-cover opacity-40 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" 
+                />
+                <div className="absolute inset-0 bg-dark/20 group-hover:bg-transparent" />
+              </div>
               <div className="p-12">
                 <div className="font-ui text-[10px] tracking-[0.3em] uppercase text-accent mb-4">{item.type}</div>
                 <h3 className="font-display text-4xl text-white mb-6 tracking-wide">{item.name}</h3>
@@ -90,6 +132,40 @@ export default function FleetOverviewPage() {
                   VIEW SPECIFICATIONS <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Tactical Payload Portfolio */}
+      <section id="payloads" className="py-32 px-10 md:px-20 bg-white/[0.02]">
+        <div className="flex items-center gap-4 mb-16">
+          <div className="w-12 h-[1px] bg-accent" />
+          <span className="font-ui text-[11px] tracking-[0.4em] uppercase text-accent">Tactical Payload Portfolio</span>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-white/10 border border-white/5">
+          {PAYLOADS.map((item) => (
+            <div key={item.slug} className="bg-dark group p-10 flex flex-col justify-between">
+              <div>
+                <div className="relative aspect-square overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-700 mb-8 border border-white/5">
+                  <Image 
+                    src={item.image} 
+                    alt={item.name} 
+                    fill
+                    className="object-cover opacity-30 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" 
+                  />
+                  <div className="absolute inset-0 bg-dark/20 group-hover:bg-transparent" />
+                </div>
+                <div className="font-ui text-[9px] tracking-[0.2em] uppercase text-accent mb-3">{item.type}</div>
+                <h3 className="font-display text-2xl text-white mb-6 tracking-wide">{item.name}</h3>
+                <p className="font-body text-xs text-white/30 leading-relaxed mb-10">{item.desc}</p>
+              </div>
+              <Link 
+                href={`/fleet/${item.slug}`} 
+                className="inline-flex items-center gap-3 font-ui text-[10px] tracking-widest text-white/50 hover:text-accent transition-all group/link"
+              >
+                DETAILED SPECS <ArrowRight className="w-3 h-3 group-hover/link:translate-x-2 transition-transform" />
+              </Link>
             </div>
           ))}
         </div>

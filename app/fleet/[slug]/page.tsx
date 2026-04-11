@@ -9,39 +9,153 @@ const FLEET_DATA: Record<string, FleetItem> = {
   'm350-rtk': {
     name: 'DJI Matrice 350 RTK',
     subtitle: 'The Enterprise Workhorse',
-    desc: 'Setting a new benchmark for industrial drone operations with IP55 protection, night-vision FPV, and the revolutionary DJI Transmission system.',
-    image: '/images/hero_poster.png', // Reusing high-end m350 poster
+    desc: 'The upgraded flagship enterprise platform. It features an all-new video transmission system, more efficient battery management, and a payload capacity that supports complex multi-sensor missions.',
+    image: '/images/fleet_m350.png',
     video: '/videos/hero.mp4',
     specs: [
       { label: 'Max Flight Time', value: '55 Mins' },
       { label: 'IP Rating', value: 'IP55' },
       { label: 'Max Payload', value: '2.7 KG' },
-      { label: 'Transmission', value: '20 KM' }
+      { label: 'Transmission', value: 'O3 Enterprise' }
     ],
     technical: [
       { icon: Cpu, title: 'RTK Precision', text: 'Centimeter-level positioning with multi-GNSS support and real-time correction data.' },
-      { icon: Zap, title: 'Flight Safety', text: 'Six-directional sensing and positioning for mission-critical reliability in dense airspaces.' },
-      { icon: Battery, title: 'Hot-Swap', text: 'Minimize downtime with dual-battery system allowing for consecutive missions.' },
+      { icon: Zap, title: 'Triple Payload', text: 'Supports up to three payloads simultaneously for high-efficiency data collection.' },
+      { icon: Battery, title: 'Hot-Swap', text: 'Dual-battery system allowing for consecutive missions without powering down.' },
       { icon: Wind, title: 'Stability', text: 'Capable of operation in winds up to 12m/s, ensuring data capture in varied UK weather.' }
+    ]
+  },
+  'm30t': {
+    name: 'DJI Matrice 30T',
+    subtitle: 'Tactical Thermal Power',
+    desc: 'A balance of portability and power. The M30T integrates a wide-angle, zoom, and thermal camera with a laser rangefinder into a single, compact deployable unit.',
+    image: '/images/inspection_poster.png',
+    video: '/videos/inspection.mp4',
+    specs: [
+      { label: 'Max Flight Time', value: '41 Mins' },
+      { label: 'IP Rating', value: 'IP55' },
+      { label: 'Thermal Res', value: '640 x 512' },
+      { label: 'Zoom', value: '16x Optical' }
+    ],
+    technical: [
+      { icon: Maximize, title: 'Rapid Deploy', text: 'Foldable design ready for flight in under 60 seconds for emergency scenarios.' },
+      { icon: Zap, title: 'Laser Range', text: 'Precise coordinates for targets up to 1200m away for search and rescue.' },
+      { icon: Battery, title: 'Endurance', text: 'Self-heating batteries for operation in environments down to -20°C.' },
+      { icon: Cpu, title: 'Tactical Edge', text: 'Night-vision FPV camera for safe operations in zero-light environments.' }
+    ]
+  },
+  'm300-rtk': {
+    name: 'DJI Matrice 300 RTK',
+    subtitle: 'Legacy Performance',
+    desc: 'The pioneer of modern enterprise UAVs. The M300 RTK remains a critical asset for infrastructure audits due to its robust construction and high payload modularity.',
+    image: '/images/fleet_m350.png',
+    video: '/videos/hero.mp4',
+    specs: [
+      { label: 'Max Flight Time', value: '55 Mins' },
+      { label: 'IP Rating', value: 'IP45' },
+      { label: 'Range', value: '15 KM' },
+      { label: 'Battery', value: 'TB60' }
+    ],
+    technical: [
+      { icon: Cpu, title: 'OcuSync Ent', text: 'Triple-channel 1080p video transmission with professional-grade encryption.' },
+      { icon: Zap, title: 'Smart Pin', text: 'Real-time location sharing and mission tracking for distributed field teams.' },
+      { icon: Battery, title: 'Redundancy', text: 'Dual IMU, compass, and GNSS modules for fail-safe industrial operations.' },
+      { icon: Wind, title: 'Propulsion', text: 'Inverted gimbal mounting support for bridge and ceiling inspections.' }
     ]
   },
   'mavic-3e': {
     name: 'DJI Mavic 3 Enterprise',
-    subtitle: 'Tactical Precision',
-    desc: 'The compact solution for rapid deployment. Equipped with a mechanical shutter for surveying and a 56x hybrid zoom for detail-obsessed inspections.',
-    image: '/images/inspection_poster.png',
-    video: '/videos/inspection.mp4',
+    subtitle: 'Precision Mapping',
+    desc: 'The compact solution for high-speed surveying. Equipped with a mechanical shutter to avoid motion blur and an RTK module for centimeter-level photogrammetry.',
+    image: '/images/surveying_poster.png',
+    video: '/videos/surveying.mp4',
     specs: [
       { label: 'Max Flight Time', value: '45 Mins' },
       { label: 'Gimbal', value: '3-Axis' },
-      { label: 'Camera', value: '4/3 CMOS' },
+      { label: 'Shutter', value: 'Mechanical' },
       { label: 'Zoom', value: '56x Hybrid' }
     ],
     technical: [
-      { icon: Maximize, title: 'Rapid Deployment', text: 'Folds to fit into a backpack, yet deploys in under 60 seconds for emergency response.' },
-      { icon: Zap, title: 'Surveying Ready', text: 'Mechanical shutter avoids motion blur during high-speed mapping missions.' },
-      { icon: Battery, title: 'Endurance', text: 'Best-in-class power efficiency for sustained tactical or thermal operations.' },
-      { icon: Cpu, title: 'Thermal Version', text: 'Available with high-resolution radiometric thermal sensor for heat loss and SAR.' }
+      { icon: Maximize, title: 'Survey Ready', text: '4/3 CMOS 20MP sensor with 0.7s interval shooting for high-speed mapping.' },
+      { icon: Zap, title: 'Obstacle Sensing', text: 'Omni-directional sensing system for safe flight in complex urban terrain.' },
+      { icon: Battery, title: 'Portability', text: 'Folds to fit into a briefcase for rapid response mobilization.' },
+      { icon: Cpu, title: 'Data Security', text: 'AES-256 encryption for secure data transmission on every mission.' }
+    ]
+  },
+  'h20t': {
+    name: 'Zenmuse H20T',
+    subtitle: 'Multi-Sensor Intelligence',
+    desc: 'A integrated quad-sensor payload that redefined industrial inspection. It combines a wide camera, 20x optical zoom, radiometric thermal, and a laser rangefinder.',
+    image: '/images/inspection_poster.png',
+    video: '/videos/inspection.mp4',
+    specs: [
+      { label: 'Optical Zoom', value: '23x' },
+      { label: 'Max Zoom', value: '200x' },
+      { label: 'Thermal Res', value: '640 x 512' },
+      { label: 'Laser Dist', value: '1200m' }
+    ],
+    technical: [
+      { icon: Cpu, title: 'One-Tap Capture', text: 'Simultaneous data capture from all sensors into a single metadata-synced folder.' },
+      { icon: Zap, title: 'Smart Track', text: 'AI-driven identification and tracking of dynamic targets from long range.' },
+      { icon: Battery, title: 'Night Vision', text: 'Built-in night scene mode for high-quality visual data in low light.' },
+      { icon: Wind, title: 'Grid Photo', text: 'Automated ultra-high-resolution grid photography for defect detection.' }
+    ]
+  },
+  'l1': {
+    name: 'Zenmuse L1',
+    subtitle: 'LiDAR + RGB Solution',
+    desc: 'The go-to solution for high-accuracy digital twins. The L1 integrates a Livox Lidar module, a high-accuracy IMU, and a 20MP visual camera.',
+    image: '/images/surveying_poster.png',
+    video: '/videos/surveying.mp4',
+    specs: [
+      { label: 'Vertical Acc', value: '5cm' },
+      { label: 'Horizontal Acc', value: '10cm' },
+      { label: 'Point Rate', value: '240,000 pts' },
+      { label: 'Range', value: '450m' }
+    ],
+    technical: [
+      { icon: Maximize, title: 'True Color', text: 'Real-time true-color point cloud rendering for immediate field verification.' },
+      { icon: Zap, title: 'High Density', text: 'Capable of multiple returns to penetrate dense vegetation for terrain modeling.' },
+      { icon: Battery, title: 'Efficiency', text: 'Cover 2km² in a single flight with centimeter-level absolute accuracy.' },
+      { icon: Cpu, title: 'Post-Process', text: 'Seamless integration with DJI Terra for one-stop mapping solutions.' }
+    ]
+  },
+  'p1': {
+    name: 'Zenmuse P1',
+    subtitle: 'Full-Frame Photogrammetry',
+    desc: 'The ultimate sensor for high-resolution mapping. It features a 45MP full-frame sensor and a global mechanical shutter for maximum detail and zero distortion.',
+    image: '/images/photography_poster.png',
+    video: '/videos/photography.mp4',
+    specs: [
+      { label: 'Sensor', value: 'Full Frame' },
+      { label: 'Resolution', value: '45 MP' },
+      { label: 'Shutter', value: 'Mechanical' },
+      { label: 'Focal Length', value: '35mm Fixed' }
+    ],
+    technical: [
+      { icon: Cpu, title: 'Global Shutter', text: 'Eliminates motion blur even when flying at high speeds for surveying.' },
+      { icon: Zap, title: 'Oblique Capture', text: 'Smart Oblique Capture system for efficient 3D model generation.' },
+      { icon: Battery, title: 'Field Efficiency', text: 'Covers up to 10km² in a single day at 3cm GSD resolution.' },
+      { icon: Wind, title: 'Precision Time', text: 'TimeSync 2.0 ensures microsecond-level synchronization between sensor and GPS.' }
+    ]
+  },
+  'z30': {
+    name: 'Zenmuse Z30',
+    subtitle: 'Long-Range Analytics',
+    desc: 'Designed for safe distance monitoring. The Z30 provides unparalleled 30x optical zoom, allowing for detailed inspections of pylons and masts without proximity risk.',
+    image: '/images/inspection_poster.png',
+    video: '/videos/inspection.mp4',
+    specs: [
+      { label: 'Optical Zoom', value: '30x' },
+      { label: 'Digital Zoom', value: '180x' },
+      { label: 'Stabilization', value: '0.01°' },
+      { label: 'Aperture', value: 'f/1.6 - f/4.7' }
+    ],
+    technical: [
+      { icon: Maximize, title: 'TapZoom', text: 'Instant zoom into specific areas of interest with a single screen tap.' },
+      { icon: Zap, title: 'Defect Analysis', text: 'Clear identification of rust, cracks, and bolt issues from safe distance.' },
+      { icon: Battery, title: 'Integration', text: 'Fully compatible with DJI Matrice series for industrial audit stability.' },
+      { icon: Cpu, title: 'Auto-Stabilize', text: 'Professional gimbal stabilization ensures clear frames even at 30x zoom.' }
     ]
   }
 }

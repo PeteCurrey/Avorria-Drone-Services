@@ -29,11 +29,7 @@ body {
 
 /* ─── SCROLL CONTAINER ─── */
 .scroll-container {
-  height: 100vh;
-  overflow-y: scroll;
-  scroll-snap-type: y mandatory;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+  /* Lenis handles scrolling globally on the window */
 }
 
 .scroll-container::-webkit-scrollbar {
@@ -44,7 +40,6 @@ body {
 section {
   height: 100vh;
   width: 100%;
-  scroll-snap-align: start;
   position: relative;
   overflow: hidden;
   display: flex;

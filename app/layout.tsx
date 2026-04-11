@@ -49,7 +49,7 @@ export default function RootLayout({
       lang="en"
       className={`${bebasNeue.variable} ${barlow.variable} ${barlowCondensed.variable}`}
     >
-      <body className="bg-dark text-white overflow-hidden selection:bg-accent selection:text-dark">
+      <body className="bg-dark text-white selection:bg-accent selection:text-dark">
         <LenisProvider>
           <Nav />
           <ProgressDots totalSections={6} />

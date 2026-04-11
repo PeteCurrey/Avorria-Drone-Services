@@ -35,7 +35,7 @@ export default function Home() {
   }, [])
 
   return (
-    <main className="scroll-container" id="scrollContainer">
+    <main>
       <HeroSection />
       <InspectionSection />
       <PhotographySection />

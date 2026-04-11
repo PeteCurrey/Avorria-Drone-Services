@@ -15,7 +15,12 @@ export default function AdminDashboard() {
     async function fetchData() {
       setLoading(true)
       try {
-        // Mock data fetch - in real app would use supabase.from('enquiries').select('*')
+        if (!supabase) {
+          console.warn('Supabase not configured. Dashboard is in demo mode.')
+          setLoading(false)
+          return
+        }
+        
         const { data: enq } = await supabase.from('enquiries').select('*').order('created_at', { ascending: false })
         const { data: brf } = await supabase.from('project_briefs').select('*').order('created_at', { ascending: false })
         

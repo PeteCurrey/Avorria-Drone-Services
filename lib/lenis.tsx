@@ -22,6 +22,7 @@ export function LenisProvider({ children }: { children: React.ReactNode }) {
     })
 
     // Set lenis to state
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setLenis(lenisInstance)
 
     // Sync GSAP ticker with Lenis

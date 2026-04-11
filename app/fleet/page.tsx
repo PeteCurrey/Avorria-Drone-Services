@@ -7,15 +7,22 @@ const TECHNOLOGY = [
     name: 'DJI Matrice 350 RTK',
     slug: 'm350-rtk',
     type: 'Heavy Lift Industrial',
-    desc: 'The gold standard for critical infrastructure inspection and heavy-payload industrial missions.',
+    desc: 'The gold standard for critical infrastructure inspection. IP55 rating, triple-payload support, and 55-minute flight endurance for high-stakes industrial missions.',
     image: '/images/fleet_m350.png'
+  },
+  {
+    name: 'DJI Matrice 30T',
+    slug: 'm30t',
+    type: 'Tactical Thermal',
+    desc: 'The ultimate rapid-deployment asset. Integrated wide, zoom, and thermal sensors with laser rangefinding for complex search and rescue or utility audits.',
+    image: '/images/inspection_poster.png'
   },
   {
     name: 'DJI Mavic 3 Enterprise',
     slug: 'mavic-3e',
-    type: 'Tactical / Thermal',
-    desc: 'Portable, powerful, and precision-optimized for rapid deployment mapping and thermal assessments.',
-    image: '/images/inspection_poster.png'
+    type: 'Precision Mapping',
+    desc: 'Portable power optimized for high-speed surveying. Featuring a mechanical shutter and RTK module for centimeter-level photogrammetry without GCPs.',
+    image: '/images/surveying_poster.png'
   }
 ]
 

@@ -62,7 +62,7 @@ export default function ContactSection() {
   }
 
   return (
-    <section ref={sectionRef} data-index="5" id="contact" className="noise-overlay min-h-screen py-24 flex flex-col md:flex-row items-center justify-between gap-12 md:gap-24 relative overflow-hidden">
+    <section ref={sectionRef} data-index="8" id="contact" className="noise-overlay min-h-screen py-24 flex flex-col md:flex-row items-center justify-between gap-12 md:gap-24 relative overflow-hidden">
       <VideoBackground 
         src="/videos/contact.mp4" 
         poster="/images/contact_poster.png"

@@ -9,58 +9,58 @@ import FeatureTags from '@/components/ui/FeatureTags'
 const SERVICES_DATA: Record<string, ServiceItem> = {
   'inspection': {
     title: 'Industrial Drone Inspection',
-    hero: 'PRECISE. SAFE. UNLIMITED.',
-    desc: 'Cutting-edge UAV structural surveys and thermal imaging for infrastructure that builds the world.',
+    hero: 'PRECISE. SAFE. UNIFORM.',
+    desc: 'High-resolution structural analysis and radiometric thermal auditing for critical infrastructure. We deliver comprehensive defect reports with sub-millimeter detail for energy, utilities, and commercial real estate.',
     video: '/videos/inspection.mp4',
     poster: '/images/inspection_poster.png',
-    features: ['Structural Defect Analysis', 'Thermal Heat Loss Audits', 'Bridge & Tunnel Surveys', 'Roofing & Facade Reports'],
+    features: ['Precision Roof & Facade Audits', 'Radiometric Thermal Heat Loss', 'Infrastructure Integrity Surveys', 'Confined Space Internal Flight'],
     specs: [
-      { label: 'Accuracy', value: '1mm / pixel' },
-      { label: 'Sensors', value: 'FLIR Radiometric' },
-      { label: 'Compliance', value: 'CAA GVC / OA' },
-      { label: 'Payload', value: 'Dual Zenmuse H20T' }
+      { label: 'Payload', value: 'Zenmuse H20T / H30' },
+      { label: 'Thermal', value: '640x512 Radiometric' },
+      { label: 'Zoom', value: '200x Max Optical' },
+      { label: 'Compliance', value: 'CAA GVC / OA' }
     ]
   },
   'photography': {
     title: 'Cinematic Aerial Photography',
-    hero: 'VISION. MOTION. IMPACT.',
-    desc: 'Editorial-grade 4K aerial cinematography and high-resolution stills for prestige property and commercial film.',
+    hero: 'VISION. MOTION. PRECISION.',
+    desc: 'Bespoke 6K aerial cinematography and 45MP architectural photography. Optimized for luxury property marketing, commercial broadcasting, and large-scale industrial site showreels.',
     video: '/videos/photography.mp4',
     poster: '/images/photography_poster.png',
-    features: ['4K / 6K Raw Footage', 'Luxury Estate Pullbacks', 'Commercial Site Showreels', 'Architectural Stills'],
+    features: ['6K Raw Cinematic Capture', '45MP High-Resolution Stills', 'Dynamic Site Progression Stills', 'Post-Production Grading Ready'],
     specs: [
-      { label: 'Resolution', value: '20MP / 4K 60fps' },
-      { label: 'Color', value: '10-bit D-Log M' },
-      { label: 'Dynamic Range', value: '12.8 Stops' },
-      { label: 'Output', value: 'ProRes / H.265' }
+      { label: 'Camera', value: 'DJI P1 / Mavic 3E' },
+      { label: 'Res', value: '6K Video / 45MP Still' },
+      { label: 'Sensor', value: 'Full Frame CMOS' },
+      { label: 'Delivery', value: 'ProRes / Raw' }
     ]
   },
   'surveying': {
-    title: 'UAV Surveying & Mapping',
-    hero: 'DATA. DEPTH. DETAIL.',
-    desc: 'High-precision topographical mapping and 3D photogrammetry for land development and civil engineering.',
+    title: 'Topographic Surveying & Lidar',
+    hero: 'DATA. DEPTH. DEFINITION.',
+    desc: 'Digital twin generation through high-density LiDAR and photogrammetry. Centimeter-level absolute accuracy (±2cm) for land development, civil engineering, and volumetric stockpile analysis.',
     video: '/videos/surveying.mp4',
     poster: '/images/surveying_poster.png',
-    features: ['Topographical Surveys', '3D Point Cloud Generation', 'Volumetric Analysis', 'NDVI Vegetation Health'],
+    features: ['LiDAR Point Cloud Generation', '3D Digital Twin Modeling', 'Volumetric Earthworks Calc', '2D High-Res Orthomosaics'],
     specs: [
-      { label: 'Precision', value: 'Sub-3cm Absolute' },
-      { label: 'Output', value: 'CAD / BIM / GIS' },
-      { label: 'Frequency', value: 'PPK / RTK Ready' },
-      { label: 'Area Coverage', value: 'Up to 200Ha/day' }
+      { label: 'Precision', value: '±2cm Absolute (RTK)' },
+      { label: 'Equipment', value: 'Matrice 350 / L2' },
+      { label: 'Output', value: 'LAS / DXF / OBJ' },
+      { label: 'Speed', value: 'Up to 2km² / Day' }
     ]
   },
   'construction': {
     title: 'Construction Monitoring',
-    hero: 'TRACK. REPORT. MANAGE.',
-    desc: 'Strategic site progress tracking and stakeholder reporting through consistent, high-altitude perspective.',
+    hero: 'TRACK. REPORT. RECORD.',
+    desc: 'Strategic site oversight through automated flight paths. We provide project managers with consistent, high-accuracy visual data to track progress against BIM designs and verify site safety protocols.',
     video: '/videos/construction.mp4',
     poster: '/images/construction_poster.png',
-    features: ['Weekly Progress Sets', 'Orthomosaic Site Maps', 'As-Built vs Design Comparison', 'Stakeholder Portals'],
+    features: ['Automated Progress Sets', 'As-Built vs BIM Overlay', '4D Timeline Visualization', 'Monthly Stakeholder Sets'],
     specs: [
-      { label: 'Frequency', value: 'Daily / Weekly' },
-      { label: 'Visualization', value: '4D Timeline' },
-      { label: 'Safety', value: 'Full Risk RAMS' },
-      { label: 'Collaborate', value: 'Autodesk Connect' }
+      { label: 'Frequency', value: 'Weekly / Bi-Monthly' },
+      { label: 'Integration', value: 'Autodesk / Procore' },
+      { label: 'Accuracy', value: 'GCP / RTK Verified' },
+      { label: 'Reporting', value: 'Interactive Portals' }
     ]
   }
 }

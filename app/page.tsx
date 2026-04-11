@@ -6,11 +6,13 @@ import InspectionSection from '@/components/sections/InspectionSection'
 import PhotographySection from '@/components/sections/PhotographySection'
 import SurveyingSection from '@/components/sections/SurveyingSection'
 import ConstructionSection from '@/components/sections/ConstructionSection'
+import MetricsSection from '@/components/sections/MetricsSection'
+import SectorSection from '@/components/sections/SectorSection'
+import FAQSection from '@/components/sections/FAQSection'
 import ContactSection from '@/components/sections/ContactSection'
 
 export default function Home() {
   useEffect(() => {
-    // Keyboard Navigation
     const handleKey = (e: KeyboardEvent) => {
       const sections = document.querySelectorAll('section[data-index]')
       const current = [...sections].findIndex(s => {
@@ -39,8 +41,11 @@ export default function Home() {
       <HeroSection />
       <InspectionSection />
       <PhotographySection />
+      <MetricsSection />
       <SurveyingSection />
       <ConstructionSection />
+      <SectorSection />
+      <FAQSection />
       <ContactSection />
     </main>
   )

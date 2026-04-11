@@ -15,8 +15,17 @@ const SERVICES = [
 ]
 
 const FLEET = [
-  { name: 'DJI Matrice 350 RTK', slug: 'm350-rtk', type: 'Heavy Lift / Industrial' },
-  { name: 'DJI Mavic 3 Enterprise', slug: 'mavic-3e', type: 'Tactical / Inspection' },
+  { name: 'DJI Matrice 350 RTK', slug: 'm350-rtk', type: 'Flagship Industrial' },
+  { name: 'DJI Matrice 30T', slug: 'm30t', type: 'Tactical Thermal' },
+  { name: 'DJI Matrice 300 RTK', slug: 'm300-rtk', type: 'Heavy Lift Support' },
+  { name: 'DJI Mavic 3 Enterprise', slug: 'mavic-3e', type: 'Precision Mapping' },
+]
+
+const PAYLOADS = [
+  { name: 'Zenmuse H20T', slug: 'h20t', type: 'Quad-Sensor / Optic' },
+  { name: 'Zenmuse L1', slug: 'l1', type: 'LiDAR / Mapping' },
+  { name: 'Zenmuse P1', slug: 'p1', type: 'Photogrammetry' },
+  { name: 'Zenmuse Z30', slug: 'z30', type: 'Optical Zoom' },
 ]
 
 export default function Nav() {
@@ -86,6 +95,14 @@ export default function Nav() {
             <ChevronDown className={`w-3.5 h-3.5 text-accent transition-transform duration-300 ${activeMenu === 'fleet' ? 'rotate-180' : ''}`} />
           </div>
 
+          <div 
+            className="flex items-center gap-1.5 cursor-pointer group py-2"
+            onMouseEnter={() => handleMouseEnter('payloads')}
+          >
+            <span className="font-ui text-[13px] tracking-[0.2em] uppercase text-white/70 group-hover:text-white transition-colors">Payloads</span>
+            <ChevronDown className={`w-3.5 h-3.5 text-accent transition-transform duration-300 ${activeMenu === 'payloads' ? 'rotate-180' : ''}`} />
+          </div>
+
           <Link href="/case-studies" className="font-ui text-[13px] tracking-[0.2em] uppercase text-white/70 hover:text-white transition-colors">
             Case Studies
           </Link>
@@ -135,21 +152,43 @@ export default function Nav() {
             )}
 
             {activeMenu === 'fleet' && (
-              <div className="grid grid-cols-2 gap-12 max-w-[900px]">
+              <div className="grid grid-cols-2 gap-x-12 gap-y-8 max-w-[1000px]">
                 {FLEET.map((item) => (
                   <Link 
                     key={item.slug} 
                     href={`/fleet/${item.slug}`}
                     className="flex gap-6 group"
                   >
-                    <div className="h-24 aspect-video bg-white/5 border border-white/10 overflow-hidden relative">
-                      {/* Subagent placeholder img later */}
+                    <div className="h-16 aspect-video bg-white/5 border border-white/10 overflow-hidden relative flex items-center justify-center">
+                      <div className="font-display text-[20px] text-white opacity-5 select-none tracking-tighter">SPEC</div>
                       <div className="absolute inset-0 bg-accent/20 opacity-0 group-hover:opacity-100 transition-opacity" />
                     </div>
                     <div>
-                      <div className="font-display text-xl tracking-wider text-white mb-1">{item.name}</div>
-                      <div className="font-ui text-[11px] text-accent tracking-widest uppercase mb-2">{item.type}</div>
-                      <span className="text-[10px] text-white/30 group-hover:text-white transition-colors">SPECIFICATIONS →</span>
+                      <div className="font-display text-lg tracking-wider text-white mb-0.5">{item.name}</div>
+                      <div className="font-ui text-[9px] text-accent tracking-[0.2em] uppercase mb-1.5">{item.type}</div>
+                      <span className="text-[9px] tracking-widest text-white/30 group-hover:text-white transition-colors">VIEW UNIT →</span>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            )}
+
+            {activeMenu === 'payloads' && (
+              <div className="grid grid-cols-2 gap-x-12 gap-y-8 max-w-[1000px]">
+                {PAYLOADS.map((item) => (
+                  <Link 
+                    key={item.slug} 
+                    href={`/fleet/${item.slug}`}
+                    className="flex gap-6 group"
+                  >
+                    <div className="h-16 aspect-video bg-white/5 border border-white/10 overflow-hidden relative flex items-center justify-center">
+                      <div className="font-display text-[20px] text-white opacity-5 select-none tracking-tighter">DATA</div>
+                      <div className="absolute inset-0 bg-accent/20 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </div>
+                    <div>
+                      <div className="font-display text-lg tracking-wider text-white mb-0.5">{item.name}</div>
+                      <div className="font-ui text-[9px] text-accent tracking-[0.2em] uppercase mb-1.5">{item.type}</div>
+                      <span className="text-[9px] tracking-widest text-white/30 group-hover:text-white transition-colors">VIEW SENSOR →</span>
                     </div>
                   </Link>
                 ))}

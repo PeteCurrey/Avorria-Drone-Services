@@ -74,7 +74,7 @@ export default function Nav() {
       <div className="max-w-[1400px] mx-auto flex justify-between items-center relative">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 group">
-          <span className="font-display text-2xl md:text-3xl tracking-[0.15em] text-white">AVORRIA</span>
+          <span className="font-display text-2xl md:text-3xl tracking-[0.15em] text-white">ALTITUDE</span>
           <span className="font-display text-2xl md:text-3xl tracking-[0.15em] text-accent">DRONE</span>
         </Link>
 

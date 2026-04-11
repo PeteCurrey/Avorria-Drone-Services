@@ -86,7 +86,7 @@ export default function ContactSection() {
 
         <div className="contact-details flex flex-col gap-8">
           {[
-            { label: 'Ops Desk', val: 'ops@avorria.drone' },
+            { label: 'Ops Desk', val: 'ops@altitude.drone' },
             { label: 'Direct', val: '+44 (0) 20 7946 0123' },
             { label: 'Territory', val: 'UK Wide Operational Support' }
           ].map((detail) => (
@@ -178,7 +178,7 @@ export default function ContactSection() {
       {/* Footer Bar */}
       <footer className="absolute bottom-0 left-0 w-full px-10 md:px-20 py-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
         <div className="font-ui text-[10px] tracking-[0.1em] text-white/20 text-center md:text-left">
-          © {new Date().getFullYear()} Avorria Drone. CAA Permission for Commercial Operations.
+          © {new Date().getFullYear()} Altitude Drone. CAA Permission for Commercial Operations.
           <span className="mx-4 opacity-50">|</span>
           <a href="https://avorria.com" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors">
             Build by Avorria Digital Marketing. A Signature Build.

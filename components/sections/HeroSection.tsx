@@ -74,7 +74,7 @@ export default function HeroSection() {
       <div className="hero-right-col relative z-10 flex-1 w-full md:max-w-[480px]">
         <div className="mb-8">
           <span className="font-ui text-[11px] tracking-[0.35em] uppercase text-white/25 mb-4 block">CAA Approved · PFCO Licensed · Fully Insured</span>
-          <p className="font-body text-[16px] font-light leading-relaxed text-white/45">Where precision meets altitude. Avorria Drone delivers intelligence from above — transforming complex aerial challenges into clear, actionable data for the industries that build Britain.</p>
+          <p className="font-body text-[16px] font-light leading-relaxed text-white/45">Where precision meets altitude. Altitude Drone delivers intelligence from above — transforming complex aerial challenges into clear, actionable data for the industries that build Britain.</p>
         </div>
         <div className="grid grid-cols-2 gap-[1px] bg-white/10 border border-white/5 overflow-hidden">
           <div className="bg-dark/40 p-7">

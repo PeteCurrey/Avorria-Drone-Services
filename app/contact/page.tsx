@@ -55,7 +55,7 @@ export default function ContactPage() {
               </div>
               <div>
                 <div className="font-ui text-[9px] tracking-[0.2em] uppercase text-white/30">Email Uplink</div>
-                <div className="font-display text-xl text-white group-hover:text-accent transition-colors">ops@avorria.drone</div>
+                <div className="font-display text-xl text-white group-hover:text-accent transition-colors">ops@altitude.drone</div>
               </div>
             </div>
 

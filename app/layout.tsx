@@ -28,11 +28,11 @@ const barlowCondensed = Barlow_Condensed({
 })
 
 export const metadata: Metadata = {
-  title: 'Avorria Drone — Professional UAV Services UK',
+  title: 'Altitude Drone — Professional UAV Services UK',
   description: 'CAA-approved drone inspection, aerial photography, surveying & mapping, and construction monitoring across the UK. See further. Know more.',
-  keywords: 'drone inspection, aerial photography, UAV surveying, drone mapping, construction monitoring, drone services UK, CAA approved',
+  keywords: 'drone inspection, aerial photography, UAV surveying, drone mapping, construction monitoring, drone services UK, CAA approved, Altitude Drone',
   openGraph: {
-    title: 'Avorria Drone — See Further. Know More.',
+    title: 'Altitude Drone — See Further. Know More.',
     description: 'Professional UAV services for inspection, photography, surveying, and construction monitoring.',
     images: ['/images/hero_poster.png'],
     type: 'website',

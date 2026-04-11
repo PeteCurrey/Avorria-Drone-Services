@@ -24,7 +24,7 @@ export default function FleetOverviewPage() {
   return (
     <main className="min-h-screen bg-dark">
       {/* Cinematic Hardware Hero */}
-      <section className="relative h-[85vh] flex items-center justify-start px-10 md:px-20 overflow-hidden">
+      <section className="relative h-[85vh] flex items-center justify-start px-10 md:px-20 pt-32 md:pt-40 overflow-hidden">
         {/* Using the M350 RTK image as requested for the fleet main page visual */}
         <div className="absolute inset-0 z-0">
           <img 

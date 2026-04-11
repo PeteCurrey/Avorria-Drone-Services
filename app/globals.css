@@ -14,10 +14,11 @@
   --overlay-heavy:  rgba(0,0,0,0.70);
 }
 
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+html, body {
+  height: auto;
+  min-height: 100%;
+  overflow-x: hidden;
+  scroll-behavior: auto !important;
 }
 
 body {

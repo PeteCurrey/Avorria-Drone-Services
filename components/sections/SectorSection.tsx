@@ -1,30 +1,36 @@
+import Image from 'next/image'
 import { Building2, Power, Hammer, Landmark, Network } from 'lucide-react'
 
 const SECTORS = [
   {
     title: "CONSTRUCTION",
     desc: "Weekly progress monitoring, volumetric earthworks analysis, and BIM design overlay verification.",
-    icon: Hammer
+    icon: Hammer,
+    image: "/images/sectors/construction.png"
   },
   {
     title: "UTILITIES",
     desc: "High-voltage pylon inspections, solar farm thermal audits, and pipeline corridor mapping.",
-    icon: Power
+    icon: Power,
+    image: "/images/sectors/utilities.png"
   },
   {
     title: "INFRASTRUCTURE",
     desc: "Strategic surveys for bridges, reservoirs, and rail networks using LiDAR and high-res imaging.",
-    icon: Network
+    icon: Network,
+    image: "/images/sectors/infrastructure.png"
   },
   {
     title: "FACILITIES",
     desc: "Complete building envelope audits, roofing thermal signatures, and planned maintenance cycles.",
-    icon: Building2
+    icon: Building2,
+    image: "/images/sectors/facilities.png"
   },
   {
     title: "PUBLIC SECTOR",
     desc: "Heritage site digital twins, archaeological mapping, and emergency aerial support frameworks.",
-    icon: Landmark
+    icon: Landmark,
+    image: "/images/sectors/public_sector.png"
   }
 ]
 
@@ -48,12 +54,26 @@ export default function SectorSection() {
 
         <div className="lg:w-2/3 grid grid-cols-1 sm:grid-cols-2 gap-px bg-white/10 border border-white/5">
           {SECTORS.map((sector) => (
-            <div key={sector.title} className="p-10 bg-dark group hover:bg-accent/[0.03] transition-all duration-500">
-              <sector.icon className="w-8 h-8 text-white/20 group-hover:text-accent transition-all duration-500 mb-8" />
-              <h3 className="font-display text-2xl text-white mb-4 tracking-widest">{sector.title}</h3>
-              <p className="font-body text-xs text-white/30 uppercase tracking-tighter leading-relaxed">
-                {sector.desc}
-              </p>
+            <div key={sector.title} className="relative group p-10 bg-dark overflow-hidden transition-all duration-500">
+              {/* Background Image Reveal */}
+              <div className="absolute inset-0 z-0 opacity-0 group-hover:opacity-100 transition-all duration-700 ease-in-out">
+                <Image 
+                  src={sector.image}
+                  alt={sector.title}
+                  fill
+                  className="object-cover scale-110 group-hover:scale-100 transition-transform duration-700 ease-out"
+                />
+                {/* Dark Overlay for Text Protection */}
+                <div className="absolute inset-0 bg-gradient-to-br from-dark/95 via-dark/80 to-transparent z-10" />
+              </div>
+
+              <div className="relative z-20">
+                <sector.icon className="w-8 h-8 text-white/20 group-hover:text-accent transition-all duration-500 mb-8" />
+                <h3 className="font-display text-2xl text-white mb-4 tracking-widest">{sector.title}</h3>
+                <p className="font-body text-xs text-white/30 uppercase tracking-tighter leading-relaxed group-hover:text-white/70 transition-colors duration-500">
+                  {sector.desc}
+                </p>
+              </div>
             </div>
           ))}
         </div>

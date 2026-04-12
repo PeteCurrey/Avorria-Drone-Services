@@ -86,7 +86,8 @@ export default function ConstructionSection() {
       <VideoBackground 
         src="/videos/construction.mp4" 
         poster="/images/construction_poster.png"
-        brightness={0.35} 
+        brightness={0.7} 
+        saturation={1.2}
       />
       <div className="grid-lines" />
       <GhostNumber number="04" position="left" />

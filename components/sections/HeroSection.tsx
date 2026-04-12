@@ -46,7 +46,7 @@ export default function HeroSection() {
 
   return (
     <section ref={sectionRef} data-index="0" className="noise-overlay flex flex-col md:flex-row items-center justify-center gap-12 md:gap-20">
-      <VideoBackground src="/videos/hero.mp4" poster="/images/hero_poster.png" brightness={0.38} />
+      <VideoBackground src="/videos/hero.mp4" poster="/images/hero_poster.png" brightness={0.72} saturation={1.25} />
       <div className="grid-lines" />
       <div className="relative z-10 flex-1 w-full mt-24 md:mt-0">
         <div className="hero-eyebrow flex items-center gap-4 mb-6">

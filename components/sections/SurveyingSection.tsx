@@ -61,7 +61,8 @@ export default function SurveyingSection() {
       <VideoBackground 
         src="/videos/surveying.mp4" 
         poster="/images/surveying_poster.png"
-        brightness={0.32} 
+        brightness={0.7} 
+        saturation={1.25}
       />
       <div className="grid-lines" />
       <GhostNumber number="03" />

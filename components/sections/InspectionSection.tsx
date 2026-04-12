@@ -62,7 +62,7 @@ export default function InspectionSection() {
 
   return (
     <section ref={sectionRef} data-index="1" className="noise-overlay flex flex-col md:flex-row items-center justify-between gap-12 md:gap-24">
-      <VideoBackground src="/videos/inspection.mp4" poster="/images/inspection_poster.png" brightness={0.35} />
+      <VideoBackground src="/videos/inspection.mp4" poster="/images/inspection_poster.png" brightness={0.72} saturation={1.2} />
       <div className="grid-lines" />
       <GhostNumber number="01" />
       <div className="relative z-10 flex-1 max-w-[640px]">

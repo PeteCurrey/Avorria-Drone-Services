@@ -66,7 +66,8 @@ export default function ContactSection() {
       <VideoBackground 
         src="/videos/contact.mp4" 
         poster="/images/contact_poster.png"
-        brightness={0.28} 
+        brightness={0.65} 
+        saturation={1.1}
       />
       <div className="grid-lines" />
 

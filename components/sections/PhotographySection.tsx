@@ -67,7 +67,8 @@ export default function PhotographySection() {
       <VideoBackground 
         src="/videos/photography.mp4" 
         poster="/images/photography_poster.png"
-        brightness={0.38} 
+        brightness={0.75} 
+        saturation={1.3}
       />
       <div className="grid-lines" />
       <GhostNumber number="02" position="left" />

@@ -57,7 +57,7 @@ export default function SurveyingSection() {
   ]
 
   return (
-    <section ref={sectionRef} data-index="4" className="noise-overlay flex flex-col md:flex-row items-center justify-between gap-12 md:gap-24">
+    <section ref={sectionRef} data-index="3" className="noise-overlay flex flex-col md:flex-row items-center justify-between gap-12 md:gap-24">
       <VideoBackground 
         src="/videos/surveying.mp4" 
         poster="/images/surveying_poster.png"

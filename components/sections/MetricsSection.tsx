@@ -23,7 +23,7 @@ const METRICS = [
 
 export default function MetricsSection() {
   return (
-    <section data-index="3" className="bg-dark py-32 px-10 md:px-20 border-y border-white/5 relative">
+    <section data-index="8" className="bg-dark py-32 px-10 md:px-20 border-y border-white/5 relative">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-20 max-w-7xl mx-auto">
         {METRICS.map((metric) => (
           <div key={metric.label} className="flex flex-col items-center text-center group">

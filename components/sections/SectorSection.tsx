@@ -36,7 +36,7 @@ const SECTORS = [
 
 export default function SectorSection() {
   return (
-    <section data-index="6" className="bg-mid py-32 px-10 md:px-20 relative overflow-hidden">
+    <section data-index="9" className="bg-mid py-32 px-10 md:px-20 relative overflow-hidden">
       {/* Background Accent */}
       <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-accent/5 to-transparent pointer-events-none" />
       

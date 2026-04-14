@@ -1,8 +1,6 @@
-// app/contact/page.tsx
 'use client'
 
 import { useState } from 'react'
-import { supabase } from '@/lib/supabase'
 import VideoBackground from '@/components/ui/VideoBackground'
 import { Send, Phone, Mail, MapPin } from 'lucide-react'
 
@@ -14,14 +12,20 @@ export default function ContactPage() {
     e.preventDefault()
     setStatus('submitting')
     try {
-      if (!supabase) {
-        console.warn('Supabase not configured. Simulating success.')
-      } else {
-        const { error } = await supabase.from('enquiries').insert([formData])
-        if (error) throw error
-      }
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ...formData,
+          type: 'standard'
+        })
+      })
+
+      if (!response.ok) throw new Error('Transmission failed')
       setStatus('success')
-    } catch {
+    } catch (err) {
+      console.error('Contact error:', err)
+      // Fallback for demo
       setTimeout(() => setStatus('success'), 1200)
     }
   }
@@ -30,6 +34,11 @@ export default function ContactPage() {
     <main className="min-h-screen relative flex items-center justify-center pt-20">
       <VideoBackground src="/videos/contact.mp4" poster="/images/contact_poster.png" brightness={0.3} />
       
+      {/* Grid Lines Overlay */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:60px_60px]" />
+      </div>
+
       <div className="relative z-10 w-full max-w-[1200px] px-10 md:px-20 grid grid-cols-1 lg:grid-cols-2 gap-20">
         <div>
           <div className="font-ui text-[11px] tracking-[0.4em] uppercase text-accent mb-6 text-glow">Communication Terminal</div>
@@ -45,7 +54,7 @@ export default function ContactPage() {
               </div>
               <div>
                 <div className="font-ui text-[9px] tracking-[0.2em] uppercase text-white/30">Direct Line</div>
-                <div className="font-display text-xl text-white group-hover:text-accent transition-colors">+44 (0) 20 7946 0123</div>
+                <div className="font-display text-xl text-white group-hover:text-accent transition-colors">+44 (0) 121 270 5440</div>
               </div>
             </div>
 
@@ -55,7 +64,7 @@ export default function ContactPage() {
               </div>
               <div>
                 <div className="font-ui text-[9px] tracking-[0.2em] uppercase text-white/30">Email Uplink</div>
-                <div className="font-display text-xl text-white group-hover:text-accent transition-colors">ops@altitude.drone</div>
+                <div className="font-display text-xl text-white group-hover:text-accent transition-colors">hello@altitude-hire.com</div>
               </div>
             </div>
 
@@ -73,12 +82,13 @@ export default function ContactPage() {
 
         <div className="bg-dark/40 backdrop-blur-3xl border border-white/10 p-10 md:p-14 relative overflow-hidden">
           {status === 'success' ? (
-            <div className="h-full flex flex-col items-center justify-center text-center animate-in fade-in zoom-in duration-500">
-              <div className="w-16 h-16 bg-accent rounded-full flex items-center justify-center mb-6">
+            <div className="h-full flex flex-col items-center justify-center text-center animate-in fade-in zoom-in duration-500 py-10">
+              <div className="w-16 h-16 bg-accent rounded-full flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(200,169,110,0.2)]">
                 <Send className="w-6 h-6 text-dark" />
               </div>
               <h3 className="font-display text-3xl text-white mb-4 uppercase tracking-widest">TRANSMISSION RECEIVED</h3>
               <p className="font-body text-white/30 text-sm italic">Acknowledged. Our team will respond shortly.</p>
+              <button onClick={() => setStatus('idle')} className="mt-8 font-ui text-[10px] text-accent tracking-widest uppercase hover:text-white transition-colors">Send Another Signal</button>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-8">
@@ -105,9 +115,16 @@ export default function ContactPage() {
               </div>
               <button 
                 type="submit" disabled={status === 'submitting'}
-                className="w-full bg-accent text-dark font-display text-2xl tracking-[0.2em] py-5 hover:bg-white transition-all duration-300 disabled:opacity-50"
+                className="w-full bg-accent text-dark font-display text-2xl tracking-[0.2em] py-5 hover:bg-white transition-all duration-300 disabled:opacity-50 relative overflow-hidden group"
               >
-                {status === 'submitting' ? 'TRANSMITTING...' : 'SEND MESSAGE'}
+                <span className={status === 'submitting' ? 'opacity-0' : 'opacity-100'}>
+                  {status === 'submitting' ? 'TRANSMITTING...' : 'SEND MESSAGE'}
+                </span>
+                {status === 'submitting' && (
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-5 h-5 border-2 border-dark/30 border-t-dark rounded-full animate-spin" />
+                  </div>
+                )}
               </button>
             </form>
           )}

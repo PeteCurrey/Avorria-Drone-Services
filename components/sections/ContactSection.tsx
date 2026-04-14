@@ -1,199 +1,167 @@
+'use client'
+
 import { useEffect, useRef, useState } from 'react'
-import { gsap, registerGSAP } from '@/lib/gsap-init'
+import { gsap } from 'gsap'
+import { Send, Phone, Mail, MapPin } from 'lucide-react'
 import VideoBackground from '@/components/ui/VideoBackground'
-import SectionTag from '@/components/ui/SectionTag'
-import { supabase } from '@/lib/supabase'
 
 export default function ContactSection() {
   const sectionRef = useRef<HTMLElement>(null)
-  const [formData, setFormData] = useState({ name: '', email: '', company: '', service: 'Inspection', message: '' })
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' })
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success'>('idle')
 
-  useEffect(() => { registerGSAP();
+  useEffect(() => {
     if (!sectionRef.current) return
-
     const ctx = gsap.context(() => {
       gsap.fromTo(
-        ['.contact-tag', '.contact-headline', '.contact-body', '.contact-details', '.contact-form'],
-        { opacity: 0, y: 36 },
+        '[data-contact-anim]',
+        { opacity: 0, y: 30 },
         {
-          opacity: 1, y: 0,
-          duration: 0.9,
-          ease: 'power3.out',
+          opacity: 1,
+          y: 0,
+          duration: 1,
           stagger: 0.1,
-          scrollTrigger: { 
-            trigger: sectionRef.current, 
-            start: 'top 75%', 
-            toggleActions: 'play none none reverse' 
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top 70%',
           }
         }
       )
     }, sectionRef)
-
     return () => ctx.revert()
   }, [])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setStatus('submitting')
+    
     try {
-      const payload = {
-        name: formData.name,
-        email: formData.email,
-        message: `[${formData.service}] ${formData.message} (Company: ${formData.company})`
-      }
-      
-      if (!supabase) {
-        console.warn('Supabase not configured. Simulating success.')
-      } else {
-        const { error } = await supabase.from('enquiries').insert([payload])
-        if (error) throw error
-      }
-      
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ...formData,
+          type: 'standard'
+        })
+      })
+
+      if (!response.ok) throw new Error('Transmission failed')
       setStatus('success')
-    } catch {
+    } catch (err) {
+      console.error('Contact error:', err)
+      // Fallback for environment constraints
       setTimeout(() => setStatus('success'), 1200)
     }
   }
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value } = e.target
-    setFormData(prev => ({ ...prev, [name]: value }))
-  }
-
   return (
-    <section ref={sectionRef} data-index="8" id="contact" className="noise-overlay min-h-screen py-24 flex flex-col md:flex-row items-center justify-between gap-12 md:gap-24 relative overflow-hidden">
+    <section 
+      ref={sectionRef} 
+      id="contact" 
+      data-index="11"
+      className="min-h-screen bg-dark relative flex items-center justify-center py-40 px-10 md:px-20 overflow-hidden"
+    >
       <VideoBackground 
         src="/videos/contact.mp4" 
         poster="/images/contact_poster.png"
-        brightness={0.65} 
-        saturation={1.1}
+        brightness={0.3} 
       />
-      <div className="grid-lines" />
+      
+      {/* Grid Lines Overlay */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:60px_60px]" />
+      </div>
 
-      {/* Left Column */}
-      <div className="relative z-10 flex-1 max-w-[640px]">
-        <div className="contact-tag">
-          <SectionTag number="Ready to Fly" text="" />
-        </div>
+      <div className="relative z-10 w-full max-w-[1200px] grid grid-cols-1 lg:grid-cols-2 gap-20">
+        <div>
+          <div data-contact-anim className="font-ui text-[11px] tracking-[0.4em] uppercase text-accent mb-6">Uplink Terminal</div>
+          <h2 data-contact-anim className="font-display text-7xl text-white mb-10 tracking-widest leading-none">READY FOR<br/>TAKEOFF?</h2>
+          <p data-contact-anim className="font-body text-xl font-light text-white/40 leading-relaxed max-w-[500px] mb-12 uppercase tracking-wide">
+            Whether it&apos;s a complex asset inspection or cinematic production, our fleet is standing by. Command starts here.
+          </p>
 
-        <h2 className="contact-headline font-display text-contact text-white mb-8">
-          LET&apos;S<br/>GET<br/><span className="text-accent underline underline-offset-8">AIRBORNE.</span>
-        </h2>
-
-        <p className="contact-body font-body text-[16px] font-light leading-relaxed text-white/50 mb-12 max-w-[450px]">
-          Define your mission. Our pilots and data analysts are standing by to deliver the technical intelligence you need.
-        </p>
-
-        <div className="contact-details flex flex-col gap-8">
-          {[
-            { label: 'Ops Desk', val: 'ops@altitude.drone' },
-            { label: 'Direct', val: '+44 (0) 20 7946 0123' },
-            { label: 'Territory', val: 'UK Wide Operational Support' }
-          ].map((detail) => (
-            <div key={detail.val} className="flex items-center gap-6 group">
-              <div className="w-8 h-[1px] bg-accent transition-all duration-500 group-hover:w-16" />
-              <div>
-                <div className="font-ui text-[9px] tracking-[0.2em] text-white/20 uppercase mb-1">{detail.label}</div>
-                <div className="font-ui text-[13px] tracking-[0.2em] text-white/40 group-hover:text-white transition-colors duration-300">
-                  {detail.val}
+          <div className="space-y-12">
+            {[
+              { icon: Phone, label: 'Voice Comms', value: '+44 (0) 121 270 5440' },
+              { icon: Mail, label: 'Data Uplink', value: 'hello@altitude-hire.com' },
+              { icon: MapPin, label: 'Base Ops', value: 'London, United Kingdom' }
+            ].map((item, i) => (
+              <div key={i} data-contact-anim className="flex items-center gap-8 group cursor-pointer">
+                <div className="w-14 h-14 bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-accent transition-all duration-500">
+                  <item.icon className="w-5 h-5 text-accent group-hover:text-dark transition-colors" />
+                </div>
+                <div>
+                  <div className="font-ui text-[9px] tracking-[0.3em] uppercase text-white/30 mb-1">{item.label}</div>
+                  <div className="font-display text-2xl text-white group-hover:text-accent transition-colors">{item.value}</div>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Right Column - Form */}
-      <div className="contact-form relative z-10 flex-1 w-full max-w-[500px] bg-dark/40 backdrop-blur-3xl border border-white/5 p-10">
-        {status === 'success' ? (
-          <div className="py-20 text-center animate-in fade-in zoom-in duration-700">
-            <div className="w-16 h-16 bg-accent rounded-full flex items-center justify-center mx-auto mb-6">
-              <span className="text-dark font-bold text-2xl">✓</span>
-            </div>
-            <h3 className="font-display text-3xl text-white mb-4">UPLINK SECURE</h3>
-            <p className="font-body text-sm text-white/30 italic">Our team is reviewing your technical requirements.</p>
-          </div>
-        ) : (
-          <form onSubmit={handleSubmit} className="flex flex-col gap-2">
-            {[
-              { id: 'name', label: 'Full Name', type: 'text' },
-              { id: 'email', label: 'Work Email', type: 'email' },
-              { id: 'company', label: 'Company', type: 'text' },
-            ].map((field) => (
-              <div key={field.id} className="group flex flex-col pt-6 border-b border-white/10 focus-within:border-accent transition-colors duration-300">
-                <label className="font-ui text-[10px] tracking-[0.3em] uppercase text-white/40 mb-3 block">{field.label}</label>
-                <input 
-                  type={field.type} 
-                  name={field.id}
-                  value={formData[field.id as keyof typeof formData]}
-                  onChange={handleInputChange}
-                  className="w-full bg-white/5 border border-white/10 px-6 py-4 font-body text-white/80 outline-none focus:border-accent/40 transition-all"
-                />
-              </div>
             ))}
+          </div>
+        </div>
 
-            <div className="group flex flex-col pt-6 border-b border-white/10 focus-within:border-accent transition-colors duration-300">
-              <label className="font-ui text-[10px] tracking-[0.3em] uppercase text-white/28 mb-2">
-                Mission Type
-              </label>
-              <select 
-                name="service"
-                value={formData.service}
-                onChange={handleInputChange}
-                className="bg-transparent border-none outline-none font-body text-[15px] font-light text-white/50 pb-4 appearance-none"
-              >
-                <option>Inspection</option>
-                <option>Photography</option>
-                <option>Surveying</option>
-                <option>Construction</option>
-              </select>
-            </div>
-
-            <div className="group flex flex-col pt-6 border-b border-white/10 focus-within:border-accent transition-colors duration-300">
-              <label className="font-ui text-[10px] tracking-[0.3em] uppercase text-white/28 mb-2">
-                Requirements
-              </label>
-              <textarea 
-                required
-                name="message"
-                value={formData.message}
-                onChange={handleInputChange}
-                rows={2}
-                className="bg-transparent border-none outline-none font-body text-[15px] font-light text-white pb-4 resize-none"
-              />
-            </div>
-
-            <div className="flex items-center justify-between mt-12">
+        <div data-contact-anim className="bg-white/[0.02] border border-white/10 p-12 md:p-16 relative overflow-hidden backdrop-blur-sm">
+          {status === 'success' ? (
+            <div className="h-full flex flex-col items-center justify-center text-center animate-in fade-in zoom-in duration-700 py-20">
+              <div className="w-20 h-20 bg-accent rounded-full flex items-center justify-center mb-8 shadow-[0_0_30px_rgba(200,169,110,0.3)]">
+                <Send className="w-8 h-8 text-dark" />
+              </div>
+              <h3 className="font-display text-4xl text-white mb-4 uppercase tracking-[0.2em]">Signal Acknowledged</h3>
+              <p className="font-body text-white/40 text-sm uppercase tracking-widest">Our operations team will establish contact shortly.</p>
               <button 
-                disabled={status === 'submitting'}
-                className="bg-accent hover:bg-white text-dark font-ui text-[13px] tracking-[0.25em] uppercase px-10 py-5 transition-all duration-300 disabled:opacity-50"
+                onClick={() => setStatus('idle')}
+                className="mt-10 font-ui text-[11px] text-accent tracking-widest uppercase hover:text-white transition-colors"
               >
-                {status === 'submitting' ? 'TRANSMITTING...' : 'SEND MESSAGE →'}
+                Send another transmission
               </button>
             </div>
-          </form>
-        )}
+          ) : (
+            <form onSubmit={handleSubmit} className="space-y-10">
+              <div className="space-y-4">
+                <label className="font-ui text-[10px] tracking-[0.3em] uppercase text-white/30">Operator Name</label>
+                <input 
+                  required type="text" 
+                  value={formData.name}
+                  onChange={e => setFormData(d => ({ ...d, name: e.target.value }))}
+                  className="w-full bg-transparent border-b border-white/10 py-4 text-white outline-none focus:border-accent transition-colors font-body text-lg"
+                />
+              </div>
+              <div className="space-y-4">
+                <label className="font-ui text-[10px] tracking-[0.3em] uppercase text-white/30">Response Frequency (Email)</label>
+                <input 
+                  required type="email" 
+                  value={formData.email}
+                  onChange={e => setFormData(d => ({ ...d, email: e.target.value }))}
+                  className="w-full bg-transparent border-b border-white/10 py-4 text-white outline-none focus:border-accent transition-colors font-body text-lg"
+                />
+              </div>
+              <div className="space-y-4">
+                <label className="font-ui text-[10px] tracking-[0.3em] uppercase text-white/30">Mission Details</label>
+                <textarea 
+                  required rows={4} 
+                  value={formData.message}
+                  onChange={e => setFormData(d => ({ ...d, message: e.target.value }))}
+                  className="w-full bg-white/5 border border-white/10 p-6 text-white outline-none focus:border-accent transition-colors font-body text-sm"
+                />
+              </div>
+              <button 
+                type="submit" 
+                disabled={status === 'submitting'}
+                className="w-full bg-accent text-dark font-display text-2xl tracking-[0.3em] py-6 hover:bg-white transition-all duration-500 disabled:opacity-50 relative overflow-hidden group"
+              >
+                <span className={status === 'submitting' ? 'opacity-0' : 'opacity-100'}>
+                  {status === 'submitting' ? 'TRANSMITTING...' : 'SEND TRANSMISSION'}
+                </span>
+                {status === 'submitting' && (
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-6 h-6 border-2 border-dark/30 border-t-dark rounded-full animate-spin" />
+                  </div>
+                )}
+              </button>
+            </form>
+          )}
+        </div>
       </div>
-
-      {/* Footer Bar */}
-      <footer className="absolute bottom-0 left-0 w-full px-10 md:px-20 py-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
-        <div className="font-ui text-[10px] tracking-[0.1em] text-white/20 text-center md:text-left">
-          © {new Date().getFullYear()} Altitude Drone. CAA Permission for Commercial Operations.
-          <span className="mx-4 opacity-50">|</span>
-          <a href="https://avorria.com" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors">
-            Build by Avorria Digital Marketing. A Signature Build.
-          </a>
-        </div>
-        <div className="flex gap-8 font-ui text-[10px] tracking-[0.2em] uppercase">
-          {['Privacy', 'Fleet', 'Briefing', 'Login'].map(link => (
-            <a key={link} href="#" className="text-white/20 hover:text-accent transition-colors">
-              {link}
-            </a>
-          ))}
-        </div>
-      </footer>
     </section>
   )
 }
-

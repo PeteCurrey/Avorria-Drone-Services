@@ -3,6 +3,7 @@
 
 import { useEffect, useRef } from 'react'
 import { gsap, registerGSAP } from '@/lib/gsap-init'
+import { useLenis } from '@/lib/lenis'
 import VideoBackground from '@/components/ui/VideoBackground'
 import SectionTag from '@/components/ui/SectionTag'
 import FeatureTags from '@/components/ui/FeatureTags'
@@ -10,6 +11,7 @@ import GhostNumber from '@/components/ui/GhostNumber'
 
 export default function PhotographySection() {
   const sectionRef = useRef<HTMLElement>(null)
+  const lenis = useLenis()
 
   useEffect(() => { registerGSAP();
     if (!sectionRef.current) return
@@ -62,6 +64,15 @@ export default function PhotographySection() {
     { label: 'SHOT 03 · COMMERCIAL GLIDE', quality: '4K' },
   ]
 
+  const scrollToContact = () => {
+    if (lenis) {
+      const contactSection = document.getElementById('contact')
+      if (contactSection) {
+        lenis.scrollTo(contactSection)
+      }
+    }
+  }
+
   return (
     <section ref={sectionRef} data-index="2" className="noise-overlay flex flex-col md:flex-row-reverse items-center justify-between gap-12 md:gap-24">
       <VideoBackground 
@@ -91,8 +102,11 @@ export default function PhotographySection() {
           <FeatureTags tags={features} />
         </div>
 
-        <button className="svc-cta flex items-center gap-4 font-ui text-[13px] tracking-[0.25em] text-accent group transition-all">
-          VIEW SHOWREEL 
+        <button 
+          onClick={scrollToContact}
+          className="svc-cta flex items-center gap-4 font-ui text-[13px] tracking-[0.25em] text-accent group transition-all"
+        >
+          REQUEST SHOWREEL 
           <span className="group-hover:translate-x-2 transition-transform duration-300">→</span>
         </button>
       </div>

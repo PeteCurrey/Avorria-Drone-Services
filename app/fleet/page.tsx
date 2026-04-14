@@ -1,75 +1,13 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { ArrowRight, ShieldCheck, Cpu, Zap, Activity } from 'lucide-react'
-
-const TECHNOLOGY = [
-  {
-    name: 'DJI Matrice 350 RTK',
-    slug: 'm350-rtk',
-    type: 'Heavy Lift Industrial',
-    desc: 'The gold standard for critical infrastructure inspection. IP55 rating, triple-payload support, and 55-minute flight endurance for high-stakes industrial missions.',
-    image: '/images/fleet_m350.png'
-  },
-  {
-    name: 'DJI Matrice 30T',
-    slug: 'm30t',
-    type: 'Tactical Thermal',
-    desc: 'The ultimate rapid-deployment asset. Integrated wide, zoom, and thermal sensors with laser rangefinding for complex search and rescue or utility audits.',
-    image: '/images/inspection_poster.png'
-  },
-  {
-    name: 'DJI Matrice 300 RTK',
-    slug: 'm300-rtk',
-    type: 'Legacy Enterprise',
-    desc: 'Proven reliability in the field. The M300 RTK remains a pillar of infrastructure auditing, offering high payload modularity and consistent performance.',
-    image: '/images/fleet_m350.png'
-  },
-  {
-    name: 'DJI Mavic 3 Enterprise',
-    slug: 'mavic-3e',
-    type: 'Precision Mapping',
-    desc: 'Portable power optimized for high-speed surveying. Featuring a mechanical shutter and RTK module for centimeter-level photogrammetry without GCPs.',
-    image: '/images/surveying_poster.png'
-  }
-]
-
-const PAYLOADS = [
-  {
-    name: 'Zenmuse H20T',
-    slug: 'h20t',
-    type: 'Quad-Sensor Payload',
-    desc: 'Thermal, Zoom, Wide, and Laser Rangefinder in one integrated solution.',
-    image: '/images/inspection_poster.png'
-  },
-  {
-    name: 'Zenmuse L1',
-    slug: 'l1',
-    type: 'LiDAR + RGB',
-    desc: 'High-accuracy digital twin generation with real-time true-color point clouds.',
-    image: '/images/surveying_poster.png'
-  },
-  {
-    name: 'Zenmuse P1',
-    slug: 'p1',
-    type: 'Full-Frame Photogrammetry',
-    desc: '45MP sensor with global shutter for unprecedented mapping detail.',
-    image: '/images/photography_poster.png'
-  },
-  {
-    name: 'Zenmuse Z30',
-    slug: 'z30',
-    type: 'Aerial Zoom',
-    desc: '30x optical zoom for safe distance monitoring of critical assets.',
-    image: '/images/inspection_poster.png'
-  }
-]
+import { FLEET_ASSETS, PAYLOADS } from '@/lib/data/fleet'
 
 export default function FleetOverviewPage() {
   return (
     <main className="min-h-screen bg-dark">
       {/* Cinematic Hardware Hero */}
       <section className="relative h-[85vh] flex items-center justify-start px-10 md:px-20 pt-32 md:pt-40 overflow-hidden">
-        {/* Using the M350 RTK image as requested for the fleet main page visual */}
         <div className="absolute inset-0 z-0">
           <Image 
             src="/images/fleet_m350.png" 
@@ -96,7 +34,7 @@ export default function FleetOverviewPage() {
               <span className="font-ui text-[10px] tracking-widest text-white/60 uppercase">CAA GVC Certified</span>
             </div>
             <div className="flex items-center gap-3">
-              <Zap className="w-5 h-5 text-accent" />
+              < Zap className="w-5 h-5 text-accent" />
               <span className="font-ui text-[10px] tracking-widest text-white/60 uppercase">RTK Enabled</span>
             </div>
           </div>
@@ -110,7 +48,7 @@ export default function FleetOverviewPage() {
           <span className="font-ui text-[11px] tracking-[0.4em] uppercase text-accent">Flight Platforms</span>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-px bg-white/10 border border-white/5">
-          {TECHNOLOGY.map((item) => (
+          {FLEET_ASSETS.map((item) => (
             <div key={item.slug} className="bg-dark group">
               <div className="relative aspect-[16/9] overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-700">
                 <Image 

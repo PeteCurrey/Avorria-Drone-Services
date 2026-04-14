@@ -30,7 +30,7 @@ export default function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
 
   return (
-    <section data-index="7" className="bg-dark py-32 px-10 md:px-20 border-t border-white/5">
+    <section data-index="10" className="bg-dark py-32 px-10 md:px-20 border-t border-white/5">
       <div className="max-w-4xl mx-auto">
         <div className="flex items-center gap-4 mb-12">
           <div className="w-12 h-[1px] bg-accent" />

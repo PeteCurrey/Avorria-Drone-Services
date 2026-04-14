@@ -37,11 +37,11 @@ export default function HeroSection() {
     )
   }, [])
 
-  const services = [
-    { id: '01', name: 'Drone Inspection', index: 1 },
-    { id: '02', name: 'Aerial Photography & Film', index: 2 },
-    { id: '03', name: 'Surveying & Mapping', index: 3 },
-    { id: '04', name: 'Construction Monitoring', index: 4 },
+  const processSteps = [
+    { id: '01', name: 'Submit Project Brief', index: 8 },
+    { id: '02', name: 'Airspace Assessment & Flight Planning', index: 8 },
+    { id: '03', name: 'Deployment & Aerial Data Capture', index: 8 },
+    { id: '04', name: 'Data Processing & Delivery', index: 8 },
   ]
 
   const scrollTo = (index: number) => {
@@ -53,8 +53,10 @@ export default function HeroSection() {
       <VideoBackground 
         src="/videos/hero.mp4" 
         poster="/images/hero_poster.jpg" 
+        alt="Altitude Drone UAV taking flight at dawn over a industrial site"
         brightness={0.72} 
         saturation={1.25} 
+        isHero={true}
       />
       <div className="grid-lines" />
       <div className="relative z-10 flex-1 w-full mt-24 md:mt-0">
@@ -69,11 +71,14 @@ export default function HeroSection() {
           <div className="hero-headline-line">MORE.</div>
         </h1>
         <div className="hero-service-list border-t border-white/10 w-full max-w-[500px]">
-          {services.map((svc) => (
-            <div key={svc.id} onClick={() => scrollTo(svc.index)} className="group flex items-center justify-between py-5 border-b border-white/10 cursor-pointer hover:pl-4 transition-all duration-500 hover:border-accent/30">
+          <div className="py-4 border-b border-white/5">
+                <span className="font-ui text-[10px] tracking-[0.2em] uppercase text-white/40">Our Operations Workflow</span>
+          </div>
+          {processSteps.map((step) => (
+            <div key={step.id} onClick={() => scrollTo(step.index)} className="group flex items-center justify-between py-5 border-b border-white/10 cursor-pointer hover:pl-4 transition-all duration-500 hover:border-accent/30">
               <div className="flex items-center gap-6">
-                <span className="font-ui text-[13px] text-white/40 group-hover:text-accent transition-colors">{svc.id}</span>
-                <span className="font-ui text-[15px] tracking-[0.1em] uppercase text-white/80">{svc.name}</span>
+                <span className="font-ui text-[13px] text-white/40 group-hover:text-accent transition-colors">{step.id}</span>
+                <span className="font-ui text-[14px] tracking-[0.1em] uppercase text-white/80">{step.name}</span>
               </div>
               <span className="text-accent opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">→</span>
             </div>

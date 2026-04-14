@@ -82,7 +82,7 @@ export default function ConstructionSection() {
   ]
 
   return (
-    <section ref={sectionRef} data-index="5" className="noise-overlay flex flex-col md:flex-row items-center justify-between gap-12 md:gap-24">
+    <section ref={sectionRef} data-index="4" className="noise-overlay flex flex-col md:flex-row items-center justify-between gap-12 md:gap-24">
       <VideoBackground 
         src="/videos/construction.mp4" 
         poster="/images/construction_poster.png"

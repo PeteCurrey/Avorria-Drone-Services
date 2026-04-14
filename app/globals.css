@@ -18,8 +18,6 @@ html, body {
   height: auto;
   min-height: 100%;
   overflow-x: hidden;
-  scroll-behavior: auto !important;
-  scroll-snap-type: y mandatory;
 }
 
 body {
@@ -39,7 +37,8 @@ body {
 }
 
 /* ─── SECTIONS ─── */
-section {
+/* Full-viewport snap sections (service panels on homepage) */
+section[data-index] {
   height: 100vh;
   width: 100%;
   position: relative;
@@ -48,12 +47,16 @@ section {
   flex-direction: column;
   justify-content: center;
   padding: 0 80px;
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
+}
+
+/* Generic sections (FAQ, Metrics, etc.) keep natural height */
+section:not([data-index]) {
+  width: 100%;
+  position: relative;
 }
 
 @media (max-width: 900px) {
-  section {
+  section[data-index] {
     padding: 0 32px;
   }
 }
@@ -111,3 +114,7 @@ section {
   backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
+
+.animate-marquee-slow { animation: marquee 30s linear infinite; }
+.animate-marquee-fast { animation: marquee 20s linear infinite; }
+@keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }

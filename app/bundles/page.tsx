@@ -459,15 +459,15 @@ export default function BundlesPage() {
       <section className="px-6 md:px-20 py-32">
         <div className="max-w-[1000px] mx-auto">
           <h2 className="font-display text-section mb-16 text-center underline decoration-accent/30 underline-offset-8">BUNDLE <span className="text-accent">FAQ</span></h2>
-          <FAQAccordion items={[
-            { q: 'What drone package do I need?', a: 'Your choice should be based on the required outcome: inspection evidence, survey data, marketing content, progress monitoring or immersive 3D capture. Our specialists can advise the best bundle for your project requirements.' },
-            { q: 'Can you provide a roof inspection report?', a: 'Yes, Altitude Hire can provide high-resolution image evidence, annotated defect imagery and inspection summaries depending on the project requirement.' },
-            { q: 'Can drone surveys replace scaffolding or MEWPs?', a: 'In many cases drones reduce the need for access equipment during initial inspection and evidence capture, although repair works or hands-on inspection may still require physical access.' },
-            { q: 'Can you provide thermal drone inspections?', a: 'Yes, thermal imaging can be added where suitable for heat loss, roof issues, solar panel anomalies or asset inspection.' },
-            { q: 'Can you create Gaussian Splats or 3D models from drone footage?', a: 'Yes, where the site and capture conditions are suitable. Gaussian Splats and 3D models are excellent for visualisation, stakeholder engagement and immersive site viewing.' },
-            { q: 'Are drone mapping outputs survey-grade?', a: 'They can be, where the project is planned with appropriate methodology, control points, processing and accuracy requirements. Altitude Hire ensures the correct workflow for measurement-critical data.' },
-            { q: 'Do you offer ongoing construction monitoring?', a: 'Yes, repeat drone visits can be arranged weekly, fortnightly or monthly for progress records, stakeholder updates and project documentation.' },
-            { q: 'Can you help with insurance evidence?', a: 'Yes, drone capture can provide fast visual evidence for storm damage, roof issues, fire damage, flood impact and access-restricted areas.' }
+          <FAQAccordion faqs={[
+            { question: 'What drone package do I need?', answer: 'Your choice should be based on the required outcome: inspection evidence, survey data, marketing content, progress monitoring or immersive 3D capture. Our specialists can advise the best bundle for your project requirements.' },
+            { question: 'Can you provide a roof inspection report?', answer: 'Yes, Altitude Hire can provide high-resolution image evidence, annotated defect imagery and inspection summaries depending on the project requirement.' },
+            { question: 'Can drone surveys replace scaffolding or MEWPs?', answer: 'In many cases drones reduce the need for access equipment during initial inspection and evidence capture, although repair works or hands-on inspection may still require physical access.' },
+            { question: 'Can you provide thermal drone inspections?', answer: 'Yes, thermal imaging can be added where suitable for heat loss, roof issues, solar panel anomalies or asset inspection.' },
+            { question: 'Can you create Gaussian Splats or 3D models from drone footage?', answer: 'Yes, where the site and capture conditions are suitable. Gaussian Splats and 3D models are excellent for visualisation, stakeholder engagement and immersive site viewing.' },
+            { question: 'Are drone mapping outputs survey-grade?', answer: 'They can be, where the project is planned with appropriate methodology, control points, processing and accuracy requirements. Altitude Hire ensures the correct workflow for measurement-critical data.' },
+            { question: 'Do you offer ongoing construction monitoring?', answer: 'Yes, repeat drone visits can be arranged weekly, fortnightly or monthly for progress records, stakeholder updates and project documentation.' },
+            { question: 'Can you help with insurance evidence?', answer: 'Yes, drone capture can provide fast visual evidence for storm damage, roof issues, fire damage, flood impact and access-restricted areas.' }
           ]} />
         </div>
       </section>

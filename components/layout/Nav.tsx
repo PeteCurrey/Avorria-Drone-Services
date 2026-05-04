@@ -110,13 +110,13 @@ export default function Nav() {
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
             >
-              <Link 
-                href="/services" 
-                className={`font-ui text-[12px] tracking-[0.2em] uppercase transition-colors flex items-center gap-1.5 ${megaMenuOpen ? 'text-accent' : 'text-white/70 hover:text-white'}`}
-              >
+              <Link href="/services" className={`font-ui text-[12px] tracking-[0.2em] uppercase transition-colors flex items-center gap-1.5 ${megaMenuOpen ? 'text-accent' : 'text-white/70 hover:text-white'}`}>
                 Services <ChevronDown className={`w-3 h-3 transition-transform duration-300 ${megaMenuOpen ? 'rotate-180 text-accent' : ''}`} />
               </Link>
             </div>
+            <Link href="/bundles" className="font-ui text-[12px] tracking-[0.2em] uppercase text-white/70 hover:text-white transition-colors">
+              Bundles
+            </Link>
             <Link href="/gaussian-splat" className="font-ui text-[12px] tracking-[0.2em] uppercase text-white/70 hover:text-white transition-colors">
               Gaussian Splat
             </Link>
@@ -236,6 +236,7 @@ export default function Nav() {
               ))}
             </div>
           </div>
+          <Link href="/bundles" className="font-display text-5xl tracking-widest text-white hover:text-accent transition-colors" onClick={() => setMobileMenuOpen(false)}>BUNDLES</Link>
           <Link href="/gaussian-splat" className="font-display text-5xl tracking-widest text-white hover:text-accent transition-colors" onClick={() => setMobileMenuOpen(false)}>GAUSSIAN SPLAT</Link>
           <Link href="/fleet" className="font-display text-5xl tracking-widest text-white hover:text-accent transition-colors" onClick={() => setMobileMenuOpen(false)}>FLEET</Link>
           <Link href="/case-studies" className="font-display text-5xl tracking-widest text-white hover:text-accent transition-colors" onClick={() => setMobileMenuOpen(false)}>PORTFOLIO</Link>

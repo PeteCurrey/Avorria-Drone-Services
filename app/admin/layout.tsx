@@ -18,6 +18,7 @@ const NAV_ITEMS = [
   { name: 'Overview', path: '/admin', icon: LayoutDashboard },
   { name: 'Leads (CRM)', path: '/admin/leads', icon: Users },
   { name: 'Case Studies', path: '/admin/cms', icon: FileText },
+  { name: 'SEO Engine', path: '/admin/seo', icon: Activity },
   { name: 'Social Gen', path: '/admin/social', icon: Share2 },
 ]
 

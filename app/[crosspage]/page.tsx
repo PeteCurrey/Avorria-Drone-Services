@@ -128,11 +128,9 @@ export default async function CrossPage({ params }: Props) {
                 <p className="font-body text-lg font-light text-white/60 leading-relaxed">
                   Our operations in {location.name} are managed by CAA GVC certified pilots with extensive experience in the {location.region} area. We understand the specific airspace challenges of {location.name}, including local restricted zones and coordination requirements.
                 </p>
-                {service.bodyParagraphs.slice(0, 2).map((p, i) => (
-                  <p key={i} className="font-body text-lg font-light text-white/40 leading-relaxed">
-                    {p}
-                  </p>
-                ))}
+                <p className="font-body text-lg font-light text-white/40 leading-relaxed">
+                  {service.problemStatement}
+                </p>
               </div>
             </div>
             <div className="md:col-span-7">

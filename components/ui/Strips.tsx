@@ -2,11 +2,11 @@ import React from 'react'
 
 export function TrustedByStrip() {
   const partners = [
-    'BALFOUR BEATTY', 'MACE GROUP', 'KIER', 'SKANSKA',
-    'COSTAIN', 'MORGAN SINDALL', 'BAM CONSTRUCT', 'WILLMOTT DIXON', 'LAING O\'ROURKE',
+    'PROPERTY & ASSETS', 'CONSTRUCTION', 'INFRASTRUCTURE', 'UTILITIES',
+    'RENEWABLE ENERGY', 'FACILITIES MANAGEMENT', 'INSURANCE & CLAIMS', 'AERIAL MEDIA', 'CIVIL ENGINEERING',
     // Duplicate for seamless loop
-    'BALFOUR BEATTY', 'MACE GROUP', 'KIER', 'SKANSKA',
-    'COSTAIN', 'MORGAN SINDALL', 'BAM CONSTRUCT', 'WILLMOTT DIXON', 'LAING O\'ROURKE'
+    'PROPERTY & ASSETS', 'CONSTRUCTION', 'INFRASTRUCTURE', 'UTILITIES',
+    'RENEWABLE ENERGY', 'FACILITIES MANAGEMENT', 'INSURANCE & CLAIMS', 'AERIAL MEDIA', 'CIVIL ENGINEERING'
   ]
 
   return (
@@ -14,7 +14,7 @@ export function TrustedByStrip() {
       <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-dark to-transparent z-10 pointer-events-none" />
       
       <div className="flex-shrink-0 px-8 border-r border-white/10 flex items-center h-full relative z-20 bg-dark">
-        <span className="font-ui text-[12px] tracking-[0.2em] uppercase text-white/50">Trusted By</span>
+        <span className="font-ui text-[12px] tracking-[0.2em] uppercase text-white/50">Strategic Sectors</span>
       </div>
 
       <div className="flex overflow-hidden">

@@ -13,6 +13,7 @@ import MetricsSection from '@/components/sections/MetricsSection'
 import SectorSection from '@/components/sections/SectorSection'
 import FAQSection from '@/components/sections/FAQSection'
 import BundlesTeaser from '@/components/sections/BundlesTeaser'
+import PortfolioTeaser from '@/components/sections/PortfolioTeaser'
 import ContactSection from '@/components/sections/ContactSection'
 import { TrustedByStrip, AccreditationsStrip } from '@/components/ui/Strips'
 
@@ -62,6 +63,7 @@ export default function Home() {
       <EventsSection />
       <MetricsSection />
       <SectorSection />
+      <PortfolioTeaser />
       <BundlesTeaser />
       <FAQSection />
       <ContactSection />

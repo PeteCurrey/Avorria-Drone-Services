@@ -10,7 +10,7 @@ interface VideoBackgroundProps {
   brightness?: number  // default 0.40
   saturation?: number  // default 1.00
   className?: string
-  isHero?: boolean     // hero gets high priority/autoplay, others get lazy loading
+  isHero?: boolean     // hero gets high priority, others get lazy loading
 }
 
 export default function VideoBackground({
@@ -24,42 +24,69 @@ export default function VideoBackground({
 }: VideoBackgroundProps) {
   const videoRef = useRef<HTMLVideoElement>(null)
   const sourceRef = useRef<HTMLSourceElement>(null)
-  const [hasStarted, setHasStarted] = useState(isHero)
+  const [shouldLoad, setShouldLoad] = useState(isHero)
   const [videoLoaded, setVideoLoaded] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
 
   useEffect(() => {
-    if (hasStarted) return
+    // Check for mobile and reduced motion
+    const mobileQuery = window.matchMedia('(max-width: 768px)')
+    const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
+    
+    setIsMobile(mobileQuery.matches)
+    setPrefersReducedMotion(motionQuery.matches)
 
-    // Lazy load observer for non-hero videos
+    const handleMobileChange = (e: MediaQueryListEvent) => setIsMobile(e.matches)
+    const handleMotionChange = (e: MediaQueryListEvent) => setPrefersReducedMotion(e.matches)
+
+    mobileQuery.addEventListener('change', handleMobileChange)
+    motionQuery.addEventListener('change', handleMotionChange)
+
+    return () => {
+      mobileQuery.removeEventListener('change', handleMobileChange)
+      motionQuery.removeEventListener('change', handleMotionChange)
+    }
+  }, [])
+
+  useEffect(() => {
+    // Non-hero videos are lazy-loaded via IntersectionObserver
+    if (isHero || shouldLoad || isMobile || prefersReducedMotion) return
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setHasStarted(true)
+          setShouldLoad(true)
           observer.disconnect()
         }
       },
-      { threshold: 0.1, rootMargin: '200px' } // Start loading slightly before visibility
+      { threshold: 0.01, rootMargin: '400px' }
     )
 
     if (videoRef.current) observer.observe(videoRef.current)
     return () => observer.disconnect()
-  }, [hasStarted])
+  }, [isHero, shouldLoad, isMobile, prefersReducedMotion])
 
   useEffect(() => {
-    if (hasStarted && videoRef.current && sourceRef.current) {
+    // Disable video entirely for mobile or reduced motion
+    if (isMobile || prefersReducedMotion) return
+
+    if (shouldLoad && videoRef.current && sourceRef.current) {
       const video = videoRef.current
       const source = sourceRef.current
       
-      // Transfer data-src to src
-      if (source.dataset.src) {
+      if (source.dataset.src && !source.src) {
         source.src = source.dataset.src
         video.load()
         video.play().catch(() => {
-          // Silent catch for autoplay blocks
+          // Autoplay blocked
         })
       }
     }
-  }, [hasStarted])
+  }, [shouldLoad, isMobile, prefersReducedMotion])
+
+  // If mobile or reduced motion, we only show the poster
+  const showVideo = !isMobile && !prefersReducedMotion
 
   return (
     <div className={`absolute inset-0 w-full h-full z-0 pointer-events-none overflow-hidden ${className}`}>
@@ -72,29 +99,34 @@ export default function VideoBackground({
             priority={isHero}
             className="object-cover"
             style={{ filter: `brightness(${brightness}) saturate(${saturation})` }}
+            sizes="100vw"
           />
         </div>
       )}
-      <video
-        ref={videoRef}
-        className="w-full h-full object-cover transition-opacity duration-1000"
-        style={{ 
-          filter: `brightness(${brightness}) saturate(${saturation})`,
-          opacity: videoLoaded ? 1 : 0 
-        }}
-        onPlay={() => setVideoLoaded(true)}
-        muted
-        loop
-        playsInline
-        autoPlay={isHero}
-        preload={isHero ? "auto" : "none"}
-      >
-        <source 
-          ref={sourceRef}
-          data-src={src} 
-          type="video/mp4" 
-        />
-      </video>
+      
+      {showVideo && (
+        <video
+          ref={videoRef}
+          className="w-full h-full object-cover transition-opacity duration-1000"
+          style={{ 
+            filter: `brightness(${brightness}) saturate(${saturation})`,
+            opacity: videoLoaded ? 1 : 0 
+          }}
+          onPlaying={() => setVideoLoaded(true)}
+          muted
+          loop
+          playsInline
+          autoPlay={isHero}
+          preload={isHero ? "metadata" : "none"}
+        >
+          <source 
+            ref={sourceRef}
+            data-src={src} 
+            type="video/mp4" 
+          />
+        </video>
+      )}
+
       {/* Protection Vignette */}
       <div className="absolute inset-0 bg-gradient-to-t from-dark/60 via-transparent to-dark/30 pointer-events-none" />
     </div>

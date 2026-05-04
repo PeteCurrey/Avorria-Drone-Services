@@ -1,2238 +1,1809 @@
-// lib/services-data.ts
+// lib/services-data-v2.ts
 
 export interface ServiceData {
   slug: string
   title: string
-  headline: string[]        // array of lines for Bebas Neue display
-  intro: string             // 2-sentence intro for hero
+  headline: string[]
+  intro: string
   metaTitle: string
   metaDescription: string
-  heroStat: { value: string; label: string }[]  // 3 stats for hero strip
-  bodyHeading: string
-  bodyParagraphs: string[]  // 3 paragraphs of substantive body copy
-  capabilities: { title: string; description: string }[]  // 4 capability cards
-  industries: string[]      // industries this service serves
-  faqs: { q: string; a: string }[]  // 4 FAQs specific to this service
-  relatedServices: string[] // slugs of 2 related services
+  heroStat: { value: string; label: string }[]
+  problemStatement: string
+  whatWeCapture: string[]
+  deliverables: string[]
+  useCases: { title: string; description: string }[]
+  capabilities: { title: string; description: string }[]
+  industries: string[]
+  faqs: { q: string; a: string }[]
+  relatedServices: string[]
   cta: { label: string; href: string }
+  category: 'Infrastructure & Energy' | 'Construction & Surveying' | 'Property & Assets' | 'Specialist & Response'
+  recommendedBundles?: string[]
 }
 
 export const servicesData: ServiceData[] = [
+  // PROPERTY & ASSETS
   {
     slug: 'drone-inspection',
     title: 'Drone Inspection Services UK',
     headline: ['DRONE', 'INSPECTION'],
+    category: 'Property & Assets',
     intro: 'Eliminate access risk and scaffolding costs. Altitude Drone delivers comprehensive UAV inspection services for structures where traditional access is dangerous, slow, or prohibitively expensive.',
-    metaTitle: 'Drone Inspection Services UK — Altitude Drone | CAA Approved',
-    metaDescription: 'Professional drone inspection services across the UK. Thermal imaging, defect reporting, and structural assessments for roofing, facades, bridges, pylons, and solar panels. CAA approved, £10M PLI.',
+    metaTitle: 'Drone Inspection Services UK | CAA Approved | Altitude Hire',
+    metaDescription: 'Professional drone inspection services across the UK. Thermal imaging, defect reporting, and structural assessments for roofing, facades, and infrastructure. CAA-compliant.',
     heroStat: [
       { value: '70%', label: 'Cost saving vs scaffolding' },
       { value: '4K', label: 'Ultra HD capture' },
       { value: '48H', label: 'Report turnaround' },
     ],
-    bodyHeading: 'WHY DRONE INSPECTION OUTPERFORMS TRADITIONAL ACCESS',
-    bodyParagraphs: [
-      "Traditional asset inspection methods — scaffolding, rope access, cherry pickers — are slow, expensive, and place operatives in unnecessary danger. Working at height remains the single largest cause of workplace fatalities in the UK. Drone inspection eliminates that risk entirely while delivering superior data: higher resolution imagery, wider coverage, and access to areas that simply cannot be reached safely by any other method.",
-      "Our inspection drones carry a range of payloads depending on the asset type. Standard visual inspection uses our DJI Matrice 350 RTK with Zenmuse H20T — a hybrid sensor combining 4K wide, 23× optical zoom, and FLIR thermal imaging in a single gimbal. For structural assessment, the zoom capability allows pixel-level defect identification from a safe standoff distance. For thermal applications, the FLIR sensor delivers radiometric data accurate to ±2°C.",
-      "Every Altitude inspection produces a structured defect report — annotated imagery with GPS-tagged defect locations, severity classifications, and recommended remediation priority. Reports are formatted to RICS guidance where required and delivered to your secure client portal within 48 hours of the flight. We work with asset owners, facilities managers, loss adjusters, and engineering consultants across the UK.",
+    problemStatement: 'Working at height remains the single largest cause of workplace fatalities in the UK. Traditional asset inspection methods — scaffolding, rope access, cherry pickers — are slow, expensive, and place operatives in unnecessary danger. Drone inspection eliminates that risk entirely while delivering superior data: higher resolution imagery and access to areas that simply cannot be reached safely by any other method.',
+    whatWeCapture: [
+      'High-resolution visual defect imagery',
+      'Radiometric thermal signatures',
+      'Close-up asset condition shots',
+      'Structural integrity evidence',
+      'Annotated defect locations'
+    ],
+    deliverables: [
+      'Comprehensive inspection report (PDF)',
+      'High-resolution image archive',
+      'Defect schedule with severity levels',
+      'Interactive client portal access'
+    ],
+    useCases: [
+      { title: 'Structural Audits', description: 'Detailed inspection of bridges, towers, and industrial plant.' },
+      { title: 'Safe Access', description: 'Replacing rope access for high-level building inspections.' }
     ],
     capabilities: [
-      { title: 'Roofing & Facades', description: 'Full building envelope inspection including flat roofs, pitched roofs, cladding systems, and glazing. Moisture mapping available with thermal payload.' },
-      { title: 'Bridges & Structures', description: 'Deck soffit inspection, pier condition assessment, and expansion joint survey. Inaccessible faces imaged with zoom payload from safe standoff.' },
-      { title: 'Powerlines & Pylons', description: 'High-voltage infrastructure inspection without outage. Tower condition, insulator check, and conductor assessment at safe operational distance.' },
-      { title: 'Solar Panels', description: 'Cell-level fault detection using FLIR radiometric thermal imaging. Identify hotspots, bypass diode failures, and underperforming strings across large arrays in a single flight.' },
+      { title: 'Close-Proximity Flight', description: 'Safely navigating complex structures for detail.' },
+      { title: 'High-Resolution Zoom', description: 'Identifying high-detail defects from a safe standoff.' }
     ],
-    industries: ['Facilities Management', 'Insurance & Loss Adjustment', 'Civil Engineering', 'Utilities & Energy', 'Local Authority', 'Housing & Property'],
+    industries: ['Facilities Management', 'Civil Engineering', 'Insurance', 'Utilities'],
     faqs: [
-      { q: 'How close does the drone need to fly to the structure?', a: 'Typically 5–15 metres depending on the sensor and required resolution. Our Zenmuse H20T 23× optical zoom allows pixel-level defect identification from safe standoff distances that keep the drone well clear of the structure.' },
-      { q: 'Can you inspect structures in urban or restricted airspace?', a: 'Yes. We hold CAA permissions for operations in congested areas and near controlled airspace. We file all NOTAMs and coordinate with relevant authorities as part of our standard mission planning.' },
-      { q: 'What format is the inspection report delivered in?', a: 'Annotated PDF report with GPS-referenced defect imagery, severity classification, and recommended action priority. Raw imagery and video are also delivered to your client portal.' },
-      { q: 'Can drone inspection replace a full structural survey?', a: 'Drone inspection provides comprehensive visual and thermal data that is accepted by many engineering teams as a primary condition assessment. For formal structural certification, a qualified engineer reviews the drone data and issues a signed report.' },
+      { q: 'How close can the drone fly?', a: 'Typically 2-5 metres, depending on the asset and wind conditions.' },
+      { q: 'Is the data accepted by engineers?', a: 'Yes, our reports are designed to feed directly into engineering assessments.' }
     ],
-    relatedServices: ['thermal-imaging', 'construction-monitoring'],
-    cta: { label: 'GET AN INSPECTION QUOTE', href: '/contact' },
+    relatedServices: ['roof-inspections', 'facade-inspections', 'thermal-imaging'],
+    cta: { label: 'GET AN INSPECTION QUOTE', href: '/contact' }
   },
-
   {
-    slug: 'aerial-photography',
-    title: 'Aerial Photography & Film UK',
-    headline: ['AERIAL', 'PHOTOGRAPHY', '& FILM'],
-    intro: 'Cinematic 4K drone footage and ultra-high-resolution stills for property, commercial, and broadcast clients. Every flight is managed by a CAA GVC certified pilot — no cowboys, no compromise.',
-    metaTitle: 'Aerial Photography UK — Altitude Drone | 4K Drone Filming',
-    metaDescription: 'Professional aerial photography and drone filming services across the UK. 4K/6K video, 45MP stills, real estate, commercial, events, and broadcast. CAA approved, same-day delivery available.',
+    slug: 'roof-inspections',
+    title: 'Drone Roof Inspections UK',
+    headline: ['DRONE', 'ROOF', 'INSPECTIONS'],
+    category: 'Property & Assets',
+    intro: 'High-resolution aerial roof inspections for commercial properties, industrial estates, schools, and facilities managers — reducing access risk while producing clear inspection evidence.',
+    metaTitle: 'Drone Roof Inspections UK | Commercial Roof Surveys | Altitude Hire',
+    metaDescription: 'Professional drone roof inspections for commercial and industrial properties. High-resolution imagery, thermal add-ons and detailed defect reporting. CAA-compliant.',
     heroStat: [
-      { value: '4K', label: 'Cinematic video capture' },
-      { value: '45MP', label: 'Full-frame stills' },
-      { value: '24H', label: 'Highlight delivery' },
+      { value: '70%', label: 'Cost saving vs scaffolding' },
+      { value: '4K', label: 'Ultra HD capture' },
+      { value: '48H', label: 'Report turnaround' },
     ],
-    bodyHeading: 'AERIAL CONTENT THAT ELEVATES YOUR PROJECT',
-    bodyParagraphs: [
-      "Aerial photography has moved from a luxury to an expectation. Property buyers expect drone footage. Developers present planning applications with aerial context shots. Marketing teams require cinematic content that performs on social. The question is no longer whether to shoot from altitude — it is whether to shoot it properly. Consumer drone operators and unlicensed hobbyists dominate the bottom of this market. We do not compete there.",
-      "Altitude operates DJI Mavic 3 Enterprise and Matrice 350 RTK platforms depending on the brief. For cinematic property and commercial work, the Mavic 3 Enterprise delivers a 4/3-inch CMOS sensor at 20MP with 7× hybrid zoom and 45-minute flight endurance. Where absolute resolution is required, the Zenmuse P1 full-frame 45MP payload on the Matrice 350 RTK produces results equivalent to a manned aircraft survey.",
-      "We are fully licensed for operations over congested areas, near aerodromes, and at night — permissions that most freelance operators do not hold. Our pilots carry Article 16 authorisation for specified operations over crowds, meaning we can legally cover events and populated sites that other operators have to decline.",
+    problemStatement: 'Commercial roof inspections are often delayed because scaffolding, MEWPs or rope access create unnecessary cost and disruption. Drone inspection allows property teams to capture fast, high-resolution evidence of roof coverings, gutters, drainage, flashing, plant areas and high-level defects without defaulting to physical access at the first stage.',
+    whatWeCapture: [
+      'Roof coverings (Flat, Pitched, Cladding)',
+      'Gutters and drainage systems',
+      'Flashings, penetrations and upstands',
+      'Parapets and coping stones',
+      'Plant rooms and roof-mounted equipment',
+      'Evidence of ponding water or blockage',
+      'Storm damage and slipped materials',
+      'Access-restricted or high-level areas'
+    ],
+    deliverables: [
+      'High-resolution image set',
+      'Annotated defect images',
+      'PDF inspection summary',
+      'Maintenance priority notes',
+      'Contractor briefing pack',
+      'Insurance evidence pack'
+    ],
+    useCases: [
+      { title: 'Planned Maintenance', description: 'Annual or bi-annual audits to ensure roof longevity and identify issues early.' },
+      { title: 'Pre-Acquisition', description: 'Objective aerial evidence for property purchase or lease negotiations.' },
+      { title: 'Insurance Claims', description: 'Fast capture of storm or fire damage to support claim documentation.' },
+      { title: 'Post-Repair Audit', description: 'Verifying contractor works have been completed to the required standard.' }
     ],
     capabilities: [
-      { title: 'Property & Real Estate', description: 'Sales and development marketing footage for residential, commercial, and mixed-use. Ground-to-altitude reveals, facade profiles, and site context shots.' },
-      { title: 'Commercial & Brand', description: 'Campaign content for architecture, infrastructure, energy, and industrial clients. Brief-to-delivery workflow with same-day and rush options.' },
-      { title: 'Film & Broadcast', description: 'Aerial second unit for film, TV, and documentary production. Full onset coordination, licensed Recce, and insurance-compliant operations.' },
-      { title: 'Events & Sports', description: 'Article 16 licensed coverage over crowds. Festivals, concerts, motorsport, and corporate events. Live FPV feed to production desk available.' },
+      { title: 'Visual Inspection', description: 'Close-up 4K imagery of all roof elements from safe standoff distances.' },
+      { title: 'Thermal Overlay', description: 'Optional thermal imaging to detect moisture ingress and insulation gaps.' },
+      { title: 'Report Generation', description: 'Professional PDF summaries with annotated imagery for stakeholders.' }
     ],
-    industries: ['Property & Real Estate', 'Film & TV Production', 'Architecture & Design', 'Events & Hospitality', 'Construction & Development', 'Marketing & Advertising'],
+    industries: ['Facilities Management', 'Commercial Property', 'Insurance', 'Public Sector', 'Education Estates'],
     faqs: [
-      { q: 'What is the minimum notice period for a shoot?', a: 'Standard bookings require 48 hours notice for airspace checks and NOTAM filing. Rush shoots (24 hours or less) are accommodated where airspace permits, subject to availability and a surcharge.' },
-      { q: 'Can you shoot at night?', a: 'Yes. All Altitude pilots hold night operation permissions under their CAA GVC certification. We use platform lighting and thermal awareness systems for safe low-light operations.' },
-      { q: 'Do you provide editing and post-production?', a: 'We deliver colour-graded, edited highlight packages alongside raw footage. Extended editing, grade matching, and motion graphics are available as add-ons — specify in your brief.' },
-      { q: 'What happens if weather prevents the shoot?', a: 'If conditions are below our safe operating threshold on the scheduled day, we reschedule at no charge. We monitor forecasts 72 hours ahead and advise early if a weather hold looks likely.' },
+      { q: 'Can a drone roof inspection replace scaffolding?', a: 'In many cases, yes. It provides sufficient visual evidence for condition assessment and scoping without the cost of scaffolding.' },
+      { q: 'What roof defects can a drone identify?', a: 'Drones can identify cracks, slips, blockages, ponding, corrosion, and damaged flashing with high precision.' },
+      { q: 'Can you inspect gutters and roof plant?', a: 'Yes, drones are ideal for checking gutter levels, blockages, and the condition of HVAC or solar assets.' },
+      { q: 'Can you provide a report for contractors or insurers?', a: 'Yes, we provide annotated PDF reports that are widely accepted by contractors for quoting and insurers for claims.' }
     ],
-    relatedServices: ['drone-inspection', 'events-media'],
-    cta: { label: 'DISCUSS YOUR SHOOT', href: '/contact' },
+    relatedServices: ['thermal-imaging', 'building-envelope-inspections', 'facilities-management-inspections'],
+    cta: { label: 'REQUEST INSPECTION QUOTE', href: '/contact' }
+  },
+  {
+    slug: 'facade-inspections',
+    title: 'Facade Drone Inspections UK',
+    headline: ['FACADE', 'INSPECTIONS'],
+    category: 'Property & Assets',
+    intro: 'High-resolution vertical imaging for commercial and residential facades — documenting cladding, masonry, and glazing condition at scale.',
+    metaTitle: 'Facade Drone Inspections UK | Vertical Building Surveys | Altitude Hire',
+    metaDescription: 'Professional drone facade inspections. Vertical building surveys for cladding, glazing and masonry. CAA-compliant, detailed defect reporting.',
+    heroStat: [
+      { value: 'CLOSE', label: 'Visual capture' },
+      { value: '4K', label: 'Detail' },
+      { value: 'FAST', label: 'Audit speed' }
+    ],
+    problemStatement: 'Vertical facade inspection is often neglected due to the complexity and cost of access. This leads to unidentified issues with cladding, seals, and masonry. Drones provide a fast, safe, and cost-effective method to audit every square metre of a building facade.',
+    whatWeCapture: [
+      'Vertical elevation imagery',
+      'Cladding panels and fixings',
+      'Window seals and fenestration',
+      'Masonry and concrete condition',
+      'High-level signage and assets'
+    ],
+    deliverables: [
+      'Elevation image archive',
+      'Annotated defect schedule',
+      'Facade condition report',
+      'Contractor briefing imagery'
+    ],
+    useCases: [
+      { title: 'Safety Audits', description: 'Regular checks for loose cladding or deteriorating masonry.' },
+      { title: 'Project Handover', description: 'Verifying the quality of new facade installations.' }
+    ],
+    capabilities: [
+      { title: 'Vertical Mapping', description: 'Systematic capture of every facade section for total coverage.' },
+      { title: 'Precision Zoom', description: 'Inspecting small details without flying dangerously close to the building.' }
+    ],
+    industries: ['Property Owners', 'Facilities Management', 'Cladding Contractors', 'Surveyors'],
+    faqs: [
+      { q: 'Can drones detect loose cladding?', a: 'They can provide visual evidence of gaps, warping, or failed fixings.' },
+      { q: 'How long does a facade survey take?', a: 'Most commercial elevations can be fully imaged in a few hours.' },
+      { q: 'Can you provide images for defect reporting?', a: 'Yes, we specialise in annotated images that highlight specific issues.' }
+    ],
+    relatedServices: ['building-envelope-inspections', 'roof-inspections', 'commercial-property-drone-surveys'],
+    cta: { label: 'INSPECT BUILDING FACADE', href: '/contact' }
+  },
+  {
+    slug: 'building-envelope-inspections',
+    title: 'Building Envelope Drone Inspections UK',
+    headline: ['BUILDING ENVELOPE', 'INSPECTIONS'],
+    category: 'Property & Assets',
+    intro: 'External condition capture for facades, cladding, parapets, and high-level plant — providing a complete visual record of building health.',
+    metaTitle: 'Building Envelope Drone Inspections UK | Facade & Cladding | Altitude Hire',
+    metaDescription: 'Professional drone inspections for building envelopes. Facade, cladding, and asset condition surveys. CAA-compliant, detailed defect reporting.',
+    heroStat: [
+      { value: '360°', label: 'Asset visibility' },
+      { value: '4K', label: 'Visual evidence' },
+      { value: 'SAFE', label: 'No MEWPs required' }
+    ],
+    problemStatement: 'Inspecting building elevations and cladding traditionally requires expensive MEWPs or cradle access. Drones can inspect every face of a building in hours, capturing high-resolution evidence of masonry, cladding joints, glazing, and parapets without any ground-level disruption.',
+    whatWeCapture: [
+      'Facade and elevation condition',
+      'Cladding and glazing joints',
+      'Parapets, chimneys and rooflines',
+      'High-level plant and access points',
+      'Masonry and structural integrity',
+      'Moisture signatures (thermal)'
+    ],
+    deliverables: [
+      'Building elevation image set',
+      'Annotated defect images',
+      'Condition summary report',
+      'Maintenance scoping pack',
+      'Asset condition archive'
+    ],
+    useCases: [
+      { title: 'Dilapidation Surveys', description: 'Objective evidence of building condition for lease negotiations.' },
+      { title: 'Cladding Audits', description: 'Visual inspection of cladding systems and fire-stopping evidence.' },
+      { title: 'Reactive Maintenance', description: 'Fast inspection of reported defects at high level.' }
+    ],
+    capabilities: [
+      { title: 'High-Detail Facades', description: 'Capturing clear imagery of every building face at close range.' },
+      { title: 'Asset Archiving', description: 'Providing a permanent visual record of the entire building exterior.' }
+    ],
+    industries: ['Managing Agents', 'Surveyors', 'FM Providers', 'Housing Associations'],
+    faqs: [
+      { q: 'What parts of the building can be inspected?', a: 'We can inspect facades, windows, cladding, parapets, rooflines and high-level plant.' },
+      { q: 'Can you inspect cladding and facades?', a: 'Yes, drones are perfect for checking cladding joints and surface condition.' },
+      { q: 'Do you work with surveyors?', a: 'Yes, we provide the visual data for surveyors to use in their formal assessments.' }
+    ],
+    relatedServices: ['facade-inspections', 'roof-inspections', 'facilities-management-inspections'],
+    cta: { label: 'REQUEST ELEVATION SURVEY', href: '/contact' }
+  },
+  {
+    slug: 'facilities-management-inspections',
+    title: 'Facilities Management Drone Services UK',
+    headline: ['FACILITIES', 'MANAGEMENT'],
+    category: 'Property & Assets',
+    intro: 'Outcome-led drone services for FM teams — providing the visual evidence needed for planned maintenance, asset audits, and emergency response.',
+    metaTitle: 'Facilities Management Drone Services UK | Asset Condition | Altitude Hire',
+    metaDescription: 'Professional drone services for facilities management. Roof, asset and condition surveys to support maintenance and FM reporting. CAA-compliant.',
+    heroStat: [
+      { value: 'PRO', label: 'Active reporting' },
+      { value: 'EVIDENCE', label: 'Led decision making' },
+      { value: 'SAFE', label: 'Audit workflow' }
+    ],
+    problemStatement: 'Facilities managers are responsible for vast property portfolios but often lack current, clear visibility of high-level assets. Drones bridge this gap, providing the evidence needed to justify maintenance budgets, brief contractors, and verify completed works — all while keeping boots on the ground.',
+    whatWeCapture: [
+      'Roof and gutter condition',
+      'High-level plant and assets',
+      'Site boundaries and security',
+      'Building envelope integrity',
+      'Maintenance priority areas'
+    ],
+    deliverables: [
+      'FM condition report',
+      'Maintenance evidence pack',
+      'Asset image archive',
+      'Annotated defect summary'
+    ],
+    useCases: [
+      { title: 'Budget Justification', description: 'Providing visual proof of required repairs for financial approval.' },
+      { title: 'Contractor Management', description: 'Clearly briefing contractors on work scope before they arrive on site.' }
+    ],
+    capabilities: [
+      { title: 'Portfolio Audits', description: 'Systematic visual records across multiple property sites.' },
+      { title: 'Emergency Response', description: 'Urgent drone capture after storm or incident damage.' }
+    ],
+    industries: ['Facilities Managers', 'Managing Agents', 'Property Owners', 'Site Managers'],
+    faqs: [
+      { q: 'Do you work with FM companies?', a: 'Yes, we are integrated into the workflow of several major UK facilities management providers.' },
+      { q: 'Can you support planned maintenance?', a: 'Yes, we provide the aerial baseline for PPM schedules.' },
+      { q: 'Can you respond to emergency issues?', a: 'We offer rapid deployment for urgent roof or asset damage assessment.' }
+    ],
+    relatedServices: ['roof-inspections', 'building-envelope-inspections', 'insurance-loss-adjuster-surveys'],
+    cta: { label: 'START FM BRIEFING', href: '/contact' }
+  },
+  {
+    slug: 'commercial-property-drone-surveys',
+    title: 'Commercial Property Drone Surveys UK',
+    headline: ['COMMERCIAL', 'PROPERTY', 'SURVEYS'],
+    category: 'Property & Assets',
+    intro: 'High-resolution aerial surveys for commercial landlords, investors, and asset managers — providing objective evidence for lease negotiations and condition audits.',
+    metaTitle: 'Commercial Property Drone Surveys UK | Asset Condition | Altitude Hire',
+    metaDescription: 'Professional commercial property drone surveys. Aerial condition audits for landlords, investors and asset managers. CAA-compliant, detailed reporting.',
+    heroStat: [
+      { value: 'PRO', label: 'Asset visibility' },
+      { value: '4K', label: 'Visual evidence' },
+      { value: 'RICS', label: 'Compatible reporting' }
+    ],
+    problemStatement: 'Managing large commercial portfolios requires accurate, current visibility of asset condition — especially at high level where defects go unnoticed. Drone surveys provide a rapid, site-wide audit of roofs, facades, and plant, delivering the evidence needed for lease renewals, pre-acquisition due diligence, and planned maintenance.',
+    whatWeCapture: [
+      'Complete building envelope (Roof & Facades)',
+      'High-level plant and equipment condition',
+      'Site boundaries and hardstanding',
+      'Evidence of tenant modifications',
+      'Storm or incident damage'
+    ],
+    deliverables: [
+      'Portfolio condition report',
+      'High-resolution image archive',
+      'Annotated defect schedule',
+      'Maintenance priority summary'
+    ],
+    useCases: [
+      { title: 'Lease Negotiations', description: 'Objective evidence of building condition at start or end of lease.' },
+      { title: 'Pre-Acquisition', description: 'Rapid aerial audit for investors during the due diligence process.' }
+    ],
+    capabilities: [
+      { title: 'Portfolio Audits', description: 'Consistent reporting across multiple commercial sites.' },
+      { title: 'High-Detail Capture', description: 'Capturing clear imagery of every building element at close range.' }
+    ],
+    industries: ['Commercial Landlords', 'Property Investors', 'Asset Managers', 'Managing Agents'],
+    faqs: [
+      { q: 'How long does a commercial survey take?', a: 'Most commercial sites can be fully surveyed in 2-4 hours depending on size.' },
+      { q: 'Is the data accepted by insurers?', a: 'Yes, our high-resolution imagery and reports are widely accepted for insurance and legal purposes.' },
+      { q: 'Can you survey multiple sites?', a: 'Yes, we specialise in portfolio-wide audits across the UK.' }
+    ],
+    relatedServices: ['dilapidation-drone-surveys', 'roof-inspections', 'building-envelope-inspections'],
+    cta: { label: 'REQUEST PORTFOLIO AUDIT', href: '/contact' }
+  },
+  {
+    slug: 'dilapidation-drone-surveys',
+    title: 'Dilapidation Drone Surveys UK',
+    headline: ['DILAPIDATION', 'SURVEYS'],
+    category: 'Property & Assets',
+    intro: 'Objective aerial evidence for Section 18(1) valuations and terminal dilapidation claims — documenting building condition with millimetre precision.',
+    metaTitle: 'Dilapidation Drone Surveys UK | Lease End Evidence | Altitude Hire',
+    metaDescription: 'Professional drone surveys for dilapidations. Objective aerial evidence for lease end claims and schedule of condition. CAA-compliant.',
+    heroStat: [
+      { value: 'LEGAL', label: 'Defensible data' },
+      { value: '4K', label: 'High-detail evidence' },
+      { value: 'FAST', label: 'Site-wide audit' }
+    ],
+    problemStatement: 'Dilapidation claims often hinge on the condition of roofs and high-level elements that are difficult to inspect. Drone surveys provide a complete, timestamped visual record of the building envelope, providing both landlords and tenants with objective evidence to settle claims fairly and quickly.',
+    whatWeCapture: [
+      'Current state of all roof coverings',
+      'Gutter and drainage condition evidence',
+      'Facade and cladding panel condition',
+      'Boundary and hardstanding record',
+      'High-level asset inventory'
+    ],
+    deliverables: [
+      'Dilapidations evidence pack',
+      'Timestamped image archive',
+      'Annotated schedule of condition',
+      'Comparison with previous surveys'
+    ],
+    useCases: [
+      { title: 'Terminal Dilapidations', description: 'Documenting building condition at the end of a lease term.' },
+      { title: 'Schedule of Condition', description: 'Creating a baseline record at the start of a new tenancy.' }
+    ],
+    capabilities: [
+      { title: 'Objective Evidence', description: 'Unbiased, high-resolution imagery that settles disputes.' },
+      { title: 'Timestamped Record', description: 'Providing a definitive record of site condition at a specific date.' }
+    ],
+    industries: ['Commercial Tenants', 'Landlords', 'Building Surveyors', 'Legal Professionals'],
+    faqs: [
+      { q: 'Is drone data legally defensible?', a: 'Yes, our timestamped, GPS-referenced imagery provides objective evidence for use in legal and commercial disputes.' },
+      { q: 'Can you compare current state with previous records?', a: 'Yes, we can replicate previous flight paths to show change over time.' },
+      { q: 'Do you work with surveyors?', a: 'Yes, we provide the visual evidence to support their formal schedules of dilapidations.' }
+    ],
+    relatedServices: ['commercial-property-drone-surveys', 'roof-inspections', 'facade-inspections'],
+    cta: { label: 'BOOK DILAPIDATION SURVEY', href: '/contact' }
   },
 
+  // CONSTRUCTION & SURVEYING
   {
     slug: 'surveying-mapping',
     title: 'Drone Surveying & Mapping UK',
     headline: ['SURVEYING', '& MAPPING'],
-    intro: 'Millimetre-accurate topographic surveys, orthomosaic maps, and LiDAR point clouds — delivered faster and at a fraction of the cost of traditional ground survey methods.',
-    metaTitle: 'Drone Surveying & Mapping UK — Altitude Drone | LiDAR & Orthomosaic',
-    metaDescription: 'Professional drone surveying and mapping services across the UK. Topographic surveys, orthomosaic maps, LiDAR point clouds, 3D models, and volume calculations. CAA approved, GCP accuracy.',
+    category: 'Construction & Surveying',
+    intro: 'high-detail precision topographic surveys, orthomosaic maps, and LiDAR point clouds — delivered faster and at a fraction of the cost of traditional ground survey methods.',
+    metaTitle: 'Drone Surveying & Mapping UK | LiDAR & Orthomosaic | Altitude Hire',
+    metaDescription: 'Professional drone surveying and mapping services across the UK. Topographic surveys, orthomosaic maps, LiDAR point clouds and 3D models. CAA-compliant, GCP accuracy.',
     heroStat: [
       { value: '±1CM', label: 'RTK horizontal accuracy' },
       { value: '200HA', label: 'Coverage per day' },
       { value: '5 DAY', label: 'Point cloud delivery' },
     ],
-    bodyHeading: 'DRONE SURVEY ACCURACY AT GROUND SURVEY SPEED',
-    bodyParagraphs: [
-      "Traditional topographic survey is labour-intensive, slow across large areas, and places operatives on potentially hazardous terrain. Drone surveying changes the economics of data collection entirely. A single Altitude survey flight can cover 200 hectares in a day, producing orthomosaic imagery, digital elevation models, and LiDAR point clouds to a horizontal accuracy of ±1cm when flown with Ground Control Points and RTK correction.",
-      "We operate the DJI Matrice 350 RTK with Zenmuse L2 LiDAR payload for high-precision 3D capture and the Zenmuse P1 full-frame 45MP photogrammetry payload for large-area mapping. The L2 produces point clouds at densities up to 240 points/m², capturing ground returns through vegetation canopy — essential for terrain modelling in agricultural, forestry, and archaeological contexts. Outputs are delivered in standard industry formats: LAS, LAZ, GeoTIFF, DXF, and DWG.",
-      "Our survey team includes a chartered surveyor — not just drone pilots. We understand the deliverables that engineers, planners, and quantity surveyors actually need. Every survey includes a full accuracy report, GCP log, and coordinate system certification. We work regularly with civil engineering firms, planning consultants, local authorities, and infrastructure contractors across the UK.",
+    problemStatement: 'Traditional topographic survey is labour-intensive, slow across large areas, and places operatives on potentially hazardous terrain. Drone surveying changes the economics of data collection entirely. A single Altitude survey flight can cover 200 hectares in a day, producing orthomosaic imagery, digital elevation models, and LiDAR point clouds to a horizontal accuracy of ±1cm when flown with Ground Control Points and RTK correction.',
+    whatWeCapture: [
+      'High-overlap aerial photogrammetry',
+      'Dense LiDAR point clouds',
+      'Ground Control Point (GCP) data',
+      'Digital Terrain Models (DTM)',
+      'Digital Surface Models (DSM)',
+      'Site topographic features',
+      'Stockpile and earthworks volumes'
+    ],
+    deliverables: [
+      'Orthomosaic map (GeoTIFF)',
+      'Point cloud (LAS/LAZ)',
+      '3D Mesh model',
+      'Contour data (DXF/DWG)',
+      'Stockpile volume report',
+      'Topographic site plan'
+    ],
+    useCases: [
+      { title: 'Site Appraisal', description: 'Fast, accurate baseline data for architects and planning consultants.' },
+      { title: 'Earthworks Monitoring', description: 'Tracking cut-and-fill progress and volumetric changes over time.' },
+      { title: 'Flood Risk Analysis', description: 'High-resolution elevation models for water flow and drainage studies.' },
+      { title: 'BIM Integration', description: 'Providing accurate as-built records for building information modelling.' }
     ],
     capabilities: [
-      { title: 'Topographic Survey', description: 'Full DTM and DSM generation for site appraisal, planning applications, flood risk assessment, and engineering design. GCP-controlled to ±2cm.' },
-      { title: 'Orthomosaic Mapping', description: 'Georeferenced aerial maps at 1–3cm GSD for site management, progress tracking, and as-built verification. Delivered as GeoTIFF for GIS integration.' },
-      { title: 'LiDAR Point Cloud', description: 'Dense 3D point clouds for BIM, heritage recording, forestry analysis, and infrastructure corridor mapping. Vegetation penetration for true ground modelling.' },
-      { title: 'Volume Calculations', description: 'Stockpile and earthworks volumetrics accurate to ±0.5% for quarry, aggregate, and construction site management. Regular monitoring packages available.' },
+      { title: 'LiDAR Capture', description: 'Capturing ground returns through vegetation canopy for true terrain modelling.' },
+      { title: 'Photogrammetry', description: 'High-resolution 2D and 3D mapping from overlapping aerial imagery.' },
+      { title: 'RTK Correction', description: 'Centimetre-level positioning accuracy without extensive ground control.' }
     ],
-    industries: ['Civil Engineering', 'Planning & Architecture', 'Mining & Quarrying', 'Agriculture & Forestry', 'Rail & Highways', 'Local Authority & Heritage'],
+    industries: ['Civil Engineering', 'Construction', 'Planning & Architecture', 'Quarrying', 'Agriculture'],
     faqs: [
-      { q: 'How does drone survey accuracy compare to traditional methods?', a: 'With RTK correction and Ground Control Points, drone surveys achieve ±1–2cm horizontal accuracy — equivalent to traditional total station survey for most engineering applications, at a fraction of the field time.' },
-      { q: 'What file formats do you deliver?', a: 'Standard deliverables include GeoTIFF orthomosaics, LAS/LAZ point clouds, DEM/DTM rasters, and DXF/DWG contour files. Bespoke formats for specific software platforms are available on request.' },
-      { q: 'Can you survey areas with restricted airspace?', a: 'We manage all NOTAM filings and CAA permissions for restricted and controlled airspace. Most infrastructure and urban sites can be accommodated — we advise on any constraints during the project brief stage.' },
-      { q: 'How many Ground Control Points are required?', a: 'A minimum of 5 GCPs is standard for most surveys, with additional points for large or irregular site shapes. We supply GCP targets and coordinate measurement as part of the survey package.' },
+      { q: 'Are drone surveys high-accuracy survey data outputs?', a: 'Yes, when planned with appropriate methodology, RTK workflow, and ground control, they meet survey-grade requirements.' },
+      { q: 'What accuracy can be achieved?', a: 'We typically achieve ±1-2cm horizontal accuracy and ±3-5cm vertical accuracy on survey missions.' },
+      { q: 'What file formats are available?', a: 'Deliverables include GeoTIFF, LAS, LAZ, DXF, DWG, and CSV, compatible with CAD and GIS software.' },
+      { q: 'Do you use ground control points?', a: 'Yes, we use GCPs to verify and ensure absolute global accuracy across the entire survey area.' }
     ],
-    relatedServices: ['construction-monitoring', 'agricultural-surveys'],
-    cta: { label: 'REQUEST A SURVEY QUOTE', href: '/contact' },
+    relatedServices: ['orthomosaic-mapping', 'photogrammetry', 'volumetric-surveys'],
+    cta: { label: 'REQUEST A SURVEY QUOTE', href: '/contact' }
   },
-
   {
     slug: 'construction-monitoring',
     title: 'Construction Drone Monitoring UK',
     headline: ['CONSTRUCTION', 'MONITORING'],
-    intro: 'Scheduled drone flights that keep stakeholders informed from groundworks to handover — progress reports, volumetric earthworks, time-lapse documentation, and client portal access as standard.',
-    metaTitle: 'Construction Drone Monitoring UK — Altitude Drone | Progress Surveys',
-    metaDescription: 'Professional construction drone monitoring across the UK. Scheduled progress flights, earthworks volumetrics, 4D time-lapse, and client portal delivery. CAA approved.',
+    category: 'Construction & Surveying',
+    intro: 'Scheduled drone flights that keep stakeholders informed from groundworks to handover — progress reports, volumetric earthworks, and time-lapse documentation.',
+    metaTitle: 'Construction Drone Monitoring UK | Progress Surveys | Altitude Hire',
+    metaDescription: 'Professional construction drone monitoring. Scheduled progress flights, earthworks volumetrics, and stakeholder updates. CAA-compliant.',
     heroStat: [
       { value: '4D', label: 'Time-lapse documentation' },
-      { value: '±0.5%', label: 'Earthworks volumetric accuracy' },
-      { value: 'WEEKLY', label: 'Flight frequency available' },
+      { value: '±0.5%', label: 'Earthworks accuracy' },
+      { value: 'WEEKLY', label: 'Flight frequency' },
     ],
-    bodyHeading: 'AERIAL INTELLIGENCE FOR EVERY STAGE OF CONSTRUCTION',
-    bodyParagraphs: [
-      "Construction projects generate enormous volumes of decisions daily — and the best decisions are made with the most current site intelligence. A weekly drone survey flight delivers something no site walkdown or static CCTV can: a complete, georeferenced record of the site from every angle, updated on a fixed schedule, accessible to every stakeholder instantly through the client portal. Programme managers, commercial teams, and clients all see the same data.",
-      "Our construction monitoring service operates on retainer — one contract covering your project from groundworks to handover. Each visit produces an orthomosaic site plan updated to the current state of works, volumetric earthworks calculations against the as-designed model, annotated progress photographs benchmarked against the programme, and an updated time-lapse sequence. Data is uploaded to your portal within 24 hours of each flight.",
-      "For projects requiring BIM integration, our drone survey outputs are delivered in formats compatible with Autodesk BIM 360, Procore, and major GIS platforms. As-built verification flights at milestone stages provide an independent aerial record that protects all parties — particularly valuable for claim prevention and dispute resolution.",
+    problemStatement: 'Construction projects generate enormous volumes of decisions daily — and the best decisions are made with the most current site intelligence. A weekly drone survey flight delivers something no site walkdown or static CCTV can: a complete, georeferenced record of the site from every angle, updated on a fixed schedule.',
+    whatWeCapture: [
+      'Weekly/Fortnightly site overviews',
+      'Consistent aerial viewpoints',
+      'Earthworks and stockpile volumes',
+      'Site logistics and layout',
+      'Milestone construction stages',
+      'As-built vs Design overlays'
+    ],
+    deliverables: [
+      'Construction progress report',
+      'Updated orthomosaic plan',
+      'Progress image archive',
+      'Investor update video',
+      'Volumetric change report'
+    ],
+    useCases: [
+      { title: 'Stakeholder Updates', description: 'Clear visual evidence for investors and project board meetings.' },
+      { title: 'Logistics Planning', description: 'Reviewing site access, crane locations, and material storage.' },
+      { title: 'Dispute Prevention', description: 'A timestamped aerial record of site condition at every stage.' }
     ],
     capabilities: [
-      { title: 'Progress Documentation', description: 'Weekly or fortnightly site surveys producing updated orthomosaic plans, annotated progress photography, and milestone verification against programme.' },
-      { title: 'Earthworks Volumetrics', description: 'Cut-and-fill calculations and stockpile measurement to ±0.5% accuracy. Compared against design model to track earthworks balance and identify over-dig.' },
-      { title: '4D Time-lapse', description: 'Consistent drone vantage point across each visit builds a compelling time-lapse of the entire project lifecycle — powerful for marketing, planning, and dispute evidence.' },
-      { title: 'BIM & GIS Integration', description: 'Survey outputs in DXF, IFC, and GeoTIFF formats for direct import into BIM360, Procore, ArcGIS, and AutoCAD. As-built overlays on design model included.' },
+      { title: 'Scheduled Flights', description: 'Regular visits aligned to your project reporting cycle.' },
+      { title: 'BIM Integration', description: 'Overlaying drone data on design models for as-built verification.' }
     ],
-    industries: ['Main Contractors', 'Quantity Surveyors', 'Project Management Consultants', 'Developers', 'Civil Engineering', 'Infrastructure Owners'],
+    industries: ['Main Contractors', 'Developers', 'Project Managers', 'Quantity Surveyors'],
     faqs: [
-      { q: 'How frequently do you fly construction sites?', a: 'Most clients choose weekly or fortnightly visits aligned to their progress reporting cycle. We can increase frequency for fast-moving programmes or reduce it for slower phases — all covered under the same retainer.' },
-      { q: 'Can you fly over an active construction site with workers present?', a: 'Yes, with appropriate operational planning. We coordinate with the site safety team, establish exclusion zones during flight, and hold all necessary CAA permissions for operations over people and in congested areas.' },
-      { q: 'Is the data delivered in time for weekly progress meetings?', a: 'Standard turnaround is 24 hours from flight. We can accommodate same-day delivery for weekly meetings where required — specify this in your brief.' },
-      { q: 'Can drone monitoring help with insurance and claims?', a: 'Yes. Timestamped aerial records with GPS accuracy provide objective evidence of site conditions at any date in the project. This is increasingly used for delay analysis, variation claims, and insurance incident investigation.' },
+      { q: 'How often can you fly a construction site?', a: 'Most clients choose weekly or fortnightly visits, though we can accommodate any schedule.' },
+      { q: 'Can you fly over an active site?', a: 'Yes, with appropriate planning and coordination with the site safety team.' },
+      { q: 'Can outputs be used in progress meetings?', a: 'Yes, our reports and visuals are designed specifically for project reviews.' }
     ],
-    relatedServices: ['drone-inspection', 'surveying-mapping'],
-    cta: { label: 'DISCUSS YOUR PROJECT', href: '/contact' },
+    relatedServices: ['surveying-mapping', 'volumetric-surveys', 'orthomosaic-mapping'],
+    cta: { label: 'PLAN CONSTRUCTION MONITORING', href: '/contact' }
+  },
+  {
+    slug: 'volumetric-surveys',
+    title: 'Volumetric Drone Surveys UK',
+    headline: ['VOLUMETRIC', 'SURVEYS'],
+    category: 'Construction & Surveying',
+    intro: 'Accurate stockpile and earthworks volume measurements for construction, quarries, and aggregate sites — delivered with ±0.5% precision.',
+    metaTitle: 'Volumetric Drone Surveys UK | Stockpile & Earthworks | Altitude Hire',
+    metaDescription: 'Professional volumetric drone surveys for quarries, construction and aggregate sites. Accurate stockpile measurements and cut/fill analysis. CAA-compliant.',
+    heroStat: [
+      { value: '±0.5%', label: 'Typical accuracy' },
+      { value: '24H', label: 'Report delivery' },
+      { value: 'SAFE', label: 'No stockpiling climbing' }
+    ],
+    problemStatement: 'Traditional stockpile measurement is slow, often inaccurate, and requires personnel to climb hazardous material piles. Drone-based volumetrics use high-density 3D mapping to calculate volumes across an entire site in minutes, providing commercial teams with accurate stock data without the risk.',
+    whatWeCapture: [
+      'High-density 3D site mapping',
+      'Individual stockpile profiles',
+      'Base-level surface data',
+      'Cut and fill earthworks progress',
+      'Site topographic baseline'
+    ],
+    deliverables: [
+      'Stockpile volume report',
+      'Cut and fill calculation',
+      '3D site mesh model',
+      'Orthomosaic site plan',
+      'CSV volume data export'
+    ],
+    useCases: [
+      { title: 'Quarry Management', description: 'Monthly stock audits for financial reporting and planning.' },
+      { title: 'Earthworks Progress', description: 'Tracking material movement on large construction or infrastructure projects.' },
+      { title: 'Aggregate Stock Audits', description: 'Verifying physical stock against commercial records for developers and contractors.' }
+    ],
+    capabilities: [
+      { title: 'Precision Volumetrics', description: 'Calculating volumes using high-density 3D point cloud data.' },
+      { title: 'Comparative Analysis', description: 'Comparing site state across multiple visits to track material change.' }
+    ],
+    industries: ['Quarrying & Mining', 'Main Contractors', 'Earthworks Contractors', 'Aggregate Suppliers'],
+    faqs: [
+      { q: 'How accurate are drone volume surveys?', a: 'We typically achieve within 0.5% - 1% of total volume when compared to traditional survey methods.' },
+      { q: 'What materials can be measured?', a: 'Any bulk material including gravel, sand, topsoil, aggregates, and waste.' },
+      { q: 'How often can you provide measurements?', a: 'Many clients choose monthly or quarterly audits to align with commercial cycles.' }
+    ],
+    relatedServices: ['stockpile-volume-surveys', 'cut-fill-analysis', 'surveying-mapping'],
+    cta: { label: 'REQUEST VOLUME AUDIT', href: '/contact' }
+  },
+  {
+    slug: 'orthomosaic-mapping',
+    title: 'Orthomosaic Mapping UK',
+    headline: ['ORTHOMOSAIC', 'MAPPING'],
+    category: 'Construction & Surveying',
+    intro: 'High-resolution, georeferenced aerial maps with 1-3cm per pixel detail — perfect for site management, progress tracking, and as-built verification.',
+    metaTitle: 'Orthomosaic Mapping UK | High-Resolution Aerial Maps | Altitude Hire',
+    metaDescription: 'Professional drone orthomosaic mapping services. High-resolution georeferenced maps for site management and GIS. CAA-compliant, 1-3cm GSD.',
+    heroStat: [
+      { value: '1CM', label: 'Max resolution' },
+      { value: 'GEO', label: 'Referenced data' },
+      { value: 'GIS', label: 'Ready outputs' }
+    ],
+    problemStatement: 'Standard aerial imagery is distorted by perspective and camera tilt, making it unsuitable for measurement. Orthomosaic mapping combines hundreds of images into a single, top-down map where every pixel is geometrically corrected, allowing for accurate distance and area measurements.',
+    whatWeCapture: [
+      'High-overlap NADIR imagery',
+      'Ground Control Point (GCP) data',
+      'Full site coverage images',
+      'Precise GPS positioning'
+    ],
+    deliverables: [
+      'GeoTIFF orthomosaic map',
+      'High-resolution PDF site plan',
+      'GIS-compatible datasets',
+      'Web-viewable interactive map'
+    ],
+    useCases: [
+      { title: 'Site Management', description: 'Providing a clear, current site plan for logistics and safety briefings.' },
+      { title: 'As-Built Verification', description: 'Comparing completed works against design plans with overlay accuracy.' },
+      { title: 'Environmental Surveys', description: 'Large-scale mapping of habitats, drainage, and land use.' }
+    ],
+    capabilities: [
+      { title: 'GSD Precision', description: 'Achieving ground sampling distances as fine as 1cm per pixel.' },
+      { title: 'Coordinate Alignment', description: 'Aligning maps to OSGB36 or custom site grids for total compatibility.' }
+    ],
+    industries: ['Construction', 'Planning', 'Agriculture', 'Environmental Agencies'],
+    faqs: [
+      { q: 'What is an orthomosaic map?', a: 'It is a geometrically corrected aerial map made from stitched images, suitable for measurement like a map.' },
+      { q: 'Can I use the data in my GIS software?', a: 'Yes, we deliver in GeoTIFF format which is the standard for GIS and CAD platforms.' },
+      { q: 'How current is the mapping data?', a: 'As current as the flight — it provides a perfect snapshot of the site at that exact time.' }
+    ],
+    relatedServices: ['surveying-mapping', 'photogrammetry', 'construction-monitoring'],
+    cta: { label: 'REQUEST MAPPING QUOTE', href: '/contact' }
+  },
+  {
+    slug: 'lidar-point-cloud-surveys',
+    title: 'LiDAR Point Cloud Surveys UK',
+    headline: ['LIDAR POINT CLOUD', 'SURVEYS'],
+    category: 'Construction & Surveying',
+    intro: 'High-precision laser scanning from altitude — capturing dense 3D point clouds that penetrate vegetation to reveal true ground terrain.',
+    metaTitle: 'LiDAR Point Cloud Surveys UK | Drone Laser Scanning | Altitude Hire',
+    metaDescription: 'Professional drone LiDAR surveying services. High-density 3D point clouds, vegetation penetration and DTM generation. CAA-compliant.',
+    heroStat: [
+      { value: '240', label: 'Points per m²' },
+      { value: 'VEG', label: 'Penetration' },
+      { value: 'LAZ', label: 'Standard output' }
+    ],
+    problemStatement: 'Standard photogrammetry cannot see through trees or thick vegetation, making it difficult to map true ground levels in forested or overgrown areas. LiDAR (Light Detection and Ranging) uses laser pulses to penetrate the canopy, delivering accurate terrain data where other sensors fail.',
+    whatWeCapture: [
+      'Million-point laser scans',
+      'Vegetation and ground returns',
+      'High-density 3D geometry',
+      'Inertial measurement data (IMU)'
+    ],
+    deliverables: [
+      'Classified point cloud (LAS/LAZ)',
+      'Digital Terrain Model (DTM)',
+      'Digital Surface Model (DSM)',
+      'Contour mapping data'
+    ],
+    useCases: [
+      { title: 'Forestry Mapping', description: 'Mapping ground terrain and tree metrics through dense canopy.' },
+      { title: 'Infrastructure Corridors', description: 'Detailed mapping of powerlines and rail where vegetation is a factor.' },
+      { title: 'Flood Modelling', description: 'Capturing accurate bare-earth models for hydraulic studies.' }
+    ],
+    capabilities: [
+      { title: 'Laser Precision', description: 'Capturing data at 240,000 points per second for unmatched density.' },
+      { title: 'Bare Earth Extraction', description: 'Filtering non-ground points to reveal the true site topography.' }
+    ],
+    industries: ['Forestry', 'Civil Engineering', 'Utilities', 'Environmental Planning'],
+    faqs: [
+      { q: 'What is the advantage of LiDAR?', a: 'It can capture ground levels through vegetation and is highly accurate over complex geometry.' },
+      { q: 'How dense is the point cloud?', a: 'We can achieve densities of up to 240 points per square metre.' },
+      { q: 'Is it better than photogrammetry?', a: 'For mapping terrain under trees, yes. For visual realism, photogrammetry is often preferred.' }
+    ],
+    relatedServices: ['surveying-mapping', 'orthomosaic-mapping', 'volumetric-surveys'],
+    cta: { label: 'REQUEST LIDAR SURVEY', href: '/contact' }
+  },
+  {
+    slug: 'photogrammetry',
+    title: 'Drone Photogrammetry UK',
+    headline: ['DRONE', 'PHOTOGRAMMETRY'],
+    category: 'Construction & Surveying',
+    intro: 'Turning aerial imagery into accurate 3D models, point clouds, and maps — the science of extracting precise measurements from drone data.',
+    metaTitle: 'Drone Photogrammetry UK | 3D Mapping & Models | Altitude Hire',
+    metaDescription: 'Professional drone photogrammetry services. High-accuracy 3D models, maps and point clouds from aerial data. CAA-compliant, survey-grade results.',
+    heroStat: [
+      { value: '3D', label: 'Site modelling' },
+      { value: 'GCP', label: 'Controlled accuracy' },
+      { value: 'LAS', label: 'Standard formats' }
+    ],
+    problemStatement: 'Traditional site modeling requires significant time and ground-based measurement. Photogrammetry allows us to reconstruct large sites in 3D using overlapping drone imagery, producing accurate models that can be used for engineering, heritage recording, and stakeholder engagement.',
+    whatWeCapture: [
+      'Multi-angle aerial photography',
+      'GCP and RTK positioning data',
+      '3D geometry of structures and terrain',
+      'High-resolution texture data'
+    ],
+    deliverables: [
+      '3D mesh model (OBJ/FBX)',
+      'Dense point cloud (LAS)',
+      'Orthomosaic site map',
+      'Digital Surface Model (DSM)'
+    ],
+    useCases: [
+      { title: 'Heritage Recording', description: 'Creating detailed 3D replicas of historic structures for preservation.' },
+      { title: 'Infrastructure Monitoring', description: 'Monitoring structural changes over time through periodic 3D modeling.' },
+      { title: 'Visualisation', description: 'Providing stakeholders with a realistic 3D representation of a site or project.' }
+    ],
+    capabilities: [
+      { title: '3D Reconstruction', description: 'Processing thousands of images into high-fidelity 3D assets.' },
+      { title: 'Scale Accuracy', description: 'Ensuring models are correctly scaled and georeferenced for measurement.' }
+    ],
+    industries: ['Heritage', 'Construction', 'Architecture', 'Media'],
+    faqs: [
+      { q: 'How accurate is drone photogrammetry?', a: 'With ground control, we can achieve absolute accuracies within 2-5cm across large sites.' },
+      { q: 'What is the difference between photogrammetry and LiDAR?', a: 'Photogrammetry uses images to build models, while LiDAR uses laser pulses. Photogrammetry is often better for visual texture.' },
+      { q: 'Can it be used for BIM?', a: 'Yes, our point clouds and meshes are compatible with major BIM software.' }
+    ],
+    relatedServices: ['surveying-mapping', 'orthomosaic-mapping', 'digital-twin-capture'],
+    cta: { label: 'DISCUSS 3D CAPTURE', href: '/contact' }
+  },
+  {
+    slug: 'agricultural-surveys',
+    title: 'Agricultural Drone Surveys UK',
+    headline: ['AGRICULTURAL', 'SURVEYS'],
+    category: 'Construction & Surveying',
+    intro: 'NDVI crop health analysis, multispectral field mapping, and drainage assessment — giving landowners the aerial intelligence to improve yield.',
+    metaTitle: 'Agricultural Drone Surveys UK | NDVI & Multispectral | Altitude Hire',
+    metaDescription: 'Professional agricultural drone surveys. NDVI crop health mapping, multispectral analysis and drainage assessment. CAA-compliant.',
+    heroStat: [
+      { value: 'NDVI', label: 'Crop analysis' },
+      { value: 'FAST', label: 'Coverage at scale' },
+      { value: 'PRO', label: 'Agronomy support' },
+    ],
+    problemStatement: 'UK agriculture operates under intense margin pressure. Farmers need accurate, timely data to replace blanket input application with precision intervention. Satellite imagery is often too low-resolution or obscured by cloud; drones deliver 5cm GSD multispectral data exactly when you need it.',
+    whatWeCapture: [
+      'NDVI / multispectral health maps',
+      'High-resolution RGB field overviews',
+      'Drainage and waterlogging patterns',
+      'Field boundary verification',
+      'Crop emergence and stand counts'
+    ],
+    deliverables: [
+      'Crop health index report',
+      'Georeferenced prescription maps',
+      'Drainage anomaly summary',
+      'Seasonal monitoring archive'
+    ],
+    useCases: [
+      { title: 'Precision Ag', description: 'Identifying underperforming zones for targeted input application.' },
+      { title: 'Drainage Mapping', description: 'Planning land drainage works based on visible soil moisture patterns.' }
+    ],
+    capabilities: [
+      { title: 'Multispectral Sensors', description: 'Seeing beyond the visible spectrum for plant health.' },
+      { title: 'Prescription Ready', description: 'Exporting data for direct use in farm management software.' }
+    ],
+    industries: ['Arable Farmers', 'Agronomists', 'Estate Managers', 'Land Agents'],
+    faqs: [
+      { q: 'How does it help yield?', a: 'By identifying stress early, you can intervene precisely rather than waiting for visual symptoms.' },
+      { q: 'Can the data go into my tractor?', a: 'Yes, we export georeferenced maps ready for most variable rate systems.' }
+    ],
+    relatedServices: ['surveying-mapping', 'thermal-imaging', 'orthomosaic-mapping'],
+    cta: { label: 'ENQUIRE ABOUT AG SURVEYS', href: '/contact' }
   },
 
+  // INFRASTRUCTURE & ENERGY
+  {
+    slug: 'infrastructure-inspections',
+    title: 'Infrastructure Drone Inspections UK',
+    headline: ['INFRASTRUCTURE', 'INSPECTIONS'],
+    category: 'Infrastructure & Energy',
+    intro: 'High-detail aerial inspections for bridges, masts, rail, and highways — providing critical asset visibility while eliminating the need for high-risk manual access.',
+    metaTitle: 'Infrastructure Drone Inspections UK | Bridge & Mast Surveys | Altitude Hire',
+    metaDescription: 'Professional drone inspections for infrastructure assets. Bridge, rail, telecom and highway corridor surveys. CAA-compliant, high-detail reporting.',
+    heroStat: [
+      { value: 'ZERO', label: 'Access risk' },
+      { value: '4K', label: 'Ultra HD detail' },
+      { value: 'GVC', label: 'Certified pilots' }
+    ],
+    problemStatement: 'Infrastructure assets often require inspection in high-risk environments — over water, near live rail, or at extreme height. Traditional methods involving rope access or under-bridge units are costly and disruptive. Drone inspection delivers high-resolution visual and thermal evidence without the need for line-of-route closures or operative risk.',
+    whatWeCapture: [
+      'Deck soffit and pier condition',
+      'Expansion joint detail',
+      'Telecom mast and antenna arrays',
+      'Rail corridor condition',
+      'Highway surface and drainage',
+      'High-level masonry and structural joints'
+    ],
+    deliverables: [
+      'High-resolution visual record',
+      'Annotated defect images',
+      'Asset condition summary',
+      'Thermal inspection data',
+      'Bridge/structure detail pack'
+    ],
+    useCases: [
+      { title: 'Bridge Inspection', description: 'Detailed visual checks of soffits, bearings, and piers without lane closures.' },
+      { title: 'Telecom Masts', description: 'Inspecting antenna condition and alignment from a safe distance.' },
+      { title: 'Rail & Highway', description: 'Monitoring corridor condition and vegetation encroachment at scale.' }
+    ],
+    capabilities: [
+      { title: 'Zoom Payloads', description: '23x optical zoom for detailed inspection from safe standoff distances.' },
+      { title: 'Thermal Assessment', description: 'Identifying moisture or structural anomalies in concrete and masonry.' }
+    ],
+    industries: ['Infrastructure Owners', 'Local Authorities', 'Rail Operators', 'Highways Maintenance'],
+    faqs: [
+      { q: 'Can drones inspect bridge soffits?', a: 'Yes, using upward-facing gimbals, we can capture high-detail imagery of deck undersides.' },
+      { q: 'What is the risk to live rail or roads?', a: 'We operate under strict risk assessments and coordinate with stakeholders to ensure zero disruption.' },
+      { q: 'Can you provide timestamped evidence for claims?', a: 'Yes, every image is metadata-rich with GPS and time synchronisation.' }
+    ],
+    relatedServices: ['utilities-energy-inspections', 'surveying-mapping', 'thermal-imaging'],
+    cta: { label: 'DISCUSS INFRASTRUCTURE CAPTURE', href: '/contact' }
+  },
+  {
+    slug: 'utilities-energy-inspections',
+    title: 'Utilities & Energy Drone Inspections UK',
+    headline: ['UTILITIES', '& ENERGY'],
+    category: 'Infrastructure & Energy',
+    intro: 'Specialist aerial inspection for powerlines, pylons, substations, and energy assets — improving grid reliability and safety through advanced sensor technology.',
+    metaTitle: 'Utilities & Energy Drone Inspections UK | Powerline & Pylon Surveys',
+    metaDescription: 'Professional drone inspections for utilities and energy infrastructure. Powerline, pylon and substation surveys. CAA-compliant, radiometric thermal data.',
+    heroStat: [
+      { value: 'NO', label: 'Outage required' },
+      { value: '±2°C', label: 'Thermal accuracy' },
+      { value: '23X', label: 'Optical zoom' }
+    ],
+    problemStatement: 'Inspecting high-voltage energy assets traditionally requires expensive outages and puts personnel at risk. Drones allow for the inspection of pylons, conductors, and insulators while the grid remains live, identifying hotspots and mechanical failures before they lead to service interruption.',
+    whatWeCapture: [
+      'Insulator condition and contamination',
+      'Conductor surface integrity',
+      'Tower structural condition',
+      'Substation asset thermal signatures',
+      'Vegetation clearance along corridors',
+      'Pipeline surface condition'
+    ],
+    deliverables: [
+      'High-detail pylon inspection pack',
+      'Radiometric thermal data',
+      'Anomaly detection report',
+      'Corridor vegetation map',
+      'Substation condition summary'
+    ],
+    useCases: [
+      { title: 'Powerline Inspection', description: 'Monitoring pylon and line condition without requiring circuit outages.' },
+      { title: 'Substation Monitoring', description: 'Thermal audits of transformers and switches to detect overheating components.' },
+      { title: 'Corridor Mapping', description: 'Ensuring safe distances between infrastructure and surrounding vegetation.' }
+    ],
+    capabilities: [
+      { title: 'Thermal Radiometry', description: 'Detecting resistive heating in electrical components with FLIR sensors.' },
+      { title: 'Multi-Sensor Payloads', description: 'Simultaneous visual and thermal capture for comprehensive assessment.' }
+    ],
+    industries: ['Energy Networks', 'Utility Providers', 'Renewable Energy Developers', 'Asset Managers'],
+    faqs: [
+      { q: 'Can drones fly near high-voltage lines?', a: 'Yes, our enterprise drones are shielded and we maintain safe standoff distances using zoom sensors.' },
+      { q: 'Is an outage required for the inspection?', a: 'Typically no, drone inspections are designed to be completed while assets are live.' },
+      { q: 'How do you detect hotspots?', a: 'We use high-resolution radiometric thermal sensors that measure absolute temperature differentials.' }
+    ],
+    relatedServices: ['solar-panel-inspections', 'infrastructure-inspections', 'thermal-imaging'],
+    cta: { label: 'INSPECT ENERGY ASSETS', href: '/contact' }
+  },
+  {
+    slug: 'solar-panel-inspections',
+    title: 'Solar Panel Drone Inspections UK',
+    headline: ['SOLAR PANEL', 'INSPECTIONS'],
+    category: 'Infrastructure & Energy',
+    intro: 'Efficiency-focused thermal audits for commercial PV arrays and solar farms — identifying cell-level faults and underperforming strings at scale.',
+    metaTitle: 'Solar Panel Drone Inspections UK | Thermal PV Audits | Altitude Hire',
+    metaDescription: 'Professional solar panel drone inspections. Thermal cell-level fault detection, string audits and anomaly reporting. CAA-compliant, IEC compliant reporting.',
+    heroStat: [
+      { value: '100%', label: 'Array coverage' },
+      { value: 'CELL', label: 'Level detail' },
+      { value: 'FAST', label: 'Large-scale audit' }
+    ],
+    problemStatement: 'Manual solar inspection is slow, incomplete, and often only covers a fraction of the array. Drone thermal imaging allows for the rapid inspection of thousands of panels in a single flight, identifying cell-level hotspots, bypass diode failures, and string anomalies that are invisible to the naked eye.',
+    whatWeCapture: [
+      'Radiometric thermal imagery of every panel',
+      'String-level temperature variations',
+      'Cell-level hotspots and hotspots',
+      'Mechanical damage and soiling',
+      'Inverter and transformer thermal data',
+      'Mounting structure condition'
+    ],
+    deliverables: [
+      'IEC-compliant thermal report',
+      'Interactive fault map',
+      'Prioritised maintenance list',
+      'Radiometric dataset',
+      'High-resolution visual record'
+    ],
+    useCases: [
+      { title: 'Commissioning Audits', description: 'Ensuring new arrays are performing to specification before handover.' },
+      { title: 'Annual Performance Review', description: 'Maintaining peak efficiency across large commercial solar portfolios.' },
+      { title: 'Warranty Claims', description: 'Providing objective evidence of panel failure for manufacturer claims.' }
+    ],
+    capabilities: [
+      { title: 'Thermal Mapping', description: 'Creating a georeferenced thermal map of the entire solar farm.' },
+      { title: 'AI Fault Detection', description: 'Automated identification of common PV anomalies across large datasets.' }
+    ],
+    industries: ['Solar Farm Operators', 'Asset Managers', 'Commercial Landlords', 'O&M Providers'],
+    faqs: [
+      { q: 'How many panels can you inspect in a day?', a: 'We can typically cover 5-10MW of solar capacity per day depending on site layout.' },
+      { q: 'What conditions are needed for solar inspection?', a: 'Ideally clear skies and high solar irradiance (minimum 600W/m²) for accurate thermal signatures.' },
+      { q: 'Can you identify cell-level faults?', a: 'Yes, our high-resolution thermal sensors can detect individual failing cells within a panel.' }
+    ],
+    relatedServices: ['utilities-energy-inspections', 'thermal-imaging', 'infrastructure-inspections'],
+    cta: { label: 'AUDIT SOLAR PERFORMANCE', href: '/contact' }
+  },
+
+  // SPECIALIST & RESPONSE
   {
     slug: 'thermal-imaging',
     title: 'Thermal Drone Imaging UK',
     headline: ['THERMAL', 'IMAGING'],
-    intro: 'Radiometric thermal drone surveys that reveal what the eye cannot see — moisture ingress, insulation failure, electrical faults, and energy loss mapped precisely across entire structures in a single flight.',
-    metaTitle: 'Thermal Drone Imaging UK — Altitude Drone | FLIR Building Surveys',
-    metaDescription: 'Professional thermal drone imaging surveys across the UK. FLIR radiometric surveys for building envelopes, solar farms, electrical inspection, and insurance claims assessment. CAA approved.',
+    category: 'Specialist & Response',
+    intro: 'Radiometric thermal drone surveys that reveal moisture ingress, insulation failure, and energy loss mapped precisely across entire structures.',
+    metaTitle: 'Thermal Drone Imaging UK | FLIR Building Surveys | Altitude Hire',
+    metaDescription: 'Professional thermal drone imaging surveys. FLIR radiometric surveys for building envelopes, solar farms, and electrical inspection. CAA-compliant.',
     heroStat: [
       { value: '±2°C', label: 'Radiometric accuracy' },
       { value: 'FLIR', label: 'Radiometric sensor' },
       { value: 'RICS', label: 'Compatible reporting' },
     ],
-    bodyHeading: 'HEAT MAPS THAT TELL THE WHOLE STORY',
-    bodyParagraphs: [
-      "Thermal imaging from altitude transforms building assessment. Where a physical survey sees surface condition, a drone-mounted FLIR radiometric sensor sees temperature differentials across an entire building envelope in minutes — revealing moisture pathways behind cladding, insulation voids within flat roofs, failing seals around fenestration, and heat bridges through the structural frame. Data that would take a ground-based surveyor days to gather partially is captured completely in a single flight.",
-      "We operate the FLIR Zenmuse H20T and Zenmuse XT2 radiometric thermal payloads on the DJI Matrice 350 RTK. Both produce true radiometric JPEG imagery — not just visual thermal — meaning every pixel contains a precise temperature value that can be interrogated in post-processing. This is the standard required by loss adjusters, insurance underwriters, and RICS-registered surveyors. We do not use consumer thermal sensors.",
-      "Thermal drone surveys are suitable for both commercial and residential properties, solar installations, and industrial plant. Our reports are structured to support planning applications, insurance claims, energy performance assessments, and facilities management planned maintenance programmes. Every report includes annotated thermal imagery, temperature range analysis, defect priority classification, and recommended remediation notes.",
+    problemStatement: 'Thermal imaging from altitude transforms building assessment. Where a physical survey sees surface condition, a drone-mounted FLIR radiometric sensor sees temperature differentials across an entire building envelope in minutes — revealing moisture pathways behind cladding and insulation voids within flat roofs.',
+    whatWeCapture: [
+      'Radiometric thermal imagery',
+      'Building envelope heat signatures',
+      'Roof moisture signatures',
+      'Solar array anomalies',
+      'Electrical asset hotspots'
+    ],
+    deliverables: [
+      'Thermal image set',
+      'Radiometric temperature data',
+      'Defect priority summary',
+      'Annotated thermal report',
+      'Maintenance planning notes'
+    ],
+    useCases: [
+      { title: 'Flat Roof Surveys', description: 'Detecting trapped moisture and insulation defects in flat roof systems.' },
+      { title: 'Energy Audits', description: 'Identifying areas of significant heat loss for MEES/EPC compliance.' },
+      { title: 'Solar Inspection', description: 'Finding cell-level faults and underperforming strings in PV arrays.' }
     ],
     capabilities: [
-      { title: 'Building Envelope Surveys', description: 'Full roofline and facade thermal mapping for moisture ingress, insulation failure, air leakage, and heat bridge identification. Flat roof moisture mapping a speciality.' },
-      { title: 'Solar Farm Audits', description: 'Cell-level fault detection across large PV arrays. Identify hotspots, bypass diode failures, soiling, delamination, and underperforming strings at scale.' },
-      { title: 'Insurance & Claims', description: 'Post-incident damage assessment with timestamped radiometric evidence. Accepted by UK loss adjusters and underwriters as primary survey data.' },
-      { title: 'Energy Performance', description: 'Pre-EPC and MEES compliance thermal surveys identifying areas of energy loss priority. Supports retrofit planning and SAP assessment.' },
+      { title: 'Radiometric Capture', description: 'Capturing temperature data in every pixel for detailed interrogation.' },
+      { title: 'Building Physics', description: 'Understanding how heat and moisture move through structures.' }
     ],
-    industries: ['Facilities Management', 'Insurance & Loss Adjustment', 'Property Investment', 'Solar Energy', 'Local Authority Housing', 'Building Consultancy'],
+    industries: ['Facilities Management', 'Insurance', 'Solar Energy', 'Building Consultancy'],
     faqs: [
-      { q: 'What conditions are required for a thermal survey?', a: 'Best results require a minimum 10°C differential between internal and external temperature. Ideal conditions are dry, calm, overcast days or night flights. We advise on optimal scheduling during the project brief.' },
-      { q: 'Is the thermal data radiometric or visual only?', a: 'All Altitude thermal surveys produce true radiometric data — each pixel contains an absolute temperature value. This is the standard required for insurance, RICS, and engineering applications. We do not use visual-only thermal sensors.' },
-      { q: 'Can thermal imaging detect moisture behind cladding?', a: 'Yes, where sufficient thermal differential exists. Moisture has a higher thermal mass than air, causing distinctive temperature signatures during warming and cooling cycles. This is a primary application for building envelope assessment.' },
-      { q: 'Do you supply the report for planning or insurance purposes?', a: 'Yes. Our reports are structured for use in planning applications, insurance claims, and facilities management documentation. We can produce RICS-referenced format reports where required.' },
+      { q: 'What conditions are required for a thermal survey?', a: 'Ideally a 10°C differential between internal and external temperatures, often requiring dawn or night flights.' },
+      { q: 'What can thermal imaging detect?', a: 'It detects moisture, insulation gaps, air leaks, electrical hotspots, and failing mechanical parts.' },
+      { q: 'Is thermal data radiometric?', a: 'Yes, we only use radiometric sensors where each pixel contains a temperature value.' }
     ],
-    relatedServices: ['drone-inspection', 'agricultural-surveys'],
-    cta: { label: 'REQUEST A THERMAL SURVEY', href: '/contact' },
+    relatedServices: ['roof-inspections', 'solar-panel-inspections', 'facilities-management-inspections'],
+    cta: { label: 'BOOK A THERMAL SURVEY', href: '/contact' }
   },
-
   {
-    slug: 'agricultural-surveys',
-    title: 'Agricultural Drone Surveys UK',
-    headline: ['AGRICULTURAL', 'SURVEYS'],
-    intro: 'NDVI crop health analysis, multispectral field mapping, and drainage assessment — giving landowners and agronomists the aerial intelligence to make decisions that improve yield and reduce input costs.',
-    metaTitle: 'Agricultural Drone Surveys UK — Altitude Drone | NDVI & Multispectral',
-    metaDescription: 'Professional agricultural drone survey services across the UK. NDVI crop health, multispectral imaging, field boundary mapping, drainage assessment, and soil variability analysis. CAA approved.',
+    slug: 'aerial-photography-film',
+    title: 'Aerial Photography & Film UK',
+    headline: ['AERIAL', 'PHOTOGRAPHY', '& FILM'],
+    category: 'Specialist & Response',
+    intro: 'Cinematic 4K drone footage and ultra-high-resolution stills for property, commercial, and broadcast clients. Every flight is managed by a CAA GVC certified pilot.',
+    metaTitle: 'Aerial Photography UK | 4K Drone Filming | Altitude Hire',
+    metaDescription: 'Professional aerial photography and drone filming services across the UK. 4K/6K video, 45MP stills for real estate, commercial, and broadcast. CAA-compliant.',
     heroStat: [
-      { value: '400HA', label: 'Coverage per day' },
-      { value: 'NDVI', label: 'Multispectral analysis' },
-      { value: '5CM', label: 'Ground sampling distance' },
+      { value: '4K', label: 'Cinematic video' },
+      { value: '45MP', label: 'Full-frame stills' },
+      { value: '24H', label: 'Highlight delivery' },
     ],
-    bodyHeading: 'PRECISION AGRICULTURE STARTS WITH PRECISION DATA',
-    bodyParagraphs: [
-      "UK agriculture operates under intense margin pressure. Input costs — fertiliser, crop protection, water — continue to rise while output prices remain volatile. The farms that will thrive are those that replace blanket application with precision — and precision requires data that tells you where intervention is needed, where it is not, and where the ground itself is working against you. Drone-captured multispectral data delivers exactly this, at a scale and resolution no satellite can match.",
-      "We operate the DJI Mavic 3 Multispectral, a purpose-built agricultural survey drone carrying a 5-band multispectral sensor alongside an RGB camera, with an integrated sunlight sensor for automatic irradiance calibration. The system produces NDVI, NDRE, GNDVI, and CWSI maps — the indices that agronomists actually use — in a georeferenced format ready for import into John Deere Operations Center, Trimble Ag Software, and all major precision agriculture platforms.",
-      "Beyond crop health, our agricultural drone surveys support drainage assessment, field boundary verification, soil variability mapping from surface indicators, and pre-application site surveys for agri-environment scheme compliance. We offer seasonal monitoring packages — regular scheduled flights aligned to your growing calendar — so you have an aerial baseline to compare against across the whole season.",
+    problemStatement: 'Standard ground-level photography often fails to capture the true scale and context of a project or property. Low-quality drone footage from hobbyist operators lacks the stability, composition, and legal compliance required by professional brands. We deliver cinematic, broadcast-grade aerial content that performs.',
+    whatWeCapture: [
+      'Cinematic 4K/6K video sequences',
+      'Ultra-high-resolution 45MP stills',
+      'Dynamic tracking and reveal shots',
+      '360° site overviews',
+      'Night-time aerial content'
+    ],
+    deliverables: [
+      'Edited highlight film',
+      'Raw footage archive (Log profile)',
+      'High-res image gallery',
+      'Social-first video edits'
+    ],
+    useCases: [
+      { title: 'Property Marketing', description: 'Showcasing luxury estates and commercial developments.' },
+      { title: 'Brand Campaigns', description: 'Adding high-production value to marketing films.' }
     ],
     capabilities: [
-      { title: 'NDVI Crop Health Mapping', description: 'Normalised Difference Vegetation Index mapping at 5cm GSD across entire fields in a single flight. Identify stress, disease, waterlogging, and nutrient deficiency zones with precision.' },
-      { title: 'Multispectral Analysis', description: '5-band multispectral capture producing NDVI, NDRE, GNDVI, and CWSI indices. Delivered as georeferenced rasters for direct import into precision agriculture platforms.' },
-      { title: 'Drainage Assessment', description: 'Surface expression of drainage issues identified through visible and multispectral data. Waterlogging zones, field compaction patterns, and drainage line mapping.' },
-      { title: 'Seasonal Monitoring Packages', description: 'Scheduled flights across the growing season provide a consistent aerial baseline. Compare crop development week-on-week and respond to emerging issues before yield is impacted.' },
+      { title: 'Cinematic Movement', description: 'Smooth, choreographed flights for high-end results.' },
+      { title: 'Advanced Post-Processing', description: 'Professional colour grading and editing services.' }
     ],
-    industries: ['Arable Farming', 'Mixed & Livestock Farming', 'Agronomy Consultancy', 'Land Management', 'Environmental Agencies', 'Rural Estate Management'],
+    industries: ['Marketing Agencies', 'Luxury Real Estate', 'Film Production', 'Tourism'],
     faqs: [
-      { q: 'What crop types can be assessed with drone NDVI?', a: 'NDVI is effective for all arable crops — wheat, barley, oilseed rape, sugar beet, maize — as well as grass leys, cover crops, and horticultural production. Multispectral indices vary in effectiveness by crop type; we advise on the most appropriate indices for your specific application.' },
-      { q: 'How does drone resolution compare to satellite imagery?', a: 'Our multispectral surveys achieve 5cm ground sampling distance compared to the 3–10 metre resolution of most commercial satellite products. This means we can detect individual plant stress and row-level variation that satellite imagery completely misses.' },
-      { q: 'Can you survey during the growing season without damaging crops?', a: 'Drone surveys are entirely non-contact — we fly above the crop with no ground disturbance whatsoever. This makes drone survey far superior to ground-based sampling for in-season assessment of standing crops.' },
-      { q: 'Do you offer seasonal monitoring contracts?', a: 'Yes. Our seasonal monitoring packages provide regular scheduled flights across the growing season at a fixed contract price. Flights are planned around key crop development stages and delivered on a consistent schedule.' },
+      { q: 'What is the video resolution?', a: 'We capture in 4K or 6K resolution as standard.' },
+      { q: 'Do you provide edited videos?', a: 'Yes, we offer full post-production services or raw footage delivery.' }
     ],
-    relatedServices: ['surveying-mapping', 'thermal-imaging'],
-    cta: { label: 'ENQUIRE ABOUT AGRICULTURAL SURVEYS', href: '/contact' },
+    relatedServices: ['fpv-drone-filming', '360-aerial-panoramas', 'events-media'],
+    cta: { label: 'DISCUSS YOUR SHOOT', href: '/contact' }
   },
-
   {
     slug: 'events-media',
     title: 'Events Drone Coverage UK',
     headline: ['EVENTS', '& MEDIA'],
-    intro: 'Article 16 licensed aerial coverage for festivals, sports, film, and corporate events. CAA-approved for operations over crowds — with live FPV feed and same-day highlight delivery.',
-    metaTitle: 'Events Drone Coverage UK — Altitude Drone | Festivals, Film & Sport',
-    metaDescription: 'Professional events drone coverage across the UK. Article 16 licensed for operations over crowds. Festivals, concerts, sport, film & TV, and corporate events. Live FPV feed. Same-day delivery.',
+    category: 'Specialist & Response',
+    intro: 'Article 16 licensed aerial coverage for festivals, sports, film, and corporate events. CAA-approved for operations over crowds — with live FPV feed.',
+    metaTitle: 'Events Drone Coverage UK | Festivals & Sports | Altitude Hire',
+    metaDescription: 'Professional events drone coverage. Article 16 licensed for operations over crowds. Festivals, concerts, sport and film. CAA-compliant.',
     heroStat: [
-      { value: 'A16', label: 'Article 16 licensed' },
+      { value: 'A16', label: 'Licensed for crowds' },
       { value: 'LIVE', label: 'FPV feed available' },
-      { value: '24H', label: 'Highlight delivery' },
+      { value: '24H', label: 'Rapid delivery' },
     ],
-    bodyHeading: 'AERIAL COVERAGE THAT MATCHES THE SCALE OF YOUR EVENT',
-    bodyParagraphs: [
-      "Most drone operators cannot legally fly over your event. Article 16 authorisation — the CAA permission required to operate over crowds — is held by fewer than a small fraction of UK commercial operators. Altitude holds this permission as standard. This means we can cover festivals, concerts, sporting events, and public gatherings where the vast majority of the industry has to decline or fly illegally outside the crowd boundary.",
-      "For broadcast and film production, we provide a full aerial second unit service: licensed Recce, shot list development, onset coordination with the first unit, and a fully insured, broadcast-compliant operation. Our Mavic 3 Enterprise and Matrice 350 RTK platforms deliver 4K/6K footage to log profile, ready for post-production colour pipeline. Live FPV feed to a production monitor is available as standard for events requiring real-time director visibility.",
-      "For corporate and brand events, we provide edited highlight packages alongside raw footage — delivered to your secure portal within 24 hours of the event. We handle all airspace permissions, NOTAM filings, venue coordination, and stakeholder notifications as part of the booking. You focus on your event. We handle everything from the sky.",
+    problemStatement: 'Most drone operators cannot legally fly over crowds. This severely limits the ability to capture the scale and atmosphere of major events. Altitude holds the necessary Article 16 authorisation and specialist insurance to operate safely and legally over people, delivering the footage others can\'t.',
+    whatWeCapture: [
+      'Dynamic crowd overviews',
+      'Stage and performance highlights',
+      'Sporting action tracking',
+      'Event setup and breakdown',
+      'Site atmosphere and scale'
     ],
-    capabilities: [
-      { title: 'Festivals & Concerts', description: 'Article 16 licensed coverage over large outdoor crowds. Reveal shots, stage coverage, crowd atmosphere, and site context. Live FPV feed to production desk.' },
-      { title: 'Film & TV Production', description: 'Aerial second unit service for feature film, documentary, and broadcast TV. Full onset coordination, log profile footage, and insurance-compliant operations.' },
-      { title: 'Sports Events', description: 'Dynamic aerial coverage of motorsport, cycling, equestrian, and outdoor sports. Tracking shots, reveal angles, and venue atmosphere. Fast-moving subject experience.' },
-      { title: 'Corporate & Brand', description: 'Aerial content for conferences, product launches, site openings, and brand campaigns. Brief-led shot lists and same-day edited delivery available.' },
+    deliverables: [
+      'Event highlight video',
+      'Social media content pack',
+      'Raw footage archive',
+      'Live video downlink'
     ],
-    industries: ['Live Events & Festivals', 'Film & TV Production', 'Sports Organisations', 'Corporate Events', 'Marketing & Creative Agencies', 'Broadcast Media'],
-    faqs: [
-      { q: 'What is Article 16 authorisation and why does it matter for events?', a: 'Article 16 of UK Retained Regulation (EU) 2019/947 allows drone operators to deviate from standard rules — specifically the prohibition on flying over uninvolved people. Without this permission, a drone operator cannot legally fly over a crowd, regardless of how professional they are.' },
-      { q: 'Can you provide a live video feed during the event?', a: 'Yes. Our platforms support live FPV (first-person view) feed to a monitor on the ground, allowing directors, producers, or clients to see the drone view in real-time during the event.' },
-      { q: 'How far in advance do you need to book for events?', a: 'A minimum of 2 weeks is recommended for events requiring NOTAM filing and Article 16 confirmation. For events near controlled airspace or requiring specific CAA authorisation, 4 weeks is advisable.' },
-      { q: 'What is included in the day rate?', a: 'Day rate covers pilot, spotter (required for Article 16 operations), platform and payload, all permits and NOTAM filing, and raw footage delivery. Edited highlight packages, colour grading, and motion graphics are available as add-ons.' },
-    ],
-    relatedServices: ['aerial-photography', 'drone-inspection'],
-    cta: { label: 'DISCUSS YOUR EVENT', href: '/contact' },
-  },
-
-  {
-    slug: 'commercial-aerial-photography',
-    title: 'Commercial aerial photography UK',
-    headline: ["COMMERCIAL","AERIAL","PHOTOGRAPHY"],
-    intro: 'Professional commercial aerial photography services tailored for Aerial photography. Delivered with precision, speed, and full CAA compliance.',
-    metaTitle: 'Commercial aerial photography UK — Altitude Drone',
-    metaDescription: 'Expert commercial aerial photography services. Fully insured and CAA-approved operations delivering actionable intelligence and premium media.',
-    heroStat: [
-      { value: '4K', label: 'Ultra HD' },
-      { value: '24H', label: 'Turnaround' },
-      { value: 'CAA', label: 'Approved' },
-    ],
-    bodyHeading: 'ELEVATING STANDARD COMMERCIAL AERIAL PHOTOGRAPHY',
-    bodyParagraphs: [
-      "When it comes to commercial aerial photography, standard consumer methods fall short. Altitude Drone brings commercial-grade rigor and advanced sensor technology to every flight.",
-      "We understand that our clients require more than just raw data. They need commercial aerial photography that integrates seamlessly into their workflows, whether for marketing, engineering, or compliance.",
-      "By choosing our specialized service, you ensure that you receive exactly the right deliverable, backed by £10M public liability insurance and professional standards."
+    useCases: [
+      { title: 'Festivals', description: 'Capturing the full scale of major music and cultural events.' },
+      { title: 'Sporting Events', description: 'Tracking fast-moving action with precision.' }
     ],
     capabilities: [
-      { title: 'Rapid Deployment', description: 'Available for fast turnaround across the UK.' },
-      { title: 'High Precision', description: 'Captured using industry-leading DJI Enterprise platforms.' },
-      { title: 'Fully Insured', description: 'Comprehensive £10M public liability coverage.' },
-      { title: 'Secure Delivery', description: 'Data delivered via secure client portal.' }
+      { title: 'Crowd Safety', description: 'Rigorous risk management for operations over people.' },
+      { title: 'Article 16 Ops', description: 'Specific legal authorisation for event filming.' }
     ],
-    industries: ['Commercial', 'Property', 'Construction', 'Marketing'],
+    industries: ['Event Organisers', 'Sponsors', 'Broadcasters', 'Local Authorities'],
     faqs: [
-      { q: 'How quickly can you deliver?', a: 'Standard turnaround is 24-48 hours depending on the scope.' },
-      { q: 'Are you fully insured?', a: 'Yes, we carry £10M public liability insurance for all operations.' },
-      { q: 'Do you operate nationwide?', a: 'Yes, our network allows us to provide coverage across the entire UK.' },
-      { q: 'What is the booking process?', a: 'Simply submit a project brief via our site and we will return a quote same-day.' }
+      { q: 'Is it legal to fly over crowds?', a: 'Only with specific Article 16 authorisation, which Altitude holds.' },
+      { q: 'Can you provide a live feed?', a: 'Yes, we can stream HD video to your production desk in real-time.' }
     ],
-    relatedServices: ['aerial-photography'],
-    cta: { label: 'REQUEST A QUOTE', href: '/contact' }
+    relatedServices: ['fpv-drone-filming', 'aerial-photography-film', '360-aerial-panoramas'],
+    cta: { label: 'BOOK EVENT COVERAGE', href: '/contact' }
   },
   {
-    slug: 'property-aerial-photography',
-    title: 'Property aerial photography UK',
-    headline: ["PROPERTY AERIAL","PHOTOGRAPHY"],
-    intro: 'Professional property aerial photography services tailored for Aerial photography. Delivered with precision, speed, and full CAA compliance.',
-    metaTitle: 'Property aerial photography UK — Altitude Drone',
-    metaDescription: 'Expert property aerial photography services. Fully insured and CAA-approved operations delivering actionable intelligence and premium media.',
+    slug: 'heritage-conservation-archaeology',
+    title: 'Heritage & Conservation Drone Surveys UK',
+    headline: ['HERITAGE', '& CONSERVATION'],
+    category: 'Specialist & Response',
+    intro: 'Non-invasive aerial surveys and 3D modelling for historic buildings, listed structures, and archaeological sites — preserving the past with modern technology.',
+    metaTitle: 'Heritage & Conservation Drone Surveys UK | 3D Site Models | Altitude Hire',
+    metaDescription: 'Professional drone surveys for heritage and conservation. 3D site modelling, condition monitoring and digital preservation. CAA-compliant.',
     heroStat: [
-      { value: '4K', label: 'Ultra HD' },
-      { value: '24H', label: 'Turnaround' },
-      { value: 'CAA', label: 'Approved' },
+      { value: 'NON', label: 'Invasive capture' },
+      { value: '3D', label: 'Site modelling' },
+      { value: 'PRE', label: 'Acquisition record' }
     ],
-    bodyHeading: 'ELEVATING STANDARD PROPERTY AERIAL PHOTOGRAPHY',
-    bodyParagraphs: [
-      "When it comes to property aerial photography, standard consumer methods fall short. Altitude Drone brings commercial-grade rigor and advanced sensor technology to every flight.",
-      "We understand that our clients require more than just raw data. They need property aerial photography that integrates seamlessly into their workflows, whether for marketing, engineering, or compliance.",
-      "By choosing our specialized service, you ensure that you receive exactly the right deliverable, backed by £10M public liability insurance and professional standards."
+    problemStatement: 'Historic structures are fragile and often difficult to access without risking damage. Drones provide a completely non-contact method to inspect roofs, spires, and masonry, while creating high-fidelity digital replicas that can be used for conservation planning and public engagement.',
+    whatWeCapture: [
+      'High-detail structural geometry',
+      'Historic roof and spire condition',
+      'Archaeological site mapping',
+      'Digital terrain of historic estates',
+      'Texture and material condition'
+    ],
+    deliverables: [
+      'High-fidelity 3D model',
+      'Digital preservation archive',
+      'Heritage condition report',
+      'Public engagement visuals',
+      'Orthomosaic site map'
+    ],
+    useCases: [
+      { title: 'Listed Building Audit', description: 'Detailed inspection of roofs and spires for Grant application evidence.' },
+      { title: 'Archaeological Mapping', description: 'Capturing site features from the air that are invisible from the ground.' },
+      { title: 'Digital Twins', description: 'Creating permanent digital records of historic assets for future reference.' }
     ],
     capabilities: [
-      { title: 'Rapid Deployment', description: 'Available for fast turnaround across the UK.' },
-      { title: 'High Precision', description: 'Captured using industry-leading DJI Enterprise platforms.' },
-      { title: 'Fully Insured', description: 'Comprehensive £10M public liability coverage.' },
-      { title: 'Secure Delivery', description: 'Data delivered via secure client portal.' }
+      { title: 'Photorealistic Modelling', description: 'Creating stunning 3D models of historic structures using photogrammetry.' },
+      { title: 'Detailed Spire Inspection', description: 'Inspecting inaccessible heights with zero physical contact.' }
     ],
-    industries: ['Commercial', 'Property', 'Construction', 'Marketing'],
+    industries: ['Conservation Groups', 'Heritage Organisations', 'Archaeologists', 'Listed Building Owners'],
     faqs: [
-      { q: 'How quickly can you deliver?', a: 'Standard turnaround is 24-48 hours depending on the scope.' },
-      { q: 'Are you fully insured?', a: 'Yes, we carry £10M public liability insurance for all operations.' },
-      { q: 'Do you operate nationwide?', a: 'Yes, our network allows us to provide coverage across the entire UK.' },
-      { q: 'What is the booking process?', a: 'Simply submit a project brief via our site and we will return a quote same-day.' }
+      { q: 'Is drone capture safe for fragile structures?', a: 'Yes, it is entirely non-contact and we maintain safe distances using zoom sensors.' },
+      { q: 'Can you produce 3D models for public use?', a: 'Yes, we create web-viewable models perfect for museums and online engagement.' },
+      { q: 'Do you work with conservation officers?', a: 'Yes, we provide the data they need to approve restoration works.' }
     ],
-    relatedServices: ['aerial-photography'],
-    cta: { label: 'REQUEST A QUOTE', href: '/contact' }
+    relatedServices: ['digital-twin-capture', 'gaussian-splat-capture', 'drone-photogrammetry'],
+    cta: { label: 'DISCUSS HERITAGE CAPTURE', href: '/contact' }
   },
   {
-    slug: 'development-site-photography',
-    title: 'Development site photography UK',
-    headline: ["DEVELOPMENT","SITE","PHOTOGRAPHY"],
-    intro: 'Professional development site photography services tailored for Aerial photography. Delivered with precision, speed, and full CAA compliance.',
-    metaTitle: 'Development site photography UK — Altitude Drone',
-    metaDescription: 'Expert development site photography services. Fully insured and CAA-approved operations delivering actionable intelligence and premium media.',
+    slug: 'insurance-loss-adjuster-surveys',
+    title: 'Insurance & Loss Adjuster Drone Surveys UK',
+    headline: ['INSURANCE', '& LOSS ADJUSTER'],
+    category: 'Specialist & Response',
+    intro: 'Rapid aerial damage assessment for loss adjusters and insurers — providing immediate visibility after fire, flood, or storm incidents.',
+    metaTitle: 'Insurance & Loss Adjuster Drone Surveys UK | Damage Assessment | Altitude Hire',
+    metaDescription: 'Professional drone surveys for loss adjusters. Rapid damage assessment after fire, flood or storm. CAA-compliant, rapid deployment.',
     heroStat: [
-      { value: '4K', label: 'Ultra HD' },
-      { value: '24H', label: 'Turnaround' },
-      { value: 'CAA', label: 'Approved' },
+      { value: 'RAPID', label: 'Incident response' },
+      { value: 'SAFE', label: 'Remote assessment' },
+      { value: '4K', label: 'Detailed evidence' }
     ],
-    bodyHeading: 'ELEVATING STANDARD DEVELOPMENT SITE PHOTOGRAPHY',
-    bodyParagraphs: [
-      "When it comes to development site photography, standard consumer methods fall short. Altitude Drone brings commercial-grade rigor and advanced sensor technology to every flight.",
-      "We understand that our clients require more than just raw data. They need development site photography that integrates seamlessly into their workflows, whether for marketing, engineering, or compliance.",
-      "By choosing our specialized service, you ensure that you receive exactly the right deliverable, backed by £10M public liability insurance and professional standards."
+    problemStatement: 'Assessing damage after a major incident is often delayed by safety concerns and access restrictions. Drones can be deployed immediately to capture high-resolution evidence of fire-damaged roofs, flood-affected sites, or storm-damaged assets, allowing loss adjusters to start the claim process without waiting for safe manual access.',
+    whatWeCapture: [
+      'Fire damage extent (Visual & Thermal)',
+      'Storm damage to roofs and structures',
+      'Flood extent and impact mapping',
+      'High-level incident evidence',
+      'Post-incident site safety audit'
+    ],
+    deliverables: [
+      'Incident damage report',
+      'High-resolution evidence pack',
+      'Thermal damage assessment',
+      'Site safety overview',
+      'Timeline of site change'
+    ],
+    useCases: [
+      { title: 'Post-Fire Audit', description: 'Safe inspection of collapsed or unstable roof structures.' },
+      { title: 'Storm Damage', description: 'Rapid assessment of wind damage to large industrial estates.' },
+      { title: 'Flood Mapping', description: 'Documenting the extent of water ingress and site impact.' }
     ],
     capabilities: [
-      { title: 'Rapid Deployment', description: 'Available for fast turnaround across the UK.' },
-      { title: 'High Precision', description: 'Captured using industry-leading DJI Enterprise platforms.' },
-      { title: 'Fully Insured', description: 'Comprehensive £10M public liability coverage.' },
-      { title: 'Secure Delivery', description: 'Data delivered via secure client portal.' }
+      { title: 'Rapid Deployment', description: 'Priority scheduling for urgent insurance assessments.' },
+      { title: 'Thermal Damage Detection', description: 'Identifying hidden hotspots or moisture pockets after an incident.' }
     ],
-    industries: ['Commercial', 'Property', 'Construction', 'Marketing'],
+    industries: ['Loss Adjusters', 'Insurers', 'Risk Managers', 'Property Owners'],
     faqs: [
-      { q: 'How quickly can you deliver?', a: 'Standard turnaround is 24-48 hours depending on the scope.' },
-      { q: 'Are you fully insured?', a: 'Yes, we carry £10M public liability insurance for all operations.' },
-      { q: 'Do you operate nationwide?', a: 'Yes, our network allows us to provide coverage across the entire UK.' },
-      { q: 'What is the booking process?', a: 'Simply submit a project brief via our site and we will return a quote same-day.' }
+      { q: 'How quickly can you deploy?', a: 'We offer 24-48 hour response times for urgent insurance assessments.' },
+      { q: 'Is drone data accepted by underwriters?', a: 'Yes, it is considered primary evidence for claim adjustment.' },
+      { q: 'Can you fly over damaged buildings?', a: 'Yes, we can safely inspect unstable structures from the air.' }
     ],
-    relatedServices: ['aerial-photography'],
-    cta: { label: 'REQUEST A QUOTE', href: '/contact' }
+    relatedServices: ['emergency-response', 'thermal-imaging', 'roof-inspections'],
+    cta: { label: 'REQUEST INCIDENT SURVEY', href: '/contact' }
   },
   {
-    slug: 'industrial-site-photography',
-    title: 'Industrial site photography UK',
-    headline: ["INDUSTRIAL SITE","PHOTOGRAPHY"],
-    intro: 'Professional industrial site photography services tailored for Aerial photography. Delivered with precision, speed, and full CAA compliance.',
-    metaTitle: 'Industrial site photography UK — Altitude Drone',
-    metaDescription: 'Expert industrial site photography services. Fully insured and CAA-approved operations delivering actionable intelligence and premium media.',
+    slug: 'emergency-response',
+    title: 'Emergency Incident Response Drone Services UK',
+    headline: ['EMERGENCY', 'RESPONSE'],
+    category: 'Specialist & Response',
+    intro: 'Immediate aerial intelligence for incident commanders and emergency teams — providing real-time visibility in critical situations.',
+    metaTitle: 'Emergency Incident Response Drone Services UK | Rapid Deployment | Altitude Hire',
+    metaDescription: 'Professional drone services for emergency response. Real-time aerial intelligence for fire, flood and structural incidents. CAA-compliant, rapid response.',
     heroStat: [
-      { value: '4K', label: 'Ultra HD' },
-      { value: '24H', label: 'Turnaround' },
-      { value: 'CAA', label: 'Approved' },
+      { value: 'FAST', label: 'Deployment' },
+      { value: 'LIVE', label: 'Intelligence' },
+      { value: 'SAFE', label: 'Remote viewing' }
     ],
-    bodyHeading: 'ELEVATING STANDARD INDUSTRIAL SITE PHOTOGRAPHY',
-    bodyParagraphs: [
-      "When it comes to industrial site photography, standard consumer methods fall short. Altitude Drone brings commercial-grade rigor and advanced sensor technology to every flight.",
-      "We understand that our clients require more than just raw data. They need industrial site photography that integrates seamlessly into their workflows, whether for marketing, engineering, or compliance.",
-      "By choosing our specialized service, you ensure that you receive exactly the right deliverable, backed by £10M public liability insurance and professional standards."
+    problemStatement: 'In the first hour of an emergency, information is the most valuable asset. Drones provide incident commanders with a "God\'s-eye view" of fire spread, structural failure, or hazardous spills, allowing for safer and more effective response decisions without placing personnel in the line of fire.',
+    whatWeCapture: [
+      'Real-time fire spread (Thermal)',
+      'Structural stability overviews',
+      'Hazardous material extent',
+      'Search and rescue support',
+      'Access and egress monitoring'
+    ],
+    deliverables: [
+      'Live video feed to command',
+      'Post-incident evidence pack',
+      'Thermal hotspot mapping',
+      'High-resolution incident archive'
+    ],
+    useCases: [
+      { title: 'Fire Monitoring', description: 'Tracking thermal signatures through smoke and at night.' },
+      { title: 'Structural Collapse', description: 'Assessing stability and searching for casualties remotely.' }
     ],
     capabilities: [
-      { title: 'Rapid Deployment', description: 'Available for fast turnaround across the UK.' },
-      { title: 'High Precision', description: 'Captured using industry-leading DJI Enterprise platforms.' },
-      { title: 'Fully Insured', description: 'Comprehensive £10M public liability coverage.' },
-      { title: 'Secure Delivery', description: 'Data delivered via secure client portal.' }
+      { title: 'Real-Time Streaming', description: 'Broadcasting live aerial video to off-site command centres.' },
+      { title: 'Advanced Thermal', description: 'Seeing through smoke and darkness to identify heat sources.' }
     ],
-    industries: ['Commercial', 'Property', 'Construction', 'Marketing'],
+    industries: ['Emergency Services', 'Site Safety Teams', 'Industrial Operators', 'Local Authorities'],
     faqs: [
-      { q: 'How quickly can you deliver?', a: 'Standard turnaround is 24-48 hours depending on the scope.' },
-      { q: 'Are you fully insured?', a: 'Yes, we carry £10M public liability insurance for all operations.' },
-      { q: 'Do you operate nationwide?', a: 'Yes, our network allows us to provide coverage across the entire UK.' },
-      { q: 'What is the booking process?', a: 'Simply submit a project brief via our site and we will return a quote same-day.' }
+      { q: 'Can you fly in active emergency zones?', a: 'Yes, we coordinate with incident commanders and have permissions for emergency operations.' },
+      { q: 'How fast is the live feed?', a: 'We provide low-latency HD streaming to any web-enabled device.' },
+      { q: 'Can you fly at night?', a: 'Yes, all our pilots and platforms are fully equipped for night operations.' }
     ],
-    relatedServices: ['aerial-photography'],
-    cta: { label: 'REQUEST A QUOTE', href: '/contact' }
+    relatedServices: ['insurance-loss-adjuster-surveys', 'thermal-imaging', 'infrastructure-inspections'],
+    cta: { label: 'DISCUSS RESPONSE PROTOCOLS', href: '/contact' }
   },
   {
-    slug: 'hotel-venue-and-leisure-aerial-photography',
-    title: 'Hotel, venue and leisure aerial photography UK',
-    headline: ["HOTEL, VENUE","AND LEISURE","AERIAL","PHOTOGRAPHY"],
-    intro: 'Professional hotel, venue and leisure aerial photography services tailored for Aerial photography. Delivered with precision, speed, and full CAA compliance.',
-    metaTitle: 'Hotel, venue and leisure aerial photography UK — Altitude Drone',
-    metaDescription: 'Expert hotel, venue and leisure aerial photography services. Fully insured and CAA-approved operations delivering actionable intelligence and premium media.',
+    slug: 'fpv-drone-filming',
+    title: 'FPV Drone Filming UK',
+    headline: ['FPV DRONE', 'FILMING'],
+    category: 'Specialist & Response',
+    intro: 'High-speed, immersive, and dynamic aerial cinematography for brands, events, and property — taking viewers where traditional drones cannot go.',
+    metaTitle: 'FPV Drone Filming UK | Immersive Cinematography | Altitude Hire',
+    metaDescription: 'Professional FPV drone filming services. High-speed, immersive cinematography for property, events and marketing. CAA-compliant, 4K/6K video.',
     heroStat: [
-      { value: '4K', label: 'Ultra HD' },
-      { value: '24H', label: 'Turnaround' },
-      { value: 'CAA', label: 'Approved' },
+      { value: '60FPS', label: 'High-speed 4K' },
+      { value: 'PRO', label: 'Immersive flow' },
+      { value: 'A16', label: 'Licensed operations' }
     ],
-    bodyHeading: 'ELEVATING STANDARD HOTEL, VENUE AND LEISURE AERIAL PHOTOGRAPHY',
-    bodyParagraphs: [
-      "When it comes to hotel, venue and leisure aerial photography, standard consumer methods fall short. Altitude Drone brings commercial-grade rigor and advanced sensor technology to every flight.",
-      "We understand that our clients require more than just raw data. They need hotel, venue and leisure aerial photography that integrates seamlessly into their workflows, whether for marketing, engineering, or compliance.",
-      "By choosing our specialized service, you ensure that you receive exactly the right deliverable, backed by £10M public liability insurance and professional standards."
+    problemStatement: 'Standard drone footage can feel static and detached. FPV (First Person View) drones deliver a visceral, "fly-on-the-wall" experience, diving through tight spaces, chasing fast subjects, and providing a level of immersion that matches the energy of modern brands and high-end property tours.',
+    whatWeCapture: [
+      'Dynamic indoor flythroughs',
+      'High-speed chase sequences',
+      'One-take property reveals',
+      'Immersive event atmosphere',
+      'Acrobatic brand content'
+    ],
+    deliverables: [
+      'High-bitrate 4K/6K video',
+      'Cinematic social media cuts',
+      'Immersive property tour film',
+      'Action-packed brand asset'
+    ],
+    useCases: [
+      { title: 'One-Take Tours', description: 'Flying from outside, through the front door, and around a property in a single shot.' },
+      { title: 'Automotive & Action', description: 'Chasing vehicles or athletes with high-speed precision.' }
     ],
     capabilities: [
-      { title: 'Rapid Deployment', description: 'Available for fast turnaround across the UK.' },
-      { title: 'High Precision', description: 'Captured using industry-leading DJI Enterprise platforms.' },
-      { title: 'Fully Insured', description: 'Comprehensive £10M public liability coverage.' },
-      { title: 'Secure Delivery', description: 'Data delivered via secure client portal.' }
+      { title: 'Precision Indoor Flight', description: 'Navigating tight spaces and sensitive environments with prop-guarded drones.' },
+      { title: 'High-G Manoeuvres', description: 'Delivering dynamic, high-energy shots that traditional drones cannot achieve.' }
     ],
-    industries: ['Commercial', 'Property', 'Construction', 'Marketing'],
+    industries: ['Marketing Agencies', 'Luxury Property', 'Automotive Brands', 'Event Organisers'],
     faqs: [
-      { q: 'How quickly can you deliver?', a: 'Standard turnaround is 24-48 hours depending on the scope.' },
-      { q: 'Are you fully insured?', a: 'Yes, we carry £10M public liability insurance for all operations.' },
-      { q: 'Do you operate nationwide?', a: 'Yes, our network allows us to provide coverage across the entire UK.' },
-      { q: 'What is the booking process?', a: 'Simply submit a project brief via our site and we will return a quote same-day.' }
+      { q: 'Can you fly FPV indoors?', a: 'Yes, we use specialised "cinewhoop" drones with guarded propellers for safe indoor flight.' },
+      { q: 'What is the video quality?', a: 'We capture in 4K or 6K at high bitrates, ready for professional grading.' },
+      { q: 'Is it safe for events?', a: 'Yes, we are Article 16 licensed and follow strict safety protocols for event filming.' }
     ],
-    relatedServices: ['aerial-photography'],
-    cta: { label: 'REQUEST A QUOTE', href: '/contact' }
-  },
-  {
-    slug: 'estate-agent-drone-photography',
-    title: 'Estate agent drone photography UK',
-    headline: ["ESTATE AGENT","DRONE","PHOTOGRAPHY"],
-    intro: 'Professional estate agent drone photography services tailored for Aerial photography. Delivered with precision, speed, and full CAA compliance.',
-    metaTitle: 'Estate agent drone photography UK — Altitude Drone',
-    metaDescription: 'Expert estate agent drone photography services. Fully insured and CAA-approved operations delivering actionable intelligence and premium media.',
-    heroStat: [
-      { value: '4K', label: 'Ultra HD' },
-      { value: '24H', label: 'Turnaround' },
-      { value: 'CAA', label: 'Approved' },
-    ],
-    bodyHeading: 'ELEVATING STANDARD ESTATE AGENT DRONE PHOTOGRAPHY',
-    bodyParagraphs: [
-      "When it comes to estate agent drone photography, standard consumer methods fall short. Altitude Drone brings commercial-grade rigor and advanced sensor technology to every flight.",
-      "We understand that our clients require more than just raw data. They need estate agent drone photography that integrates seamlessly into their workflows, whether for marketing, engineering, or compliance.",
-      "By choosing our specialized service, you ensure that you receive exactly the right deliverable, backed by £10M public liability insurance and professional standards."
-    ],
-    capabilities: [
-      { title: 'Rapid Deployment', description: 'Available for fast turnaround across the UK.' },
-      { title: 'High Precision', description: 'Captured using industry-leading DJI Enterprise platforms.' },
-      { title: 'Fully Insured', description: 'Comprehensive £10M public liability coverage.' },
-      { title: 'Secure Delivery', description: 'Data delivered via secure client portal.' }
-    ],
-    industries: ['Commercial', 'Property', 'Construction', 'Marketing'],
-    faqs: [
-      { q: 'How quickly can you deliver?', a: 'Standard turnaround is 24-48 hours depending on the scope.' },
-      { q: 'Are you fully insured?', a: 'Yes, we carry £10M public liability insurance for all operations.' },
-      { q: 'Do you operate nationwide?', a: 'Yes, our network allows us to provide coverage across the entire UK.' },
-      { q: 'What is the booking process?', a: 'Simply submit a project brief via our site and we will return a quote same-day.' }
-    ],
-    relatedServices: ['aerial-photography'],
-    cta: { label: 'REQUEST A QUOTE', href: '/contact' }
-  },
-  {
-    slug: 'land-and-farm-aerial-photography',
-    title: 'Land and farm aerial photography UK',
-    headline: ["LAND AND FARM","AERIAL","PHOTOGRAPHY"],
-    intro: 'Professional land and farm aerial photography services tailored for Aerial photography. Delivered with precision, speed, and full CAA compliance.',
-    metaTitle: 'Land and farm aerial photography UK — Altitude Drone',
-    metaDescription: 'Expert land and farm aerial photography services. Fully insured and CAA-approved operations delivering actionable intelligence and premium media.',
-    heroStat: [
-      { value: '4K', label: 'Ultra HD' },
-      { value: '24H', label: 'Turnaround' },
-      { value: 'CAA', label: 'Approved' },
-    ],
-    bodyHeading: 'ELEVATING STANDARD LAND AND FARM AERIAL PHOTOGRAPHY',
-    bodyParagraphs: [
-      "When it comes to land and farm aerial photography, standard consumer methods fall short. Altitude Drone brings commercial-grade rigor and advanced sensor technology to every flight.",
-      "We understand that our clients require more than just raw data. They need land and farm aerial photography that integrates seamlessly into their workflows, whether for marketing, engineering, or compliance.",
-      "By choosing our specialized service, you ensure that you receive exactly the right deliverable, backed by £10M public liability insurance and professional standards."
-    ],
-    capabilities: [
-      { title: 'Rapid Deployment', description: 'Available for fast turnaround across the UK.' },
-      { title: 'High Precision', description: 'Captured using industry-leading DJI Enterprise platforms.' },
-      { title: 'Fully Insured', description: 'Comprehensive £10M public liability coverage.' },
-      { title: 'Secure Delivery', description: 'Data delivered via secure client portal.' }
-    ],
-    industries: ['Commercial', 'Property', 'Construction', 'Marketing'],
-    faqs: [
-      { q: 'How quickly can you deliver?', a: 'Standard turnaround is 24-48 hours depending on the scope.' },
-      { q: 'Are you fully insured?', a: 'Yes, we carry £10M public liability insurance for all operations.' },
-      { q: 'Do you operate nationwide?', a: 'Yes, our network allows us to provide coverage across the entire UK.' },
-      { q: 'What is the booking process?', a: 'Simply submit a project brief via our site and we will return a quote same-day.' }
-    ],
-    relatedServices: ['aerial-photography'],
-    cta: { label: 'REQUEST A QUOTE', href: '/contact' }
-  },
-  {
-    slug: 'marketing-campaign-drone-imagery',
-    title: 'Marketing campaign drone imagery UK',
-    headline: ["MARKETING","CAMPAIGN DRONE","IMAGERY"],
-    intro: 'Professional marketing campaign drone imagery services tailored for Aerial photography. Delivered with precision, speed, and full CAA compliance.',
-    metaTitle: 'Marketing campaign drone imagery UK — Altitude Drone',
-    metaDescription: 'Expert marketing campaign drone imagery services. Fully insured and CAA-approved operations delivering actionable intelligence and premium media.',
-    heroStat: [
-      { value: '4K', label: 'Ultra HD' },
-      { value: '24H', label: 'Turnaround' },
-      { value: 'CAA', label: 'Approved' },
-    ],
-    bodyHeading: 'ELEVATING STANDARD MARKETING CAMPAIGN DRONE IMAGERY',
-    bodyParagraphs: [
-      "When it comes to marketing campaign drone imagery, standard consumer methods fall short. Altitude Drone brings commercial-grade rigor and advanced sensor technology to every flight.",
-      "We understand that our clients require more than just raw data. They need marketing campaign drone imagery that integrates seamlessly into their workflows, whether for marketing, engineering, or compliance.",
-      "By choosing our specialized service, you ensure that you receive exactly the right deliverable, backed by £10M public liability insurance and professional standards."
-    ],
-    capabilities: [
-      { title: 'Rapid Deployment', description: 'Available for fast turnaround across the UK.' },
-      { title: 'High Precision', description: 'Captured using industry-leading DJI Enterprise platforms.' },
-      { title: 'Fully Insured', description: 'Comprehensive £10M public liability coverage.' },
-      { title: 'Secure Delivery', description: 'Data delivered via secure client portal.' }
-    ],
-    industries: ['Commercial', 'Property', 'Construction', 'Marketing'],
-    faqs: [
-      { q: 'How quickly can you deliver?', a: 'Standard turnaround is 24-48 hours depending on the scope.' },
-      { q: 'Are you fully insured?', a: 'Yes, we carry £10M public liability insurance for all operations.' },
-      { q: 'Do you operate nationwide?', a: 'Yes, our network allows us to provide coverage across the entire UK.' },
-      { q: 'What is the booking process?', a: 'Simply submit a project brief via our site and we will return a quote same-day.' }
-    ],
-    relatedServices: ['aerial-photography'],
-    cta: { label: 'REQUEST A QUOTE', href: '/contact' }
-  },
-  {
-    slug: 'high-resolution-stitched-aerial-panoramas',
-    title: 'High-resolution stitched aerial panoramas UK',
-    headline: ["HIGH-RESOLUTION","STITCHED AERIAL","PANORAMAS"],
-    intro: 'Professional high-resolution stitched aerial panoramas services tailored for Aerial photography. Delivered with precision, speed, and full CAA compliance.',
-    metaTitle: 'High-resolution stitched aerial panoramas UK — Altitude Drone',
-    metaDescription: 'Expert high-resolution stitched aerial panoramas services. Fully insured and CAA-approved operations delivering actionable intelligence and premium media.',
-    heroStat: [
-      { value: '4K', label: 'Ultra HD' },
-      { value: '24H', label: 'Turnaround' },
-      { value: 'CAA', label: 'Approved' },
-    ],
-    bodyHeading: 'ELEVATING STANDARD HIGH-RESOLUTION STITCHED AERIAL PANORAMAS',
-    bodyParagraphs: [
-      "When it comes to high-resolution stitched aerial panoramas, standard consumer methods fall short. Altitude Drone brings commercial-grade rigor and advanced sensor technology to every flight.",
-      "We understand that our clients require more than just raw data. They need high-resolution stitched aerial panoramas that integrates seamlessly into their workflows, whether for marketing, engineering, or compliance.",
-      "By choosing our specialized service, you ensure that you receive exactly the right deliverable, backed by £10M public liability insurance and professional standards."
-    ],
-    capabilities: [
-      { title: 'Rapid Deployment', description: 'Available for fast turnaround across the UK.' },
-      { title: 'High Precision', description: 'Captured using industry-leading DJI Enterprise platforms.' },
-      { title: 'Fully Insured', description: 'Comprehensive £10M public liability coverage.' },
-      { title: 'Secure Delivery', description: 'Data delivered via secure client portal.' }
-    ],
-    industries: ['Commercial', 'Property', 'Construction', 'Marketing'],
-    faqs: [
-      { q: 'How quickly can you deliver?', a: 'Standard turnaround is 24-48 hours depending on the scope.' },
-      { q: 'Are you fully insured?', a: 'Yes, we carry £10M public liability insurance for all operations.' },
-      { q: 'Do you operate nationwide?', a: 'Yes, our network allows us to provide coverage across the entire UK.' },
-      { q: 'What is the booking process?', a: 'Simply submit a project brief via our site and we will return a quote same-day.' }
-    ],
-    relatedServices: ['aerial-photography'],
-    cta: { label: 'REQUEST A QUOTE', href: '/contact' }
-  },
-  {
-    slug: 'before-and-after-aerial-photography',
-    title: 'Before-and-after aerial photography UK',
-    headline: ["BEFORE-AND-AFTER","AERIAL","PHOTOGRAPHY"],
-    intro: 'Professional before-and-after aerial photography services tailored for Aerial photography. Delivered with precision, speed, and full CAA compliance.',
-    metaTitle: 'Before-and-after aerial photography UK — Altitude Drone',
-    metaDescription: 'Expert before-and-after aerial photography services. Fully insured and CAA-approved operations delivering actionable intelligence and premium media.',
-    heroStat: [
-      { value: '4K', label: 'Ultra HD' },
-      { value: '24H', label: 'Turnaround' },
-      { value: 'CAA', label: 'Approved' },
-    ],
-    bodyHeading: 'ELEVATING STANDARD BEFORE-AND-AFTER AERIAL PHOTOGRAPHY',
-    bodyParagraphs: [
-      "When it comes to before-and-after aerial photography, standard consumer methods fall short. Altitude Drone brings commercial-grade rigor and advanced sensor technology to every flight.",
-      "We understand that our clients require more than just raw data. They need before-and-after aerial photography that integrates seamlessly into their workflows, whether for marketing, engineering, or compliance.",
-      "By choosing our specialized service, you ensure that you receive exactly the right deliverable, backed by £10M public liability insurance and professional standards."
-    ],
-    capabilities: [
-      { title: 'Rapid Deployment', description: 'Available for fast turnaround across the UK.' },
-      { title: 'High Precision', description: 'Captured using industry-leading DJI Enterprise platforms.' },
-      { title: 'Fully Insured', description: 'Comprehensive £10M public liability coverage.' },
-      { title: 'Secure Delivery', description: 'Data delivered via secure client portal.' }
-    ],
-    industries: ['Commercial', 'Property', 'Construction', 'Marketing'],
-    faqs: [
-      { q: 'How quickly can you deliver?', a: 'Standard turnaround is 24-48 hours depending on the scope.' },
-      { q: 'Are you fully insured?', a: 'Yes, we carry £10M public liability insurance for all operations.' },
-      { q: 'Do you operate nationwide?', a: 'Yes, our network allows us to provide coverage across the entire UK.' },
-      { q: 'What is the booking process?', a: 'Simply submit a project brief via our site and we will return a quote same-day.' }
-    ],
-    relatedServices: ['aerial-photography'],
-    cta: { label: 'REQUEST A QUOTE', href: '/contact' }
-  },
-  {
-    slug: 'website-hero-imagery',
-    title: 'Website hero imagery UK',
-    headline: ["WEBSITE HERO","IMAGERY"],
-    intro: 'Professional website hero imagery services tailored for Aerial photography. Delivered with precision, speed, and full CAA compliance.',
-    metaTitle: 'Website hero imagery UK — Altitude Drone',
-    metaDescription: 'Expert website hero imagery services. Fully insured and CAA-approved operations delivering actionable intelligence and premium media.',
-    heroStat: [
-      { value: '4K', label: 'Ultra HD' },
-      { value: '24H', label: 'Turnaround' },
-      { value: 'CAA', label: 'Approved' },
-    ],
-    bodyHeading: 'ELEVATING STANDARD WEBSITE HERO IMAGERY',
-    bodyParagraphs: [
-      "When it comes to website hero imagery, standard consumer methods fall short. Altitude Drone brings commercial-grade rigor and advanced sensor technology to every flight.",
-      "We understand that our clients require more than just raw data. They need website hero imagery that integrates seamlessly into their workflows, whether for marketing, engineering, or compliance.",
-      "By choosing our specialized outcome, you ensure that you receive exactly the right deliverable, backed by £10M public liability insurance and professional standards."
-    ],
-    capabilities: [
-      { title: 'Rapid Deployment', description: 'Available for fast turnaround across the UK.' },
-      { title: 'High Precision', description: 'Captured using industry-leading DJI Enterprise platforms.' },
-      { title: 'Fully Insured', description: 'Comprehensive £10M public liability coverage.' },
-      { title: 'Secure Delivery', description: 'Data delivered via secure client portal.' }
-    ],
-    industries: ['Commercial', 'Property', 'Construction', 'Marketing'],
-    faqs: [
-      { q: 'How quickly can you deliver?', a: 'Standard turnaround is 24-48 hours depending on the scope.' },
-      { q: 'Are you fully insured?', a: 'Yes, we carry £10M public liability insurance for all operations.' },
-      { q: 'Do you operate nationwide?', a: 'Yes, our network allows us to provide coverage across the entire UK.' },
-      { q: 'What is the booking process?', a: 'Simply submit a project brief via our site and we will return a quote same-day.' }
-    ],
-    relatedServices: ['aerial-photography'],
-    cta: { label: 'REQUEST A QUOTE', href: '/contact' }
-  },
-  {
-    slug: 'brochure-imagery',
-    title: 'Brochure imagery UK',
-    headline: ["BROCHURE","IMAGERY"],
-    intro: 'Professional brochure imagery services tailored for Aerial photography. Delivered with precision, speed, and full CAA compliance.',
-    metaTitle: 'Brochure imagery UK — Altitude Drone',
-    metaDescription: 'Expert brochure imagery services. Fully insured and CAA-approved operations delivering actionable intelligence and premium media.',
-    heroStat: [
-      { value: '4K', label: 'Ultra HD' },
-      { value: '24H', label: 'Turnaround' },
-      { value: 'CAA', label: 'Approved' },
-    ],
-    bodyHeading: 'ELEVATING STANDARD BROCHURE IMAGERY',
-    bodyParagraphs: [
-      "When it comes to brochure imagery, standard consumer methods fall short. Altitude Drone brings commercial-grade rigor and advanced sensor technology to every flight.",
-      "We understand that our clients require more than just raw data. They need brochure imagery that integrates seamlessly into their workflows, whether for marketing, engineering, or compliance.",
-      "By choosing our specialized outcome, you ensure that you receive exactly the right deliverable, backed by £10M public liability insurance and professional standards."
-    ],
-    capabilities: [
-      { title: 'Rapid Deployment', description: 'Available for fast turnaround across the UK.' },
-      { title: 'High Precision', description: 'Captured using industry-leading DJI Enterprise platforms.' },
-      { title: 'Fully Insured', description: 'Comprehensive £10M public liability coverage.' },
-      { title: 'Secure Delivery', description: 'Data delivered via secure client portal.' }
-    ],
-    industries: ['Commercial', 'Property', 'Construction', 'Marketing'],
-    faqs: [
-      { q: 'How quickly can you deliver?', a: 'Standard turnaround is 24-48 hours depending on the scope.' },
-      { q: 'Are you fully insured?', a: 'Yes, we carry £10M public liability insurance for all operations.' },
-      { q: 'Do you operate nationwide?', a: 'Yes, our network allows us to provide coverage across the entire UK.' },
-      { q: 'What is the booking process?', a: 'Simply submit a project brief via our site and we will return a quote same-day.' }
-    ],
-    relatedServices: ['aerial-photography'],
-    cta: { label: 'REQUEST A QUOTE', href: '/contact' }
-  },
-  {
-    slug: 'sales-packs',
-    title: 'Sales packs UK',
-    headline: ["SALES PACKS"],
-    intro: 'Professional sales packs services tailored for Aerial photography. Delivered with precision, speed, and full CAA compliance.',
-    metaTitle: 'Sales packs UK — Altitude Drone',
-    metaDescription: 'Expert sales packs services. Fully insured and CAA-approved operations delivering actionable intelligence and premium media.',
-    heroStat: [
-      { value: '4K', label: 'Ultra HD' },
-      { value: '24H', label: 'Turnaround' },
-      { value: 'CAA', label: 'Approved' },
-    ],
-    bodyHeading: 'ELEVATING STANDARD SALES PACKS',
-    bodyParagraphs: [
-      "When it comes to sales packs, standard consumer methods fall short. Altitude Drone brings commercial-grade rigor and advanced sensor technology to every flight.",
-      "We understand that our clients require more than just raw data. They need sales packs that integrates seamlessly into their workflows, whether for marketing, engineering, or compliance.",
-      "By choosing our specialized outcome, you ensure that you receive exactly the right deliverable, backed by £10M public liability insurance and professional standards."
-    ],
-    capabilities: [
-      { title: 'Rapid Deployment', description: 'Available for fast turnaround across the UK.' },
-      { title: 'High Precision', description: 'Captured using industry-leading DJI Enterprise platforms.' },
-      { title: 'Fully Insured', description: 'Comprehensive £10M public liability coverage.' },
-      { title: 'Secure Delivery', description: 'Data delivered via secure client portal.' }
-    ],
-    industries: ['Commercial', 'Property', 'Construction', 'Marketing'],
-    faqs: [
-      { q: 'How quickly can you deliver?', a: 'Standard turnaround is 24-48 hours depending on the scope.' },
-      { q: 'Are you fully insured?', a: 'Yes, we carry £10M public liability insurance for all operations.' },
-      { q: 'Do you operate nationwide?', a: 'Yes, our network allows us to provide coverage across the entire UK.' },
-      { q: 'What is the booking process?', a: 'Simply submit a project brief via our site and we will return a quote same-day.' }
-    ],
-    relatedServices: ['aerial-photography'],
-    cta: { label: 'REQUEST A QUOTE', href: '/contact' }
-  },
-  {
-    slug: 'investor-packs',
-    title: 'Investor packs UK',
-    headline: ["INVESTOR PACKS"],
-    intro: 'Professional investor packs services tailored for Aerial photography. Delivered with precision, speed, and full CAA compliance.',
-    metaTitle: 'Investor packs UK — Altitude Drone',
-    metaDescription: 'Expert investor packs services. Fully insured and CAA-approved operations delivering actionable intelligence and premium media.',
-    heroStat: [
-      { value: '4K', label: 'Ultra HD' },
-      { value: '24H', label: 'Turnaround' },
-      { value: 'CAA', label: 'Approved' },
-    ],
-    bodyHeading: 'ELEVATING STANDARD INVESTOR PACKS',
-    bodyParagraphs: [
-      "When it comes to investor packs, standard consumer methods fall short. Altitude Drone brings commercial-grade rigor and advanced sensor technology to every flight.",
-      "We understand that our clients require more than just raw data. They need investor packs that integrates seamlessly into their workflows, whether for marketing, engineering, or compliance.",
-      "By choosing our specialized outcome, you ensure that you receive exactly the right deliverable, backed by £10M public liability insurance and professional standards."
-    ],
-    capabilities: [
-      { title: 'Rapid Deployment', description: 'Available for fast turnaround across the UK.' },
-      { title: 'High Precision', description: 'Captured using industry-leading DJI Enterprise platforms.' },
-      { title: 'Fully Insured', description: 'Comprehensive £10M public liability coverage.' },
-      { title: 'Secure Delivery', description: 'Data delivered via secure client portal.' }
-    ],
-    industries: ['Commercial', 'Property', 'Construction', 'Marketing'],
-    faqs: [
-      { q: 'How quickly can you deliver?', a: 'Standard turnaround is 24-48 hours depending on the scope.' },
-      { q: 'Are you fully insured?', a: 'Yes, we carry £10M public liability insurance for all operations.' },
-      { q: 'Do you operate nationwide?', a: 'Yes, our network allows us to provide coverage across the entire UK.' },
-      { q: 'What is the booking process?', a: 'Simply submit a project brief via our site and we will return a quote same-day.' }
-    ],
-    relatedServices: ['aerial-photography'],
-    cta: { label: 'REQUEST A QUOTE', href: '/contact' }
-  },
-  {
-    slug: 'planning-consultation-visuals',
-    title: 'Planning consultation visuals UK',
-    headline: ["PLANNING","CONSULTATION","VISUALS"],
-    intro: 'Professional planning consultation visuals services tailored for Aerial photography. Delivered with precision, speed, and full CAA compliance.',
-    metaTitle: 'Planning consultation visuals UK — Altitude Drone',
-    metaDescription: 'Expert planning consultation visuals services. Fully insured and CAA-approved operations delivering actionable intelligence and premium media.',
-    heroStat: [
-      { value: '4K', label: 'Ultra HD' },
-      { value: '24H', label: 'Turnaround' },
-      { value: 'CAA', label: 'Approved' },
-    ],
-    bodyHeading: 'ELEVATING STANDARD PLANNING CONSULTATION VISUALS',
-    bodyParagraphs: [
-      "When it comes to planning consultation visuals, standard consumer methods fall short. Altitude Drone brings commercial-grade rigor and advanced sensor technology to every flight.",
-      "We understand that our clients require more than just raw data. They need planning consultation visuals that integrates seamlessly into their workflows, whether for marketing, engineering, or compliance.",
-      "By choosing our specialized outcome, you ensure that you receive exactly the right deliverable, backed by £10M public liability insurance and professional standards."
-    ],
-    capabilities: [
-      { title: 'Rapid Deployment', description: 'Available for fast turnaround across the UK.' },
-      { title: 'High Precision', description: 'Captured using industry-leading DJI Enterprise platforms.' },
-      { title: 'Fully Insured', description: 'Comprehensive £10M public liability coverage.' },
-      { title: 'Secure Delivery', description: 'Data delivered via secure client portal.' }
-    ],
-    industries: ['Commercial', 'Property', 'Construction', 'Marketing'],
-    faqs: [
-      { q: 'How quickly can you deliver?', a: 'Standard turnaround is 24-48 hours depending on the scope.' },
-      { q: 'Are you fully insured?', a: 'Yes, we carry £10M public liability insurance for all operations.' },
-      { q: 'Do you operate nationwide?', a: 'Yes, our network allows us to provide coverage across the entire UK.' },
-      { q: 'What is the booking process?', a: 'Simply submit a project brief via our site and we will return a quote same-day.' }
-    ],
-    relatedServices: ['aerial-photography'],
-    cta: { label: 'REQUEST A QUOTE', href: '/contact' }
-  },
-  {
-    slug: 'social-media-image-sets',
-    title: 'Social media image sets UK',
-    headline: ["SOCIAL MEDIA","IMAGE SETS"],
-    intro: 'Professional social media image sets services tailored for Aerial photography. Delivered with precision, speed, and full CAA compliance.',
-    metaTitle: 'Social media image sets UK — Altitude Drone',
-    metaDescription: 'Expert social media image sets services. Fully insured and CAA-approved operations delivering actionable intelligence and premium media.',
-    heroStat: [
-      { value: '4K', label: 'Ultra HD' },
-      { value: '24H', label: 'Turnaround' },
-      { value: 'CAA', label: 'Approved' },
-    ],
-    bodyHeading: 'ELEVATING STANDARD SOCIAL MEDIA IMAGE SETS',
-    bodyParagraphs: [
-      "When it comes to social media image sets, standard consumer methods fall short. Altitude Drone brings commercial-grade rigor and advanced sensor technology to every flight.",
-      "We understand that our clients require more than just raw data. They need social media image sets that integrates seamlessly into their workflows, whether for marketing, engineering, or compliance.",
-      "By choosing our specialized outcome, you ensure that you receive exactly the right deliverable, backed by £10M public liability insurance and professional standards."
-    ],
-    capabilities: [
-      { title: 'Rapid Deployment', description: 'Available for fast turnaround across the UK.' },
-      { title: 'High Precision', description: 'Captured using industry-leading DJI Enterprise platforms.' },
-      { title: 'Fully Insured', description: 'Comprehensive £10M public liability coverage.' },
-      { title: 'Secure Delivery', description: 'Data delivered via secure client portal.' }
-    ],
-    industries: ['Commercial', 'Property', 'Construction', 'Marketing'],
-    faqs: [
-      { q: 'How quickly can you deliver?', a: 'Standard turnaround is 24-48 hours depending on the scope.' },
-      { q: 'Are you fully insured?', a: 'Yes, we carry £10M public liability insurance for all operations.' },
-      { q: 'Do you operate nationwide?', a: 'Yes, our network allows us to provide coverage across the entire UK.' },
-      { q: 'What is the booking process?', a: 'Simply submit a project brief via our site and we will return a quote same-day.' }
-    ],
-    relatedServices: ['aerial-photography'],
-    cta: { label: 'REQUEST A QUOTE', href: '/contact' }
+    relatedServices: ['aerial-photography-film', 'events-media', 'digital-twin-capture'],
+    cta: { label: 'REQUEST FPV FILMING', href: '/contact' }
   },
   {
     slug: '360-aerial-panoramas',
-    title: '360° aerial panoramas UK',
-    headline: ["360° AERIAL","PANORAMAS"],
-    intro: 'Professional 360° aerial panoramas services tailored for Aerial photography. Delivered with precision, speed, and full CAA compliance.',
-    metaTitle: '360° aerial panoramas UK — Altitude Drone',
-    metaDescription: 'Expert 360° aerial panoramas services. Fully insured and CAA-approved operations delivering actionable intelligence and premium media.',
+    title: '360° Aerial Panoramas UK',
+    headline: ['360° AERIAL', 'PANORAMAS'],
+    category: 'Specialist & Response',
+    intro: 'Interactive, high-resolution 360° aerial spheres for website integration — providing a complete view of a site, development, or landscape.',
+    metaTitle: '360° Aerial Panoramas UK | Interactive Site Views | Altitude Hire',
+    metaDescription: 'Professional 360 degree aerial panoramas. Interactive site views for developers, property and tourism. CAA-compliant, web-ready integration.',
     heroStat: [
-      { value: '4K', label: 'Ultra HD' },
-      { value: '24H', label: 'Turnaround' },
-      { value: 'CAA', label: 'Approved' },
+      { value: '360°', label: 'Total visibility' },
+      { value: '8K', label: 'Resolution' },
+      { value: 'WEB', label: 'Ready integration' }
     ],
-    bodyHeading: 'ELEVATING STANDARD 360° AERIAL PANORAMAS',
-    bodyParagraphs: [
-      "When it comes to 360° aerial panoramas, standard consumer methods fall short. Altitude Drone brings commercial-grade rigor and advanced sensor technology to every flight.",
-      "We understand that our clients require more than just raw data. They need 360° aerial panoramas that integrates seamlessly into their workflows, whether for marketing, engineering, or compliance.",
-      "By choosing our specialized outcome, you ensure that you receive exactly the right deliverable, backed by £10M public liability insurance and professional standards."
+    problemStatement: 'Static images only tell part of the story. A 360° aerial panorama allows stakeholders to "look around" from a fixed point in the sky, providing context, scale, and a sense of place that standard photography cannot achieve. Perfect for embedding on property websites and planning portals.',
+    whatWeCapture: [
+      'High-resolution 360° image spheres',
+      'Multi-point aerial tours',
+      'Contextual site markers',
+      'Interactive hotspot data'
+    ],
+    deliverables: [
+      'Interactive 360° web viewer',
+      'High-resolution panorama file',
+      'Branded virtual tour',
+      'Embedded code for sites'
+    ],
+    useCases: [
+      { title: 'Development Marketing', description: 'Showcasing the surrounding area and views from a new development.' },
+      { title: 'Tourism & Leisure', description: 'Providing an interactive "God\'s-eye view" of venues and landscapes.' }
     ],
     capabilities: [
-      { title: 'Rapid Deployment', description: 'Available for fast turnaround across the UK.' },
-      { title: 'High Precision', description: 'Captured using industry-leading DJI Enterprise platforms.' },
-      { title: 'Fully Insured', description: 'Comprehensive £10M public liability coverage.' },
-      { title: 'Secure Delivery', description: 'Data delivered via secure client portal.' }
+      { title: 'High-Res Stitching', description: 'Combining multiple images into a seamless 8K+ panorama.' },
+      { title: 'Interactive Hotspots', description: 'Adding labels and links within the 360° view for deeper engagement.' }
     ],
-    industries: ['Commercial', 'Property', 'Construction', 'Marketing'],
+    industries: ['Developers', 'Estate Agents', 'Tourism Boards', 'Planning Consultants'],
     faqs: [
-      { q: 'How quickly can you deliver?', a: 'Standard turnaround is 24-48 hours depending on the scope.' },
-      { q: 'Are you fully insured?', a: 'Yes, we carry £10M public liability insurance for all operations.' },
-      { q: 'Do you operate nationwide?', a: 'Yes, our network allows us to provide coverage across the entire UK.' },
-      { q: 'What is the booking process?', a: 'Simply submit a project brief via our site and we will return a quote same-day.' }
+      { q: 'Can I embed this on my website?', a: 'Yes, we provide a standard embed code that works with all modern websites.' },
+      { q: 'What is the resolution?', a: 'Our panoramas are typically delivered in 8K resolution for crystal-clear detail.' },
+      { q: 'Can you link multiple 360s together?', a: 'Yes, we can create a virtual tour with multiple aerial and ground-based points.' }
     ],
-    relatedServices: ['aerial-photography'],
-    cta: { label: 'REQUEST A QUOTE', href: '/contact' }
+    relatedServices: ['aerial-photography-film', 'digital-twin-capture', 'gaussian-splat-capture'],
+    cta: { label: 'CREATE 360 TOUR', href: '/contact' }
   },
   {
-    slug: 'print-ready-high-resolution-stills',
-    title: 'Print-ready high-resolution stills UK',
-    headline: ["PRINT-READY","HIGH-RESOLUTION","STILLS"],
-    intro: 'Professional print-ready high-resolution stills services tailored for Aerial photography. Delivered with precision, speed, and full CAA compliance.',
-    metaTitle: 'Print-ready high-resolution stills UK — Altitude Drone',
-    metaDescription: 'Expert print-ready high-resolution stills services. Fully insured and CAA-approved operations delivering actionable intelligence and premium media.',
+    slug: 'digital-twin-capture',
+    title: 'Digital Twin Drone Capture UK',
+    headline: ['DIGITAL TWIN', 'CAPTURE'],
+    category: 'Specialist & Response',
+    intro: 'High-fidelity 3D site replicas for BIM integration and virtual management — the foundation of the modern smart building.',
+    metaTitle: 'Digital Twin Drone Capture UK | 3D Site Replicas | Altitude Hire',
+    metaDescription: 'Professional drone capture for digital twins. High-fidelity 3D models and site replicas for BIM and management. CAA-compliant.',
     heroStat: [
-      { value: '4K', label: 'Ultra HD' },
-      { value: '24H', label: 'Turnaround' },
-      { value: 'CAA', label: 'Approved' },
+      { value: 'BIM', label: 'Ready data' },
+      { value: '3D', label: 'Site replica' },
+      { value: 'PRO', label: 'Management tool' }
     ],
-    bodyHeading: 'ELEVATING STANDARD PRINT-READY HIGH-RESOLUTION STILLS',
-    bodyParagraphs: [
-      "When it comes to print-ready high-resolution stills, standard consumer methods fall short. Altitude Drone brings commercial-grade rigor and advanced sensor technology to every flight.",
-      "We understand that our clients require more than just raw data. They need print-ready high-resolution stills that integrates seamlessly into their workflows, whether for marketing, engineering, or compliance.",
-      "By choosing our specialized outcome, you ensure that you receive exactly the right deliverable, backed by £10M public liability insurance and professional standards."
+    problemStatement: 'A digital twin is only as good as the data it is built on. Drone capture provides the external high-fidelity 3D geometry needed to ground-truth your digital models, ensuring your twin matches the "as-built" reality of the site with millimetre precision.',
+    whatWeCapture: [
+      'Full-site 3D geometry',
+      'High-resolution texture maps',
+      'As-built structural data',
+      'Site context and surroundings',
+      'Internal/External scan alignment'
+    ],
+    deliverables: [
+      'Digital twin asset (OBJ/FBX)',
+      'High-density point cloud',
+      'BIM-compatible dataset',
+      'Interactive 3D viewer'
+    ],
+    useCases: [
+      { title: 'Asset Management', description: 'Managing complex sites remotely using a high-fidelity 3D replica.' },
+      { title: 'Design Verification', description: 'Comparing new designs against the current as-built environment.' }
     ],
     capabilities: [
-      { title: 'Rapid Deployment', description: 'Available for fast turnaround across the UK.' },
-      { title: 'High Precision', description: 'Captured using industry-leading DJI Enterprise platforms.' },
-      { title: 'Fully Insured', description: 'Comprehensive £10M public liability coverage.' },
-      { title: 'Secure Delivery', description: 'Data delivered via secure client portal.' }
+      { title: 'Multi-Sensor Fusion', description: 'Combining photogrammetry and LiDAR for the ultimate digital twin.' },
+      { title: 'Software Compatibility', description: 'Delivering data ready for Matterport, Autodesk, and major twin platforms.' }
     ],
-    industries: ['Commercial', 'Property', 'Construction', 'Marketing'],
+    industries: ['Asset Owners', 'Smart Building Tech', 'FM Providers', 'Developers'],
     faqs: [
-      { q: 'How quickly can you deliver?', a: 'Standard turnaround is 24-48 hours depending on the scope.' },
-      { q: 'Are you fully insured?', a: 'Yes, we carry £10M public liability insurance for all operations.' },
-      { q: 'Do you operate nationwide?', a: 'Yes, our network allows us to provide coverage across the entire UK.' },
-      { q: 'What is the booking process?', a: 'Simply submit a project brief via our site and we will return a quote same-day.' }
+      { q: 'What software is the data compatible with?', a: 'We deliver in formats ready for Matterport, Autodesk, and custom twin platforms.' },
+      { q: 'Can you update the twin periodically?', a: 'Yes, we offer scheduled rescans to keep your digital twin current.' },
+      { q: 'How accurate is the twin?', a: 'With survey control, we can achieve millimetre-level accuracy for engineering-grade twins.' }
     ],
-    relatedServices: ['aerial-photography'],
-    cta: { label: 'REQUEST A QUOTE', href: '/contact' }
+    relatedServices: ['gaussian-splat-capture', 'drone-photogrammetry', 'lidar-point-cloud-surveys'],
+    cta: { label: 'BUILD YOUR DIGITAL TWIN', href: '/contact' }
   },
   {
-    slug: 'location-overview-imagery',
-    title: 'Location overview imagery UK',
-    headline: ["LOCATION","OVERVIEW","IMAGERY"],
-    intro: 'Professional location overview imagery services tailored for Aerial photography. Delivered with precision, speed, and full CAA compliance.',
-    metaTitle: 'Location overview imagery UK — Altitude Drone',
-    metaDescription: 'Expert location overview imagery services. Fully insured and CAA-approved operations delivering actionable intelligence and premium media.',
+    slug: 'gaussian-splat-capture',
+    title: 'Gaussian Splat Drone Capture UK',
+    headline: ['GAUSSIAN SPLAT', 'CAPTURE'],
+    category: 'Specialist & Response',
+    intro: 'The future of 3D visualisation — photorealistic reconstructions that capture light, depth, and complex geometry with unprecedented realism.',
+    metaTitle: 'Gaussian Splat Drone Capture UK | Photorealistic 3D | Altitude Hire',
+    metaDescription: 'Professional Gaussian Splatting drone services. The most realistic 3D site reconstructions available. CAA-compliant, next-gen visualisation.',
     heroStat: [
-      { value: '4K', label: 'Ultra HD' },
-      { value: '24H', label: 'Turnaround' },
-      { value: 'CAA', label: 'Approved' },
+      { value: 'ULTRA', label: 'Photorealistic' },
+      { value: 'NEXT', label: 'Gen visual' },
+      { value: 'WEB', label: 'Viewable' }
     ],
-    bodyHeading: 'ELEVATING STANDARD LOCATION OVERVIEW IMAGERY',
-    bodyParagraphs: [
-      "When it comes to location overview imagery, standard consumer methods fall short. Altitude Drone brings commercial-grade rigor and advanced sensor technology to every flight.",
-      "We understand that our clients require more than just raw data. They need location overview imagery that integrates seamlessly into their workflows, whether for marketing, engineering, or compliance.",
-      "By choosing our specialized outcome, you ensure that you receive exactly the right deliverable, backed by £10M public liability insurance and professional standards."
+    problemStatement: 'Traditional 3D meshes can feel "flat" and artificial. Gaussian Splatting uses radiance fields to capture the true look of a site — including reflections, transparency, and complex vegetation — delivering a level of visual realism that traditional photogrammetry cannot match.',
+    whatWeCapture: [
+      'High-overlap cinematic imagery',
+      'Volumetric radiance fields',
+      'Complex site geometry',
+      'Atmospheric and lighting data'
+    ],
+    deliverables: [
+      'Interactive splat viewer',
+      'PLY splat file',
+      'Cinematic fly-through video',
+      'High-resolution 3D renders'
+    ],
+    useCases: [
+      { title: 'Stakeholder Engagement', description: 'Wowing clients and investors with the most realistic site model possible.' },
+      { title: 'Film Location Scouting', description: 'Providing directors with a digital replica they can "walk through" remotely.' }
     ],
     capabilities: [
-      { title: 'Rapid Deployment', description: 'Available for fast turnaround across the UK.' },
-      { title: 'High Precision', description: 'Captured using industry-leading DJI Enterprise platforms.' },
-      { title: 'Fully Insured', description: 'Comprehensive £10M public liability coverage.' },
-      { title: 'Secure Delivery', description: 'Data delivered via secure client portal.' }
+      { title: 'Radiance Field Processing', description: 'Converting images into high-fidelity volumetric reconstructions.' },
+      { title: 'Immersive Navigation', description: 'Smooth, photorealistic walkthroughs of any site or structure.' }
     ],
-    industries: ['Commercial', 'Property', 'Construction', 'Marketing'],
+    industries: ['Luxury Property', 'Film & Production', 'Developers', 'Marketing Agencies'],
     faqs: [
-      { q: 'How quickly can you deliver?', a: 'Standard turnaround is 24-48 hours depending on the scope.' },
-      { q: 'Are you fully insured?', a: 'Yes, we carry £10M public liability insurance for all operations.' },
-      { q: 'Do you operate nationwide?', a: 'Yes, our network allows us to provide coverage across the entire UK.' },
-      { q: 'What is the booking process?', a: 'Simply submit a project brief via our site and we will return a quote same-day.' }
+      { q: 'What is a Gaussian Splat?', a: 'It is a new type of 3D reconstruction that uses points with transparency and colour to create photorealistic views.' },
+      { q: 'Is it better than a 3D mesh?', a: 'For visual realism and immersion, yes. For measurement, a mesh or point cloud is still preferred.' },
+      { q: 'Can I view it in my browser?', a: 'Yes, we provide web-viewers that allow anyone to explore the splat without special software.' }
     ],
-    relatedServices: ['aerial-photography'],
-    cta: { label: 'REQUEST A QUOTE', href: '/contact' }
+    relatedServices: ['digital-twin-capture', 'fpv-drone-filming', 'drone-photogrammetry'],
+    cta: { label: 'EXPERIENCE GAUSSIAN SPLAT', href: '/contact' }
   },
   {
-    slug: 'commercial-drone-videography',
-    title: 'Commercial drone videography UK',
-    headline: ["COMMERCIAL","DRONE","VIDEOGRAPHY"],
-    intro: 'Professional commercial drone videography services tailored for Drone videography and film. Delivered with precision, speed, and full CAA compliance.',
-    metaTitle: 'Commercial drone videography UK — Altitude Drone',
-    metaDescription: 'Expert commercial drone videography services. Fully insured and CAA-approved operations delivering actionable intelligence and premium media.',
+    slug: 'bridge-drone-inspections',
+    title: 'Bridge Drone Inspections UK',
+    headline: ['BRIDGE', 'INSPECTIONS'],
+    category: 'Infrastructure & Energy',
+    intro: 'Specialised aerial inspections for road, rail, and pedestrian bridges — capturing high-resolution evidence of deck soffits, piers, and bearings.',
+    metaTitle: 'Bridge Drone Inspections UK | Structural Surveys | Altitude Hire',
+    metaDescription: 'Professional drone bridge inspections. High-detail surveys for soffits, piers and abutments. CAA-compliant, zero disruption to traffic.',
     heroStat: [
-      { value: '4K', label: 'Ultra HD' },
-      { value: '24H', label: 'Turnaround' },
-      { value: 'CAA', label: 'Approved' },
+      { value: 'ZERO', label: 'Traffic disruption' },
+      { value: 'UP', label: 'Facing gimbal' },
+      { value: '4K', label: 'Visual audit' }
     ],
-    bodyHeading: 'ELEVATING STANDARD COMMERCIAL DRONE VIDEOGRAPHY',
-    bodyParagraphs: [
-      "When it comes to commercial drone videography, standard consumer methods fall short. Altitude Drone brings commercial-grade rigor and advanced sensor technology to every flight.",
-      "We understand that our clients require more than just raw data. They need commercial drone videography that integrates seamlessly into their workflows, whether for marketing, engineering, or compliance.",
-      "By choosing our specialized service, you ensure that you receive exactly the right deliverable, backed by £10M public liability insurance and professional standards."
+    problemStatement: 'Inspecting bridge soffits and piers traditionally requires under-bridge units or expensive scaffolding, often necessitating lane closures and significant public disruption. Drones with upward-facing gimbals and high-resolution zoom sensors can audit these "hidden" areas in hours with zero impact on traffic flow.',
+    whatWeCapture: [
+      'Deck soffit and expansion joints',
+      'Pier and abutment condition',
+      'Bearing and seat detail',
+      'Masonry and concrete integrity',
+      'Waterproofing and drainage outlets'
+    ],
+    deliverables: [
+      'Bridge condition report',
+      'Annotated defect images',
+      'Elevation visual archive',
+      'Thermal moisture assessment'
+    ],
+    useCases: [
+      { title: 'General Inspection (GI)', description: 'Routine biennial visual checks of all bridge elements.' },
+      { title: 'Principal Inspection (PI)', description: 'Close-up detailed audits of structural components.' }
     ],
     capabilities: [
-      { title: 'Rapid Deployment', description: 'Available for fast turnaround across the UK.' },
-      { title: 'High Precision', description: 'Captured using industry-leading DJI Enterprise platforms.' },
-      { title: 'Fully Insured', description: 'Comprehensive £10M public liability coverage.' },
-      { title: 'Secure Delivery', description: 'Data delivered via secure client portal.' }
+      { title: 'Upward Gimbal', description: 'Capturing clear imagery of deck undersides and bearings.' },
+      { title: 'Precision Standoff', description: 'Inspecting live-load structures from a safe, non-disruptive distance.' }
     ],
-    industries: ['Commercial', 'Property', 'Construction', 'Marketing'],
+    industries: ['Local Authorities', 'Rail Operators', 'Highways Agencies', 'Structural Engineers'],
     faqs: [
-      { q: 'How quickly can you deliver?', a: 'Standard turnaround is 24-48 hours depending on the scope.' },
-      { q: 'Are you fully insured?', a: 'Yes, we carry £10M public liability insurance for all operations.' },
-      { q: 'Do you operate nationwide?', a: 'Yes, our network allows us to provide coverage across the entire UK.' },
-      { q: 'What is the booking process?', a: 'Simply submit a project brief via our site and we will return a quote same-day.' }
+      { q: 'Can you fly under bridges?', a: 'Yes, our drones use advanced positioning and upward gimbals for soffit inspection.' },
+      { q: 'Is a road closure needed?', a: 'Typically no, drone inspections can be completed from the side or below without affecting traffic.' }
     ],
-    relatedServices: ['drone-videography-and-film'],
-    cta: { label: 'REQUEST A QUOTE', href: '/contact' }
+    relatedServices: ['infrastructure-inspections', 'rail-corridor-surveys', 'thermal-imaging'],
+    cta: { label: 'REQUEST BRIDGE AUDIT', href: '/contact' }
   },
   {
-    slug: 'property-drone-video',
-    title: 'Property drone video UK',
-    headline: ["PROPERTY DRONE","VIDEO"],
-    intro: 'Professional property drone video services tailored for Drone videography and film. Delivered with precision, speed, and full CAA compliance.',
-    metaTitle: 'Property drone video UK — Altitude Drone',
-    metaDescription: 'Expert property drone video services. Fully insured and CAA-approved operations delivering actionable intelligence and premium media.',
+    slug: 'rail-corridor-surveys',
+    title: 'Rail Corridor Drone Surveys UK',
+    headline: ['RAIL CORRIDOR', 'SURVEYS'],
+    category: 'Infrastructure & Energy',
+    intro: 'Safe, rapid aerial surveys for rail infrastructure — monitoring track condition, embankment stability, and vegetation encroachment without line-of-route closures.',
+    metaTitle: 'Rail Corridor Drone Surveys UK | Network Rail Standard | Altitude Hire',
+    metaDescription: 'Professional drone surveys for rail corridors. Track condition, embankment stability and vegetation monitoring. CAA-compliant, zero-closure surveys.',
     heroStat: [
-      { value: '4K', label: 'Ultra HD' },
-      { value: '24H', label: 'Turnaround' },
-      { value: 'CAA', label: 'Approved' },
+      { value: 'ZERO', label: 'Line closures' },
+      { value: 'PRO', label: 'Safe systems' },
+      { value: 'FAST', label: 'Corridor audit' }
     ],
-    bodyHeading: 'ELEVATING STANDARD PROPERTY DRONE VIDEO',
-    bodyParagraphs: [
-      "When it comes to property drone video, standard consumer methods fall short. Altitude Drone brings commercial-grade rigor and advanced sensor technology to every flight.",
-      "We understand that our clients require more than just raw data. They need property drone video that integrates seamlessly into their workflows, whether for marketing, engineering, or compliance.",
-      "By choosing our specialized service, you ensure that you receive exactly the right deliverable, backed by £10M public liability insurance and professional standards."
+    problemStatement: 'Working on or near live rail is high-risk and requires complex "Safe Systems of Work" and often expensive line closures. Drones can audit miles of rail corridor from a position of safety, identifying vegetation risks, drainage issues, and embankment failures before they affect operations.',
+    whatWeCapture: [
+      'Track and sleeper condition',
+      'Embankment and cutting stability',
+      'Vegetation encroachment zones',
+      'Overhead line equipment (OLE)',
+      'Lineside asset inventory'
+    ],
+    deliverables: [
+      'Rail corridor condition report',
+      'Vegetation management plan',
+      'High-res orthomosaic map',
+      'Embankment stability audit'
+    ],
+    useCases: [
+      { title: 'Vegetation Audits', description: 'Identifying trees and scrub that pose a risk to line safety.' },
+      { title: 'Embankment Monitoring', description: 'Tracking movement or erosion in high-risk cuttings.' }
     ],
     capabilities: [
-      { title: 'Rapid Deployment', description: 'Available for fast turnaround across the UK.' },
-      { title: 'High Precision', description: 'Captured using industry-leading DJI Enterprise platforms.' },
-      { title: 'Fully Insured', description: 'Comprehensive £10M public liability coverage.' },
-      { title: 'Secure Delivery', description: 'Data delivered via secure client portal.' }
+      { title: 'Corridor Mapping', description: 'Automated flights for consistent auditing of long linear assets.' },
+      { title: 'Remote Assessment', description: 'Gathering data from outside the boundary fence where possible.' }
     ],
-    industries: ['Commercial', 'Property', 'Construction', 'Marketing'],
+    industries: ['Rail Network Operators', 'Maintenance Contractors', 'Geotechnical Engineers'],
     faqs: [
-      { q: 'How quickly can you deliver?', a: 'Standard turnaround is 24-48 hours depending on the scope.' },
-      { q: 'Are you fully insured?', a: 'Yes, we carry £10M public liability insurance for all operations.' },
-      { q: 'Do you operate nationwide?', a: 'Yes, our network allows us to provide coverage across the entire UK.' },
-      { q: 'What is the booking process?', a: 'Simply submit a project brief via our site and we will return a quote same-day.' }
+      { q: 'Do you need a possession to fly?', a: 'In many cases, no. Drones can operate near the line without requiring a full possession.' },
+      { q: 'Can you identify rail defects?', a: 'We focus on lineside, embankment, and vegetation risks rather than internal rail metallurgy.' }
     ],
-    relatedServices: ['drone-videography-and-film'],
-    cta: { label: 'REQUEST A QUOTE', href: '/contact' }
+    relatedServices: ['infrastructure-inspections', 'bridge-drone-inspections', 'lidar-point-cloud-surveys'],
+    cta: { label: 'DISCUSS RAIL CAPTURE', href: '/contact' }
   },
   {
-    slug: 'construction-project-video',
-    title: 'Construction project video UK',
-    headline: ["CONSTRUCTION","PROJECT VIDEO"],
-    intro: 'Professional construction project video services tailored for Drone videography and film. Delivered with precision, speed, and full CAA compliance.',
-    metaTitle: 'Construction project video UK — Altitude Drone',
-    metaDescription: 'Expert construction project video services. Fully insured and CAA-approved operations delivering actionable intelligence and premium media.',
+    slug: 'pipeline-corridor-surveys',
+    title: 'Pipeline Corridor Drone Surveys UK',
+    headline: ['PIPELINE', 'SURVEYS'],
+    category: 'Infrastructure & Energy',
+    intro: 'Aerial monitoring for gas, water, and oil pipelines — detecting leaks, third-party interference, and land movement along critical infrastructure routes.',
+    metaTitle: 'Pipeline Corridor Drone Surveys UK | Leak Detection | Altitude Hire',
+    metaDescription: 'Professional drone surveys for pipeline corridors. Leak detection, land movement and third-party interference monitoring. CAA-compliant.',
     heroStat: [
-      { value: '4K', label: 'Ultra HD' },
-      { value: '24H', label: 'Turnaround' },
-      { value: 'CAA', label: 'Approved' },
+      { value: 'FLIR', label: 'Leak detection' },
+      { value: 'PRO', label: 'Safety audit' },
+      { value: 'GEO', label: 'Referenced data' }
     ],
-    bodyHeading: 'ELEVATING STANDARD CONSTRUCTION PROJECT VIDEO',
-    bodyParagraphs: [
-      "When it comes to construction project video, standard consumer methods fall short. Altitude Drone brings commercial-grade rigor and advanced sensor technology to every flight.",
-      "We understand that our clients require more than just raw data. They need construction project video that integrates seamlessly into their workflows, whether for marketing, engineering, or compliance.",
-      "By choosing our specialized service, you ensure that you receive exactly the right deliverable, backed by £10M public liability insurance and professional standards."
+    problemStatement: 'Pipeline corridors are often remote and difficult to patrol manually. Third-party interference (unauthorised digging) and slow land movement are major risks to pipeline integrity. Drones provide a fast, repeatable way to audit corridors, using thermal and visual sensors to spot issues early.',
+    whatWeCapture: [
+      'Surface vegetation anomalies (Leak indicators)',
+      'Thermal moisture signatures',
+      'Third-party plant and activity',
+      'Erosion and land slip evidence',
+      'Marker post and asset condition'
+    ],
+    deliverables: [
+      'Pipeline integrity report',
+      'Interference alert summary',
+      'High-res corridor map',
+      'Thermal anomaly data'
+    ],
+    useCases: [
+      { title: 'Encroachment Monitoring', description: 'Identifying unauthorised construction or digging near pipelines.' },
+      { title: 'Leak Detection', description: 'Spotting vegetation die-back or thermal signatures of fluid leaks.' }
     ],
     capabilities: [
-      { title: 'Rapid Deployment', description: 'Available for fast turnaround across the UK.' },
-      { title: 'High Precision', description: 'Captured using industry-leading DJI Enterprise platforms.' },
-      { title: 'Fully Insured', description: 'Comprehensive £10M public liability coverage.' },
-      { title: 'Secure Delivery', description: 'Data delivered via secure client portal.' }
+      { title: 'Long-Range Flight', description: 'Efficiently auditing miles of corridor in a single deployment.' },
+      { title: 'Thermal Radiometry', description: 'Detecting temperature changes associated with pipeline leaks.' }
     ],
-    industries: ['Commercial', 'Property', 'Construction', 'Marketing'],
+    industries: ['Oil & Gas Operators', 'Water Utilities', 'Environmental Agencies'],
     faqs: [
-      { q: 'How quickly can you deliver?', a: 'Standard turnaround is 24-48 hours depending on the scope.' },
-      { q: 'Are you fully insured?', a: 'Yes, we carry £10M public liability insurance for all operations.' },
-      { q: 'Do you operate nationwide?', a: 'Yes, our network allows us to provide coverage across the entire UK.' },
-      { q: 'What is the booking process?', a: 'Simply submit a project brief via our site and we will return a quote same-day.' }
+      { q: 'Can drones detect gas leaks?', a: 'Indirectly through vegetation health (NDVI) or directly with specialised gas sensors if required.' },
+      { q: 'How often should corridors be flown?', a: 'Depending on risk, monthly or quarterly audits are common.' }
     ],
-    relatedServices: ['drone-videography-and-film'],
-    cta: { label: 'REQUEST A QUOTE', href: '/contact' }
+    relatedServices: ['utilities-energy-inspections', 'thermal-imaging', 'agricultural-surveys'],
+    cta: { label: 'AUDIT PIPELINE ROUTES', href: '/contact' }
   },
   {
-    slug: 'corporate-drone-filming',
-    title: 'Corporate drone filming UK',
-    headline: ["CORPORATE DRONE","FILMING"],
-    intro: 'Professional corporate drone filming services tailored for Drone videography and film. Delivered with precision, speed, and full CAA compliance.',
-    metaTitle: 'Corporate drone filming UK — Altitude Drone',
-    metaDescription: 'Expert corporate drone filming services. Fully insured and CAA-approved operations delivering actionable intelligence and premium media.',
+    slug: 'cut-fill-analysis',
+    title: 'Drone Cut & Fill Analysis UK',
+    headline: ['CUT & FILL', 'ANALYSIS'],
+    category: 'Construction & Surveying',
+    intro: 'Precise earthworks earthworks tracking — comparing as-built site levels against design surfaces to calculate net volume changes.',
+    metaTitle: 'Drone Cut & Fill Analysis UK | Earthworks Tracking | Altitude Hire',
+    metaDescription: 'Professional drone cut and fill analysis. Accurately compare site levels against design models for earthworks tracking. CAA-compliant.',
     heroStat: [
-      { value: '4K', label: 'Ultra HD' },
-      { value: '24H', label: 'Turnaround' },
-      { value: 'CAA', label: 'Approved' },
+      { value: '±0.5%', label: 'Volumetric accuracy' },
+      { value: 'CAD', label: 'Design overlay' },
+      { value: 'FAST', label: 'Reporting speed' }
     ],
-    bodyHeading: 'ELEVATING STANDARD CORPORATE DRONE FILMING',
-    bodyParagraphs: [
-      "When it comes to corporate drone filming, standard consumer methods fall short. Altitude Drone brings commercial-grade rigor and advanced sensor technology to every flight.",
-      "We understand that our clients require more than just raw data. They need corporate drone filming that integrates seamlessly into their workflows, whether for marketing, engineering, or compliance.",
-      "By choosing our specialized service, you ensure that you receive exactly the right deliverable, backed by £10M public liability insurance and professional standards."
+    problemStatement: 'Earthworks represent a massive commercial variable in construction. If your "cut" doesn\'t match your "fill", costs escalate. Drone analysis allows you to compare the current site state against the original design CAD, providing immediate evidence of material movement and progress.',
+    whatWeCapture: [
+      'High-density topographic scans',
+      'Current surface elevation data',
+      'Base-level site survey',
+      'Design surface overlays'
+    ],
+    deliverables: [
+      'Net cut/fill volume report',
+      'Heatmap of elevation change',
+      'Cross-section analysis',
+      'Updated site topographic plan'
+    ],
+    useCases: [
+      { title: 'Quantity Surveying', description: 'Verifying earthworks subcontractor claims with objective data.' },
+      { title: 'Site Balancing', description: 'Ensuring material is moved efficiently to achieve design levels.' }
     ],
     capabilities: [
-      { title: 'Rapid Deployment', description: 'Available for fast turnaround across the UK.' },
-      { title: 'High Precision', description: 'Captured using industry-leading DJI Enterprise platforms.' },
-      { title: 'Fully Insured', description: 'Comprehensive £10M public liability coverage.' },
-      { title: 'Secure Delivery', description: 'Data delivered via secure client portal.' }
+      { title: 'Volume Comparison', description: 'Subtracting design surfaces from current site scans.' },
+      { title: 'Grid Analysis', description: 'Detailed volume breakdown across specific site zones.' }
     ],
-    industries: ['Commercial', 'Property', 'Construction', 'Marketing'],
+    industries: ['Earthworks Contractors', 'Quantity Surveyors', 'Main Contractors', 'Developers'],
     faqs: [
-      { q: 'How quickly can you deliver?', a: 'Standard turnaround is 24-48 hours depending on the scope.' },
-      { q: 'Are you fully insured?', a: 'Yes, we carry £10M public liability insurance for all operations.' },
-      { q: 'Do you operate nationwide?', a: 'Yes, our network allows us to provide coverage across the entire UK.' },
-      { q: 'What is the booking process?', a: 'Simply submit a project brief via our site and we will return a quote same-day.' }
+      { q: 'Can you compare against my CAD files?', a: 'Yes, we overlay our drone data directly onto your design surfaces (DXF/DWG).' },
+      { q: 'How accurate is the volume data?', a: 'Typically within 0.5-1% of actual volume on well-controlled sites.' }
     ],
-    relatedServices: ['drone-videography-and-film'],
-    cta: { label: 'REQUEST A QUOTE', href: '/contact' }
+    relatedServices: ['volumetric-surveys', 'surveying-mapping', 'stockpile-volume-surveys'],
+    cta: { label: 'START EARTHWORKS AUDIT', href: '/contact' }
   },
   {
-    slug: 'industrial-drone-filming',
-    title: 'Industrial drone filming UK',
-    headline: ["INDUSTRIAL","DRONE FILMING"],
-    intro: 'Professional industrial drone filming services tailored for Drone videography and film. Delivered with precision, speed, and full CAA compliance.',
-    metaTitle: 'Industrial drone filming UK — Altitude Drone',
-    metaDescription: 'Expert industrial drone filming services. Fully insured and CAA-approved operations delivering actionable intelligence and premium media.',
+    slug: 'stockpile-volume-surveys',
+    title: 'Stockpile Volume Drone Surveys UK',
+    headline: ['STOCKPILE', 'VOLUME', 'SURVEYS'],
+    category: 'Construction & Surveying',
+    intro: 'Rapid, safe, and accurate stockpile measurements for quarries, aggregate sites, and construction projects — delivered within 24 hours.',
+    metaTitle: 'Stockpile Volume Drone Surveys UK | Accurate Audits | Altitude Hire',
+    metaDescription: 'Professional drone stockpile volume surveys. Accurate measurements for aggregates, minerals and earthworks. CAA-compliant, 24h reporting.',
     heroStat: [
-      { value: '4K', label: 'Ultra HD' },
-      { value: '24H', label: 'Turnaround' },
-      { value: 'CAA', label: 'Approved' },
+      { value: 'SAFE', label: 'No climbing' },
+      { value: '±1%', label: 'Volume accuracy' },
+      { value: '24H', label: 'Data delivery' }
     ],
-    bodyHeading: 'ELEVATING STANDARD INDUSTRIAL DRONE FILMING',
-    bodyParagraphs: [
-      "When it comes to industrial drone filming, standard consumer methods fall short. Altitude Drone brings commercial-grade rigor and advanced sensor technology to every flight.",
-      "We understand that our clients require more than just raw data. They need industrial drone filming that integrates seamlessly into their workflows, whether for marketing, engineering, or compliance.",
-      "By choosing our specialized service, you ensure that you receive exactly the right deliverable, backed by £10M public liability insurance and professional standards."
+    problemStatement: 'Inventory audits of bulk materials are traditionally slow and dangerous. Walking on stockpiles with a GPS pole is inaccurate and poses a significant fall risk. Drone-based volumetrics capture millions of points across every pile, delivering accurate commercial stock data in a fraction of the time.',
+    whatWeCapture: [
+      'Complete stockpile 3D geometry',
+      'Material surface detail',
+      'Toe-of-pile boundary data',
+      'Site context and layout'
+    ],
+    deliverables: [
+      'Individual stockpile volume report',
+      'Total site inventory summary',
+      '3D mesh model of piles',
+      'Orthomosaic site plan'
+    ],
+    useCases: [
+      { title: 'Financial Audits', description: 'Verifying physical stock levels against commercial balance sheets.' },
+      { title: 'Production Tracking', description: 'Monitoring output and consumption in quarries and batching plants.' }
     ],
     capabilities: [
-      { title: 'Rapid Deployment', description: 'Available for fast turnaround across the UK.' },
-      { title: 'High Precision', description: 'Captured using industry-leading DJI Enterprise platforms.' },
-      { title: 'Fully Insured', description: 'Comprehensive £10M public liability coverage.' },
-      { title: 'Secure Delivery', description: 'Data delivered via secure client portal.' }
+      { title: 'Automated Volumetrics', description: 'Extracting precise volumes from high-density point clouds.' },
+      { title: 'Terrain Subtraction', description: 'Correctly identifying the "base" of piles for verified accuracy.' }
     ],
-    industries: ['Commercial', 'Property', 'Construction', 'Marketing'],
+    industries: ['Quarry Operators', 'Aggregate Suppliers', 'Construction Teams', 'Waste Management'],
     faqs: [
-      { q: 'How quickly can you deliver?', a: 'Standard turnaround is 24-48 hours depending on the scope.' },
-      { q: 'Are you fully insured?', a: 'Yes, we carry £10M public liability insurance for all operations.' },
-      { q: 'Do you operate nationwide?', a: 'Yes, our network allows us to provide coverage across the entire UK.' },
-      { q: 'What is the booking process?', a: 'Simply submit a project brief via our site and we will return a quote same-day.' }
+      { q: 'How long does a survey take?', a: 'A typical 10-acre site can be flown and all stockpiles measured in under an hour.' },
+      { q: 'Is it safer than manual survey?', a: 'Significantly. It removes the need for personnel to climb unstable material piles.' }
     ],
-    relatedServices: ['drone-videography-and-film'],
-    cta: { label: 'REQUEST A QUOTE', href: '/contact' }
+    relatedServices: ['volumetric-surveys', 'cut-fill-analysis', 'surveying-mapping'],
+    cta: { label: 'AUDIT STOCK LEVELS', href: '/contact' }
   },
   {
-    slug: 'event-drone-filming',
-    title: 'Event drone filming UK',
-    headline: ["EVENT DRONE","FILMING"],
-    intro: 'Professional event drone filming services tailored for Drone videography and film. Delivered with precision, speed, and full CAA compliance.',
-    metaTitle: 'Event drone filming UK — Altitude Drone',
-    metaDescription: 'Expert event drone filming services. Fully insured and CAA-approved operations delivering actionable intelligence and premium media.',
+    slug: 'construction-progress-photography',
+    title: 'Construction Progress Photography UK',
+    headline: ['CONSTRUCTION', 'PROGRESS', 'PHOTOGRAPHY'],
+    category: 'Construction & Surveying',
+    intro: 'High-resolution aerial progress records that keep projects on track — providing consistent, timestamped evidence for stakeholders and project teams.',
+    metaTitle: 'Construction Progress Photography UK | Site Monitoring | Altitude Hire',
+    metaDescription: 'Professional construction progress photography. Scheduled drone flights for site monitoring and stakeholder updates. CAA-compliant.',
     heroStat: [
-      { value: '4K', label: 'Ultra HD' },
-      { value: '24H', label: 'Turnaround' },
-      { value: 'CAA', label: 'Approved' },
+      { value: 'TIME', label: 'Stamped evidence' },
+      { value: 'CONS', label: 'Viewpoints' },
+      { value: 'WEEK', label: 'Updates' }
     ],
-    bodyHeading: 'ELEVATING STANDARD EVENT DRONE FILMING',
-    bodyParagraphs: [
-      "When it comes to event drone filming, standard consumer methods fall short. Altitude Drone brings commercial-grade rigor and advanced sensor technology to every flight.",
-      "We understand that our clients require more than just raw data. They need event drone filming that integrates seamlessly into their workflows, whether for marketing, engineering, or compliance.",
-      "By choosing our specialized service, you ensure that you receive exactly the right deliverable, backed by £10M public liability insurance and professional standards."
+    problemStatement: 'Project managers and investors need clear, consistent visibility of site progress. Ground-level photos lack scale, and ad-hoc drone shots lack the consistency needed to show true change. We deliver systematic, repeatable aerial photography that provides a definitive record of the build.',
+    whatWeCapture: [
+      'Standardised site overview angles',
+      'Milestone construction phases',
+      'Site logistics and plant locations',
+      'As-built vs Stage evidence'
+    ],
+    deliverables: [
+      'Progress image gallery',
+      'Stakeholder update pack',
+      'Annotated site overviews',
+      'Timeline comparison archive'
+    ],
+    useCases: [
+      { title: 'Monthly Reports', description: 'Visual evidence for formal project board and investor reports.' },
+      { title: 'Social & Marketing', description: 'High-quality content to show build progress to the public and buyers.' }
     ],
     capabilities: [
-      { title: 'Rapid Deployment', description: 'Available for fast turnaround across the UK.' },
-      { title: 'High Precision', description: 'Captured using industry-leading DJI Enterprise platforms.' },
-      { title: 'Fully Insured', description: 'Comprehensive £10M public liability coverage.' },
-      { title: 'Secure Delivery', description: 'Data delivered via secure client portal.' }
+      { title: 'Waypointed Flights', description: 'Replicating the exact same camera positions every visit.' },
+      { title: 'Rapid Delivery', description: 'Issuing images within hours of the flight for immediate use.' }
     ],
-    industries: ['Commercial', 'Property', 'Construction', 'Marketing'],
+    industries: ['Developers', 'Project Managers', 'Main Contractors', 'Marketing Teams'],
     faqs: [
-      { q: 'How quickly can you deliver?', a: 'Standard turnaround is 24-48 hours depending on the scope.' },
-      { q: 'Are you fully insured?', a: 'Yes, we carry £10M public liability insurance for all operations.' },
-      { q: 'Do you operate nationwide?', a: 'Yes, our network allows us to provide coverage across the entire UK.' },
-      { q: 'What is the booking process?', a: 'Simply submit a project brief via our site and we will return a quote same-day.' }
+      { q: 'How often do you fly?', a: 'Weekly or monthly are most common, but we can align to any project milestone.' },
+      { q: 'Can we use the photos for marketing?', a: 'Yes, they are high-resolution 45MP images suitable for print and digital.' }
     ],
-    relatedServices: ['drone-videography-and-film'],
-    cta: { label: 'REQUEST A QUOTE', href: '/contact' }
+    relatedServices: ['construction-monitoring', 'drone-time-lapse-monitoring', 'orthomosaic-mapping'],
+    cta: { label: 'BOOK PROGRESS SHOOT', href: '/contact' }
   },
   {
-    slug: 'tourism-and-hospitality-drone-video',
-    title: 'Tourism and hospitality drone video UK',
-    headline: ["TOURISM AND","HOSPITALITY","DRONE VIDEO"],
-    intro: 'Professional tourism and hospitality drone video services tailored for Drone videography and film. Delivered with precision, speed, and full CAA compliance.',
-    metaTitle: 'Tourism and hospitality drone video UK — Altitude Drone',
-    metaDescription: 'Expert tourism and hospitality drone video services. Fully insured and CAA-approved operations delivering actionable intelligence and premium media.',
+    slug: 'drone-time-lapse-monitoring',
+    title: 'Drone Time-Lapse Monitoring UK',
+    headline: ['DRONE TIME-LAPSE', 'MONITORING'],
+    category: 'Construction & Surveying',
+    intro: 'Compelling 4D visual stories of your project — combining scheduled aerial capture into cinematic time-lapse sequences that show months of work in seconds.',
+    metaTitle: 'Drone Time-Lapse Monitoring UK | Project Evolution | Altitude Hire',
+    metaDescription: 'Professional drone time-lapse site monitoring. Cinematic 4D project records from groundworks to completion. CAA-compliant.',
     heroStat: [
-      { value: '4K', label: 'Ultra HD' },
-      { value: '24H', label: 'Turnaround' },
-      { value: 'CAA', label: 'Approved' },
+      { value: '4D', label: 'Project flow' },
+      { value: '6K', label: 'Master files' },
+      { value: 'CIN', label: 'ematic quality' }
     ],
-    bodyHeading: 'ELEVATING STANDARD TOURISM AND HOSPITALITY DRONE VIDEO',
-    bodyParagraphs: [
-      "When it comes to tourism and hospitality drone video, standard consumer methods fall short. Altitude Drone brings commercial-grade rigor and advanced sensor technology to every flight.",
-      "We understand that our clients require more than just raw data. They need tourism and hospitality drone video that integrates seamlessly into their workflows, whether for marketing, engineering, or compliance.",
-      "By choosing our specialized service, you ensure that you receive exactly the right deliverable, backed by £10M public liability insurance and professional standards."
+    problemStatement: 'Static progress images are useful for data, but they lack the impact needed for high-level marketing and project legacy. Drone time-lapse takes a project from groundworks to handover, providing a powerful visual narrative of the engineering and effort involved.',
+    whatWeCapture: [
+      'Precise, repeatable flight paths',
+      'Seasonal site transitions',
+      'Structural assembly sequences',
+      'Final project reveals'
+    ],
+    deliverables: [
+      'Cinematic time-lapse film',
+      'Progress milestone edits',
+      'High-resolution raw sequence',
+      'Marketing highlight reel'
+    ],
+    useCases: [
+      { title: 'Project Legacy', description: 'Creating a definitive visual history of a landmark project.' },
+      { title: 'Investor Engagement', description: 'Showing the speed and efficiency of the build in a compelling format.' }
     ],
     capabilities: [
-      { title: 'Rapid Deployment', description: 'Available for fast turnaround across the UK.' },
-      { title: 'High Precision', description: 'Captured using industry-leading DJI Enterprise platforms.' },
-      { title: 'Fully Insured', description: 'Comprehensive £10M public liability coverage.' },
-      { title: 'Secure Delivery', description: 'Data delivered via secure client portal.' }
+      { title: 'Waypointed Precision', description: 'Using GPS to ensure every shot aligns perfectly for the time-lapse.' },
+      { title: 'Post-Production', description: 'Professional editing and colour grading to create a cinematic finish.' }
     ],
-    industries: ['Commercial', 'Property', 'Construction', 'Marketing'],
+    industries: ['Developers', 'Main Contractors', 'Industrial Clients', 'Infrastructure Projects'],
     faqs: [
-      { q: 'How quickly can you deliver?', a: 'Standard turnaround is 24-48 hours depending on the scope.' },
-      { q: 'Are you fully insured?', a: 'Yes, we carry £10M public liability insurance for all operations.' },
-      { q: 'Do you operate nationwide?', a: 'Yes, our network allows us to provide coverage across the entire UK.' },
-      { q: 'What is the booking process?', a: 'Simply submit a project brief via our site and we will return a quote same-day.' }
+      { q: 'How long does a time-lapse take to create?', a: 'It covers the duration of the build, from weeks to years.' },
+      { q: 'Is it different from a fixed camera?', a: 'Yes, it provides a dynamic, moving viewpoint that a static pole camera cannot match.' }
     ],
-    relatedServices: ['drone-videography-and-film'],
-    cta: { label: 'REQUEST A QUOTE', href: '/contact' }
+    relatedServices: ['construction-progress-photography', 'construction-monitoring', 'aerial-photography-film'],
+    cta: { label: 'START TIME-LAPSE PROJECT', href: '/contact' }
   },
   {
-    slug: 'vehicle-tracking-drone-footage',
-    title: 'Vehicle tracking drone footage UK',
-    headline: ["VEHICLE","TRACKING DRONE","FOOTAGE"],
-    intro: 'Professional vehicle tracking drone footage services tailored for Drone videography and film. Delivered with precision, speed, and full CAA compliance.',
-    metaTitle: 'Vehicle tracking drone footage UK — Altitude Drone',
-    metaDescription: 'Expert vehicle tracking drone footage services. Fully insured and CAA-approved operations delivering actionable intelligence and premium media.',
+    slug: 'rail-corridor-surveys',
+    title: 'Rail & Highway Corridor Drone Surveys UK',
+    headline: ['RAIL & HIGHWAY', 'CORRIDOR SURVEYS'],
+    category: 'Infrastructure & Energy',
+    intro: 'Precision aerial mapping and inspection for linear transport assets — delivering high-resolution corridor data for vegetation management, drainage audits, and structural monitoring.',
+    metaTitle: 'Rail & Highway Corridor Drone Surveys UK | Transport Infrastructure | Altitude Hire',
+    metaDescription: 'Specialist drone surveys for rail and highway corridors. High-resolution mapping, vegetation audits and structural inspections. CAA-compliant.',
     heroStat: [
-      { value: '4K', label: 'Ultra HD' },
-      { value: '24H', label: 'Turnaround' },
-      { value: 'CAA', label: 'Approved' },
+      { value: 'LIN', label: 'ear assets' },
+      { value: '100+', label: 'km/day' },
+      { value: 'PREC', label: 'ision data' }
     ],
-    bodyHeading: 'ELEVATING STANDARD VEHICLE TRACKING DRONE FOOTAGE',
-    bodyParagraphs: [
-      "When it comes to vehicle tracking drone footage, standard consumer methods fall short. Altitude Drone brings commercial-grade rigor and advanced sensor technology to every flight.",
-      "We understand that our clients require more than just raw data. They need vehicle tracking drone footage that integrates seamlessly into their workflows, whether for marketing, engineering, or compliance.",
-      "By choosing our specialized service, you ensure that you receive exactly the right deliverable, backed by £10M public liability insurance and professional standards."
+    problemStatement: 'Monitoring long linear assets like rail and highways is traditionally slow, expensive, and dangerous for ground crews. Drones provide a non-disruptive, rapid method to capture high-resolution imagery and LiDAR data across kilometres of corridor, identifying encroachment, drainage issues, and structural defects without track or lane closures.',
+    whatWeCapture: [
+      'High-resolution corridor orthomosaics',
+      'Vegetation encroachment mapping',
+      'Drainage and culvert inspections',
+      'Embankment stability data',
+      'OHT and gantry structural audits'
+    ],
+    deliverables: [
+      'Georeferenced corridor maps',
+      'Vegetation health/encroachment reports',
+      'Digital Terrain Models (DTM)',
+      'Condition inspection galleries'
+    ],
+    useCases: [
+      { title: 'Vegetation Management', description: 'Identifying trees and scrub posing a risk to transport infrastructure.' },
+      { title: 'Asset Inventory', description: 'Creating a digital record of all furniture and assets along a corridor.' }
     ],
     capabilities: [
-      { title: 'Rapid Deployment', description: 'Available for fast turnaround across the UK.' },
-      { title: 'High Precision', description: 'Captured using industry-leading DJI Enterprise platforms.' },
-      { title: 'Fully Insured', description: 'Comprehensive £10M public liability coverage.' },
-      { title: 'Secure Delivery', description: 'Data delivered via secure client portal.' }
+      { title: 'BVLoS Ready', description: 'Equipped to operate beyond visual line of sight where permissions allow.' },
+      { title: 'High-Density LiDAR', description: 'Penetrating canopy to map true ground levels in corridor environments.' }
     ],
-    industries: ['Commercial', 'Property', 'Construction', 'Marketing'],
+    industries: ['Network Rail Suppliers', 'Highways & Infrastructure Providers', 'Local Authorities', 'Logistics Providers'],
     faqs: [
-      { q: 'How quickly can you deliver?', a: 'Standard turnaround is 24-48 hours depending on the scope.' },
-      { q: 'Are you fully insured?', a: 'Yes, we carry £10M public liability insurance for all operations.' },
-      { q: 'Do you operate nationwide?', a: 'Yes, our network allows us to provide coverage across the entire UK.' },
-      { q: 'What is the booking process?', a: 'Simply submit a project brief via our site and we will return a quote same-day.' }
+      { q: 'Do you need track access?', a: 'No, our operations are typically conducted from land adjacent to the corridor, removing the need for possessions.' },
+      { q: 'How much distance can you cover?', a: 'Depending on location and airspace, we can map several kilometres per deployment.' }
     ],
-    relatedServices: ['drone-videography-and-film'],
-    cta: { label: 'REQUEST A QUOTE', href: '/contact' }
+    relatedServices: ['infrastructure-inspections', 'pipeline-corridor-surveys', 'lidar-point-cloud-surveys'],
+    cta: { label: 'REQUEST CORRIDOR BRIEF', href: '/contact' }
   },
   {
-    slug: 'brand-campaign-aerial-filming',
-    title: 'Brand campaign aerial filming UK',
-    headline: ["BRAND CAMPAIGN","AERIAL FILMING"],
-    intro: 'Professional brand campaign aerial filming services tailored for Drone videography and film. Delivered with precision, speed, and full CAA compliance.',
-    metaTitle: 'Brand campaign aerial filming UK — Altitude Drone',
-    metaDescription: 'Expert brand campaign aerial filming services. Fully insured and CAA-approved operations delivering actionable intelligence and premium media.',
+    slug: 'pipeline-corridor-surveys',
+    title: 'Pipeline & Utility Corridor Drone Surveys UK',
+    headline: ['PIPELINE & UTILITY', 'CORRIDOR SURVEYS'],
+    category: 'Infrastructure & Energy',
+    intro: 'Non-disruptive monitoring for oil, gas, and water pipelines — using aerial intelligence to identify encroachment, leaks, and environmental changes along utility routes.',
+    metaTitle: 'Pipeline & Utility Corridor Drone Surveys UK | Remote Monitoring | Altitude Hire',
+    metaDescription: 'Professional drone surveys for pipeline and utility corridors. Remote monitoring, encroachment detection and environmental audits. CAA-compliant.',
     heroStat: [
-      { value: '4K', label: 'Ultra HD' },
-      { value: '24H', label: 'Turnaround' },
-      { value: 'CAA', label: 'Approved' },
+      { value: 'REM', label: 'ote access' },
+      { value: 'LEAK', label: 'detection' },
+      { value: 'ENCR', label: 'oachment' }
     ],
-    bodyHeading: 'ELEVATING STANDARD BRAND CAMPAIGN AERIAL FILMING',
-    bodyParagraphs: [
-      "When it comes to brand campaign aerial filming, standard consumer methods fall short. Altitude Drone brings commercial-grade rigor and advanced sensor technology to every flight.",
-      "We understand that our clients require more than just raw data. They need brand campaign aerial filming that integrates seamlessly into their workflows, whether for marketing, engineering, or compliance.",
-      "By choosing our specialized service, you ensure that you receive exactly the right deliverable, backed by £10M public liability insurance and professional standards."
+    problemStatement: 'Pipeline integrity is threatened by third-party encroachment, environmental shifts, and material fatigue. Ground-based line walking is slow and inconsistent. Our drone-based corridor surveys provide a rapid, repeatable method to audit hundreds of miles of pipeline, providing high-resolution evidence of site conditions and potential risks.',
+    whatWeCapture: [
+      'Multi-spectral encroachment data',
+      'Thermal leak detection (radiometric)',
+      'High-resolution corridor imagery',
+      'Environmental impact evidence',
+      'River and road crossing audits'
+    ],
+    deliverables: [
+      'Anomaly and encroachment report',
+      'Radiometric thermal signatures',
+      'High-res corridor orthomosaic',
+      '360-degree crossing panoramas'
+    ],
+    useCases: [
+      { title: 'Encroachment Audits', description: 'Identifying illegal building or excavation work over pipeline easements.' },
+      { title: 'Environmental Compliance', description: 'Monitoring land use and environmental changes along sensitive utility routes.' }
     ],
     capabilities: [
-      { title: 'Rapid Deployment', description: 'Available for fast turnaround across the UK.' },
-      { title: 'High Precision', description: 'Captured using industry-leading DJI Enterprise platforms.' },
-      { title: 'Fully Insured', description: 'Comprehensive £10M public liability coverage.' },
-      { title: 'Secure Delivery', description: 'Data delivered via secure client portal.' }
+      { title: 'Thermal Signatures', description: 'Detecting temperature differentials that may indicate fluid or gas leaks.' },
+      { title: 'Rapid Deployment', description: 'Mobilising to remote sections of the network for urgent inspection.' }
     ],
-    industries: ['Commercial', 'Property', 'Construction', 'Marketing'],
+    industries: ['Gas Networks', 'Water Utilities', 'Oil & Fuel Providers', 'Environmental Agencies'],
     faqs: [
-      { q: 'How quickly can you deliver?', a: 'Standard turnaround is 24-48 hours depending on the scope.' },
-      { q: 'Are you fully insured?', a: 'Yes, we carry £10M public liability insurance for all operations.' },
-      { q: 'Do you operate nationwide?', a: 'Yes, our network allows us to provide coverage across the entire UK.' },
-      { q: 'What is the booking process?', a: 'Simply submit a project brief via our site and we will return a quote same-day.' }
+      { q: 'Can you detect leaks?', a: 'Yes, thermal sensors can identify cool or hot spots associated with escaping pressurized fluids or gases.' },
+      { q: 'Do you work in remote locations?', a: 'Yes, our teams are self-sufficient and equipped for off-road access and remote operation.' }
     ],
-    relatedServices: ['drone-videography-and-film'],
-    cta: { label: 'REQUEST A QUOTE', href: '/contact' }
+    relatedServices: ['rail-corridor-surveys', 'utilities-energy-inspections', 'thermal-imaging'],
+    cta: { label: 'START UTILITY BRIEF', href: '/contact' }
   },
   {
-    slug: 'social-media-drone-content',
-    title: 'Social media drone content UK',
-    headline: ["SOCIAL MEDIA","DRONE CONTENT"],
-    intro: 'Professional social media drone content services tailored for Drone videography and film. Delivered with precision, speed, and full CAA compliance.',
-    metaTitle: 'Social media drone content UK — Altitude Drone',
-    metaDescription: 'Expert social media drone content services. Fully insured and CAA-approved operations delivering actionable intelligence and premium media.',
+    slug: 'events-media',
+    title: 'Drone Filming for Events & Media UK',
+    headline: ['EVENTS', '& MEDIA', 'FILMING'],
+    category: 'Specialist & Response',
+    intro: 'Cinematic aerial content for high-impact brand campaigns, large-scale events, and production media — delivering 6K resolution and dynamic FPV perspectives.',
+    metaTitle: 'Drone Filming for Events & Media UK | Cinematic Aerials | Altitude Hire',
+    metaDescription: 'Premium drone filming for events, media and brand campaigns. High-resolution 6K aerials and cinematic FPV. CAA-compliant pilots.',
     heroStat: [
-      { value: '4K', label: 'Ultra HD' },
-      { value: '24H', label: 'Turnaround' },
-      { value: 'CAA', label: 'Approved' },
+      { value: '6K', label: 'Resolution' },
+      { value: 'FPV', label: 'Cinematic' },
+      { value: 'LIVE', label: 'Streaming' }
     ],
-    bodyHeading: 'ELEVATING STANDARD SOCIAL MEDIA DRONE CONTENT',
-    bodyParagraphs: [
-      "When it comes to social media drone content, standard consumer methods fall short. Altitude Drone brings commercial-grade rigor and advanced sensor technology to every flight.",
-      "We understand that our clients require more than just raw data. They need social media drone content that integrates seamlessly into their workflows, whether for marketing, engineering, or compliance.",
-      "By choosing our specialized service, you ensure that you receive exactly the right deliverable, backed by £10M public liability insurance and professional standards."
+    problemStatement: 'Static ground-level cameras cannot capture the scale and energy of large events or the ambition of high-end brand content. Our media-grade drone operations provide cinematic motion, unique perspectives, and breathtaking scale that elevates project value and audience engagement.',
+    whatWeCapture: [
+      '6K ProRes cinematic footage',
+      'High-speed FPV chase sequences',
+      'Event scale and crowd overviews',
+      'Dynamic product/asset reveals',
+      '45MP high-resolution photography'
+    ],
+    deliverables: [
+      'Raw cinematic master files',
+      'Social media highlight edits',
+      'High-res photography gallery',
+      'Optional live-stream aerial feed'
+    ],
+    useCases: [
+      { title: 'Brand Campaigns', description: 'Creating hero visual content for commercial advertisements and product launches.' },
+      { title: 'Mass Events', description: 'Capturing the scale of festivals, sporting events, and public displays.' }
     ],
     capabilities: [
-      { title: 'Rapid Deployment', description: 'Available for fast turnaround across the UK.' },
-      { title: 'High Precision', description: 'Captured using industry-leading DJI Enterprise platforms.' },
-      { title: 'Fully Insured', description: 'Comprehensive £10M public liability coverage.' },
-      { title: 'Secure Delivery', description: 'Data delivered via secure client portal.' }
+      { title: 'Stabilized 3-Axis', description: 'Ultra-smooth cinematic motion even in challenging weather.' },
+      { title: 'Dual Operator', description: 'Separate pilot and camera operator for complex precision filming.' }
     ],
-    industries: ['Commercial', 'Property', 'Construction', 'Marketing'],
+    industries: ['Creative Agencies', 'Event Organisers', 'Production Houses', 'Tourism Boards'],
     faqs: [
-      { q: 'How quickly can you deliver?', a: 'Standard turnaround is 24-48 hours depending on the scope.' },
-      { q: 'Are you fully insured?', a: 'Yes, we carry £10M public liability insurance for all operations.' },
-      { q: 'Do you operate nationwide?', a: 'Yes, our network allows us to provide coverage across the entire UK.' },
-      { q: 'What is the booking process?', a: 'Simply submit a project brief via our site and we will return a quote same-day.' }
+      { q: 'Can you fly over crowds?', a: 'Yes, with the appropriate operational authorisation and safety mitigation in place.' },
+      { q: 'Do you provide edited content?', a: 'Yes, we can provide anything from raw logs to fully color-graded social edits.' }
     ],
-    relatedServices: ['drone-videography-and-film'],
-    cta: { label: 'REQUEST A QUOTE', href: '/contact' }
+    relatedServices: ['fpv-drone-filming', '360-aerial-panoramas', 'aerial-photography-film'],
+    cta: { label: 'BOOK MEDIA BRIEF', href: '/contact' }
   },
   {
-    slug: '30-second-social-clips',
-    title: '30-second social clips UK',
-    headline: ["30-SECOND","SOCIAL CLIPS"],
-    intro: 'Professional 30-second social clips services tailored for Drone videography and film. Delivered with precision, speed, and full CAA compliance.',
-    metaTitle: '30-second social clips UK — Altitude Drone',
-    metaDescription: 'Expert 30-second social clips services. Fully insured and CAA-approved operations delivering actionable intelligence and premium media.',
+    slug: 'fpv-drone-filming',
+    title: 'Cinematic FPV Drone Filming UK',
+    headline: ['CINEMATIC', 'FPV FILMING'],
+    category: 'Specialist & Response',
+    intro: 'Immersive, high-speed flythroughs that take viewers inside the action — providing a dynamic perspective that traditional drones cannot achieve.',
+    metaTitle: 'Cinematic FPV Drone Filming UK | Dynamic Aerials | Altitude Hire',
+    metaDescription: 'Professional FPV drone filming. High-speed indoor and outdoor flythroughs for property, events and media. GVC qualified pilots.',
     heroStat: [
-      { value: '4K', label: 'Ultra HD' },
-      { value: '24H', label: 'Turnaround' },
-      { value: 'CAA', label: 'Approved' },
+      { value: 'IMM', label: 'ersive flow' },
+      { value: '100', label: 'mph capable' },
+      { value: 'IN', label: 'door safe' }
     ],
-    bodyHeading: 'ELEVATING STANDARD 30-SECOND SOCIAL CLIPS',
-    bodyParagraphs: [
-      "When it comes to 30-second social clips, standard consumer methods fall short. Altitude Drone brings commercial-grade rigor and advanced sensor technology to every flight.",
-      "We understand that our clients require more than just raw data. They need 30-second social clips that integrates seamlessly into their workflows, whether for marketing, engineering, or compliance.",
-      "By choosing our specialized outcome, you ensure that you receive exactly the right deliverable, backed by £10M public liability insurance and professional standards."
+    problemStatement: 'Traditional drones are stable but lack the agility to move through tight spaces, follow fast action, or create the "one-shot" immersive flythroughs that capture audience attention. FPV (First Person View) drones are smaller, faster, and more agile, allowing us to fly through buildings, under structures, and close to the action.',
+    whatWeCapture: [
+      'High-speed indoor flythroughs',
+      'Close-proximity industrial action',
+      'Continuous "One-Shot" sequences',
+      'Dynamic athlete/vehicle tracking',
+      'Unique architectural transitions'
+    ],
+    deliverables: [
+      'Stabilized 4K/6K FPV footage',
+      'Social media "One-Shot" edits',
+      'Immersive brand content',
+      'Uncut raw flight data'
+    ],
+    useCases: [
+      { title: 'Property Previews', description: 'Flying through a warehouse or hotel to show the layout in a single take.' },
+      { title: 'Action Sports', description: 'Following fast-moving subjects with precision and proximity.' }
     ],
     capabilities: [
-      { title: 'Rapid Deployment', description: 'Available for fast turnaround across the UK.' },
-      { title: 'High Precision', description: 'Captured using industry-leading DJI Enterprise platforms.' },
-      { title: 'Fully Insured', description: 'Comprehensive £10M public liability coverage.' },
-      { title: 'Secure Delivery', description: 'Data delivered via secure client portal.' }
+      { title: 'Cine-Whoop Safe', description: 'Guarded propellers for safe flight inside occupied buildings.' },
+      { title: 'Gyro-Stabilization', description: 'Post-capture stabilization for buttery-smooth immersive motion.' }
     ],
-    industries: ['Commercial', 'Property', 'Construction', 'Marketing'],
+    industries: ['Real Estate', 'Manufacturing', 'Automotive', 'Tourism'],
     faqs: [
-      { q: 'How quickly can you deliver?', a: 'Standard turnaround is 24-48 hours depending on the scope.' },
-      { q: 'Are you fully insured?', a: 'Yes, we carry £10M public liability insurance for all operations.' },
-      { q: 'Do you operate nationwide?', a: 'Yes, our network allows us to provide coverage across the entire UK.' },
-      { q: 'What is the booking process?', a: 'Simply submit a project brief via our site and we will return a quote same-day.' }
+      { q: 'Is it safe to fly FPV indoors?', a: 'Yes, we use "Cine-whoop" drones with ducted propellers designed for indoor environments.' },
+      { q: 'What is the benefit of FPV?', a: 'It provides a "cockpit" view that feels visceral and immersive, unlike standard drone shots.' }
     ],
-    relatedServices: ['drone-videography-and-film'],
-    cta: { label: 'REQUEST A QUOTE', href: '/contact' }
+    relatedServices: ['events-media', 'aerial-photography-film', 'gaussian-splat-capture'],
+    cta: { label: 'START FPV BRIEF', href: '/contact' }
   },
   {
-    slug: '60-second-brand-films',
-    title: '60-second brand films UK',
-    headline: ["60-SECOND BRAND","FILMS"],
-    intro: 'Professional 60-second brand films services tailored for Drone videography and film. Delivered with precision, speed, and full CAA compliance.',
-    metaTitle: '60-second brand films UK — Altitude Drone',
-    metaDescription: 'Expert 60-second brand films services. Fully insured and CAA-approved operations delivering actionable intelligence and premium media.',
+    slug: 'digital-twin-capture',
+    title: 'Drone Digital Twin Capture UK',
+    headline: ['DIGITAL TWIN', 'CAPTURE'],
+    category: 'Specialist & Response',
+    intro: 'Precise 3D digital replicas of physical assets — providing a foundational data layer for asset management, design review, and virtual walkthroughs.',
+    metaTitle: 'Drone Digital Twin Capture UK | Asset Digitalization | Altitude Hire',
+    metaDescription: 'Professional drone digital twin capture. Accurate 3D replicas for asset management, construction and FM. High-fidelity visual data.',
     heroStat: [
-      { value: '4K', label: 'Ultra HD' },
-      { value: '24H', label: 'Turnaround' },
-      { value: 'CAA', label: 'Approved' },
+      { value: '1:1', label: 'Digital replica' },
+      { value: '4D', label: 'Timeline data' },
+      { value: 'INT', label: 'egration ready' }
     ],
-    bodyHeading: 'ELEVATING STANDARD 60-SECOND BRAND FILMS',
-    bodyParagraphs: [
-      "When it comes to 60-second brand films, standard consumer methods fall short. Altitude Drone brings commercial-grade rigor and advanced sensor technology to every flight.",
-      "We understand that our clients require more than just raw data. They need 60-second brand films that integrates seamlessly into their workflows, whether for marketing, engineering, or compliance.",
-      "By choosing our specialized outcome, you ensure that you receive exactly the right deliverable, backed by £10M public liability insurance and professional standards."
+    problemStatement: 'Asset managers often work with outdated 2D plans that do not reflect the current reality of the site. A Digital Twin provides a living 3D record of the asset, allowing stakeholders to measure, inspect, and simulate from their desktop with high-accuracy data outputs.',
+    whatWeCapture: [
+      'Complete structural geometry',
+      'High-resolution surface textures',
+      'Geospatial site context',
+      'Thermal data overlays (optional)',
+      'Time-stamped condition records'
+    ],
+    deliverables: [
+      '3D Mesh & Point Cloud',
+      'Web-based 3D viewer access',
+      'BIM-compatible data sets',
+      'Annotated condition model'
+    ],
+    useCases: [
+      { title: 'Asset Management', description: 'Managing complex portfolios with a centralized digital record.' },
+      { title: 'Design Review', description: 'Overlaying proposed designs onto a 1:1 digital replica of the site.' }
     ],
     capabilities: [
-      { title: 'Rapid Deployment', description: 'Available for fast turnaround across the UK.' },
-      { title: 'High Precision', description: 'Captured using industry-leading DJI Enterprise platforms.' },
-      { title: 'Fully Insured', description: 'Comprehensive £10M public liability coverage.' },
-      { title: 'Secure Delivery', description: 'Data delivered via secure client portal.' }
+      { title: 'BIM Integration', description: 'Outputs compatible with Revit, ArchiCAD, and other BIM platforms.' },
+      { title: 'LiDAR-Backed', description: 'Using laser scanning to ensure high-fidelity geometric data of the twin.' }
     ],
-    industries: ['Commercial', 'Property', 'Construction', 'Marketing'],
+    industries: ['Facilities Management', 'Asset Owners', 'Developers', 'Infrastructure'],
     faqs: [
-      { q: 'How quickly can you deliver?', a: 'Standard turnaround is 24-48 hours depending on the scope.' },
-      { q: 'Are you fully insured?', a: 'Yes, we carry £10M public liability insurance for all operations.' },
-      { q: 'Do you operate nationwide?', a: 'Yes, our network allows us to provide coverage across the entire UK.' },
-      { q: 'What is the booking process?', a: 'Simply submit a project brief via our site and we will return a quote same-day.' }
+      { q: 'What is a digital twin?', a: 'It is a virtual representation of an object or system that bridges the physical and digital worlds.' },
+      { q: 'Can I measure from it?', a: 'Yes, our digital twins are georeferenced and georectified for accurate 3D measurement.' }
     ],
-    relatedServices: ['drone-videography-and-film'],
-    cta: { label: 'REQUEST A QUOTE', href: '/contact' }
+    relatedServices: ['gaussian-splat-capture', 'photogrammetry', 'lidar-point-cloud-surveys'],
+    cta: { label: 'DIGITIZE YOUR ASSET', href: '/contact' }
   },
   {
-    slug: 'full-length-project-showcase-videos',
-    title: 'Full-length project showcase videos UK',
-    headline: ["FULL-LENGTH","PROJECT","SHOWCASE VIDEOS"],
-    intro: 'Professional full-length project showcase videos services tailored for Drone videography and film. Delivered with precision, speed, and full CAA compliance.',
-    metaTitle: 'Full-length project showcase videos UK — Altitude Drone',
-    metaDescription: 'Expert full-length project showcase videos services. Fully insured and CAA-approved operations delivering actionable intelligence and premium media.',
+    slug: '360-aerial-panoramas',
+    title: '360° Aerial Panorama Drone Services UK',
+    headline: ['360° AERIAL', 'PANORAMAS'],
+    category: 'Specialist & Response',
+    intro: 'Interactive, high-resolution panoramic tours from the air — providing total site context and immersive viewing for stakeholders and the public.',
+    metaTitle: '360 Aerial Panorama Drone Services UK | Site Context | Altitude Hire',
+    metaDescription: 'Professional 360 aerial drone panoramas. Interactive site tours and context capture for development and tourism. High-res imagery.',
     heroStat: [
-      { value: '4K', label: 'Ultra HD' },
-      { value: '24H', label: 'Turnaround' },
-      { value: 'CAA', label: 'Approved' },
+      { value: '360°', label: 'Full view' },
+      { value: '8K+', label: 'Resolution' },
+      { value: 'INT', label: 'eractive' }
     ],
-    bodyHeading: 'ELEVATING STANDARD FULL-LENGTH PROJECT SHOWCASE VIDEOS',
-    bodyParagraphs: [
-      "When it comes to full-length project showcase videos, standard consumer methods fall short. Altitude Drone brings commercial-grade rigor and advanced sensor technology to every flight.",
-      "We understand that our clients require more than just raw data. They need full-length project showcase videos that integrates seamlessly into their workflows, whether for marketing, engineering, or compliance.",
-      "By choosing our specialized outcome, you ensure that you receive exactly the right deliverable, backed by £10M public liability insurance and professional standards."
+    problemStatement: 'Traditional drone photos only show one direction at a time. A 360-degree aerial panorama allows the viewer to look in any direction from a fixed point in space, providing essential context of the site, surroundings, and elevation that standard photography cannot capture.',
+    whatWeCapture: [
+      'Stitched 8K+ panoramas',
+      'Multi-altitude vantage points',
+      'Surrounding infrastructure context',
+      'Key site boundaries',
+      'Branded hotspots/annotations'
+    ],
+    deliverables: [
+      'Interactive web-viewer link',
+      'High-res equirectangular files',
+      'Social-ready 360 imagery',
+      'Embedded site tour nodes'
+    ],
+    useCases: [
+      { title: 'Site Selection', description: 'Showing investors the proximity of a site to local transport and amenities.' },
+      { title: 'Public Consultation', description: 'Engaging the public with an immersive view of proposed developments.' }
     ],
     capabilities: [
-      { title: 'Rapid Deployment', description: 'Available for fast turnaround across the UK.' },
-      { title: 'High Precision', description: 'Captured using industry-leading DJI Enterprise platforms.' },
-      { title: 'Fully Insured', description: 'Comprehensive £10M public liability coverage.' },
-      { title: 'Secure Delivery', description: 'Data delivered via secure client portal.' }
+      { title: 'Hotspot Interaction', description: 'Adding clickable labels and links within the 360 environment.' },
+      { title: 'Night Capture', description: 'High-ISO panoramas showing city lights and evening site context.' }
     ],
-    industries: ['Commercial', 'Property', 'Construction', 'Marketing'],
+    industries: ['Real Estate', 'Tourism', 'Public Sector', 'Developers'],
     faqs: [
-      { q: 'How quickly can you deliver?', a: 'Standard turnaround is 24-48 hours depending on the scope.' },
-      { q: 'Are you fully insured?', a: 'Yes, we carry £10M public liability insurance for all operations.' },
-      { q: 'Do you operate nationwide?', a: 'Yes, our network allows us to provide coverage across the entire UK.' },
-      { q: 'What is the booking process?', a: 'Simply submit a project brief via our site and we will return a quote same-day.' }
-    ],
-    relatedServices: ['drone-videography-and-film'],
-    cta: { label: 'REQUEST A QUOTE', href: '/contact' }
-  },
-  {
-    slug: 'website-background-video-loops',
-    title: 'Website background video loops UK',
-    headline: ["WEBSITE","BACKGROUND","VIDEO LOOPS"],
-    intro: 'Professional website background video loops services tailored for Drone videography and film. Delivered with precision, speed, and full CAA compliance.',
-    metaTitle: 'Website background video loops UK — Altitude Drone',
-    metaDescription: 'Expert website background video loops services. Fully insured and CAA-approved operations delivering actionable intelligence and premium media.',
-    heroStat: [
-      { value: '4K', label: 'Ultra HD' },
-      { value: '24H', label: 'Turnaround' },
-      { value: 'CAA', label: 'Approved' },
-    ],
-    bodyHeading: 'ELEVATING STANDARD WEBSITE BACKGROUND VIDEO LOOPS',
-    bodyParagraphs: [
-      "When it comes to website background video loops, standard consumer methods fall short. Altitude Drone brings commercial-grade rigor and advanced sensor technology to every flight.",
-      "We understand that our clients require more than just raw data. They need website background video loops that integrates seamlessly into their workflows, whether for marketing, engineering, or compliance.",
-      "By choosing our specialized outcome, you ensure that you receive exactly the right deliverable, backed by £10M public liability insurance and professional standards."
-    ],
-    capabilities: [
-      { title: 'Rapid Deployment', description: 'Available for fast turnaround across the UK.' },
-      { title: 'High Precision', description: 'Captured using industry-leading DJI Enterprise platforms.' },
-      { title: 'Fully Insured', description: 'Comprehensive £10M public liability coverage.' },
-      { title: 'Secure Delivery', description: 'Data delivered via secure client portal.' }
-    ],
-    industries: ['Commercial', 'Property', 'Construction', 'Marketing'],
-    faqs: [
-      { q: 'How quickly can you deliver?', a: 'Standard turnaround is 24-48 hours depending on the scope.' },
-      { q: 'Are you fully insured?', a: 'Yes, we carry £10M public liability insurance for all operations.' },
-      { q: 'Do you operate nationwide?', a: 'Yes, our network allows us to provide coverage across the entire UK.' },
-      { q: 'What is the booking process?', a: 'Simply submit a project brief via our site and we will return a quote same-day.' }
-    ],
-    relatedServices: ['drone-videography-and-film'],
-    cta: { label: 'REQUEST A QUOTE', href: '/contact' }
-  },
-  {
-    slug: 'property-reveal-videos',
-    title: 'Property reveal videos UK',
-    headline: ["PROPERTY REVEAL","VIDEOS"],
-    intro: 'Professional property reveal videos services tailored for Drone videography and film. Delivered with precision, speed, and full CAA compliance.',
-    metaTitle: 'Property reveal videos UK — Altitude Drone',
-    metaDescription: 'Expert property reveal videos services. Fully insured and CAA-approved operations delivering actionable intelligence and premium media.',
-    heroStat: [
-      { value: '4K', label: 'Ultra HD' },
-      { value: '24H', label: 'Turnaround' },
-      { value: 'CAA', label: 'Approved' },
-    ],
-    bodyHeading: 'ELEVATING STANDARD PROPERTY REVEAL VIDEOS',
-    bodyParagraphs: [
-      "When it comes to property reveal videos, standard consumer methods fall short. Altitude Drone brings commercial-grade rigor and advanced sensor technology to every flight.",
-      "We understand that our clients require more than just raw data. They need property reveal videos that integrates seamlessly into their workflows, whether for marketing, engineering, or compliance.",
-      "By choosing our specialized outcome, you ensure that you receive exactly the right deliverable, backed by £10M public liability insurance and professional standards."
-    ],
-    capabilities: [
-      { title: 'Rapid Deployment', description: 'Available for fast turnaround across the UK.' },
-      { title: 'High Precision', description: 'Captured using industry-leading DJI Enterprise platforms.' },
-      { title: 'Fully Insured', description: 'Comprehensive £10M public liability coverage.' },
-      { title: 'Secure Delivery', description: 'Data delivered via secure client portal.' }
-    ],
-    industries: ['Commercial', 'Property', 'Construction', 'Marketing'],
-    faqs: [
-      { q: 'How quickly can you deliver?', a: 'Standard turnaround is 24-48 hours depending on the scope.' },
-      { q: 'Are you fully insured?', a: 'Yes, we carry £10M public liability insurance for all operations.' },
-      { q: 'Do you operate nationwide?', a: 'Yes, our network allows us to provide coverage across the entire UK.' },
-      { q: 'What is the booking process?', a: 'Simply submit a project brief via our site and we will return a quote same-day.' }
-    ],
-    relatedServices: ['drone-videography-and-film'],
-    cta: { label: 'REQUEST A QUOTE', href: '/contact' }
-  },
-  {
-    slug: 'investor-update-films',
-    title: 'Investor update films UK',
-    headline: ["INVESTOR UPDATE","FILMS"],
-    intro: 'Professional investor update films services tailored for Drone videography and film. Delivered with precision, speed, and full CAA compliance.',
-    metaTitle: 'Investor update films UK — Altitude Drone',
-    metaDescription: 'Expert investor update films services. Fully insured and CAA-approved operations delivering actionable intelligence and premium media.',
-    heroStat: [
-      { value: '4K', label: 'Ultra HD' },
-      { value: '24H', label: 'Turnaround' },
-      { value: 'CAA', label: 'Approved' },
-    ],
-    bodyHeading: 'ELEVATING STANDARD INVESTOR UPDATE FILMS',
-    bodyParagraphs: [
-      "When it comes to investor update films, standard consumer methods fall short. Altitude Drone brings commercial-grade rigor and advanced sensor technology to every flight.",
-      "We understand that our clients require more than just raw data. They need investor update films that integrates seamlessly into their workflows, whether for marketing, engineering, or compliance.",
-      "By choosing our specialized outcome, you ensure that you receive exactly the right deliverable, backed by £10M public liability insurance and professional standards."
-    ],
-    capabilities: [
-      { title: 'Rapid Deployment', description: 'Available for fast turnaround across the UK.' },
-      { title: 'High Precision', description: 'Captured using industry-leading DJI Enterprise platforms.' },
-      { title: 'Fully Insured', description: 'Comprehensive £10M public liability coverage.' },
-      { title: 'Secure Delivery', description: 'Data delivered via secure client portal.' }
-    ],
-    industries: ['Commercial', 'Property', 'Construction', 'Marketing'],
-    faqs: [
-      { q: 'How quickly can you deliver?', a: 'Standard turnaround is 24-48 hours depending on the scope.' },
-      { q: 'Are you fully insured?', a: 'Yes, we carry £10M public liability insurance for all operations.' },
-      { q: 'Do you operate nationwide?', a: 'Yes, our network allows us to provide coverage across the entire UK.' },
-      { q: 'What is the booking process?', a: 'Simply submit a project brief via our site and we will return a quote same-day.' }
-    ],
-    relatedServices: ['drone-videography-and-film'],
-    cta: { label: 'REQUEST A QUOTE', href: '/contact' }
-  },
-  {
-    slug: 'drone-only-footage-packs',
-    title: 'Drone-only footage packs UK',
-    headline: ["DRONE-ONLY","FOOTAGE PACKS"],
-    intro: 'Professional drone-only footage packs services tailored for Drone videography and film. Delivered with precision, speed, and full CAA compliance.',
-    metaTitle: 'Drone-only footage packs UK — Altitude Drone',
-    metaDescription: 'Expert drone-only footage packs services. Fully insured and CAA-approved operations delivering actionable intelligence and premium media.',
-    heroStat: [
-      { value: '4K', label: 'Ultra HD' },
-      { value: '24H', label: 'Turnaround' },
-      { value: 'CAA', label: 'Approved' },
-    ],
-    bodyHeading: 'ELEVATING STANDARD DRONE-ONLY FOOTAGE PACKS',
-    bodyParagraphs: [
-      "When it comes to drone-only footage packs, standard consumer methods fall short. Altitude Drone brings commercial-grade rigor and advanced sensor technology to every flight.",
-      "We understand that our clients require more than just raw data. They need drone-only footage packs that integrates seamlessly into their workflows, whether for marketing, engineering, or compliance.",
-      "By choosing our specialized outcome, you ensure that you receive exactly the right deliverable, backed by £10M public liability insurance and professional standards."
-    ],
-    capabilities: [
-      { title: 'Rapid Deployment', description: 'Available for fast turnaround across the UK.' },
-      { title: 'High Precision', description: 'Captured using industry-leading DJI Enterprise platforms.' },
-      { title: 'Fully Insured', description: 'Comprehensive £10M public liability coverage.' },
-      { title: 'Secure Delivery', description: 'Data delivered via secure client portal.' }
-    ],
-    industries: ['Commercial', 'Property', 'Construction', 'Marketing'],
-    faqs: [
-      { q: 'How quickly can you deliver?', a: 'Standard turnaround is 24-48 hours depending on the scope.' },
-      { q: 'Are you fully insured?', a: 'Yes, we carry £10M public liability insurance for all operations.' },
-      { q: 'Do you operate nationwide?', a: 'Yes, our network allows us to provide coverage across the entire UK.' },
-      { q: 'What is the booking process?', a: 'Simply submit a project brief via our site and we will return a quote same-day.' }
-    ],
-    relatedServices: ['drone-videography-and-film'],
-    cta: { label: 'REQUEST A QUOTE', href: '/contact' }
-  },
-  {
-    slug: 'edited-promotional-videos',
-    title: 'Edited promotional videos UK',
-    headline: ["EDITED","PROMOTIONAL","VIDEOS"],
-    intro: 'Professional edited promotional videos services tailored for Drone videography and film. Delivered with precision, speed, and full CAA compliance.',
-    metaTitle: 'Edited promotional videos UK — Altitude Drone',
-    metaDescription: 'Expert edited promotional videos services. Fully insured and CAA-approved operations delivering actionable intelligence and premium media.',
-    heroStat: [
-      { value: '4K', label: 'Ultra HD' },
-      { value: '24H', label: 'Turnaround' },
-      { value: 'CAA', label: 'Approved' },
-    ],
-    bodyHeading: 'ELEVATING STANDARD EDITED PROMOTIONAL VIDEOS',
-    bodyParagraphs: [
-      "When it comes to edited promotional videos, standard consumer methods fall short. Altitude Drone brings commercial-grade rigor and advanced sensor technology to every flight.",
-      "We understand that our clients require more than just raw data. They need edited promotional videos that integrates seamlessly into their workflows, whether for marketing, engineering, or compliance.",
-      "By choosing our specialized outcome, you ensure that you receive exactly the right deliverable, backed by £10M public liability insurance and professional standards."
-    ],
-    capabilities: [
-      { title: 'Rapid Deployment', description: 'Available for fast turnaround across the UK.' },
-      { title: 'High Precision', description: 'Captured using industry-leading DJI Enterprise platforms.' },
-      { title: 'Fully Insured', description: 'Comprehensive £10M public liability coverage.' },
-      { title: 'Secure Delivery', description: 'Data delivered via secure client portal.' }
-    ],
-    industries: ['Commercial', 'Property', 'Construction', 'Marketing'],
-    faqs: [
-      { q: 'How quickly can you deliver?', a: 'Standard turnaround is 24-48 hours depending on the scope.' },
-      { q: 'Are you fully insured?', a: 'Yes, we carry £10M public liability insurance for all operations.' },
-      { q: 'Do you operate nationwide?', a: 'Yes, our network allows us to provide coverage across the entire UK.' },
-      { q: 'What is the booking process?', a: 'Simply submit a project brief via our site and we will return a quote same-day.' }
-    ],
-    relatedServices: ['drone-videography-and-film'],
-    cta: { label: 'REQUEST A QUOTE', href: '/contact' }
-  },
-  {
-    slug: 'raw-footage-archive',
-    title: 'Raw footage archive UK',
-    headline: ["RAW FOOTAGE","ARCHIVE"],
-    intro: 'Professional raw footage archive services tailored for Drone videography and film. Delivered with precision, speed, and full CAA compliance.',
-    metaTitle: 'Raw footage archive UK — Altitude Drone',
-    metaDescription: 'Expert raw footage archive services. Fully insured and CAA-approved operations delivering actionable intelligence and premium media.',
-    heroStat: [
-      { value: '4K', label: 'Ultra HD' },
-      { value: '24H', label: 'Turnaround' },
-      { value: 'CAA', label: 'Approved' },
-    ],
-    bodyHeading: 'ELEVATING STANDARD RAW FOOTAGE ARCHIVE',
-    bodyParagraphs: [
-      "When it comes to raw footage archive, standard consumer methods fall short. Altitude Drone brings commercial-grade rigor and advanced sensor technology to every flight.",
-      "We understand that our clients require more than just raw data. They need raw footage archive that integrates seamlessly into their workflows, whether for marketing, engineering, or compliance.",
-      "By choosing our specialized outcome, you ensure that you receive exactly the right deliverable, backed by £10M public liability insurance and professional standards."
-    ],
-    capabilities: [
-      { title: 'Rapid Deployment', description: 'Available for fast turnaround across the UK.' },
-      { title: 'High Precision', description: 'Captured using industry-leading DJI Enterprise platforms.' },
-      { title: 'Fully Insured', description: 'Comprehensive £10M public liability coverage.' },
-      { title: 'Secure Delivery', description: 'Data delivered via secure client portal.' }
-    ],
-    industries: ['Commercial', 'Property', 'Construction', 'Marketing'],
-    faqs: [
-      { q: 'How quickly can you deliver?', a: 'Standard turnaround is 24-48 hours depending on the scope.' },
-      { q: 'Are you fully insured?', a: 'Yes, we carry £10M public liability insurance for all operations.' },
-      { q: 'Do you operate nationwide?', a: 'Yes, our network allows us to provide coverage across the entire UK.' },
-      { q: 'What is the booking process?', a: 'Simply submit a project brief via our site and we will return a quote same-day.' }
-    ],
-    relatedServices: ['drone-videography-and-film'],
-    cta: { label: 'REQUEST A QUOTE', href: '/contact' }
-  },
-  {
-    slug: 'social-first-reels-and-shorts',
-    title: 'Social-first reels and shorts UK',
-    headline: ["SOCIAL-FIRST","REELS AND","SHORTS"],
-    intro: 'Professional social-first reels and shorts services tailored for Drone videography and film. Delivered with precision, speed, and full CAA compliance.',
-    metaTitle: 'Social-first reels and shorts UK — Altitude Drone',
-    metaDescription: 'Expert social-first reels and shorts services. Fully insured and CAA-approved operations delivering actionable intelligence and premium media.',
-    heroStat: [
-      { value: '4K', label: 'Ultra HD' },
-      { value: '24H', label: 'Turnaround' },
-      { value: 'CAA', label: 'Approved' },
-    ],
-    bodyHeading: 'ELEVATING STANDARD SOCIAL-FIRST REELS AND SHORTS',
-    bodyParagraphs: [
-      "When it comes to social-first reels and shorts, standard consumer methods fall short. Altitude Drone brings commercial-grade rigor and advanced sensor technology to every flight.",
-      "We understand that our clients require more than just raw data. They need social-first reels and shorts that integrates seamlessly into their workflows, whether for marketing, engineering, or compliance.",
-      "By choosing our specialized outcome, you ensure that you receive exactly the right deliverable, backed by £10M public liability insurance and professional standards."
-    ],
-    capabilities: [
-      { title: 'Rapid Deployment', description: 'Available for fast turnaround across the UK.' },
-      { title: 'High Precision', description: 'Captured using industry-leading DJI Enterprise platforms.' },
-      { title: 'Fully Insured', description: 'Comprehensive £10M public liability coverage.' },
-      { title: 'Secure Delivery', description: 'Data delivered via secure client portal.' }
-    ],
-    industries: ['Commercial', 'Property', 'Construction', 'Marketing'],
-    faqs: [
-      { q: 'How quickly can you deliver?', a: 'Standard turnaround is 24-48 hours depending on the scope.' },
-      { q: 'Are you fully insured?', a: 'Yes, we carry £10M public liability insurance for all operations.' },
-      { q: 'Do you operate nationwide?', a: 'Yes, our network allows us to provide coverage across the entire UK.' },
-      { q: 'What is the booking process?', a: 'Simply submit a project brief via our site and we will return a quote same-day.' }
-    ],
-    relatedServices: ['drone-videography-and-film'],
-    cta: { label: 'REQUEST A QUOTE', href: '/contact' }
-  },
-  {
-    slug: 'drone-roof-inspections',
-    title: 'Drone roof inspections UK',
-    headline: ["DRONE ROOF","INSPECTIONS"],
-    intro: 'Professional drone roof inspections services tailored for Roof inspections. Delivered with precision, speed, and full CAA compliance.',
-    metaTitle: 'Drone roof inspections UK — Altitude Drone',
-    metaDescription: 'Expert drone roof inspections services. Fully insured and CAA-approved operations delivering actionable intelligence and premium media.',
-    heroStat: [
-      { value: '4K', label: 'Ultra HD' },
-      { value: '24H', label: 'Turnaround' },
-      { value: 'CAA', label: 'Approved' },
-    ],
-    bodyHeading: 'ELEVATING STANDARD DRONE ROOF INSPECTIONS',
-    bodyParagraphs: [
-      "When it comes to drone roof inspections, standard consumer methods fall short. Altitude Drone brings commercial-grade rigor and advanced sensor technology to every flight.",
-      "We understand that our clients require more than just raw data. They need drone roof inspections that integrates seamlessly into their workflows, whether for marketing, engineering, or compliance.",
-      "By choosing our specialized service, you ensure that you receive exactly the right deliverable, backed by £10M public liability insurance and professional standards."
-    ],
-    capabilities: [
-      { title: 'Rapid Deployment', description: 'Available for fast turnaround across the UK.' },
-      { title: 'High Precision', description: 'Captured using industry-leading DJI Enterprise platforms.' },
-      { title: 'Fully Insured', description: 'Comprehensive £10M public liability coverage.' },
-      { title: 'Secure Delivery', description: 'Data delivered via secure client portal.' }
-    ],
-    industries: ['Commercial', 'Property', 'Construction', 'Marketing'],
-    faqs: [
-      { q: 'How quickly can you deliver?', a: 'Standard turnaround is 24-48 hours depending on the scope.' },
-      { q: 'Are you fully insured?', a: 'Yes, we carry £10M public liability insurance for all operations.' },
-      { q: 'Do you operate nationwide?', a: 'Yes, our network allows us to provide coverage across the entire UK.' },
-      { q: 'What is the booking process?', a: 'Simply submit a project brief via our site and we will return a quote same-day.' }
-    ],
-    relatedServices: ['roof-inspections'],
-    cta: { label: 'REQUEST A QUOTE', href: '/contact' }
-  },
-  {
-    slug: 'commercial-roof-surveys',
-    title: 'Commercial roof surveys UK',
-    headline: ["COMMERCIAL ROOF","SURVEYS"],
-    intro: 'Professional commercial roof surveys services tailored for Roof inspections. Delivered with precision, speed, and full CAA compliance.',
-    metaTitle: 'Commercial roof surveys UK — Altitude Drone',
-    metaDescription: 'Expert commercial roof surveys services. Fully insured and CAA-approved operations delivering actionable intelligence and premium media.',
-    heroStat: [
-      { value: '4K', label: 'Ultra HD' },
-      { value: '24H', label: 'Turnaround' },
-      { value: 'CAA', label: 'Approved' },
-    ],
-    bodyHeading: 'ELEVATING STANDARD COMMERCIAL ROOF SURVEYS',
-    bodyParagraphs: [
-      "When it comes to commercial roof surveys, standard consumer methods fall short. Altitude Drone brings commercial-grade rigor and advanced sensor technology to every flight.",
-      "We understand that our clients require more than just raw data. They need commercial roof surveys that integrates seamlessly into their workflows, whether for marketing, engineering, or compliance.",
-      "By choosing our specialized service, you ensure that you receive exactly the right deliverable, backed by £10M public liability insurance and professional standards."
-    ],
-    capabilities: [
-      { title: 'Rapid Deployment', description: 'Available for fast turnaround across the UK.' },
-      { title: 'High Precision', description: 'Captured using industry-leading DJI Enterprise platforms.' },
-      { title: 'Fully Insured', description: 'Comprehensive £10M public liability coverage.' },
-      { title: 'Secure Delivery', description: 'Data delivered via secure client portal.' }
-    ],
-    industries: ['Commercial', 'Property', 'Construction', 'Marketing'],
-    faqs: [
-      { q: 'How quickly can you deliver?', a: 'Standard turnaround is 24-48 hours depending on the scope.' },
-      { q: 'Are you fully insured?', a: 'Yes, we carry £10M public liability insurance for all operations.' },
-      { q: 'Do you operate nationwide?', a: 'Yes, our network allows us to provide coverage across the entire UK.' },
-      { q: 'What is the booking process?', a: 'Simply submit a project brief via our site and we will return a quote same-day.' }
-    ],
-    relatedServices: ['roof-inspections'],
-    cta: { label: 'REQUEST A QUOTE', href: '/contact' }
-  },
-  {
-    slug: 'industrial-roof-inspections',
-    title: 'Industrial roof inspections UK',
-    headline: ["INDUSTRIAL ROOF","INSPECTIONS"],
-    intro: 'Professional industrial roof inspections services tailored for Roof inspections. Delivered with precision, speed, and full CAA compliance.',
-    metaTitle: 'Industrial roof inspections UK — Altitude Drone',
-    metaDescription: 'Expert industrial roof inspections services. Fully insured and CAA-approved operations delivering actionable intelligence and premium media.',
-    heroStat: [
-      { value: '4K', label: 'Ultra HD' },
-      { value: '24H', label: 'Turnaround' },
-      { value: 'CAA', label: 'Approved' },
-    ],
-    bodyHeading: 'ELEVATING STANDARD INDUSTRIAL ROOF INSPECTIONS',
-    bodyParagraphs: [
-      "When it comes to industrial roof inspections, standard consumer methods fall short. Altitude Drone brings commercial-grade rigor and advanced sensor technology to every flight.",
-      "We understand that our clients require more than just raw data. They need industrial roof inspections that integrates seamlessly into their workflows, whether for marketing, engineering, or compliance.",
-      "By choosing our specialized service, you ensure that you receive exactly the right deliverable, backed by £10M public liability insurance and professional standards."
-    ],
-    capabilities: [
-      { title: 'Rapid Deployment', description: 'Available for fast turnaround across the UK.' },
-      { title: 'High Precision', description: 'Captured using industry-leading DJI Enterprise platforms.' },
-      { title: 'Fully Insured', description: 'Comprehensive £10M public liability coverage.' },
-      { title: 'Secure Delivery', description: 'Data delivered via secure client portal.' }
-    ],
-    industries: ['Commercial', 'Property', 'Construction', 'Marketing'],
-    faqs: [
-      { q: 'How quickly can you deliver?', a: 'Standard turnaround is 24-48 hours depending on the scope.' },
-      { q: 'Are you fully insured?', a: 'Yes, we carry £10M public liability insurance for all operations.' },
-      { q: 'Do you operate nationwide?', a: 'Yes, our network allows us to provide coverage across the entire UK.' },
-      { q: 'What is the booking process?', a: 'Simply submit a project brief via our site and we will return a quote same-day.' }
-    ],
-    relatedServices: ['roof-inspections'],
-    cta: { label: 'REQUEST A QUOTE', href: '/contact' }
-  },
-  {
-    slug: 'flat-roof-drone-inspections',
-    title: 'Flat roof drone inspections UK',
-    headline: ["FLAT ROOF DRONE","INSPECTIONS"],
-    intro: 'Professional flat roof drone inspections services tailored for Roof inspections. Delivered with precision, speed, and full CAA compliance.',
-    metaTitle: 'Flat roof drone inspections UK — Altitude Drone',
-    metaDescription: 'Expert flat roof drone inspections services. Fully insured and CAA-approved operations delivering actionable intelligence and premium media.',
-    heroStat: [
-      { value: '4K', label: 'Ultra HD' },
-      { value: '24H', label: 'Turnaround' },
-      { value: 'CAA', label: 'Approved' },
-    ],
-    bodyHeading: 'ELEVATING STANDARD FLAT ROOF DRONE INSPECTIONS',
-    bodyParagraphs: [
-      "When it comes to flat roof drone inspections, standard consumer methods fall short. Altitude Drone brings commercial-grade rigor and advanced sensor technology to every flight.",
-      "We understand that our clients require more than just raw data. They need flat roof drone inspections that integrates seamlessly into their workflows, whether for marketing, engineering, or compliance.",
-      "By choosing our specialized service, you ensure that you receive exactly the right deliverable, backed by £10M public liability insurance and professional standards."
-    ],
-    capabilities: [
-      { title: 'Rapid Deployment', description: 'Available for fast turnaround across the UK.' },
-      { title: 'High Precision', description: 'Captured using industry-leading DJI Enterprise platforms.' },
-      { title: 'Fully Insured', description: 'Comprehensive £10M public liability coverage.' },
-      { title: 'Secure Delivery', description: 'Data delivered via secure client portal.' }
-    ],
-    industries: ['Commercial', 'Property', 'Construction', 'Marketing'],
-    faqs: [
-      { q: 'How quickly can you deliver?', a: 'Standard turnaround is 24-48 hours depending on the scope.' },
-      { q: 'Are you fully insured?', a: 'Yes, we carry £10M public liability insurance for all operations.' },
-      { q: 'Do you operate nationwide?', a: 'Yes, our network allows us to provide coverage across the entire UK.' },
-      { q: 'What is the booking process?', a: 'Simply submit a project brief via our site and we will return a quote same-day.' }
-    ],
-    relatedServices: ['roof-inspections'],
-    cta: { label: 'REQUEST A QUOTE', href: '/contact' }
-  },
-  {
-    slug: 'gutter-and-drainage-drone-inspections',
-    title: 'Gutter and drainage drone inspections UK',
-    headline: ["GUTTER AND","DRAINAGE DRONE","INSPECTIONS"],
-    intro: 'Professional gutter and drainage drone inspections services tailored for Roof inspections. Delivered with precision, speed, and full CAA compliance.',
-    metaTitle: 'Gutter and drainage drone inspections UK — Altitude Drone',
-    metaDescription: 'Expert gutter and drainage drone inspections services. Fully insured and CAA-approved operations delivering actionable intelligence and premium media.',
-    heroStat: [
-      { value: '4K', label: 'Ultra HD' },
-      { value: '24H', label: 'Turnaround' },
-      { value: 'CAA', label: 'Approved' },
-    ],
-    bodyHeading: 'ELEVATING STANDARD GUTTER AND DRAINAGE DRONE INSPECTIONS',
-    bodyParagraphs: [
-      "When it comes to gutter and drainage drone inspections, standard consumer methods fall short. Altitude Drone brings commercial-grade rigor and advanced sensor technology to every flight.",
-      "We understand that our clients require more than just raw data. They need gutter and drainage drone inspections that integrates seamlessly into their workflows, whether for marketing, engineering, or compliance.",
-      "By choosing our specialized service, you ensure that you receive exactly the right deliverable, backed by £10M public liability insurance and professional standards."
-    ],
-    capabilities: [
-      { title: 'Rapid Deployment', description: 'Available for fast turnaround across the UK.' },
-      { title: 'High Precision', description: 'Captured using industry-leading DJI Enterprise platforms.' },
-      { title: 'Fully Insured', description: 'Comprehensive £10M public liability coverage.' },
-      { title: 'Secure Delivery', description: 'Data delivered via secure client portal.' }
-    ],
-    industries: ['Commercial', 'Property', 'Construction', 'Marketing'],
-    faqs: [
-      { q: 'How quickly can you deliver?', a: 'Standard turnaround is 24-48 hours depending on the scope.' },
-      { q: 'Are you fully insured?', a: 'Yes, we carry £10M public liability insurance for all operations.' },
-      { q: 'Do you operate nationwide?', a: 'Yes, our network allows us to provide coverage across the entire UK.' },
-      { q: 'What is the booking process?', a: 'Simply submit a project brief via our site and we will return a quote same-day.' }
-    ],
-    relatedServices: ['roof-inspections'],
-    cta: { label: 'REQUEST A QUOTE', href: '/contact' }
-  },
-  {
-    slug: 'storm-damage-roof-inspection',
-    title: 'Storm damage roof inspection UK',
-    headline: ["STORM DAMAGE","ROOF INSPECTION"],
-    intro: 'Professional storm damage roof inspection services tailored for Roof inspections. Delivered with precision, speed, and full CAA compliance.',
-    metaTitle: 'Storm damage roof inspection UK — Altitude Drone',
-    metaDescription: 'Expert storm damage roof inspection services. Fully insured and CAA-approved operations delivering actionable intelligence and premium media.',
-    heroStat: [
-      { value: '4K', label: 'Ultra HD' },
-      { value: '24H', label: 'Turnaround' },
-      { value: 'CAA', label: 'Approved' },
-    ],
-    bodyHeading: 'ELEVATING STANDARD STORM DAMAGE ROOF INSPECTION',
-    bodyParagraphs: [
-      "When it comes to storm damage roof inspection, standard consumer methods fall short. Altitude Drone brings commercial-grade rigor and advanced sensor technology to every flight.",
-      "We understand that our clients require more than just raw data. They need storm damage roof inspection that integrates seamlessly into their workflows, whether for marketing, engineering, or compliance.",
-      "By choosing our specialized service, you ensure that you receive exactly the right deliverable, backed by £10M public liability insurance and professional standards."
-    ],
-    capabilities: [
-      { title: 'Rapid Deployment', description: 'Available for fast turnaround across the UK.' },
-      { title: 'High Precision', description: 'Captured using industry-leading DJI Enterprise platforms.' },
-      { title: 'Fully Insured', description: 'Comprehensive £10M public liability coverage.' },
-      { title: 'Secure Delivery', description: 'Data delivered via secure client portal.' }
-    ],
-    industries: ['Commercial', 'Property', 'Construction', 'Marketing'],
-    faqs: [
-      { q: 'How quickly can you deliver?', a: 'Standard turnaround is 24-48 hours depending on the scope.' },
-      { q: 'Are you fully insured?', a: 'Yes, we carry £10M public liability insurance for all operations.' },
-      { q: 'Do you operate nationwide?', a: 'Yes, our network allows us to provide coverage across the entire UK.' },
-      { q: 'What is the booking process?', a: 'Simply submit a project brief via our site and we will return a quote same-day.' }
-    ],
-    relatedServices: ['roof-inspections'],
-    cta: { label: 'REQUEST A QUOTE', href: '/contact' }
-  },
-  {
-    slug: 'dilapidation-roof-survey-support',
-    title: 'Dilapidation roof survey support UK',
-    headline: ["DILAPIDATION","ROOF SURVEY","SUPPORT"],
-    intro: 'Professional dilapidation roof survey support services tailored for Roof inspections. Delivered with precision, speed, and full CAA compliance.',
-    metaTitle: 'Dilapidation roof survey support UK — Altitude Drone',
-    metaDescription: 'Expert dilapidation roof survey support services. Fully insured and CAA-approved operations delivering actionable intelligence and premium media.',
-    heroStat: [
-      { value: '4K', label: 'Ultra HD' },
-      { value: '24H', label: 'Turnaround' },
-      { value: 'CAA', label: 'Approved' },
-    ],
-    bodyHeading: 'ELEVATING STANDARD DILAPIDATION ROOF SURVEY SUPPORT',
-    bodyParagraphs: [
-      "When it comes to dilapidation roof survey support, standard consumer methods fall short. Altitude Drone brings commercial-grade rigor and advanced sensor technology to every flight.",
-      "We understand that our clients require more than just raw data. They need dilapidation roof survey support that integrates seamlessly into their workflows, whether for marketing, engineering, or compliance.",
-      "By choosing our specialized service, you ensure that you receive exactly the right deliverable, backed by £10M public liability insurance and professional standards."
-    ],
-    capabilities: [
-      { title: 'Rapid Deployment', description: 'Available for fast turnaround across the UK.' },
-      { title: 'High Precision', description: 'Captured using industry-leading DJI Enterprise platforms.' },
-      { title: 'Fully Insured', description: 'Comprehensive £10M public liability coverage.' },
-      { title: 'Secure Delivery', description: 'Data delivered via secure client portal.' }
-    ],
-    industries: ['Commercial', 'Property', 'Construction', 'Marketing'],
-    faqs: [
-      { q: 'How quickly can you deliver?', a: 'Standard turnaround is 24-48 hours depending on the scope.' },
-      { q: 'Are you fully insured?', a: 'Yes, we carry £10M public liability insurance for all operations.' },
-      { q: 'Do you operate nationwide?', a: 'Yes, our network allows us to provide coverage across the entire UK.' },
-      { q: 'What is the booking process?', a: 'Simply submit a project brief via our site and we will return a quote same-day.' }
-    ],
-    relatedServices: ['roof-inspections'],
-    cta: { label: 'REQUEST A QUOTE', href: '/contact' }
-  },
-  {
-    slug: 'planned-maintenance-roof-inspections',
-    title: 'Planned maintenance roof inspections UK',
-    headline: ["PLANNED","MAINTENANCE","ROOF","INSPECTIONS"],
-    intro: 'Professional planned maintenance roof inspections services tailored for Roof inspections. Delivered with precision, speed, and full CAA compliance.',
-    metaTitle: 'Planned maintenance roof inspections UK — Altitude Drone',
-    metaDescription: 'Expert planned maintenance roof inspections services. Fully insured and CAA-approved operations delivering actionable intelligence and premium media.',
-    heroStat: [
-      { value: '4K', label: 'Ultra HD' },
-      { value: '24H', label: 'Turnaround' },
-      { value: 'CAA', label: 'Approved' },
-    ],
-    bodyHeading: 'ELEVATING STANDARD PLANNED MAINTENANCE ROOF INSPECTIONS',
-    bodyParagraphs: [
-      "When it comes to planned maintenance roof inspections, standard consumer methods fall short. Altitude Drone brings commercial-grade rigor and advanced sensor technology to every flight.",
-      "We understand that our clients require more than just raw data. They need planned maintenance roof inspections that integrates seamlessly into their workflows, whether for marketing, engineering, or compliance.",
-      "By choosing our specialized service, you ensure that you receive exactly the right deliverable, backed by £10M public liability insurance and professional standards."
-    ],
-    capabilities: [
-      { title: 'Rapid Deployment', description: 'Available for fast turnaround across the UK.' },
-      { title: 'High Precision', description: 'Captured using industry-leading DJI Enterprise platforms.' },
-      { title: 'Fully Insured', description: 'Comprehensive £10M public liability coverage.' },
-      { title: 'Secure Delivery', description: 'Data delivered via secure client portal.' }
-    ],
-    industries: ['Commercial', 'Property', 'Construction', 'Marketing'],
-    faqs: [
-      { q: 'How quickly can you deliver?', a: 'Standard turnaround is 24-48 hours depending on the scope.' },
-      { q: 'Are you fully insured?', a: 'Yes, we carry £10M public liability insurance for all operations.' },
-      { q: 'Do you operate nationwide?', a: 'Yes, our network allows us to provide coverage across the entire UK.' },
-      { q: 'What is the booking process?', a: 'Simply submit a project brief via our site and we will return a quote same-day.' }
-    ],
-    relatedServices: ['roof-inspections'],
-    cta: { label: 'REQUEST A QUOTE', href: '/contact' }
-  },
-  {
-    slug: 'listed-building-roof-inspections',
-    title: 'Listed building roof inspections UK',
-    headline: ["LISTED BUILDING","ROOF","INSPECTIONS"],
-    intro: 'Professional listed building roof inspections services tailored for Roof inspections. Delivered with precision, speed, and full CAA compliance.',
-    metaTitle: 'Listed building roof inspections UK — Altitude Drone',
-    metaDescription: 'Expert listed building roof inspections services. Fully insured and CAA-approved operations delivering actionable intelligence and premium media.',
-    heroStat: [
-      { value: '4K', label: 'Ultra HD' },
-      { value: '24H', label: 'Turnaround' },
-      { value: 'CAA', label: 'Approved' },
-    ],
-    bodyHeading: 'ELEVATING STANDARD LISTED BUILDING ROOF INSPECTIONS',
-    bodyParagraphs: [
-      "When it comes to listed building roof inspections, standard consumer methods fall short. Altitude Drone brings commercial-grade rigor and advanced sensor technology to every flight.",
-      "We understand that our clients require more than just raw data. They need listed building roof inspections that integrates seamlessly into their workflows, whether for marketing, engineering, or compliance.",
-      "By choosing our specialized service, you ensure that you receive exactly the right deliverable, backed by £10M public liability insurance and professional standards."
-    ],
-    capabilities: [
-      { title: 'Rapid Deployment', description: 'Available for fast turnaround across the UK.' },
-      { title: 'High Precision', description: 'Captured using industry-leading DJI Enterprise platforms.' },
-      { title: 'Fully Insured', description: 'Comprehensive £10M public liability coverage.' },
-      { title: 'Secure Delivery', description: 'Data delivered via secure client portal.' }
-    ],
-    industries: ['Commercial', 'Property', 'Construction', 'Marketing'],
-    faqs: [
-      { q: 'How quickly can you deliver?', a: 'Standard turnaround is 24-48 hours depending on the scope.' },
-      { q: 'Are you fully insured?', a: 'Yes, we carry £10M public liability insurance for all operations.' },
-      { q: 'Do you operate nationwide?', a: 'Yes, our network allows us to provide coverage across the entire UK.' },
-      { q: 'What is the booking process?', a: 'Simply submit a project brief via our site and we will return a quote same-day.' }
-    ],
-    relatedServices: ['roof-inspections'],
-    cta: { label: 'REQUEST A QUOTE', href: '/contact' }
-  },
-  {
-    slug: 'insurance-roof-inspection-evidence',
-    title: 'Insurance roof inspection evidence UK',
-    headline: ["INSURANCE ROOF","INSPECTION","EVIDENCE"],
-    intro: 'Professional insurance roof inspection evidence services tailored for Roof inspections. Delivered with precision, speed, and full CAA compliance.',
-    metaTitle: 'Insurance roof inspection evidence UK — Altitude Drone',
-    metaDescription: 'Expert insurance roof inspection evidence services. Fully insured and CAA-approved operations delivering actionable intelligence and premium media.',
-    heroStat: [
-      { value: '4K', label: 'Ultra HD' },
-      { value: '24H', label: 'Turnaround' },
-      { value: 'CAA', label: 'Approved' },
-    ],
-    bodyHeading: 'ELEVATING STANDARD INSURANCE ROOF INSPECTION EVIDENCE',
-    bodyParagraphs: [
-      "When it comes to insurance roof inspection evidence, standard consumer methods fall short. Altitude Drone brings commercial-grade rigor and advanced sensor technology to every flight.",
-      "We understand that our clients require more than just raw data. They need insurance roof inspection evidence that integrates seamlessly into their workflows, whether for marketing, engineering, or compliance.",
-      "By choosing our specialized service, you ensure that you receive exactly the right deliverable, backed by £10M public liability insurance and professional standards."
-    ],
-    capabilities: [
-      { title: 'Rapid Deployment', description: 'Available for fast turnaround across the UK.' },
-      { title: 'High Precision', description: 'Captured using industry-leading DJI Enterprise platforms.' },
-      { title: 'Fully Insured', description: 'Comprehensive £10M public liability coverage.' },
-      { title: 'Secure Delivery', description: 'Data delivered via secure client portal.' }
-    ],
-    industries: ['Commercial', 'Property', 'Construction', 'Marketing'],
-    faqs: [
-      { q: 'How quickly can you deliver?', a: 'Standard turnaround is 24-48 hours depending on the scope.' },
-      { q: 'Are you fully insured?', a: 'Yes, we carry £10M public liability insurance for all operations.' },
-      { q: 'Do you operate nationwide?', a: 'Yes, our network allows us to provide coverage across the entire UK.' },
-      { q: 'What is the booking process?', a: 'Simply submit a project brief via our site and we will return a quote same-day.' }
-    ],
-    relatedServices: ['roof-inspections'],
-    cta: { label: 'REQUEST A QUOTE', href: '/contact' }
-  },
-  {
-    slug: 'high-resolution-roof-condition-report',
-    title: 'High-resolution roof condition report UK',
-    headline: ["HIGH-RESOLUTION","ROOF CONDITION","REPORT"],
-    intro: 'Professional high-resolution roof condition report services tailored for Roof inspections. Delivered with precision, speed, and full CAA compliance.',
-    metaTitle: 'High-resolution roof condition report UK — Altitude Drone',
-    metaDescription: 'Expert high-resolution roof condition report services. Fully insured and CAA-approved operations delivering actionable intelligence and premium media.',
-    heroStat: [
-      { value: '4K', label: 'Ultra HD' },
-      { value: '24H', label: 'Turnaround' },
-      { value: 'CAA', label: 'Approved' },
-    ],
-    bodyHeading: 'ELEVATING STANDARD HIGH-RESOLUTION ROOF CONDITION REPORT',
-    bodyParagraphs: [
-      "When it comes to high-resolution roof condition report, standard consumer methods fall short. Altitude Drone brings commercial-grade rigor and advanced sensor technology to every flight.",
-      "We understand that our clients require more than just raw data. They need high-resolution roof condition report that integrates seamlessly into their workflows, whether for marketing, engineering, or compliance.",
-      "By choosing our specialized outcome, you ensure that you receive exactly the right deliverable, backed by £10M public liability insurance and professional standards."
-    ],
-    capabilities: [
-      { title: 'Rapid Deployment', description: 'Available for fast turnaround across the UK.' },
-      { title: 'High Precision', description: 'Captured using industry-leading DJI Enterprise platforms.' },
-      { title: 'Fully Insured', description: 'Comprehensive £10M public liability coverage.' },
-      { title: 'Secure Delivery', description: 'Data delivered via secure client portal.' }
-    ],
-    industries: ['Commercial', 'Property', 'Construction', 'Marketing'],
-    faqs: [
-      { q: 'How quickly can you deliver?', a: 'Standard turnaround is 24-48 hours depending on the scope.' },
-      { q: 'Are you fully insured?', a: 'Yes, we carry £10M public liability insurance for all operations.' },
-      { q: 'Do you operate nationwide?', a: 'Yes, our network allows us to provide coverage across the entire UK.' },
-      { q: 'What is the booking process?', a: 'Simply submit a project brief via our site and we will return a quote same-day.' }
-    ],
-    relatedServices: ['roof-inspections'],
-    cta: { label: 'REQUEST A QUOTE', href: '/contact' }
-  },
-  {
-    slug: 'annotated-defect-images',
-    title: 'Annotated defect images UK',
-    headline: ["ANNOTATED","DEFECT IMAGES"],
-    intro: 'Professional annotated defect images services tailored for Roof inspections. Delivered with precision, speed, and full CAA compliance.',
-    metaTitle: 'Annotated defect images UK — Altitude Drone',
-    metaDescription: 'Expert annotated defect images services. Fully insured and CAA-approved operations delivering actionable intelligence and premium media.',
-    heroStat: [
-      { value: '4K', label: 'Ultra HD' },
-      { value: '24H', label: 'Turnaround' },
-      { value: 'CAA', label: 'Approved' },
-    ],
-    bodyHeading: 'ELEVATING STANDARD ANNOTATED DEFECT IMAGES',
-    bodyParagraphs: [
-      "When it comes to annotated defect images, standard consumer methods fall short. Altitude Drone brings commercial-grade rigor and advanced sensor technology to every flight.",
-      "We understand that our clients require more than just raw data. They need annotated defect images that integrates seamlessly into their workflows, whether for marketing, engineering, or compliance.",
-      "By choosing our specialized outcome, you ensure that you receive exactly the right deliverable, backed by £10M public liability insurance and professional standards."
-    ],
-    capabilities: [
-      { title: 'Rapid Deployment', description: 'Available for fast turnaround across the UK.' },
-      { title: 'High Precision', description: 'Captured using industry-leading DJI Enterprise platforms.' },
-      { title: 'Fully Insured', description: 'Comprehensive £10M public liability coverage.' },
-      { title: 'Secure Delivery', description: 'Data delivered via secure client portal.' }
-    ],
-    industries: ['Commercial', 'Property', 'Construction', 'Marketing'],
-    faqs: [
-      { q: 'How quickly can you deliver?', a: 'Standard turnaround is 24-48 hours depending on the scope.' },
-      { q: 'Are you fully insured?', a: 'Yes, we carry £10M public liability insurance for all operations.' },
-      { q: 'Do you operate nationwide?', a: 'Yes, our network allows us to provide coverage across the entire UK.' },
-      { q: 'What is the booking process?', a: 'Simply submit a project brief via our site and we will return a quote same-day.' }
-    ],
-    relatedServices: ['roof-inspections'],
-    cta: { label: 'REQUEST A QUOTE', href: '/contact' }
-  },
-  {
-    slug: 'pdf-inspection-report',
-    title: 'PDF inspection report UK',
-    headline: ["PDF INSPECTION","REPORT"],
-    intro: 'Professional pdf inspection report services tailored for Roof inspections. Delivered with precision, speed, and full CAA compliance.',
-    metaTitle: 'PDF inspection report UK — Altitude Drone',
-    metaDescription: 'Expert pdf inspection report services. Fully insured and CAA-approved operations delivering actionable intelligence and premium media.',
-    heroStat: [
-      { value: '4K', label: 'Ultra HD' },
-      { value: '24H', label: 'Turnaround' },
-      { value: 'CAA', label: 'Approved' },
-    ],
-    bodyHeading: 'ELEVATING STANDARD PDF INSPECTION REPORT',
-    bodyParagraphs: [
-      "When it comes to pdf inspection report, standard consumer methods fall short. Altitude Drone brings commercial-grade rigor and advanced sensor technology to every flight.",
-      "We understand that our clients require more than just raw data. They need pdf inspection report that integrates seamlessly into their workflows, whether for marketing, engineering, or compliance.",
-      "By choosing our specialized outcome, you ensure that you receive exactly the right deliverable, backed by £10M public liability insurance and professional standards."
-    ],
-    capabilities: [
-      { title: 'Rapid Deployment', description: 'Available for fast turnaround across the UK.' },
-      { title: 'High Precision', description: 'Captured using industry-leading DJI Enterprise platforms.' },
-      { title: 'Fully Insured', description: 'Comprehensive £10M public liability coverage.' },
-      { title: 'Secure Delivery', description: 'Data delivered via secure client portal.' }
-    ],
-    industries: ['Commercial', 'Property', 'Construction', 'Marketing'],
-    faqs: [
-      { q: 'How quickly can you deliver?', a: 'Standard turnaround is 24-48 hours depending on the scope.' },
-      { q: 'Are you fully insured?', a: 'Yes, we carry £10M public liability insurance for all operations.' },
-      { q: 'Do you operate nationwide?', a: 'Yes, our network allows us to provide coverage across the entire UK.' },
-      { q: 'What is the booking process?', a: 'Simply submit a project brief via our site and we will return a quote same-day.' }
-    ],
-    relatedServices: ['roof-inspections'],
-    cta: { label: 'REQUEST A QUOTE', href: '/contact' }
-  },
-  {
-    slug: 'defect-schedule',
-    title: 'Defect schedule UK',
-    headline: ["DEFECT SCHEDULE"],
-    intro: 'Professional defect schedule services tailored for Roof inspections. Delivered with precision, speed, and full CAA compliance.',
-    metaTitle: 'Defect schedule UK — Altitude Drone',
-    metaDescription: 'Expert defect schedule services. Fully insured and CAA-approved operations delivering actionable intelligence and premium media.',
-    heroStat: [
-      { value: '4K', label: 'Ultra HD' },
-      { value: '24H', label: 'Turnaround' },
-      { value: 'CAA', label: 'Approved' },
-    ],
-    bodyHeading: 'ELEVATING STANDARD DEFECT SCHEDULE',
-    bodyParagraphs: [
-      "When it comes to defect schedule, standard consumer methods fall short. Altitude Drone brings commercial-grade rigor and advanced sensor technology to every flight.",
-      "We understand that our clients require more than just raw data. They need defect schedule that integrates seamlessly into their workflows, whether for marketing, engineering, or compliance.",
-      "By choosing our specialized outcome, you ensure that you receive exactly the right deliverable, backed by £10M public liability insurance and professional standards."
-    ],
-    capabilities: [
-      { title: 'Rapid Deployment', description: 'Available for fast turnaround across the UK.' },
-      { title: 'High Precision', description: 'Captured using industry-leading DJI Enterprise platforms.' },
-      { title: 'Fully Insured', description: 'Comprehensive £10M public liability coverage.' },
-      { title: 'Secure Delivery', description: 'Data delivered via secure client portal.' }
-    ],
-    industries: ['Commercial', 'Property', 'Construction', 'Marketing'],
-    faqs: [
-      { q: 'How quickly can you deliver?', a: 'Standard turnaround is 24-48 hours depending on the scope.' },
-      { q: 'Are you fully insured?', a: 'Yes, we carry £10M public liability insurance for all operations.' },
-      { q: 'Do you operate nationwide?', a: 'Yes, our network allows us to provide coverage across the entire UK.' },
-      { q: 'What is the booking process?', a: 'Simply submit a project brief via our site and we will return a quote same-day.' }
-    ],
-    relatedServices: ['roof-inspections'],
-    cta: { label: 'REQUEST A QUOTE', href: '/contact' }
-  },
-  {
-    slug: 'gutter-blockage-evidence',
-    title: 'Gutter/blockage evidence UK',
-    headline: ["GUTTER/BLOCKAGE","EVIDENCE"],
-    intro: 'Professional gutter/blockage evidence services tailored for Roof inspections. Delivered with precision, speed, and full CAA compliance.',
-    metaTitle: 'Gutter/blockage evidence UK — Altitude Drone',
-    metaDescription: 'Expert gutter/blockage evidence services. Fully insured and CAA-approved operations delivering actionable intelligence and premium media.',
-    heroStat: [
-      { value: '4K', label: 'Ultra HD' },
-      { value: '24H', label: 'Turnaround' },
-      { value: 'CAA', label: 'Approved' },
-    ],
-    bodyHeading: 'ELEVATING STANDARD GUTTER/BLOCKAGE EVIDENCE',
-    bodyParagraphs: [
-      "When it comes to gutter/blockage evidence, standard consumer methods fall short. Altitude Drone brings commercial-grade rigor and advanced sensor technology to every flight.",
-      "We understand that our clients require more than just raw data. They need gutter/blockage evidence that integrates seamlessly into their workflows, whether for marketing, engineering, or compliance.",
-      "By choosing our specialized outcome, you ensure that you receive exactly the right deliverable, backed by £10M public liability insurance and professional standards."
-    ],
-    capabilities: [
-      { title: 'Rapid Deployment', description: 'Available for fast turnaround across the UK.' },
-      { title: 'High Precision', description: 'Captured using industry-leading DJI Enterprise platforms.' },
-      { title: 'Fully Insured', description: 'Comprehensive £10M public liability coverage.' },
-      { title: 'Secure Delivery', description: 'Data delivered via secure client portal.' }
-    ],
-    industries: ['Commercial', 'Property', 'Construction', 'Marketing'],
-    faqs: [
-      { q: 'How quickly can you deliver?', a: 'Standard turnaround is 24-48 hours depending on the scope.' },
-      { q: 'Are you fully insured?', a: 'Yes, we carry £10M public liability insurance for all operations.' },
-      { q: 'Do you operate nationwide?', a: 'Yes, our network allows us to provide coverage across the entire UK.' },
-      { q: 'What is the booking process?', a: 'Simply submit a project brief via our site and we will return a quote same-day.' }
-    ],
-    relatedServices: ['roof-inspections'],
-    cta: { label: 'REQUEST A QUOTE', href: '/contact' }
-  },
-  {
-    slug: 'before-and-after-repair-evidence',
-    title: 'Before-and-after repair evidence UK',
-    headline: ["BEFORE-AND-AFTER","REPAIR EVIDENCE"],
-    intro: 'Professional before-and-after repair evidence services tailored for Roof inspections. Delivered with precision, speed, and full CAA compliance.',
-    metaTitle: 'Before-and-after repair evidence UK — Altitude Drone',
-    metaDescription: 'Expert before-and-after repair evidence services. Fully insured and CAA-approved operations delivering actionable intelligence and premium media.',
-    heroStat: [
-      { value: '4K', label: 'Ultra HD' },
-      { value: '24H', label: 'Turnaround' },
-      { value: 'CAA', label: 'Approved' },
-    ],
-    bodyHeading: 'ELEVATING STANDARD BEFORE-AND-AFTER REPAIR EVIDENCE',
-    bodyParagraphs: [
-      "When it comes to before-and-after repair evidence, standard consumer methods fall short. Altitude Drone brings commercial-grade rigor and advanced sensor technology to every flight.",
-      "We understand that our clients require more than just raw data. They need before-and-after repair evidence that integrates seamlessly into their workflows, whether for marketing, engineering, or compliance.",
-      "By choosing our specialized outcome, you ensure that you receive exactly the right deliverable, backed by £10M public liability insurance and professional standards."
-    ],
-    capabilities: [
-      { title: 'Rapid Deployment', description: 'Available for fast turnaround across the UK.' },
-      { title: 'High Precision', description: 'Captured using industry-leading DJI Enterprise platforms.' },
-      { title: 'Fully Insured', description: 'Comprehensive £10M public liability coverage.' },
-      { title: 'Secure Delivery', description: 'Data delivered via secure client portal.' }
-    ],
-    industries: ['Commercial', 'Property', 'Construction', 'Marketing'],
-    faqs: [
-      { q: 'How quickly can you deliver?', a: 'Standard turnaround is 24-48 hours depending on the scope.' },
-      { q: 'Are you fully insured?', a: 'Yes, we carry £10M public liability insurance for all operations.' },
-      { q: 'Do you operate nationwide?', a: 'Yes, our network allows us to provide coverage across the entire UK.' },
-      { q: 'What is the booking process?', a: 'Simply submit a project brief via our site and we will return a quote same-day.' }
-    ],
-    relatedServices: ['roof-inspections'],
-    cta: { label: 'REQUEST A QUOTE', href: '/contact' }
-  },
-  {
-    slug: 'insurance-claim-evidence-pack',
-    title: 'Insurance claim evidence pack UK',
-    headline: ["INSURANCE CLAIM","EVIDENCE PACK"],
-    intro: 'Professional insurance claim evidence pack services tailored for Roof inspections. Delivered with precision, speed, and full CAA compliance.',
-    metaTitle: 'Insurance claim evidence pack UK — Altitude Drone',
-    metaDescription: 'Expert insurance claim evidence pack services. Fully insured and CAA-approved operations delivering actionable intelligence and premium media.',
-    heroStat: [
-      { value: '4K', label: 'Ultra HD' },
-      { value: '24H', label: 'Turnaround' },
-      { value: 'CAA', label: 'Approved' },
-    ],
-    bodyHeading: 'ELEVATING STANDARD INSURANCE CLAIM EVIDENCE PACK',
-    bodyParagraphs: [
-      "When it comes to insurance claim evidence pack, standard consumer methods fall short. Altitude Drone brings commercial-grade rigor and advanced sensor technology to every flight.",
-      "We understand that our clients require more than just raw data. They need insurance claim evidence pack that integrates seamlessly into their workflows, whether for marketing, engineering, or compliance.",
-      "By choosing our specialized outcome, you ensure that you receive exactly the right deliverable, backed by £10M public liability insurance and professional standards."
-    ],
-    capabilities: [
-      { title: 'Rapid Deployment', description: 'Available for fast turnaround across the UK.' },
-      { title: 'High Precision', description: 'Captured using industry-leading DJI Enterprise platforms.' },
-      { title: 'Fully Insured', description: 'Comprehensive £10M public liability coverage.' },
-      { title: 'Secure Delivery', description: 'Data delivered via secure client portal.' }
-    ],
-    industries: ['Commercial', 'Property', 'Construction', 'Marketing'],
-    faqs: [
-      { q: 'How quickly can you deliver?', a: 'Standard turnaround is 24-48 hours depending on the scope.' },
-      { q: 'Are you fully insured?', a: 'Yes, we carry £10M public liability insurance for all operations.' },
-      { q: 'Do you operate nationwide?', a: 'Yes, our network allows us to provide coverage across the entire UK.' },
-      { q: 'What is the booking process?', a: 'Simply submit a project brief via our site and we will return a quote same-day.' }
-    ],
-    relatedServices: ['roof-inspections'],
-    cta: { label: 'REQUEST A QUOTE', href: '/contact' }
-  },
-  {
-    slug: 'maintenance-planning-pack',
-    title: 'Maintenance planning pack UK',
-    headline: ["MAINTENANCE","PLANNING PACK"],
-    intro: 'Professional maintenance planning pack services tailored for Roof inspections. Delivered with precision, speed, and full CAA compliance.',
-    metaTitle: 'Maintenance planning pack UK — Altitude Drone',
-    metaDescription: 'Expert maintenance planning pack services. Fully insured and CAA-approved operations delivering actionable intelligence and premium media.',
-    heroStat: [
-      { value: '4K', label: 'Ultra HD' },
-      { value: '24H', label: 'Turnaround' },
-      { value: 'CAA', label: 'Approved' },
-    ],
-    bodyHeading: 'ELEVATING STANDARD MAINTENANCE PLANNING PACK',
-    bodyParagraphs: [
-      "When it comes to maintenance planning pack, standard consumer methods fall short. Altitude Drone brings commercial-grade rigor and advanced sensor technology to every flight.",
-      "We understand that our clients require more than just raw data. They need maintenance planning pack that integrates seamlessly into their workflows, whether for marketing, engineering, or compliance.",
-      "By choosing our specialized outcome, you ensure that you receive exactly the right deliverable, backed by £10M public liability insurance and professional standards."
-    ],
-    capabilities: [
-      { title: 'Rapid Deployment', description: 'Available for fast turnaround across the UK.' },
-      { title: 'High Precision', description: 'Captured using industry-leading DJI Enterprise platforms.' },
-      { title: 'Fully Insured', description: 'Comprehensive £10M public liability coverage.' },
-      { title: 'Secure Delivery', description: 'Data delivered via secure client portal.' }
-    ],
-    industries: ['Commercial', 'Property', 'Construction', 'Marketing'],
-    faqs: [
-      { q: 'How quickly can you deliver?', a: 'Standard turnaround is 24-48 hours depending on the scope.' },
-      { q: 'Are you fully insured?', a: 'Yes, we carry £10M public liability insurance for all operations.' },
-      { q: 'Do you operate nationwide?', a: 'Yes, our network allows us to provide coverage across the entire UK.' },
-      { q: 'What is the booking process?', a: 'Simply submit a project brief via our site and we will return a quote same-day.' }
-    ],
-    relatedServices: ['roof-inspections'],
-    cta: { label: 'REQUEST A QUOTE', href: '/contact' }
-  },
-  {
-    slug: 'access-risk-reduction',
-    title: 'Access-risk reduction UK',
-    headline: ["ACCESS-RISK","REDUCTION"],
-    intro: 'Professional access-risk reduction services tailored for Roof inspections. Delivered with precision, speed, and full CAA compliance.',
-    metaTitle: 'Access-risk reduction UK — Altitude Drone',
-    metaDescription: 'Expert access-risk reduction services. Fully insured and CAA-approved operations delivering actionable intelligence and premium media.',
-    heroStat: [
-      { value: '4K', label: 'Ultra HD' },
-      { value: '24H', label: 'Turnaround' },
-      { value: 'CAA', label: 'Approved' },
-    ],
-    bodyHeading: 'ELEVATING STANDARD ACCESS-RISK REDUCTION',
-    bodyParagraphs: [
-      "When it comes to access-risk reduction, standard consumer methods fall short. Altitude Drone brings commercial-grade rigor and advanced sensor technology to every flight.",
-      "We understand that our clients require more than just raw data. They need access-risk reduction that integrates seamlessly into their workflows, whether for marketing, engineering, or compliance.",
-      "By choosing our specialized outcome, you ensure that you receive exactly the right deliverable, backed by £10M public liability insurance and professional standards."
-    ],
-    capabilities: [
-      { title: 'Rapid Deployment', description: 'Available for fast turnaround across the UK.' },
-      { title: 'High Precision', description: 'Captured using industry-leading DJI Enterprise platforms.' },
-      { title: 'Fully Insured', description: 'Comprehensive £10M public liability coverage.' },
-      { title: 'Secure Delivery', description: 'Data delivered via secure client portal.' }
-    ],
-    industries: ['Commercial', 'Property', 'Construction', 'Marketing'],
-    faqs: [
-      { q: 'How quickly can you deliver?', a: 'Standard turnaround is 24-48 hours depending on the scope.' },
-      { q: 'Are you fully insured?', a: 'Yes, we carry £10M public liability insurance for all operations.' },
-      { q: 'Do you operate nationwide?', a: 'Yes, our network allows us to provide coverage across the entire UK.' },
-      { q: 'What is the booking process?', a: 'Simply submit a project brief via our site and we will return a quote same-day.' }
-    ],
-    relatedServices: ['roof-inspections'],
-    cta: { label: 'REQUEST A QUOTE', href: '/contact' }
+      { q: 'Can these be embedded on my site?', a: 'Yes, we provide standard iframe code to embed the interactive viewer anywhere.' },
+      { q: 'What altitude do you fly at?', a: 'Typically between 30m and 120m to get the best balance of detail and context.' }
+    ],
+    relatedServices: ['aerial-photography-film', 'events-media', 'visual-sales-pack'],
+    cta: { label: 'START 360 BRIEF', href: '/contact' }
   }
-]
+];

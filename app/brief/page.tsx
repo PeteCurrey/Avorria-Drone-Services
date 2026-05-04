@@ -1,333 +1,744 @@
+// app/brief/page.tsx
 'use client'
 
-import { useState, useEffect } from 'react'
-import { gsap } from 'gsap'
-import { ArrowRight, ArrowLeft, CheckCircle2, Shield, Radio, Activity } from 'lucide-react'
-import VideoBackground from '@/components/ui/VideoBackground'
+import { useState, useEffect, Suspense } from 'react'
+import { useSearchParams } from 'next/navigation'
+import { 
+  ArrowRight, 
+  CheckCircle2, 
+  ShieldCheck, 
+  Target, 
+  Search, 
+  BarChart3, 
+  Camera, 
+  Box, 
+  ArrowUpRight,
+  Shield,
+  Clock,
+  ChevronRight,
+  AlertCircle,
+  HelpCircle,
+  Upload,
+  Calendar,
+  MapPin,
+  Mail,
+  Phone,
+  User,
+  Building2,
+  Zap,
+  Activity,
+  FileText,
+  Thermometer,
+  Layers,
+  Video,
+  Database
+} from 'lucide-react'
+import SectionTag from '@/components/ui/SectionTag'
+import Link from 'next/link'
 
-const STEPS = [
-  { id: 1, name: 'MISSION ORIGIN', desc: 'Contact Details' },
-  { id: 2, name: 'FLIGHT PARAMETERS', desc: 'Project Scope' },
-  { id: 3, name: 'TECHNICAL SPECS', desc: 'Site Requirements' },
-  { id: 4, name: 'REVIEW & LAUNCH', desc: 'Final Validation' }
-]
-
-export default function ProjectBriefPage() {
-  const [currentStep, setCurrentStep] = useState(1)
+function BriefFormContent() {
+  const searchParams = useSearchParams()
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success'>('idle')
+  
   const [formData, setFormData] = useState({
-    // Step 1: Contact
     name: '',
-    email: '',
     company: '',
+    email: '',
     phone: '',
-    // Step 2: Mission
-    serviceType: 'Inspection',
-    industry: 'Construction',
-    timeline: 'Immediate',
-    budget: '',
-    // Step 3: Technical
+    role: '',
+    contactMethod: 'Email',
+    
     location: '',
-    hazards: '',
-    nightFlight: 'No',
-    indoors: 'No',
-    // Step 4: Notes
-    notes: ''
+    town: '',
+    region: '',
+    easyAccess: 'Not sure',
+    liveSite: 'Not sure',
+    accessRestrictions: '',
+    
+    outcomes: [] as string[],
+    serviceInterest: searchParams.get('service') || 'Not sure yet',
+    packageInterest: searchParams.get('package') || 'Not sure yet',
+    
+    deliverables: [] as string[],
+    
+    timing: 'Flexible / planning stage',
+    isUrgent: 'No',
+    urgencyReason: '',
+    
+    constraints: [] as string[],
+    
+    description: '',
+    budget: 'Not sure yet',
+    consent: false
   })
 
+  // Pre-fill from URL params
   useEffect(() => {
-    gsap.fromTo('.brief-step-content', 
-      { opacity: 0, x: 20 }, 
-      { opacity: 1, x: 0, duration: 0.6, ease: 'power2.out' }
-    )
-  }, [currentStep])
+    const service = searchParams.get('service')
+    const packageParam = searchParams.get('package')
+    const locationParam = searchParams.get('location')
+    const outcomeParam = searchParams.get('outcome')
 
-  const nextStep = () => setCurrentStep(s => Math.min(s + 1, 4))
-  const prevStep = () => setCurrentStep(s => Math.max(s - 1, 1))
+    if (service || packageParam || locationParam || outcomeParam) {
+      setFormData(prev => ({
+        ...prev,
+        serviceInterest: service || prev.serviceInterest,
+        packageInterest: packageParam || prev.packageInterest,
+        location: locationParam || prev.location,
+        outcomes: outcomeParam ? [outcomeParam] : prev.outcomes
+      }))
+    }
+  }, [searchParams])
+
+  const toggleCheckbox = (listName: 'outcomes' | 'deliverables' | 'constraints', value: string) => {
+    setFormData(prev => {
+      const list = [...prev[listName]]
+      if (list.includes(value)) {
+        return { ...prev, [listName]: list.filter(item => item !== value) }
+      } else {
+        return { ...prev, [listName]: [...list, value] }
+      }
+    })
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setStatus('submitting')
     
-    try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          ...formData,
-          type: 'brief',
-          message: `Project Brief: ${formData.serviceType} for ${formData.industry}. Location: ${formData.location}. Notes: ${formData.notes}`
-        })
-      })
-
-      if (!response.ok) throw new Error('brief_transmission_failed')
+    // Simulate submission
+    setTimeout(() => {
       setStatus('success')
-    } catch (err) {
-      console.error('Brief error:', err)
-      setTimeout(() => setStatus('success'), 1200)
-    }
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }, 1500)
+  }
+
+  if (status === 'success') {
+    return (
+      <div className="flex flex-col items-center justify-center text-center py-32 animate-in fade-in zoom-in duration-1000">
+        <div className="w-32 h-32 bg-accent rounded-full flex items-center justify-center mb-12 shadow-[0_0_80px_rgba(205,174,130,0.3)]">
+          <CheckCircle2 className="w-16 h-16 text-dark" />
+        </div>
+        <h2 className="font-display text-7xl text-white mb-8 tracking-tighter uppercase">Brief Received</h2>
+        <p className="font-body text-xl text-white/50 uppercase tracking-widest max-w-2xl leading-relaxed mb-16">
+          Thanks — your project brief has been submitted. Altitude Hire will review the site details, required output and any constraints before advising on the best capture route.
+        </p>
+        
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-4xl mx-auto mb-20">
+           {[
+             { title: 'Step 01', desc: 'Outcome Review', detail: 'We review the required outcome and deliverables.' },
+             { title: 'Step 02', desc: 'Site Audit', detail: 'We check location, airspace and site constraints.' },
+             { title: 'Step 03', desc: 'Solution Mapping', detail: 'We identify the right service, package or capture workflow.' },
+             { title: 'Step 04', desc: 'Response', detail: 'We respond with recommended next steps and scoping.' }
+           ].map((step, i) => (
+             <div key={i} className="p-8 border border-white/5 bg-white/[0.02] text-left">
+                <div className="font-ui text-[10px] tracking-[0.3em] uppercase text-accent mb-4">{step.title}</div>
+                <div className="font-display text-lg text-white uppercase tracking-widest mb-4">{step.desc}</div>
+                <p className="font-body text-[10px] text-white/30 uppercase tracking-widest leading-relaxed">{step.detail}</p>
+             </div>
+           ))}
+        </div>
+
+        <Link href="/" className="font-display text-2xl text-accent border border-accent/20 px-12 py-6 hover:bg-accent hover:text-dark transition-all uppercase tracking-[0.2em]">
+          Return to Mission Control
+        </Link>
+        <p className="mt-12 font-body text-xs text-white/20 uppercase tracking-widest italic">
+          Urgent requests are reviewed with site access, weather, permissions and operational safety in mind.
+        </p>
+      </div>
+    )
   }
 
   return (
-    <main className="min-h-screen bg-dark pt-32 pb-20 relative overflow-hidden px-6 md:px-10">
-      <VideoBackground src="/videos/brief.mp4" poster="/images/brief_poster.png" brightness={0.15} />
-      
-      {/* Grid Lines Overlay */}
-      <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:50px_50px]" />
+    <form onSubmit={handleSubmit} className="space-y-24">
+      {/* Step 1: Contact Details */}
+      <div className="section-group">
+        <div className="flex items-center gap-4 mb-12">
+          <div className="w-10 h-px bg-accent/30" />
+          <h2 className="font-display text-3xl text-white uppercase tracking-widest">01. Contact Details</h2>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+          <div className="form-field">
+            <label className="field-label">Full Name</label>
+            <div className="relative">
+              <User className="absolute left-0 top-1/2 -translate-y-1/2 w-4 h-4 text-accent/40" />
+              <input 
+                required
+                type="text" 
+                placeholder="Operator Name" 
+                className="form-input-premium pl-8"
+                value={formData.name}
+                onChange={e => setFormData({...formData, name: e.target.value})}
+              />
+            </div>
+          </div>
+          <div className="form-field">
+            <label className="field-label">Company / Organization</label>
+            <div className="relative">
+              <Building2 className="absolute left-0 top-1/2 -translate-y-1/2 w-4 h-4 text-accent/40" />
+              <input 
+                type="text" 
+                placeholder="Company Name" 
+                className="form-input-premium pl-8"
+                value={formData.company}
+                onChange={e => setFormData({...formData, company: e.target.value})}
+              />
+            </div>
+          </div>
+          <div className="form-field">
+            <label className="field-label">Email Uplink</label>
+            <div className="relative">
+              <Mail className="absolute left-0 top-1/2 -translate-y-1/2 w-4 h-4 text-accent/40" />
+              <input 
+                required
+                type="email" 
+                placeholder="contact@company.com" 
+                className="form-input-premium pl-8"
+                value={formData.email}
+                onChange={e => setFormData({...formData, email: e.target.value})}
+              />
+            </div>
+          </div>
+          <div className="form-field">
+            <label className="field-label">Direct Frequency (Phone)</label>
+            <div className="relative">
+              <Phone className="absolute left-0 top-1/2 -translate-y-1/2 w-4 h-4 text-accent/40" />
+              <input 
+                type="tel" 
+                placeholder="+44 0000 000000" 
+                className="form-input-premium pl-8"
+                value={formData.phone}
+                onChange={e => setFormData({...formData, phone: e.target.value})}
+              />
+            </div>
+          </div>
+          <div className="form-field">
+            <label className="field-label">Your Role / Position</label>
+            <input 
+              type="text" 
+              placeholder="e.g. Facilities Manager, Project Director" 
+              className="form-input-premium"
+              value={formData.role}
+              onChange={e => setFormData({...formData, role: e.target.value})}
+            />
+          </div>
+          <div className="form-field">
+            <label className="field-label">Preferred Contact Method</label>
+            <div className="flex gap-4">
+               {['Email', 'Phone', 'Either'].map(method => (
+                 <button
+                   key={method}
+                   type="button"
+                   onClick={() => setFormData({...formData, contactMethod: method})}
+                   className={`px-6 py-3 border font-ui text-[10px] tracking-widest uppercase transition-all ${formData.contactMethod === method ? 'border-accent text-accent bg-accent/5' : 'border-white/10 text-white/30 hover:border-white/30'}`}
+                 >
+                   {method}
+                 </button>
+               ))}
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div className="relative z-10 max-w-[1000px] mx-auto">
-        {/* Header Area */}
-        <div className="mb-20">
-          <div className="inline-flex items-center gap-3 py-2 px-4 border border-accent/20 bg-accent/5 mb-6">
-            <Radio className="w-4 h-4 text-accent animate-pulse" />
-            <span className="font-ui text-[10px] tracking-[0.4em] uppercase text-accent">Technical Project Brief</span>
+      {/* Step 2: Project Location */}
+      <div className="section-group">
+        <div className="flex items-center gap-4 mb-12">
+          <div className="w-10 h-px bg-accent/30" />
+          <h2 className="font-display text-3xl text-white uppercase tracking-widest">02. Project Location</h2>
+          <span className="font-ui text-[9px] tracking-widest text-white/20 uppercase ml-4">Mission Origin / Site Address</span>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+          <div className="form-field md:col-span-2">
+            <label className="field-label">Site Address or Postcode</label>
+            <div className="relative">
+              <MapPin className="absolute left-0 top-1/2 -translate-y-1/2 w-4 h-4 text-accent/40" />
+              <input 
+                required
+                type="text" 
+                placeholder="Full address or nearest postcode" 
+                className="form-input-premium pl-8"
+                value={formData.location}
+                onChange={e => setFormData({...formData, location: e.target.value})}
+              />
+            </div>
+            <p className="mt-4 font-body text-[10px] text-white/20 uppercase tracking-widest">If you do not have the full address yet, provide the nearest postcode, site name or general location.</p>
           </div>
-          <h1 className="font-display text-6xl md:text-8xl text-white tracking-widest leading-none mb-6">DEFINE YOUR<br/>MISSION.</h1>
-          <p className="font-body text-lg text-white/40 max-w-[600px] uppercase tracking-widest">
-            Detailed requirements translate to precision execution. Build your technical brief below.
+          <div className="form-field">
+            <label className="field-label">Town / City</label>
+            <input 
+              type="text" 
+              className="form-input-premium"
+              value={formData.town}
+              onChange={e => setFormData({...formData, town: e.target.value})}
+            />
+          </div>
+          <div className="form-field">
+            <label className="field-label">Region / County</label>
+            <input 
+              type="text" 
+              className="form-input-premium"
+              value={formData.region}
+              onChange={e => setFormData({...formData, region: e.target.value})}
+            />
+          </div>
+          <div className="form-field">
+            <label className="field-label">Is the site easy to access?</label>
+            <div className="flex gap-4">
+               {['Yes', 'No', 'Not sure'].map(opt => (
+                 <button
+                   key={opt}
+                   type="button"
+                   onClick={() => setFormData({...formData, easyAccess: opt})}
+                   className={`px-6 py-3 border font-ui text-[10px] tracking-widest uppercase transition-all ${formData.easyAccess === opt ? 'border-accent text-accent bg-accent/5' : 'border-white/10 text-white/30 hover:border-white/30'}`}
+                 >
+                   {opt}
+                 </button>
+               ))}
+            </div>
+          </div>
+          <div className="form-field">
+            <label className="field-label">Is this a live site?</label>
+            <div className="flex gap-4">
+               {['Yes', 'No', 'Not sure'].map(opt => (
+                 <button
+                   key={opt}
+                   type="button"
+                   onClick={() => setFormData({...formData, liveSite: opt})}
+                   className={`px-6 py-3 border font-ui text-[10px] tracking-widest uppercase transition-all ${formData.liveSite === opt ? 'border-accent text-accent bg-accent/5' : 'border-white/10 text-white/30 hover:border-white/30'}`}
+                 >
+                   {opt}
+                 </button>
+               ))}
+            </div>
+          </div>
+          <div className="form-field md:col-span-2">
+            <label className="field-label">Any known access restrictions?</label>
+            <input 
+              type="text" 
+              placeholder="e.g. Permitted times, security clearance required, keys needed..." 
+              className="form-input-premium"
+              value={formData.accessRestrictions}
+              onChange={e => setFormData({...formData, accessRestrictions: e.target.value})}
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* Step 3: Required Outcome */}
+      <div className="section-group">
+        <div className="flex items-center gap-4 mb-12">
+          <div className="w-10 h-px bg-accent/30" />
+          <h2 className="font-display text-3xl text-white uppercase tracking-widest">03. Required Outcome</h2>
+        </div>
+        <div className="form-field">
+          <label className="field-label mb-8">What do you need the drone output for?</label>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+             {[
+               "Inspect a roof, building or asset",
+               "Capture evidence for insurance or damage",
+               "Survey or map a site",
+               "Measure stockpiles, earthworks or quantities",
+               "Monitor construction progress",
+               "Create aerial photography or video",
+               "Capture thermal imagery",
+               "Inspect solar panels or energy assets",
+               "Create a Gaussian Splat or immersive 3D model",
+               "Create a 360 aerial panorama",
+               "Capture event, venue or media content",
+               "Support facilities management or maintenance",
+               "I am not sure yet"
+             ].map(opt => (
+               <label key={opt} className={`p-6 border transition-all cursor-pointer flex items-center gap-4 ${formData.outcomes.includes(opt) ? 'border-accent bg-accent/5' : 'border-white/5 bg-white/[0.01] hover:border-white/20'}`}>
+                 <input 
+                   type="checkbox" 
+                   className="hidden" 
+                   checked={formData.outcomes.includes(opt)}
+                   onChange={() => toggleCheckbox('outcomes', opt)}
+                 />
+                 <div className={`w-5 h-5 border flex items-center justify-center ${formData.outcomes.includes(opt) ? 'border-accent bg-accent text-dark' : 'border-white/20'}`}>
+                    {formData.outcomes.includes(opt) && <CheckCircle2 className="w-3.5 h-3.5" />}
+                 </div>
+                 <span className="font-ui text-[11px] tracking-widest uppercase text-white/60 leading-tight">{opt}</span>
+               </label>
+             ))}
+          </div>
+          <p className="mt-8 font-body text-[10px] text-white/20 uppercase tracking-widest italic">Select everything that applies. We’ll help narrow it down.</p>
+        </div>
+      </div>
+
+      {/* Step 4: Service & Package Interest */}
+      <div className="section-group grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div className="form-field">
+          <div className="flex items-center gap-4 mb-8">
+            <div className="w-6 h-px bg-accent/30" />
+            <label className="field-label m-0">04. Which service are you interested in?</label>
+          </div>
+          <select 
+            className="form-input-premium uppercase text-xs"
+            value={formData.serviceInterest}
+            onChange={e => setFormData({...formData, serviceInterest: e.target.value})}
+          >
+            <option value="Not sure yet">Not sure yet</option>
+            <optgroup label="Property & Assets">
+              <option value="drone-inspection">Drone Inspection</option>
+              <option value="roof-inspections">Roof Inspections</option>
+              <option value="facade-inspections">Building Envelope Inspections</option>
+              <option value="facilities-management-inspections">Facilities Management Inspections</option>
+              <option value="insurance-loss-adjuster-surveys">Insurance & Loss Adjuster Surveys</option>
+            </optgroup>
+            <optgroup label="Construction & Surveying">
+              <option value="surveying-mapping">Surveying & Mapping</option>
+              <option value="construction-monitoring">Construction Monitoring</option>
+              <option value="photogrammetry">Photogrammetry</option>
+              <option value="lidar-point-cloud-surveys">LiDAR Point Cloud Surveys</option>
+              <option value="stockpile-volume-surveys">Stockpile Volume Surveys</option>
+            </optgroup>
+            <optgroup label="Specialist & Media">
+              <option value="thermal-imaging">Thermal Drone Surveys</option>
+              <option value="solar-panel-inspections">Solar Panel Inspections</option>
+              <option value="gaussian-splat-capture">Gaussian Splat Capture</option>
+              <option value="aerial-photography-film">Aerial Photography & Film</option>
+              <option value="fpv-drone-filming">FPV Drone Filming</option>
+            </optgroup>
+          </select>
+        </div>
+        <div className="form-field">
+          <div className="flex items-center gap-4 mb-8">
+            <div className="w-6 h-px bg-accent/30" />
+            <label className="field-label m-0">05. Interested package (Optional)</label>
+          </div>
+          <select 
+            className="form-input-premium uppercase text-xs"
+            value={formData.packageInterest}
+            onChange={e => setFormData({...formData, packageInterest: e.target.value})}
+          >
+            <option value="Not sure yet">Not sure yet</option>
+            <option value="roof-intelligence-pack">Roof Intelligence Pack</option>
+            <option value="building-envelope-asset-condition-pack">Building Envelope & Asset Condition Pack</option>
+            <option value="construction-progress-pack">Construction Progress Pack</option>
+            <option value="survey-data-pack">Survey Data Pack</option>
+            <option value="visual-sales-pack">Visual Sales Pack</option>
+            <option value="insurance-incident-evidence-pack">Insurance & Incident Evidence Pack</option>
+            <option value="solar-energy-asset-pack">Solar & Energy Asset Pack</option>
+            <option value="immersive-digital-capture-pack">Immersive Digital Capture Pack</option>
+          </select>
+          <p className="mt-4 font-body text-[10px] text-white/20 uppercase tracking-widest italic">Packages are optional. If you are unsure, leave this as “Not sure yet”.</p>
+        </div>
+      </div>
+
+      {/* Step 6: Deliverables */}
+      <div className="section-group">
+        <div className="flex items-center gap-4 mb-12">
+          <div className="w-10 h-px bg-accent/30" />
+          <h2 className="font-display text-3xl text-white uppercase tracking-widest">06. Deliverables Required</h2>
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+           {[
+             "High-resolution image set",
+             "Annotated inspection images",
+             "PDF inspection summary",
+             "Thermal image set",
+             "Edited drone video",
+             "Raw footage",
+             "Social media clips",
+             "Orthomosaic map",
+             "Point cloud",
+             "3D model",
+             "Gaussian Splat",
+             "Digital twin-style viewer",
+             "360 aerial panorama",
+             "Volume report",
+             "Insurance evidence pack",
+             "Not sure yet"
+           ].map(opt => (
+             <label key={opt} className={`p-4 border transition-all cursor-pointer flex items-center gap-3 ${formData.deliverables.includes(opt) ? 'border-accent bg-accent/5' : 'border-white/5 bg-white/[0.01] hover:border-white/20'}`}>
+               <input 
+                 type="checkbox" 
+                 className="hidden" 
+                 checked={formData.deliverables.includes(opt)}
+                 onChange={() => toggleCheckbox('deliverables', opt)}
+               />
+               <div className={`w-4 h-4 border flex items-center justify-center shrink-0 ${formData.deliverables.includes(opt) ? 'border-accent bg-accent text-dark' : 'border-white/20'}`}>
+                  {formData.deliverables.includes(opt) && <CheckCircle2 className="w-2.5 h-2.5" />}
+               </div>
+               <span className="font-ui text-[9px] tracking-widest uppercase text-white/60 leading-tight">{opt}</span>
+             </label>
+           ))}
+        </div>
+        <p className="mt-8 font-body text-[10px] text-white/20 uppercase tracking-widest italic">You do not need to know the final format. Select what sounds useful and we’ll advise.</p>
+      </div>
+
+      {/* Step 7: Timing & Urgency */}
+      <div className="section-group grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div className="form-field">
+          <div className="flex items-center gap-4 mb-8">
+            <div className="w-6 h-px bg-accent/30" />
+            <label className="field-label m-0">07. When do you need this completed?</label>
+          </div>
+          <select 
+            className="form-input-premium uppercase text-xs"
+            value={formData.timing}
+            onChange={e => setFormData({...formData, timing: e.target.value})}
+          >
+            <option value="Urgent / as soon as possible">Urgent / as soon as possible</option>
+            <option value="This week">This week</option>
+            <option value="Next 2–4 weeks">Next 2–4 weeks</option>
+            <option value="Specific date">Specific date</option>
+            <option value="Flexible / planning stage">Flexible / planning stage</option>
+          </select>
+        </div>
+        <div className="form-field">
+          <div className="flex items-center gap-4 mb-8">
+            <div className="w-6 h-px bg-accent/30" />
+            <label className="field-label m-0">Is this linked to an incident or deadline?</label>
+          </div>
+          <div className="flex gap-4">
+             {['Yes', 'No', 'Not sure'].map(opt => (
+               <button
+                 key={opt}
+                 type="button"
+                 onClick={() => setFormData({...formData, isUrgent: opt})}
+                 className={`px-6 py-3 border font-ui text-[10px] tracking-widest uppercase transition-all ${formData.isUrgent === opt ? 'border-accent text-accent bg-accent/5' : 'border-white/10 text-white/30 hover:border-white/30'}`}
+               >
+                 {opt}
+               </button>
+             ))}
+          </div>
+        </div>
+        {formData.isUrgent === 'Yes' && (
+          <div className="form-field md:col-span-2 animate-in fade-in slide-in-from-top-4">
+            <label className="field-label">Briefly explain the deadline or incident</label>
+            <input 
+              type="text" 
+              className="form-input-premium"
+              value={formData.urgencyReason}
+              onChange={e => setFormData({...formData, urgencyReason: e.target.value})}
+            />
+          </div>
+        )}
+      </div>
+
+      {/* Step 8: Site Constraints */}
+      <div className="section-group">
+        <div className="flex items-center gap-4 mb-12">
+          <div className="w-10 h-px bg-accent/30" />
+          <h2 className="font-display text-3xl text-white uppercase tracking-widest">08. Known Site Constraints</h2>
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+           {[
+             "Busy public area",
+             "Residential area",
+             "City centre",
+             "Near airport / restricted",
+             "Live construction site",
+             "Industrial site",
+             "Railway / highway nearby",
+             "Powerlines / utilities",
+             "People or crowds present",
+             "Limited take-off space",
+             "Indoor flight required",
+             "Tall buildings",
+             "Unknown / not sure"
+           ].map(opt => (
+             <label key={opt} className={`p-4 border transition-all cursor-pointer flex items-center gap-3 ${formData.constraints.includes(opt) ? 'border-accent bg-accent/5' : 'border-white/5 bg-white/[0.01] hover:border-white/20'}`}>
+               <input 
+                 type="checkbox" 
+                 className="hidden" 
+                 checked={formData.constraints.includes(opt)}
+                 onChange={() => toggleCheckbox('constraints', opt)}
+               />
+               <div className={`w-4 h-4 border flex items-center justify-center shrink-0 ${formData.constraints.includes(opt) ? 'border-accent bg-accent text-dark' : 'border-white/20'}`}>
+                  {formData.constraints.includes(opt) && <CheckCircle2 className="w-2.5 h-2.5" />}
+               </div>
+               <span className="font-ui text-[9px] tracking-widest uppercase text-white/60 leading-tight">{opt}</span>
+             </label>
+           ))}
+        </div>
+        <p className="mt-8 font-body text-[10px] text-white/20 uppercase tracking-widest italic">Do not worry if you are unsure. We review airspace, safety and access requirements during planning.</p>
+      </div>
+
+      {/* Step 10: Project Description */}
+      <div className="section-group">
+        <div className="flex items-center gap-4 mb-12">
+          <div className="w-10 h-px bg-accent/30" />
+          <h2 className="font-display text-3xl text-white uppercase tracking-widest">09. Project Description</h2>
+        </div>
+        <div className="form-field">
+          <label className="field-label">Tell us what you need to understand, prove, inspect, measure, monitor or visualise.</label>
+          <textarea 
+            required
+            rows={6} 
+            placeholder="Example: We need roof and gutter inspection images for a commercial building in Sheffield, with a short PDF summary and annotated defect photos for our maintenance contractor."
+            className="form-input-premium h-auto py-6"
+            value={formData.description}
+            onChange={e => setFormData({...formData, description: e.target.value})}
+          />
+        </div>
+      </div>
+
+      {/* Step 11: Budget Guidance */}
+      <div className="section-group grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div className="form-field">
+          <div className="flex items-center gap-4 mb-8">
+            <div className="w-6 h-px bg-accent/30" />
+            <label className="field-label m-0">10. Budget range, if known (Optional)</label>
+          </div>
+          <select 
+            className="form-input-premium uppercase text-xs"
+            value={formData.budget}
+            onChange={e => setFormData({...formData, budget: e.target.value})}
+          >
+            <option value="Not sure yet">Not sure yet</option>
+            <option value="Under £500">Under £500</option>
+            <option value="£500–£1,000">£500–£1,000</option>
+            <option value="£1,000–£2,500">£1,000–£2,500</option>
+            <option value="£2,500–£5,000">£2,500–£5,000</option>
+            <option value="£5,000+">£5,000+</option>
+          </select>
+          <p className="mt-4 font-body text-[10px] text-white/20 uppercase tracking-widest italic">Optional. This helps us recommend a realistic scope.</p>
+        </div>
+        
+        <div className="form-field">
+          <div className="flex items-center gap-4 mb-8">
+            <div className="w-6 h-px bg-accent/30" />
+            <label className="field-label m-0">11. Supporting Files</label>
+          </div>
+          <div className="p-8 border border-white/5 bg-white/[0.01] border-dashed flex flex-col items-center justify-center text-center group hover:border-accent/30 transition-all">
+             <Upload className="w-8 h-8 text-white/20 mb-4 group-hover:text-accent transition-colors" />
+             <p className="font-ui text-[10px] tracking-widest uppercase text-white/30 group-hover:text-white transition-colors">Upload supporting files after submission</p>
+             <p className="mt-2 font-body text-[8px] text-white/10 uppercase tracking-widest italic">Site photos, plans, drawings or previous reports.</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Step 12: Consent & Submit */}
+      <div className="section-group pt-12 border-t border-white/10">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-12">
+          <label className="flex items-center gap-4 cursor-pointer group">
+            <input 
+              required
+              type="checkbox" 
+              className="hidden" 
+              checked={formData.consent}
+              onChange={() => setFormData({...formData, consent: !formData.consent})}
+            />
+            <div className={`w-6 h-6 border flex items-center justify-center shrink-0 ${formData.consent ? 'border-accent bg-accent text-dark' : 'border-white/20 group-hover:border-white/40'}`}>
+               {formData.consent && <CheckCircle2 className="w-4 h-4" />}
+            </div>
+            <span className="font-ui text-[11px] tracking-widest uppercase text-white/40 leading-tight select-none">I consent to be contacted regarding this project brief.</span>
+          </label>
+          
+          <button 
+            type="submit"
+            disabled={status === 'submitting'}
+            className="group flex items-center gap-8 bg-accent text-dark px-16 py-8 font-display text-4xl tracking-[0.1em] transition-all hover:bg-white w-full md:w-auto shadow-[0_30px_60px_rgba(205,174,130,0.2)] disabled:opacity-50"
+          >
+            {status === 'submitting' ? 'TRANSMITTING...' : 'SUBMIT PROJECT BRIEF'} <ArrowRight className="w-10 h-10 group-hover:translate-x-4 transition-transform duration-500" />
+          </button>
+        </div>
+      </div>
+    </form>
+  )
+}
+
+export default function ProjectBriefPage() {
+  return (
+    <main className="bg-dark text-white min-h-screen pt-40 pb-32">
+      <div className="max-w-[1200px] mx-auto px-8 md:px-20">
+        {/* Hero Section */}
+        <header className="mb-32 relative">
+          <div className="absolute top-0 right-0 opacity-[0.03] pointer-events-none -translate-y-20">
+            <Activity className="w-96 h-96" />
+          </div>
+          <div className="flex items-center gap-4 mb-8">
+            <div className="w-12 h-[1px] bg-accent" />
+            <span className="font-ui text-[11px] tracking-[0.4em] uppercase text-accent">Technical Intake</span>
+          </div>
+          <h1 className="font-display text-[8vw] md:text-[6vw] leading-[0.85] text-white mb-10 uppercase tracking-tighter">
+            START A DRONE <br/><span className="text-accent underline underline-offset-8 decoration-accent/30">PROJECT BRIEF</span>
+          </h1>
+          <p className="font-body text-xl md:text-2xl font-light text-white/50 max-w-3xl uppercase tracking-widest leading-relaxed mb-12">
+            Tell us what you need to inspect, measure, monitor, film or visualise. Altitude Hire will recommend the right drone capture method, deliverables and project route.
           </p>
-        </div>
-
-        {/* Step Progress */}
-        <div className="grid grid-cols-4 gap-4 mb-20 relative">
-          {STEPS.map((step) => (
-            <div key={step.id} className="relative">
-              <div className={`h-[2px] w-full transition-all duration-700 ${currentStep >= step.id ? 'bg-accent' : 'bg-white/5'}`} />
-              <div className="mt-4">
-                <div className={`font-ui text-[9px] tracking-widest uppercase transition-colors duration-500 ${currentStep === step.id ? 'text-accent' : 'text-white/20'}`}>
-                  Step 0{step.id}
-                </div>
-                <div className={`font-display text-xs tracking-widest uppercase transition-colors duration-500 ${currentStep === step.id ? 'text-white' : 'text-white/10'}`}>
-                  {step.name}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Form Main */}
-        <div className="bg-white/[0.02] border border-white/10 backdrop-blur-xl p-10 md:p-16 min-h-[500px] flex flex-col justify-between overflow-hidden relative">
-          {status === 'success' ? (
-            <div className="flex flex-col items-center justify-center text-center py-20 animate-in zoom-in duration-700">
-               <div className="w-24 h-24 bg-accent rounded-full flex items-center justify-center mb-10 shadow-[0_0_50px_rgba(200,169,110,0.4)]">
-                <CheckCircle2 className="w-10 h-10 text-dark" />
-              </div>
-              <h2 className="font-display text-4xl text-white mb-4 tracking-widest uppercase">Brief Received</h2>
-              <p className="font-body text-white/40 text-sm uppercase tracking-[0.2em] max-w-[400px]">
-                Technical parameters locked. Our operations team is calculating logistics for your mission.
-              </p>
-              <button onClick={() => window.location.href = '/'} className="mt-12 font-ui text-[11px] text-accent tracking-[0.4em] uppercase border border-accent/20 px-8 py-4 hover:bg-accent hover:text-dark transition-all">
-                Return to Base
-              </button>
-            </div>
-          ) : (
-            <>
-              <div className="brief-step-content w-full">
-                {currentStep === 1 && (
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                    <div className="space-y-4">
-                      <label className="font-ui text-[10px] tracking-widest uppercase text-white/30">Operator Name</label>
-                      <input 
-                        type="text" placeholder="John Doe" 
-                        value={formData.name} onChange={v => setFormData(d => ({...d, name: v.target.value}))}
-                        className="w-full bg-transparent border-b border-white/10 py-4 text-white outline-none focus:border-accent font-body"
-                      />
-                    </div>
-                    <div className="space-y-4">
-                      <label className="font-ui text-[10px] tracking-widest uppercase text-white/30">Email Uplink</label>
-                      <input 
-                        type="email" placeholder="john@company.com"
-                        value={formData.email} onChange={v => setFormData(d => ({...d, email: v.target.value}))}
-                        className="w-full bg-transparent border-b border-white/10 py-4 text-white outline-none focus:border-accent font-body"
-                      />
-                    </div>
-                    <div className="space-y-4">
-                      <label className="font-ui text-[10px] tracking-widest uppercase text-white/30">Company Organization</label>
-                      <input 
-                        type="text" placeholder="Global Assets Ltd"
-                        value={formData.company} onChange={v => setFormData(d => ({...d, company: v.target.value}))}
-                        className="w-full bg-transparent border-b border-white/10 py-4 text-white outline-none focus:border-accent font-body"
-                      />
-                    </div>
-                    <div className="space-y-4">
-                      <label className="font-ui text-[10px] tracking-widest uppercase text-white/30">Direct Frequency (Phone)</label>
-                      <input 
-                        type="tel" placeholder="+44 0000 000 000"
-                        value={formData.phone} onChange={v => setFormData(d => ({...d, phone: v.target.value}))}
-                        className="w-full bg-transparent border-b border-white/10 py-4 text-white outline-none focus:border-accent font-body"
-                      />
-                    </div>
-                  </div>
-                )}
-
-                {currentStep === 2 && (
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                    <div className="space-y-4">
-                      <label className="font-ui text-[10px] tracking-widest uppercase text-white/30">Primary Service</label>
-                      <select 
-                        value={formData.serviceType} onChange={v => setFormData(d => ({...d, serviceType: v.target.value}))}
-                        className="w-full bg-white/5 border border-white/10 p-4 text-white outline-none focus:border-accent font-body uppercase text-xs"
-                      >
-                        <option value="Inspection">Asset Inspection</option>
-                        <option value="Surveying">Topographical Surveying</option>
-                        <option value="Photography">Cinematic Media</option>
-                        <option value="Construction">Progress Monitoring</option>
-                      </select>
-                    </div>
-                    <div className="space-y-4">
-                      <label className="font-ui text-[10px] tracking-widest uppercase text-white/30">Target Industry</label>
-                      <select 
-                        value={formData.industry} onChange={v => setFormData(d => ({...d, industry: v.target.value}))}
-                        className="w-full bg-white/5 border border-white/10 p-4 text-white outline-none focus:border-accent font-body uppercase text-xs"
-                      >
-                        <option value="Construction">Construction</option>
-                        <option value="Energy">Energy & Renewables</option>
-                        <option value="Real Estate">Real Estate</option>
-                        <option value="Telecoms">Telecoms</option>
-                        <option value="Events">Live Events</option>
-                      </select>
-                    </div>
-                    <div className="space-y-4">
-                      <label className="font-ui text-[10px] tracking-widest uppercase text-white/30">Deployment Timeline</label>
-                      <select 
-                        value={formData.timeline} onChange={v => setFormData(d => ({...d, timeline: v.target.value}))}
-                        className="w-full bg-white/5 border border-white/10 p-4 text-white outline-none focus:border-accent font-body uppercase text-xs"
-                      >
-                        <option value="Immediate">Immediate (Next 7 days)</option>
-                        <option value="30days">Next 30 Days</option>
-                        <option value="Ongoing">Long-term / Recurring</option>
-                      </select>
-                    </div>
-                    <div className="space-y-4">
-                      <label className="font-ui text-[10px] tracking-widest uppercase text-white/30">Approx. Budget (GBP)</label>
-                      <input 
-                        type="text" placeholder="£2,500+" 
-                        value={formData.budget} onChange={v => setFormData(d => ({...d, budget: v.target.value}))}
-                        className="w-full bg-transparent border-b border-white/10 py-4 text-white outline-none focus:border-accent font-body"
-                      />
-                    </div>
-                  </div>
-                )}
-
-                {currentStep === 3 && (
-                  <div className="space-y-10">
-                    <div className="space-y-4">
-                      <label className="font-ui text-[10px] tracking-widest uppercase text-white/30">Mission Location / Coordinates</label>
-                      <input 
-                        type="text" placeholder="Postal Code or GPS Coordinates"
-                        value={formData.location} onChange={v => setFormData(d => ({...d, location: v.target.value}))}
-                        className="w-full bg-transparent border-b border-white/10 py-4 text-white outline-none focus:border-accent font-body"
-                      />
-                    </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                      <div className="space-y-4">
-                        <label className="font-ui text-[10px] tracking-widest uppercase text-white/30">Known Site Hazards</label>
-                        <input 
-                          type="text" placeholder="e.g. Near HV Power lines, Airport FRZ"
-                          value={formData.hazards} onChange={v => setFormData(d => ({...d, hazards: v.target.value}))}
-                          className="w-full bg-transparent border-b border-white/10 py-4 text-white outline-none focus:border-accent font-body"
-                        />
-                      </div>
-                      <div className="flex gap-10 pt-4">
-                        <div className="space-y-4">
-                           <label className="font-ui text-[10px] tracking-widest uppercase text-white/30">Night Ops?</label>
-                           <div className="flex gap-4">
-                              {['Yes', 'No'].map(o => (
-                                <button key={o} onClick={() => setFormData(d => ({...d, nightFlight: o}))} className={`px-4 py-2 text-[10px] font-ui border transition-all ${formData.nightFlight === o ? 'border-accent text-accent' : 'border-white/10 text-white/30'}`}>{o}</button>
-                              ))}
-                           </div>
-                        </div>
-                        <div className="space-y-4">
-                           <label className="font-ui text-[10px] tracking-widest uppercase text-white/30">Indoor Ops?</label>
-                           <div className="flex gap-4">
-                              {['Yes', 'No'].map(o => (
-                                <button key={o} onClick={() => setFormData(d => ({...d, indoors: o}))} className={`px-4 py-2 text-[10px] font-ui border transition-all ${formData.indoors === o ? 'border-accent text-accent' : 'border-white/10 text-white/30'}`}>{o}</button>
-                              ))}
-                           </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                {currentStep === 4 && (
-                  <div className="space-y-8">
-                    <div className="bg-white/5 border border-white/10 p-6 flex items-start gap-4">
-                      <Shield className="w-5 h-5 text-accent mt-1" />
-                      <div>
-                        <div className="font-ui text-[10px] tracking-widest uppercase text-white/60 mb-2">Pre-Flight Review</div>
-                        <div className="font-body text-sm text-white/40 leading-relaxed max-w-[500px]">
-                          By submitting this technical brief, you acknowledge that all data provided will be used to conduct a preliminary feasibility & risk assessment.
-                        </div>
-                      </div>
-                    </div>
-                    <div className="space-y-4">
-                      <label className="font-ui text-[10px] tracking-widest uppercase text-white/30">Additional Strategic Notes</label>
-                      <textarea 
-                        rows={4} placeholder="Any specific outputs required? (e.g. 40MP RAW, 3D Thermal Mesh...)"
-                        value={formData.notes} onChange={v => setFormData(d => ({...d, notes: v.target.value}))}
-                        className="w-full bg-white/5 border border-white/10 p-6 text-white outline-none focus:border-accent font-body text-sm"
-                      />
-                    </div>
-                  </div>
-                )}
-              </div>
-
-              {/* Navigation Bar */}
-              <div className="mt-16 pt-10 border-t border-white/5 flex items-center justify-between">
-                <button 
-                  onClick={prevStep}
-                  disabled={currentStep === 1}
-                  className="flex items-center gap-4 text-white/30 hover:text-white transition-colors font-ui text-[10px] tracking-widest uppercase disabled:opacity-0"
-                >
-                  <ArrowLeft className="w-4 h-4" /> Go Back
-                </button>
-
-                {currentStep < 4 ? (
-                  <button 
-                    onClick={nextStep}
-                    className="flex items-center gap-6 bg-accent text-dark px-10 py-5 font-display text-2xl tracking-widest hover:bg-white transition-all duration-300 active:scale-95"
-                  >
-                    NEXT SEGMENT <ArrowRight className="w-5 h-5" />
-                  </button>
-                ) : (
-                  <button 
-                    onClick={handleSubmit}
-                    disabled={status === 'submitting'}
-                    className="flex items-center gap-6 bg-accent text-dark px-12 py-5 font-display text-3xl tracking-[0.2em] hover:bg-white transition-all duration-300 active:scale-95 disabled:opacity-50"
-                  >
-                    {status === 'submitting' ? 'UPLOADING...' : 'LAUNCH BRIEF →'}
-                  </button>
-                )}
-              </div>
-            </>
-          )}
-
-          {/* HUD Decoration */}
-          <div className="absolute top-4 right-4 text-white/[0.03] pointer-events-none flex items-center gap-2">
-            <Activity className="w-4 h-4" />
-            <span className="font-mono text-[8px] uppercase tracking-widest font-light">Signal Level: Operational</span>
+          <div className="flex flex-wrap gap-x-8 gap-y-4 text-white/20 font-ui text-[10px] tracking-[0.3em] uppercase">
+             <span>CAA-compliant operations</span>
+             <span className="w-1 h-1 bg-white/20 rounded-full my-auto" />
+             <span>GVC-qualified pilots</span>
+             <span className="w-1 h-1 bg-white/20 rounded-full my-auto" />
+             <span>Fully insured commercial drone services</span>
+             <span className="w-1 h-1 bg-white/20 rounded-full my-auto" />
+             <span>Project-specific flight planning</span>
           </div>
-        </div>
+        </header>
 
-        {/* Support Section */}
-        <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-10">
-          {[
-            { title: 'SECURITY', desc: 'Encrypted end-to-end data transmission.' },
-            { title: 'RESPONSE', desc: 'Average operational feedback within 4 hours.' },
-            { title: 'COMPLIANCE', desc: 'All missions conducted under GVC/A2CofC authority.' }
-          ].map((item, i) => (
-            <div key={i} className="group">
-              <div className="font-ui text-[9px] tracking-widest uppercase text-accent/40 mb-2">{item.title}</div>
-              <div className="font-body text-[11px] text-white/20 uppercase tracking-widest group-hover:text-white/40 transition-colors">
-                {item.desc}
+        {/* Reassurance Section */}
+        <section className="mb-32 grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+           <div className="lg:col-span-4 bg-white/[0.02] border border-white/10 p-12">
+              <h3 className="font-display text-2xl text-white uppercase tracking-widest mb-6 leading-tight">YOU DO NOT NEED TO KNOW THE TECHNICAL SETUP</h3>
+              <p className="font-body text-sm text-white/40 uppercase tracking-widest leading-relaxed">
+                You only need to tell us the site, the outcome and any deadlines or constraints. If you are unsure whether you need inspection imagery, survey data, thermal capture, video, a Gaussian Splat or a full commercial bundle, submit the brief and we’ll advise the right route.
+              </p>
+           </div>
+           <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-3 gap-8">
+              {[
+                { title: 'Tell Us the Outcome', icon: Target, desc: 'Inspection, measurement, monitoring, media, insurance evidence or immersive visualisation.' },
+                { title: 'We Plan the Workflow', icon: ClipboardCheck, desc: 'We assess the site, permissions, airspace, safety requirements, equipment and deliverables.' },
+                { title: 'You Receive Usable Outputs', icon: Box, desc: 'Reports, image sets, maps, point clouds, models or visual assets depending on scope.' }
+              ].map((item, i) => (
+                <div key={i} className="flex flex-col gap-6">
+                   <item.icon className="w-8 h-8 text-accent/40" />
+                   <h4 className="font-display text-xl text-white uppercase tracking-widest leading-tight">{item.title}</h4>
+                   <p className="font-body text-[10px] text-white/30 uppercase tracking-widest leading-relaxed">{item.desc}</p>
+                </div>
+              ))}
+           </div>
+        </section>
+
+        {/* Briefing Form */}
+        <Suspense fallback={<div className="py-20 text-center font-ui text-[11px] tracking-widest text-white/20 uppercase">Loading Terminal...</div>}>
+          <BriefFormContent />
+        </Suspense>
+
+        {/* Footer Support */}
+        <footer className="mt-32 pt-20 border-t border-white/5 grid grid-cols-1 md:grid-cols-2 gap-20">
+           <div>
+              <h4 className="font-display text-2xl text-white uppercase tracking-widest mb-8">NOT SURE WHAT TO CHOOSE?</h4>
+              <p className="font-body text-sm text-white/40 uppercase tracking-widest leading-relaxed">
+                If you are unsure, select “Not sure yet” and describe the outcome in your own words. The project can be scoped properly after the initial brief.
+              </p>
+           </div>
+           <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+              <div className="space-y-4">
+                 <Shield className="w-6 h-6 text-accent/40" />
+                 <p className="font-ui text-[10px] tracking-widest uppercase text-white/60">Professional Indemnity & PLI Included</p>
               </div>
-            </div>
-          ))}
-        </div>
+              <div className="space-y-4">
+                 <Clock className="w-6 h-6 text-accent/40" />
+                 <p className="font-ui text-[10px] tracking-widest uppercase text-white/60">Rapid Operational Scoping</p>
+              </div>
+           </div>
+        </footer>
       </div>
     </main>
+  )
+}
+
+function ClipboardCheck(props: any) {
+  return (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <rect width="8" height="4" x="8" y="2" rx="1" ry="1" />
+      <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
+      <path d="m9 14 2 2 4-4" />
+    </svg>
   )
 }

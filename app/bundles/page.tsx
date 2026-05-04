@@ -25,6 +25,7 @@ export const metadata: Metadata = {
 
 const BUNDLES = [
   {
+    slug: "roof-intelligence-pack",
     title: "Roof Intelligence Pack",
     icon: Search,
     positioning: "A safer, faster way to inspect commercial roofs, gutters, drainage, high-level details and hard-to-access building elements.",
@@ -33,13 +34,14 @@ const BUNDLES = [
     deliverables: ["Roof condition image set", "Annotated defect images", "PDF inspection summary", "Maintenance priority notes", "Contractor briefing pack", "Insurance evidence pack where required"],
     cta: "Book a Roof Inspection",
     links: [
-      { name: "Drone Roof Inspections", href: "/services/drone-roof-inspections" },
+      { name: "Drone Roof Inspections", href: "/services/roof-inspections" },
       { name: "Thermal Drone Surveys", href: "/services/thermal-imaging" },
-      { name: "Commercial Drone Inspections", href: "/services/commercial-drone-inspections" },
+      { name: "Commercial Drone Inspections", href: "/services/drone-inspection" },
       { name: "Facilities Management Drone Services", href: "/services/facilities-management-inspections" }
     ]
   },
   {
+    slug: "building-envelope-asset-condition-pack",
     title: "Building Envelope & Asset Condition Pack",
     icon: Building2,
     positioning: "External condition capture for facades, cladding, parapets, chimneys, glazing, masonry, high-level plant and wider property assets.",
@@ -49,12 +51,13 @@ const BUNDLES = [
     cta: "Request an Asset Survey",
     links: [
       { name: "Building Envelope Drone Inspections", href: "/services/building-envelope-inspections" },
-      { name: "Facade Drone Inspections", href: "/services/facade-drone-inspections" },
-      { name: "Commercial Property Drone Surveys", href: "/services/commercial-property-condition-surveys" },
+      { name: "Facade Drone Inspections", href: "/services/facade-inspections" },
+      { name: "Commercial Property Drone Surveys", href: "/services/commercial-property-drone-surveys" },
       { name: "Drone Inspection Services", href: "/services/drone-inspection" }
     ]
   },
   {
+    slug: "construction-progress-pack",
     title: "Construction Progress Pack",
     icon: Hammer,
     positioning: "Regular aerial capture for contractors, developers and stakeholders who need clear visual evidence of project progress.",
@@ -64,12 +67,13 @@ const BUNDLES = [
     cta: "Plan Construction Monitoring",
     links: [
       { name: "Construction Drone Monitoring", href: "/services/construction-monitoring" },
-      { name: "Drone Progress Photography", href: "/services/construction-site-drone-surveys" },
-      { name: "Drone Time-Lapse Monitoring", href: "/services/construction-time-lapse-drone-monitoring" },
-      { name: "Construction Site Drone Surveys", href: "/services/construction-site-drone-surveys" }
+      { name: "Drone Progress Photography", href: "/services/construction-progress-photography" },
+      { name: "Drone Time-Lapse Monitoring", href: "/services/drone-time-lapse-monitoring" },
+      { name: "Earthworks Cut & Fill Analysis", href: "/services/cut-fill-analysis" }
     ]
   },
   {
+    slug: "survey-data-pack",
     title: "Survey Data Pack",
     icon: BarChart3,
     positioning: "Drone-based mapping and measurement outputs for land, sites, stockpiles, earthworks and development projects.",
@@ -79,13 +83,14 @@ const BUNDLES = [
     cta: "Discuss Survey Outputs",
     links: [
       { name: "Drone Surveying and Mapping", href: "/services/surveying-mapping" },
-      { name: "Drone Photogrammetry", href: "/services/photogrammetry-surveys" },
+      { name: "Drone Photogrammetry", href: "/services/photogrammetry" },
       { name: "Orthomosaic Mapping", href: "/services/orthomosaic-mapping" },
       { name: "Stockpile Volume Surveys", href: "/services/stockpile-volume-surveys" },
-      { name: "Drone Point Cloud Surveys", href: "/services/drone-point-cloud-surveys" }
+      { name: "Drone LiDAR Surveys", href: "/services/lidar-point-cloud-surveys" }
     ]
   },
   {
+    slug: "visual-sales-pack",
     title: "Visual Sales Pack",
     icon: Camera,
     positioning: "Premium aerial content for property, venues, developments, estates, tourism, automotive and commercial marketing campaigns.",
@@ -94,14 +99,15 @@ const BUNDLES = [
     deliverables: ["High-resolution aerial image pack", "Edited promotional video", "Short-form reels/social clips", "Website-ready video loops", "Property or venue showcase content", "Brochure-ready imagery", "Raw footage archive if required"],
     cta: "Create a Visual Content Pack",
     links: [
-      { name: "Commercial Drone Photography", href: "/services/aerial-photography" },
-      { name: "Drone Videography", href: "/services/drone-videography" },
-      { name: "FPV Drone Flythroughs", href: "/services/events-media" },
-      { name: "Property Drone Photography", href: "/services/property-aerial-photography" },
-      { name: "360 Aerial Panoramas", href: "/services/360-aerial-panorama" }
+      { name: "Commercial Drone Photography", href: "/services/aerial-photography-film" },
+      { name: "Events Drone Coverage", href: "/services/events-media" },
+      { name: "FPV Drone Filming", href: "/services/fpv-drone-filming" },
+      { name: "Property Drone Photography", href: "/services/commercial-property-drone-surveys" },
+      { name: "360 Aerial Panoramas", href: "/services/360-aerial-panoramas" }
     ]
   },
   {
+    slug: "insurance-incident-evidence-pack",
     title: "Insurance & Incident Evidence Pack",
     icon: ShieldAlert,
     positioning: "Rapid aerial evidence capture for storm damage, roof damage, fire damage, flood impact, access-restricted inspections and claim support.",
@@ -110,14 +116,14 @@ const BUNDLES = [
     deliverables: ["Insurance evidence image pack", "Annotated damage images", "Condition summary report", "Contractor scoping evidence", "Claim support documentation", "Emergency works briefing pack"],
     cta: "Request Evidence Capture",
     links: [
-      { name: "Insurance Drone Inspections", href: "/services/insurance-loss-adjuster-surveys" },
-      { name: "Storm Damage Drone Surveys", href: "/services/storm-damage-drone-surveys" },
-      { name: "Fire Damage Drone Surveys", href: "/services/fire-damage-drone-surveys" },
-      { name: "Emergency Drone Inspections", href: "/services/emergency-incident-response" },
-      { name: "Drone Roof Inspections", href: "/services/drone-roof-inspections" }
+      { name: "Insurance Drone Surveys", href: "/services/insurance-loss-adjuster-surveys" },
+      { name: "Emergency Incident Response", href: "/services/emergency-response" },
+      { name: "Thermal Damage Detection", href: "/services/thermal-imaging" },
+      { name: "Drone Roof Inspections", href: "/services/roof-inspections" }
     ]
   },
   {
+    slug: "solar-energy-asset-pack",
     title: "Solar & Energy Asset Pack",
     icon: Zap,
     positioning: "Drone inspection and thermal imaging for solar PV arrays, commercial rooftops, energy assets and infrastructure sites.",
@@ -129,11 +135,11 @@ const BUNDLES = [
       { name: "Solar Panel Drone Inspections", href: "/services/solar-panel-inspections" },
       { name: "Thermal Drone Surveys", href: "/services/thermal-imaging" },
       { name: "Utility Drone Inspections", href: "/services/utilities-energy-inspections" },
-      { name: "Commercial Roof Inspections", href: "/services/commercial-roof-surveys" }
+      { name: "Infrastructure Inspections", href: "/services/infrastructure-inspections" }
     ]
   },
   {
-    slug: "immersive-digital",
+    slug: "immersive-digital-capture-pack",
     title: "Immersive Digital Capture Pack",
     icon: Box,
     positioning: "Advanced visual capture for clients who need more than flat photos — including 3D models, Gaussian Splats, digital twin-style assets and immersive site visualisation.",
@@ -142,26 +148,16 @@ const BUNDLES = [
     deliverables: ["Gaussian Splat visualisation", "3D model", "3D mesh", "Point cloud where required", "Interactive web viewer", "Flythrough video", "Still renders", "Immersive stakeholder presentation asset"],
     cta: "Build an Immersive Site Model",
     links: [
-      { name: "Gaussian Splat Drone Capture", href: "/gaussian-splat" },
-      { name: "Drone Photogrammetry", href: "/services/photogrammetry-surveys" },
-      { name: "Drone 3D Modelling", href: "/services/historic-site-3d-modelling" },
-      { name: "Drone Digital Twin Services", href: "/services/digital-preservation-asset" },
-      { name: "360 Aerial Panoramas", href: "/services/360-aerial-panorama" }
+      { name: "Gaussian Splat Drone Capture", href: "/services/gaussian-splat-capture" },
+      { name: "Drone Photogrammetry", href: "/services/photogrammetry" },
+      { name: "Heritage & Conservation", href: "/services/heritage-conservation-archaeology" },
+      { name: "Digital Twin Capture", href: "/services/digital-twin-capture" },
+      { name: "360 Aerial Panoramas", href: "/services/360-aerial-panoramas" }
     ]
   }
 ]
 
-// Add slugs to BUNDLES for ID anchors
-const BUNDLE_DATA = [
-  { ...BUNDLES[0], slug: 'roof-intelligence' },
-  { ...BUNDLES[1], slug: 'building-envelope' },
-  { ...BUNDLES[2], slug: 'construction-progress' },
-  { ...BUNDLES[3], slug: 'survey-data' },
-  { ...BUNDLES[4], slug: 'visual-sales' },
-  { ...BUNDLES[5], slug: 'insurance-incident' },
-  { ...BUNDLES[6], slug: 'solar-energy' },
-  { ...BUNDLES[7], slug: 'immersive-digital' },
-]
+const BUNDLE_DATA = BUNDLES
 
 const SECTORS = [
   { name: "Construction", desc: "Progress monitoring, site mapping, stakeholder updates and evidence-led project reporting." },

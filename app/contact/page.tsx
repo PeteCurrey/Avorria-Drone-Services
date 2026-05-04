@@ -1,8 +1,9 @@
 'use client'
 
 import { useState } from 'react'
+import Link from 'next/link'
 import VideoBackground from '@/components/ui/VideoBackground'
-import { Send, Phone, Mail, MapPin } from 'lucide-react'
+import { Send, Phone, Mail, MapPin, ArrowRight } from 'lucide-react'
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' })
@@ -43,9 +44,18 @@ export default function ContactPage() {
         <div>
           <div className="font-ui text-[11px] tracking-[0.4em] uppercase text-accent mb-6 text-glow">Communication Terminal</div>
           <h1 className="font-display text-7xl text-white mb-10 tracking-widest leading-none">LET&apos;S GET<br/>AIRBORNE</h1>
-          <p className="font-body text-xl font-light text-white/40 leading-relaxed max-w-[500px] mb-12">
-            Have a project in mind or need technical advice on UAV integration? Reach out to our operations team.
+          <p className="font-body text-xl font-light text-white/40 leading-relaxed max-w-[500px] mb-12 uppercase tracking-widest">
+            Have a project in mind or need technical advice on UAV integration? Reach out to our operations team or start a formal briefing.
           </p>
+
+          <div className="mb-12">
+            <Link 
+              href="/brief" 
+              className="group inline-flex items-center gap-6 bg-accent text-dark px-8 py-5 font-display text-xl tracking-widest hover:bg-white transition-all shadow-[0_20px_40px_rgba(205,174,130,0.15)]"
+            >
+              START PROJECT BRIEF <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
+            </Link>
+          </div>
 
           <div className="space-y-8">
             <div className="flex items-center gap-6 group cursor-pointer">

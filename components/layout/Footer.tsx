@@ -82,7 +82,8 @@ export default function Footer() {
           </div>
           
           <div className="flex gap-12 font-ui text-[10px] tracking-[0.3em] uppercase">
-            <Link href="/blog" className="text-white/40 hover:text-accent transition-colors">Resources</Link>
+            <Link href="/portfolio" className="text-white/40 hover:text-accent transition-colors">Portfolio</Link>
+            <Link href="/resources" className="text-white/40 hover:text-accent transition-colors">Resources</Link>
             <Link href="/fleet" className="text-white/40 hover:text-accent transition-colors">Fleet</Link>
             <Link href="/contact" className="text-white/40 hover:text-accent transition-colors">Contact</Link>
           </div>

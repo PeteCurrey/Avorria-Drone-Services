@@ -1,20 +1,13 @@
 import { MetadataRoute } from 'next'
 import { servicesData } from '@/lib/services-data'
+import { locationsData } from '@/lib/locations-data'
+import { blogPosts } from '@/lib/blog-posts'
 
 const BASE_URL = 'https://altitude-hire.com'
 
 const services = servicesData.map(s => s.slug)
 
-const locations = [
-  'london', 'manchester', 'birmingham', 'leeds', 'sheffield',
-  'bristol', 'edinburgh', 'glasgow', 'liverpool', 'newcastle',
-  'nottingham', 'leicester', 'coventry', 'cardiff', 'bradford',
-  'belfast', 'hull', 'stoke-on-trent', 'wolverhampton', 'exeter',
-  'plymouth', 'derby', 'southampton', 'oxford', 'cambridge',
-  'norwich', 'ipswich', 'brighton', 'reading', 'milton-keynes',
-  'york', 'sunderland', 'middlesbrough', 'peterborough', 'luton',
-  'aberdeen', 'dundee', 'inverness', 'swansea', 'newport',
-]
+const locations = locationsData.map(l => l.slug)
 
 const industries = [
   'construction', 'utilities', 'agriculture', 'real-estate',
@@ -27,11 +20,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/services`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
     { url: `${BASE_URL}/fleet`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
     { url: `${BASE_URL}/team`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
-    { url: `${BASE_URL}/case-studies`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
+    { url: `${BASE_URL}/portfolio`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
+    { url: `${BASE_URL}/resources`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
     { url: `${BASE_URL}/brief`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
     { url: `${BASE_URL}/contact`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${BASE_URL}/blog`, lastModified: new Date(), changeFrequency: 'daily', priority: 0.8 },
   ] as MetadataRoute.Sitemap
+
+  const resourcePages = blogPosts.map(p => ({
+    url: `${BASE_URL}/resources/${p.slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly' as const,
+    priority: 0.7,
+  }))
 
   const servicePages = services.map(s => ({
     url: `${BASE_URL}/services/${s}`,
@@ -67,6 +67,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     ...staticPages,
     ...servicePages,
+    ...resourcePages,
     ...locationPages,
     ...industryPages,
     ...crossPages,

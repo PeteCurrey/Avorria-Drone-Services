@@ -1,4 +1,4 @@
--- ALTITUDE DRONE ADMIN DASHBOARD MIGRATION
+-- Altitude Hire ADMIN DASHBOARD MIGRATION
 -- Execute this in the Supabase SQL Editor
 
 -- 1. LEADS TABLE (CRM)

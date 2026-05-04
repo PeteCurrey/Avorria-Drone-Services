@@ -682,6 +682,7 @@ function BriefFormContent() {
         </div>
       </div>
     </form>
+    </div>
   )
 }
 

@@ -1,6 +1,4 @@
-'use client'
-
-import { useEffect, useRef } from 'react'
+import Link from 'next/link'
 import { gsap } from '@/lib/gsap-init'
 import { useLenis } from '@/lib/lenis'
 import VideoBackground from '@/components/ui/VideoBackground'
@@ -67,7 +65,7 @@ export default function EventsSection() {
     return () => ctx.revert()
   }, [])
 
-  const features = ['Live Broadcast', 'Festival Coverage', 'Sports Events', 'Crowd Monitoring', 'Article 16 Authorised', 'Dual Operator']
+  const features = ['Live Broadcast', 'Festival Coverage', 'Sports Events', 'Crowd Monitoring', 'CAA-Compliant Ops', 'Dual Operator']
 
   const timelineSteps = [
     { label: 'RISK ASSESSMENT', detail: 'Pre-flight safety & airspace compliance.' },
@@ -75,15 +73,6 @@ export default function EventsSection() {
     { label: 'LIVE DEPLOYMENT', detail: 'Secure feed to on-site broadcast units.' },
     { label: 'POST-PRODUCTION', detail: 'Color-graded 4K/6K highlight reels.' }
   ]
-
-  const scrollToContact = () => {
-    if (lenis) {
-      const contactSection = document.getElementById('contact')
-      if (contactSection) {
-        lenis.scrollTo(contactSection)
-      }
-    }
-  }
 
   return (
     <section ref={sectionRef} data-index="7" className="noise-overlay flex flex-col md:flex-row items-center justify-between gap-12 md:gap-24">
@@ -93,9 +82,16 @@ export default function EventsSection() {
       <div className="relative z-10 flex-1 max-w-[640px]">
         <div className="svc-tag"><SectionTag number="07" text="Service" /></div>
         <h2 className="svc-headline font-display text-section text-white mb-8">EVENTS &<br/>MEDIA</h2>
-        <p className="svc-body font-body text-[16px] font-light leading-relaxed text-white/50 mb-8 max-w-[500px]">Capture the scale and energy of live events from breathtaking vantage points. Operating under advanced Article 16 permissions, we safely deliver heavy-lift cinema rigs and live broadcast feeds in complex crowded environments where standard operators cannot fly.</p>
+        <p className="svc-body font-body text-[16px] font-light leading-relaxed text-white/50 mb-8 max-w-[500px]">Capture the scale and energy of live events from breathtaking vantage points. Operating under relevant CAA-compliant authorisations, we deliver cinema-grade aerials and live broadcast feeds in complex environments where professional capture is essential.</p>
         <div className="feature-tags"><FeatureTags tags={features} /></div>
-        <button onClick={scrollToContact} className="svc-cta flex items-center gap-4 font-ui text-[13px] tracking-[0.25em] text-accent group transition-all">BOOK EVENT COVERAGE <span className="group-hover:translate-x-2 transition-transform duration-300">→</span></button>
+        <div className="svc-cta flex flex-col sm:flex-row gap-6 mt-12">
+          <Link href="/services/events-media" className="flex items-center gap-4 font-ui text-[13px] tracking-[0.25em] text-accent group transition-all">
+            VIEW EVENTS & MEDIA <span className="group-hover:translate-x-2 transition-transform duration-300">→</span>
+          </Link>
+          <Link href="/brief?service=events-media&package=visual-sales-pack" className="flex items-center gap-4 font-ui text-[13px] tracking-[0.25em] text-white/50 hover:text-white transition-all">
+            CREATE MEDIA BRIEF
+          </Link>
+        </div>
       </div>
       
       <div className="panel-right relative z-10 flex-1 w-full max-w-[450px] flex flex-col gap-6">
@@ -116,10 +112,6 @@ export default function EventsSection() {
               </div>
             ))}
           </div>
-        </div>
-        <div className="border border-white/10 bg-black/40 p-6 flex flex-col justify-center items-center backdrop-blur-md">
-           <span className="font-ui text-[11px] tracking-[0.2em] uppercase text-white/50 mb-2">Daily Operator Rates From</span>
-           <span className="font-display text-4xl text-white">£1,250<span className="text-xl text-accent">+VAT</span></span>
         </div>
       </div>
     </section>

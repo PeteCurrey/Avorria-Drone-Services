@@ -73,19 +73,33 @@ export default function VideoBackground({
     // Disable video entirely for mobile or reduced motion
     if (isMobile || prefersReducedMotion) return
 
-    if (shouldLoad && videoRef.current && sourceRef.current) {
-      const video = videoRef.current
-      const source = sourceRef.current
-      
-      if (source.dataset.src && !source.src) {
-        source.src = source.dataset.src
-        video.load()
-        video.play().catch(() => {
-          // Autoplay blocked
-        })
-      }
-    }
-  }, [shouldLoad, isMobile, prefersReducedMotion])
+    if (!videoRef.current || !sourceRef.current) return;
+    
+    const video = videoRef.current;
+    const source = sourceRef.current;
+
+    // We use a separate observer for play/pause logic
+    const playPauseObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && entry.intersectionRatio >= 0.6) {
+          // Play video when >60% visible
+          if (source.dataset.src && !source.src) {
+            source.src = source.dataset.src;
+            video.load();
+          }
+          video.play().catch(() => {});
+        } else {
+          // Pause when not visible
+          video.pause();
+        }
+      },
+      { threshold: [0, 0.35, 0.65, 1], rootMargin: '0px' }
+    );
+
+    playPauseObserver.observe(video);
+
+    return () => playPauseObserver.disconnect();
+  }, [isMobile, prefersReducedMotion])
 
   // If mobile or reduced motion, we only show the poster
   const showVideo = !isMobile && !prefersReducedMotion

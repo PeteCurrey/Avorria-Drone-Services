@@ -16,10 +16,10 @@ export default function Footer() {
           {/* Brand Info */}
           <div className="space-y-8">
             <div className="font-display text-4xl text-white tracking-tighter">
-              ALTITUDE<span className="text-accent underline underline-offset-4 decoration-1">DRONE.</span>
+              ALTITUDE<span className="text-accent underline underline-offset-4 decoration-1">HIRE.</span>
             </div>
             <p className="font-body text-sm text-white/30 uppercase tracking-widest leading-relaxed">
-              Professional UAV Services UK Wide. CAA Approved Commercial Operations. Leading the industry in technical aerial intelligence.
+              Professional UAV Services UK Wide. CAA-Compliant Commercial Operations. Leading the industry in technical aerial intelligence.
             </p>
           </div>
 
@@ -74,17 +74,22 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="font-ui text-[10px] tracking-[0.2em] text-white/20 uppercase text-center md:text-left">
-            © {new Date().getFullYear()} Altitude Drone. Permission for Commercial Operations ID: 15450.
+            © {new Date().getFullYear()} Altitude Hire. CAA-Compliant Commercial Drone Operations.
             <span className="mx-4 opacity-50">|</span>
             <Link href="/privacy" className="hover:text-accent">Privacy Policy</Link>
             <span className="mx-4 opacity-50">|</span>
             <Link href="/terms" className="hover:text-accent">Terms of Service</Link>
+            <span className="mx-4 opacity-50">|</span>
+            <Link href="/operations-standard" className="hover:text-accent">Operations Standard</Link>
           </div>
           
           <div className="flex gap-12 font-ui text-[10px] tracking-[0.3em] uppercase">
+            <Link href="/project-brief-assistant" className="text-accent hover:text-white transition-colors">Brief Assistant</Link>
+            <Link href="/choose-your-output" className="text-accent hover:text-white transition-colors">Output Selector</Link>
+            <Link href="/sample-deliverables" className="text-accent hover:text-white transition-colors">Deliverables</Link>
             <Link href="/portfolio" className="text-white/40 hover:text-accent transition-colors">Portfolio</Link>
             <Link href="/resources" className="text-white/40 hover:text-accent transition-colors">Resources</Link>
-            <Link href="/fleet" className="text-white/40 hover:text-accent transition-colors">Fleet</Link>
+            <Link href="/operations-standard" className="text-white/40 hover:text-accent transition-colors">Operations</Link>
             <Link href="/contact" className="text-white/40 hover:text-accent transition-colors">Contact</Link>
           </div>
         </div>

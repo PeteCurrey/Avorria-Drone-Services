@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { useEffect, useRef } from 'react'
 import { gsap } from '@/lib/gsap-init'
 import { useLenis } from '@/lib/lenis'
@@ -83,9 +84,18 @@ export default function ThermalSection() {
       <div className="relative z-10 flex-1 max-w-[640px]">
         <div className="svc-tag"><SectionTag number="05" text="Service" /></div>
         <h2 className="svc-headline font-display text-section text-white mb-8">THERMAL<br/>IMAGING</h2>
-        <p className="svc-body font-body text-[16px] font-light leading-relaxed text-white/50 mb-8 max-w-[500px]">Heat tells the truth. Our radiometric thermal drone surveys reveal what the naked eye cannot — moisture ingress, insulation failure, electrical faults, and energy loss mapped precisely across entire building envelopes, rooftops, and solar installations in a single flight.</p>
+        <p className="svc-body font-body text-[16px] font-light leading-relaxed text-white/50 mb-8 max-w-[500px]">
+          Radiometric thermal signatures reveal temperature differentials that the naked eye cannot see. Our thermal drone surveys support the identification of anomalies, moisture ingress, and energy loss across building envelopes, rooftops, and solar installations.
+        </p>
         <div className="feature-tags"><FeatureTags tags={features} /></div>
-        <button onClick={scrollToContact} className="svc-cta flex items-center gap-4 font-ui text-[13px] tracking-[0.25em] text-accent group transition-all">REQUEST THERMAL SURVEY <span className="group-hover:translate-x-2 transition-transform duration-300">→</span></button>
+        <div className="svc-cta flex flex-col sm:flex-row gap-6 mt-12">
+          <Link href="/services/thermal-imaging" className="flex items-center gap-4 font-ui text-[13px] tracking-[0.25em] text-accent group transition-all">
+            VIEW THERMAL SURVEYS <span className="group-hover:translate-x-2 transition-transform duration-300">→</span>
+          </Link>
+          <Link href="/brief?service=thermal-imaging" className="flex items-center gap-4 font-ui text-[13px] tracking-[0.25em] text-white/50 hover:text-white transition-all">
+            REQUEST THERMAL BRIEF
+          </Link>
+        </div>
       </div>
       <div className="panel-right relative z-10 flex-1 w-full max-w-[450px] flex flex-col gap-6">
         <div className="bg-black/55 border border-white/7 backdrop-blur-md">

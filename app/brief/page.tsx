@@ -3,6 +3,7 @@
 
 import { useState, useEffect, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
+import { motion } from 'framer-motion'
 import { 
   ArrowRight, 
   CheckCircle2, 
@@ -53,8 +54,18 @@ function BriefFormContent() {
     
     description: '',
     budget: 'Not sure yet',
-    consent: false
+    consent: false,
+    
+    // Hidden metadata
+    source: searchParams.get('source') || '',
+    sector: searchParams.get('sector') || '',
+    siteType: searchParams.get('site-type') || '',
+    urgency: searchParams.get('urgency') || '',
+    ctaLabel: searchParams.get('cta') || '',
+    toolPath: searchParams.get('tool') || ''
   })
+
+  const [showSummary, setShowSummary] = useState(!!(searchParams.get('service') || searchParams.get('package') || searchParams.get('outcome')))
 
   const toggleCheckbox = (listName: 'outcomes' | 'deliverables' | 'constraints', value: string) => {
     setFormData(prev => {
@@ -115,7 +126,71 @@ function BriefFormContent() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-24">
+    <div className="space-y-24">
+      {/* Context Summary Layer */}
+      {showSummary && (
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="bg-accent/5 border border-accent/20 p-12 relative overflow-hidden"
+        >
+          <div className="absolute top-0 right-0 p-4">
+             <button 
+               type="button"
+               onClick={() => setShowSummary(false)}
+               className="font-ui text-[9px] tracking-widest uppercase text-accent/40 hover:text-accent transition-colors"
+             >
+               Clear Selection [x]
+             </button>
+          </div>
+          <div className="flex items-center gap-4 mb-8">
+            <Target className="w-5 h-5 text-accent" />
+            <span className="font-ui text-[11px] tracking-[0.4em] uppercase text-accent">Your Project Context</span>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+             {formData.serviceInterest !== 'Not sure yet' && (
+               <div>
+                 <span className="block font-ui text-[9px] tracking-widest text-white/30 uppercase mb-2">Selected Service</span>
+                 <span className="block font-display text-xl text-white uppercase tracking-widest">{formData.serviceInterest.replace(/-/g, ' ')}</span>
+               </div>
+             )}
+             {formData.packageInterest !== 'Not sure yet' && (
+               <div>
+                 <span className="block font-ui text-[9px] tracking-widest text-white/30 uppercase mb-2">Recommended Bundle</span>
+                 <span className="block font-display text-xl text-accent uppercase tracking-widest">{formData.packageInterest.replace(/-/g, ' ')}</span>
+               </div>
+             )}
+             {formData.location && (
+               <div>
+                 <span className="block font-ui text-[9px] tracking-widest text-white/30 uppercase mb-2">Target Location</span>
+                 <span className="block font-display text-xl text-white uppercase tracking-widest">{formData.location}</span>
+               </div>
+             )}
+             {formData.sector && (
+               <div>
+                 <span className="block font-ui text-[9px] tracking-widest text-white/30 uppercase mb-2">Target Sector</span>
+                 <span className="block font-display text-xl text-white uppercase tracking-widest">{formData.sector.replace(/-/g, ' ')}</span>
+               </div>
+             )}
+          </div>
+          <div className="mt-8 pt-8 border-t border-accent/10 flex items-center gap-4">
+             <CheckCircle2 className="w-4 h-4 text-accent/50" />
+             <p className="font-body text-[10px] text-accent/60 uppercase tracking-widest italic">
+               This brief will be pre-filled with your previous selections. You can still modify any detail below.
+             </p>
+          </div>
+        </motion.div>
+      )}
+
+      <form onSubmit={handleSubmit} className="space-y-24">
+        {/* Hidden Analytics Fields */}
+        <input type="hidden" name="source_url" value={typeof window !== 'undefined' ? window.location.href : ''} />
+        <input type="hidden" name="recommended_service" value={formData.serviceInterest} />
+        <input type="hidden" name="recommended_bundle" value={formData.packageInterest} />
+        <input type="hidden" name="lead_source" value={formData.source} />
+        <input type="hidden" name="cta_label" value={formData.ctaLabel} />
+        <input type="hidden" name="tool_path" value={formData.toolPath} />
+
       {/* Step 1: Contact Details */}
       <div className="section-group">
         <div className="flex items-center gap-4 mb-12">
@@ -430,7 +505,11 @@ function BriefFormContent() {
              </label>
            ))}
         </div>
-        <p className="mt-8 font-body text-[10px] text-white/20 uppercase tracking-widest italic">You do not need to know the final format. Select what sounds useful and we’ll advise.</p>
+        <p className="mt-8 font-body text-[10px] text-white/20 uppercase tracking-widest italic flex flex-wrap gap-x-8 gap-y-2">
+          <span>You do not need to know the final format. Select what sounds useful and we’ll advise.</span>
+          <Link href="/sample-deliverables" className="text-accent hover:underline">View sample deliverables →</Link>
+          <Link href="/choose-your-output" className="text-accent hover:underline">Use output selector →</Link>
+        </p>
       </div>
 
       {/* Step 7: Timing & Urgency */}
@@ -668,9 +747,12 @@ export default function ProjectBriefPage() {
         <footer className="mt-32 pt-20 border-t border-white/5 grid grid-cols-1 md:grid-cols-2 gap-20">
            <div>
               <h4 className="font-display text-2xl text-white uppercase tracking-widest mb-8">NOT SURE WHAT TO CHOOSE?</h4>
-              <p className="font-body text-sm text-white/40 uppercase tracking-widest leading-relaxed">
-                If you are unsure, select “Not sure yet” and describe the outcome in your own words. The project can be scoped properly after the initial brief.
+              <p className="font-body text-sm text-white/40 uppercase tracking-widest leading-relaxed mb-8">
+                Use the project brief assistant to identify the right drone service, commercial package and deliverables before submitting your brief.
               </p>
+              <Link href="/project-brief-assistant" className="font-ui text-[11px] tracking-[0.3em] uppercase text-accent border border-accent/20 px-8 py-4 hover:bg-accent hover:text-dark transition-all">
+                Open Brief Assistant →
+              </Link>
            </div>
            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
               <div className="space-y-4">

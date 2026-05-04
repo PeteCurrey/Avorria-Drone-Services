@@ -36,7 +36,7 @@ export default function TeamPage() {
         <div className="absolute inset-0 z-0">
           <Image 
             src="/images/events_poster.jpg" 
-            alt="Altitude Drone Team" 
+            alt="Altitude Hire Team" 
             fill
             priority
             className="object-cover opacity-20"
@@ -51,7 +51,7 @@ export default function TeamPage() {
           </div>
           <h1 className="font-display text-7xl md:text-8xl text-white mb-8 tracking-wider leading-none">THE<br/><span className="text-accent underline underline-offset-8">TEAM</span></h1>
           <p className="font-body text-lg md:text-xl text-white/40 leading-relaxed max-w-[600px]">
-            Technology is only as capable as the operators behind it. Altitude Drone is driven by certified aviation professionals, geospatial analysts, and industrial inspection specialists.
+            Technology is only as capable as the operators behind it. Altitude Hire is driven by certified aviation professionals, geospatial analysts, and industrial inspection specialists.
           </p>
         </div>
       </section>

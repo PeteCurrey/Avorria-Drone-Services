@@ -2,6 +2,7 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
+import Link from 'next/link'
 import { gsap, registerGSAP,  } from '@/lib/gsap-init'
 import VideoBackground from '@/components/ui/VideoBackground'
 import SectionTag from '@/components/ui/SectionTag'
@@ -53,7 +54,7 @@ export default function SurveyingSection() {
 
   const features = [
     'Topographic Survey', 'Orthomosaic Maps', 'Point Cloud / LiDAR', 
-    '3D Modelling', 'Volume Calculations', 'GCP Accuracy'
+    '3D Modelling', 'Volume Calculations', 'Precision Mapping'
   ]
 
   return (
@@ -78,17 +79,21 @@ export default function SurveyingSection() {
         </h2>
 
         <p className="svc-body font-body text-[16px] font-light leading-relaxed text-white/50 mb-8 max-w-[500px]">
-          Millimetre-accurate topographic surveys, orthomosaic maps, and point cloud data — delivered faster and at a fraction of the cost of traditional ground surveys. Ground Control Points included as standard on every project.
+          High-accuracy topographic surveys, orthomosaic maps, and point cloud data — delivered faster than traditional ground surveys. We provide the spatial intelligence needed for planning, design, and construction workflows.
         </p>
 
         <div className="feature-tags">
           <FeatureTags tags={features} />
         </div>
 
-        <button className="svc-cta flex items-center gap-4 font-ui text-[13px] tracking-[0.25em] text-accent group transition-all">
-          REQUEST SURVEY QUOTE 
-          <span className="group-hover:translate-x-2 transition-transform duration-300">→</span>
-        </button>
+        <div className="svc-cta flex flex-col sm:flex-row gap-6 mt-12">
+          <Link href="/services/surveying-mapping" className="flex items-center gap-4 font-ui text-[13px] tracking-[0.25em] text-accent group transition-all">
+            VIEW SURVEYING & MAPPING <span className="group-hover:translate-x-2 transition-transform duration-300">→</span>
+          </Link>
+          <Link href="/brief?service=surveying-mapping" className="flex items-center gap-4 font-ui text-[13px] tracking-[0.25em] text-white/50 hover:text-white transition-all">
+            PLAN SURVEY BRIEF
+          </Link>
+        </div>
       </div>
 
       {/* Grid Panel */}
@@ -118,7 +123,7 @@ export default function SurveyingSection() {
           
           <div className="absolute bottom-8 left-8">
             <div className="font-ui text-[10px] tracking-[0.2em] uppercase text-white/30 mb-1">GPS Coordinates</div>
-            <div className="font-ui text-[12px] tracking-[0.1em] text-accent">53.2307° N, 1.4213° W · Accuracy: ±15mm</div>
+            <div className="font-ui text-[12px] tracking-[0.1em] text-accent">53.2307° N, 1.4213° W · High-Accuracy Data</div>
           </div>
         </div>
       </div>

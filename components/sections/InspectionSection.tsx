@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
+import Link from 'next/link'
 import { gsap } from '@/lib/gsap-init'
 import VideoBackground from '@/components/ui/VideoBackground'
 import SectionTag from '@/components/ui/SectionTag'
@@ -70,7 +71,14 @@ export default function InspectionSection() {
         <h2 className="svc-headline font-display text-section text-white mb-8">DRONE<br/>INSPECTION</h2>
         <p className="svc-body font-body text-[16px] font-light leading-relaxed text-white/50 mb-8 max-w-[500px]">Eliminate risk. Eliminate scaffolding. Our inspection drones access the inaccessible — delivering thermal imaging, HD visual data, and detailed defect reporting for structures where traditional access is costly or dangerous.</p>
         <div className="feature-tags"><FeatureTags tags={features} /></div>
-        <a href="#contact" className="svc-cta flex items-center gap-4 font-ui text-[13px] tracking-[0.25em] text-accent group transition-all">ENQUIRE NOW <span className="group-hover:translate-x-2 transition-transform duration-300">→</span></a>
+        <div className="svc-cta flex flex-col sm:flex-row gap-6 mt-12">
+          <Link href="/services/drone-inspection" className="flex items-center gap-4 font-ui text-[13px] tracking-[0.25em] text-accent group transition-all">
+            VIEW DRONE INSPECTION <span className="group-hover:translate-x-2 transition-transform duration-300">→</span>
+          </Link>
+          <Link href="/brief?service=drone-inspection" className="flex items-center gap-4 font-ui text-[13px] tracking-[0.25em] text-white/50 hover:text-white transition-all">
+            START INSPECTION BRIEF
+          </Link>
+        </div>
       </div>
       <div className="panel-right relative z-10 flex-1 w-full max-w-[450px]">
         <div className="border border-white/10 bg-black/40 backdrop-blur-md">
@@ -78,7 +86,7 @@ export default function InspectionSection() {
             <div key={spec.label} className="flex justify-between items-center px-6 py-5 border-b border-white/5 last:border-0">
               <span className="font-ui text-[11px] tracking-[0.2em] uppercase text-white/30">{spec.label}</span>
               <div className="flex items-center gap-3">
-                <span className="font-body text-[14px] text-white/75">{spec.value}</span>
+                <span className="font-body text-[14px] text-white/75">{spec.value === 'Unlimited' ? 'High-Level Capability' : spec.value}</span>
                 <span className="text-accent text-lg">↗</span>
               </div>
             </div>

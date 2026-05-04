@@ -25,7 +25,7 @@ export default function SocialGenPage() {
     // For demo/prototype, we simulate the high-quality output
     setTimeout(() => {
       setOutput({
-        linkedin: `[Operational Update] High-precision asset monitoring in progress. Altitude Drone is currently deploying M350 RTK systems across UK infrastructure hubs to deliver mm-perfect structural intelligence. \n\nOur pilots are operating in complex airspace under full GVC authority, ensuring that "seeing further" leads to "knowing more". \n\n#DronesInConstruction #UAV #AssetInspection #AltitudeDrone`,
+        linkedin: `[Operational Update] High-precision asset monitoring in progress. Altitude Hire is currently deploying M350 RTK systems across UK infrastructure hubs to deliver mm-perfect structural intelligence. \n\nOur pilots are operating in complex airspace under full GVC authority, ensuring that "seeing further" leads to "knowing more". \n\n#DronesInConstruction #UAV #AssetInspection #AltitudeDrone`,
         instagram: `Commanding the horizon. 🚁🇬🇧\n\nPrecision at every coordinate. High-fidelity cinematic data capture. \n\n#AltitudeDrone #DronePhotography #UKPilots #CinematicUAV`,
         x: `New technical project brief acknowledged. Fleet deploying to Sector 07 for infrastructure monitoring. Precision intelligence, delivered. ⚡️ #AltitudeDrone #UAV`
       })

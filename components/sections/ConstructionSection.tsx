@@ -1,6 +1,7 @@
 // components/sections/ConstructionSection.tsx
 'use client'
 
+import Link from 'next/link'
 import { useEffect, useRef } from 'react'
 import { gsap, registerGSAP,  } from '@/lib/gsap-init'
 import VideoBackground from '@/components/ui/VideoBackground'
@@ -103,17 +104,21 @@ export default function ConstructionSection() {
         </h2>
 
         <p className="svc-body font-body text-[16px] font-light leading-relaxed text-white/50 mb-8 max-w-[500px]">
-          Keep stakeholders informed and projects on track. Regular scheduled drone flights capture site progress, verify milestone completion, and generate time-lapse documentation from groundworks to handover.
+          Repeatable aerial records that track your project from groundworks to handover. Whether it&apos;s weekly progress shoots, monthly stakeholder reporting, or volumetric earthworks analysis — we provide the visual evidence that keeps projects on track and stakeholders informed.
         </p>
 
         <div className="feature-tags">
           <FeatureTags tags={features} />
         </div>
 
-        <button className="svc-cta flex items-center gap-4 font-ui text-[13px] tracking-[0.25em] text-accent group transition-all">
-          DISCUSS YOUR PROJECT 
-          <span className="group-hover:translate-x-2 transition-transform duration-300">→</span>
-        </button>
+        <div className="svc-cta flex flex-col sm:flex-row gap-6 mt-12">
+          <Link href="/services/construction-monitoring" className="flex items-center gap-4 font-ui text-[13px] tracking-[0.25em] text-accent group transition-all">
+            VIEW CONSTRUCTION MONITORING <span className="group-hover:translate-x-2 transition-transform duration-300">→</span>
+          </Link>
+          <Link href="/brief?service=construction-monitoring&package=construction-progress-pack" className="flex items-center gap-4 font-ui text-[13px] tracking-[0.25em] text-white/50 hover:text-white transition-all">
+            PLAN MONITORING BRIEF
+          </Link>
+        </div>
       </div>
 
       {/* Timeline Panel */}

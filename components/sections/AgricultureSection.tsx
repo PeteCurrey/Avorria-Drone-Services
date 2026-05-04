@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { useEffect, useRef } from 'react'
 import { gsap } from '@/lib/gsap-init'
 import { useLenis } from '@/lib/lenis'
@@ -71,9 +72,18 @@ export default function AgricultureSection() {
       <div className="relative z-10 flex-1 max-w-[640px]">
         <div className="svc-tag"><SectionTag number="06" text="Service" /></div>
         <h2 className="svc-headline font-display text-section text-white mb-8">AGRICULTURAL<br/>SURVEYS</h2>
-        <p className="svc-body font-body text-[16px] font-light leading-relaxed text-white/50 mb-8 max-w-[500px]">Empower precision farming with multispectral aerial data. Our NDVI and high-resolution crop health surveys identify stress, optimize fertilizer application, map drainage issues, and improve yield predictability with verifiable data delivered directly to farm management software.</p>
+        <p className="svc-body font-body text-[16px] font-light leading-relaxed text-white/50 mb-8 max-w-[500px]">
+          Multispectral aerial data to support precision farming. Our NDVI and high-resolution crop health surveys help identify stress, map drainage issues, and improve yield predictability with data delivered directly to farm management software.
+        </p>
         <div className="feature-tags"><FeatureTags tags={features} /></div>
-        <button onClick={scrollToContact} className="svc-cta flex items-center gap-4 font-ui text-[13px] tracking-[0.25em] text-accent group transition-all">CONNECT WITH AN EXPERT <span className="group-hover:translate-x-2 transition-transform duration-300">→</span></button>
+        <div className="svc-cta flex flex-col sm:flex-row gap-6 mt-12">
+          <Link href="/services/agricultural-surveys" className="flex items-center gap-4 font-ui text-[13px] tracking-[0.25em] text-accent group transition-all">
+            VIEW AGRICULTURAL SURVEYS <span className="group-hover:translate-x-2 transition-transform duration-300">→</span>
+          </Link>
+          <Link href="/brief?service=agricultural-surveys" className="flex items-center gap-4 font-ui text-[13px] tracking-[0.25em] text-white/50 hover:text-white transition-all">
+            DISCUSS LAND SURVEY
+          </Link>
+        </div>
       </div>
       <div className="panel-left relative z-10 flex-1 w-full max-w-[450px] flex flex-col gap-6">
         <div className="grid grid-cols-2 gap-[1px] bg-white/10 border border-white/5 overflow-hidden">

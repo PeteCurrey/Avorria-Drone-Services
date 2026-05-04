@@ -28,8 +28,8 @@ export const servicesData: ServiceData[] = [
     title: 'Drone Inspection Services UK',
     headline: ['DRONE', 'INSPECTION'],
     category: 'Property & Assets',
-    intro: 'Eliminate access risk and scaffolding costs. Altitude Drone delivers comprehensive UAV inspection services for structures where traditional access is dangerous, slow, or prohibitively expensive.',
-    metaTitle: 'Drone Inspection Services UK | CAA Approved | Altitude Hire',
+    intro: 'Eliminate access risk and scaffolding costs. Altitude Hire delivers comprehensive UAV inspection services for structures where traditional access is dangerous, slow, or prohibitively expensive.',
+    metaTitle: 'Drone Inspection Services UK | CAA-Compliant | Altitude Hire',
     metaDescription: 'Professional drone inspection services across the UK. Thermal imaging, defect reporting, and structural assessments for roofing, facades, and infrastructure. CAA-compliant.',
     heroStat: [
       { value: '70%', label: 'Cost saving vs scaffolding' },

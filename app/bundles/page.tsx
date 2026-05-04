@@ -201,8 +201,11 @@ export default function BundlesPage() {
             From roof inspections and construction progress reports to survey-grade mapping, cinematic content and immersive 3D capture, Altitude Hire packages drone services around the result you actually need — not just the flight.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-            <Link href="/contact" className="bg-accent text-dark font-display text-xl tracking-widest px-10 py-4 hover:bg-white transition-all duration-300">
+            <Link href="/brief?source=bundles-hero" className="bg-accent text-dark font-display text-xl tracking-widest px-10 py-4 hover:bg-white transition-all duration-300">
               DISCUSS A PROJECT
+            </Link>
+            <Link href="/project-brief-assistant?mode=package&source=bundles" className="bg-white text-dark font-display text-xl tracking-widest px-10 py-4 hover:bg-accent transition-all duration-300">
+              NOT SURE WHICH PACKAGE FITS?
             </Link>
             <Link href="/services" className="border border-white/20 font-ui text-[12px] tracking-[0.3em] uppercase px-10 py-4 hover:bg-white/5 transition-all">
               VIEW DRONE SERVICES
@@ -297,7 +300,7 @@ export default function BundlesPage() {
                 </div>
 
                 <div className="mt-auto pt-8 border-t border-white/5">
-                   <Link href="/contact" className="w-full flex items-center justify-between font-ui text-[11px] tracking-[0.3em] uppercase text-accent group/btn hover:text-white transition-all">
+                   <Link href={`/brief?package=${bundle.slug}&source=bundles-card&cta=${bundle.cta}`} className="w-full flex items-center justify-between font-ui text-[11px] tracking-[0.3em] uppercase text-accent group/btn hover:text-white transition-all">
                      {bundle.cta} <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-2 transition-transform" />
                    </Link>
                 </div>
@@ -475,8 +478,8 @@ export default function BundlesPage() {
             Whether you need a roof inspection, progress record, survey dataset, marketing content package or immersive 3D site capture, Altitude Hire can structure the drone operation around the commercial result.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-            <Link href="/contact" className="bg-dark text-white font-display text-2xl tracking-[0.2em] px-12 py-5 hover:bg-white hover:text-dark transition-all duration-500">
-              DISCUSS A PROJECT
+            <Link href="/brief?source=bundles-footer" className="bg-dark text-white font-display text-2xl tracking-[0.2em] px-12 py-5 hover:bg-white hover:text-dark transition-all duration-500">
+              START PROJECT BRIEF
             </Link>
             <Link href="/services" className="border-2 border-dark/20 font-ui text-[12px] font-bold tracking-[0.3em] uppercase px-12 py-5 hover:bg-dark hover:text-white transition-all duration-500">
               VIEW ALL SERVICES

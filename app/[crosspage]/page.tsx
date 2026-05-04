@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const data = getCrossPageData(crosspage)
   if (!data) return {}
 
-  const title = `${data.service.title} ${data.location.name} — Altitude Drone`
+  const title = `${data.service.title} ${data.location.name} — Altitude Hire`
   const description = `Professional ${data.service.title.toLowerCase()} in ${data.location.name}. ${data.service.intro} Serving ${data.location.region} with CAA approved UAV technology.`
 
   return {
@@ -55,7 +55,7 @@ export default async function CrossPage({ params }: Props) {
     description: service.metaDescription,
     provider: {
       '@type': 'LocalBusiness',
-      name: 'Altitude Drone',
+      name: 'Altitude Hire',
       address: {
         '@type': 'PostalAddress',
         addressLocality: location.name,
@@ -101,7 +101,7 @@ export default async function CrossPage({ params }: Props) {
             </h1>
 
             <p className="font-body text-xl md:text-2xl font-light text-white/50 max-w-2xl mb-12 opacity-0 animate-[fade-in_1s_1s_forwards]">
-              {service.intro} Altitude Drone is the leading provider of {service.title.toLowerCase()} for commercial and industrial clients across {location.name} and {location.region}.
+              {service.intro} Altitude Hire is the leading provider of {service.title.toLowerCase()} for commercial and industrial clients across {location.name} and {location.region}.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-8 opacity-0 animate-[fade-in_1s_1.2s_forwards]">

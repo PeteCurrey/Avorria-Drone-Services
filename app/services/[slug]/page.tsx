@@ -49,7 +49,7 @@ export default async function ServicePage({ params }: Props) {
     description: service.metaDescription,
     provider: {
       '@type': 'LocalBusiness',
-      name: 'Altitude Drone',
+      name: 'Altitude Hire',
     },
     areaServed: {
       '@type': 'Country',

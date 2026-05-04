@@ -1,121 +1,325 @@
-import { createClient } from '@/lib/supabase/server'
-export const dynamic = 'force-dynamic'
+'use client'
+
+import { useState } from 'react'
+import { motion } from 'framer-motion'
 import { 
   Users, 
+  Flame, 
+  CheckCircle2, 
+  Clock, 
+  AlertCircle, 
   Search, 
   Filter, 
-  Download,
-  Mail,
-  ChevronRight
+  Download, 
+  ArrowRight,
+  Target,
+  Activity,
+  BarChart3,
+  ExternalLink,
+  ChevronRight,
+  MoreVertical
 } from 'lucide-react'
+import Link from 'next/link'
+import SectionTag from '@/components/ui/SectionTag'
 
-export default async function LeadsManagementPage() {
-  const supabase = await createClient()
+// --- Mock Data ---
 
-  // Fetch leads sorted by date
-  const { data: leads, error } = await supabase
-    .from('leads')
-    .select('*')
-    .order('created_at', { ascending: false })
+const MOCK_LEADS = [
+  {
+    id: 'L-001',
+    name: 'James Harrison',
+    company: 'Skyline FM Ltd',
+    email: 'j.harrison@skylinefm.co.uk',
+    service: 'Roof Inspections',
+    bundle: 'Roof Intelligence Pack',
+    location: 'Sheffield',
+    sector: 'Facilities Management',
+    score: 88,
+    quality: 'Hot',
+    date: '2026-05-04',
+    status: 'New'
+  },
+  {
+    id: 'L-002',
+    name: 'Sarah Chen',
+    company: 'Urban Build Group',
+    email: 's.chen@urbanbuild.com',
+    service: 'Construction Monitoring',
+    bundle: 'Construction Progress Pack',
+    location: 'Manchester',
+    sector: 'Construction',
+    score: 72,
+    quality: 'Qualified',
+    date: '2026-05-04',
+    status: 'Reviewed'
+  },
+  {
+    id: 'L-003',
+    name: 'Mark Thompson',
+    company: 'Global Logistics',
+    email: 'mark@globallogistics.com',
+    service: 'Not sure yet',
+    bundle: 'Not sure yet',
+    location: 'Bristol',
+    sector: 'Logistics',
+    score: 42,
+    quality: 'Nurture',
+    date: '2026-05-03',
+    status: 'Contacted'
+  },
+  {
+    id: 'L-004',
+    name: 'Elena Rossi',
+    company: 'Heritage Trust',
+    email: 'elena@heritagetrust.org',
+    service: 'Gaussian Splat Capture',
+    bundle: 'Immersive Digital Capture Pack',
+    location: 'Oxford',
+    sector: 'Heritage',
+    score: 91,
+    quality: 'Hot',
+    date: '2026-05-03',
+    status: 'New'
+  },
+  {
+    id: 'L-005',
+    name: 'David Webb',
+    company: 'Unknown',
+    email: 'dwebb99@gmail.com',
+    service: 'Aerial Photography',
+    bundle: 'Not sure yet',
+    location: 'London',
+    sector: 'Unknown',
+    score: 28,
+    quality: 'Low Intent',
+    date: '2026-05-02',
+    status: 'New'
+  }
+]
 
-  if (error) {
-    return (
-      <div className="p-10 border border-red-500/20 bg-red-500/5 text-red-500">
-        ERROR FETCHING UPLINK DATA: {error.message}
-      </div>
-    )
+// --- Components ---
+
+export default function AdminLeadsPage() {
+  const [activeTab, setActiveTab] = useState('all')
+
+  const getQualityColor = (quality: string) => {
+    switch (quality) {
+      case 'Hot': return 'text-orange-500 bg-orange-500/10 border-orange-500/20'
+      case 'Qualified': return 'text-accent bg-accent/10 border-accent/20'
+      case 'Nurture': return 'text-blue-400 bg-blue-400/10 border-blue-400/20'
+      default: return 'text-white/30 bg-white/5 border-white/10'
+    }
+  }
+
+  const getStatusColor = (status: string) => {
+    switch (status) {
+      case 'New': return 'text-accent'
+      case 'Won': return 'text-green-400'
+      case 'Lost': return 'text-red-400'
+      default: return 'text-white/50'
+    }
   }
 
   return (
-    <div className="space-y-10">
-      {/* Header */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-        <div>
-          <h1 className="font-display text-5xl text-white tracking-widest uppercase mb-4">Lead Intelligence</h1>
-          <p className="font-body text-xs text-white/30 tracking-[0.3em] uppercase">Processing inbound mission signals</p>
-        </div>
+    <main className="min-h-screen bg-dark text-white pt-32 pb-20 px-8 md:px-20">
+      <div className="max-w-[1600px] mx-auto">
         
-        <div className="flex items-center gap-4">
-          <div className="relative">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-white/20" />
-            <input 
-              type="text" placeholder="Search coordinates..."
-              className="bg-white/5 border border-white/10 py-3 pl-12 pr-4 text-white outline-none focus:border-accent transition-colors font-ui text-[10px] uppercase tracking-widest w-64"
-            />
-          </div>
-          <button className="p-3 bg-white/5 border border-white/10 hover:border-accent transition-colors">
-            <Filter className="w-4 h-4 text-white/40" />
-          </button>
-          <button className="flex items-center gap-3 px-6 py-3 bg-white/5 border border-white/10 hover:border-accent hover:bg-accent hover:text-dark transition-all group">
-            <Download className="w-4 h-4 opacity-40 group-hover:opacity-100" />
-            <span className="font-ui text-[10px] tracking-widest uppercase">Export CSV</span>
-          </button>
+        {/* Header */}
+        <header className="flex flex-col md:flex-row justify-between items-end gap-8 mb-16 pb-12 border-b border-white/5">
+           <div>
+             <div className="flex items-center gap-4 mb-6">
+                <div className="w-12 h-px bg-accent" />
+                <span className="font-ui text-[11px] tracking-[0.4em] uppercase text-accent">Altitude Command Centre</span>
+             </div>
+             <h1 className="font-display text-5xl md:text-6xl text-white uppercase tracking-tighter leading-none">
+                Lead <span className="text-accent">Qualification</span>
+             </h1>
+           </div>
+           <div className="flex items-center gap-4">
+              <button className="flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 font-ui text-[10px] tracking-widest uppercase hover:bg-white/10 transition-colors">
+                 <Download className="w-3 h-3" /> Export CSV
+              </button>
+              <Link href="/brief" className="flex items-center gap-2 px-6 py-3 bg-accent text-dark font-ui text-[10px] tracking-widest uppercase hover:bg-white transition-colors">
+                 Manual Entry +
+              </Link>
+           </div>
+        </header>
+
+        {/* Stats Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[1px] bg-white/10 border border-white/10 mb-16">
+           {[
+             { label: 'Total Leads', val: '148', icon: Users, trend: '+12%' },
+             { label: 'Hot Leads', val: '24', icon: Flame, trend: '+8%', color: 'text-orange-500' },
+             { label: 'Qualified', val: '86', icon: CheckCircle2, trend: '+5%', color: 'text-accent' },
+             { label: 'Avg Lead Score', val: '64', icon: BarChart3, trend: '+3%' }
+           ].map((stat, i) => (
+             <div key={i} className="bg-mid p-10">
+                <div className="flex justify-between items-start mb-6">
+                   <div className="p-3 bg-white/5 rounded-sm">
+                      <stat.icon className={`w-5 h-5 ${stat.color || 'text-white/40'}`} />
+                   </div>
+                   <span className="font-ui text-[9px] text-green-400 tracking-widest uppercase">{stat.trend}</span>
+                </div>
+                <div className="font-display text-4xl text-white mb-2">{stat.val}</div>
+                <div className="font-ui text-[10px] tracking-[0.2em] uppercase text-white/30">{stat.label}</div>
+             </div>
+           ))}
         </div>
-      </div>
 
-      {/* Leads Table */}
-      <div className="bg-white/[0.01] border border-white/5 overflow-hidden">
-        <table className="w-full text-left border-collapse">
-          <thead>
-            <tr className="border-b border-white/5 bg-white/[0.02]">
-              <th className="p-6 font-ui text-[9px] tracking-widest text-white/40 uppercase">Date/Time</th>
-              <th className="p-6 font-ui text-[9px] tracking-widest text-white/40 uppercase">Operator</th>
-              <th className="p-6 font-ui text-[9px] tracking-widest text-white/40 uppercase">Type</th>
-              <th className="p-6 font-ui text-[9px] tracking-widest text-white/40 uppercase">Status</th>
-              <th className="p-6 font-ui text-[9px] tracking-widest text-white/40 uppercase text-right">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {leads?.map((lead) => (
-              <tr key={lead.id} className="border-b border-white/5 hover:bg-white/[0.02] transition-colors group">
-                <td className="p-6">
-                  <div className="font-mono text-[10px] text-white/60">
-                    {new Date(lead.created_at).toLocaleDateString()}
-                  </div>
-                  <div className="font-mono text-[9px] text-white/20 mt-1 uppercase">
-                    {new Date(lead.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                  </div>
-                </td>
-                <td className="p-6">
-                  <div className="font-display text-lg text-white tracking-widest uppercase">{lead.full_name}</div>
-                  <div className="flex items-center gap-2 mt-1">
-                    <Mail className="w-3 h-3 text-white/20" />
-                    <span className="font-body text-[11px] text-white/40">{lead.email_address}</span>
-                  </div>
-                </td>
-                <td className="p-6">
-                  <span className={`font-ui text-[10px] tracking-widest uppercase ${lead.lead_type === 'brief' ? 'text-accent' : 'text-white/40'}`}>
-                    {lead.lead_type}
-                  </span>
-                </td>
-                <td className="p-6">
-                  <div className="flex items-center gap-3">
-                    <div className={`w-1.5 h-1.5 rounded-full ${lead.status === 'new' ? 'bg-accent animate-pulse' : 'bg-white/10'}`} />
-                    <span className="font-ui text-[9px] tracking-widest uppercase text-white/60">
-                      {lead.status}
-                    </span>
-                  </div>
-                </td>
-                <td className="p-6 text-right">
-                  <button className="p-3 bg-white/5 border border-white/10 hover:border-accent text-white/40 hover:text-accent transition-all">
-                    <ChevronRight className="w-4 h-4" />
-                  </button>
-                </td>
-              </tr>
-            ))}
+        {/* Filters & Tabs */}
+        <div className="flex flex-col lg:flex-row justify-between items-center gap-8 mb-8">
+           <div className="flex gap-4 border-b border-white/5 w-full lg:w-auto">
+              {['all', 'hot', 'qualified', 'nurture'].map(tab => (
+                <button
+                  key={tab}
+                  onClick={() => setActiveTab(tab)}
+                  className={`px-8 py-4 font-ui text-[10px] tracking-[0.3em] uppercase transition-all relative ${activeTab === tab ? 'text-accent' : 'text-white/30 hover:text-white'}`}
+                >
+                  {tab}
+                  {activeTab === tab && <motion.div layoutId="tab-underline" className="absolute bottom-0 left-0 right-0 h-0.5 bg-accent" />}
+                </button>
+              ))}
+           </div>
+           <div className="flex items-center gap-4 w-full lg:w-auto">
+              <div className="relative flex-1 lg:w-80">
+                 <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-white/20" />
+                 <input 
+                   type="text" 
+                   placeholder="SEARCH LEADS..." 
+                   className="w-full bg-white/5 border border-white/10 pl-12 pr-4 py-3 font-ui text-[10px] tracking-widest text-white uppercase focus:outline-none focus:border-accent/50 transition-colors"
+                 />
+              </div>
+              <button className="p-3 bg-white/5 border border-white/10 text-white/40 hover:text-white transition-colors">
+                 <Filter className="w-4 h-4" />
+              </button>
+           </div>
+        </div>
 
-            {(!leads || leads.length === 0) && (
-              <tr>
-                <td colSpan={5} className="p-20 text-center">
-                  <Users className="w-12 h-12 text-white/5 mx-auto mb-6" />
-                  <div className="font-display text-xl text-white/20 tracking-widest uppercase">No active signals found</div>
-                  <p className="font-ui text-[10px] text-white/5 uppercase tracking-widest mt-2">Uplink terminal is standby</p>
-                </td>
-              </tr>
-            )}
-          </tbody>
-        </table>
+        {/* Lead Table */}
+        <div className="bg-mid border border-white/5 overflow-x-auto">
+           <table className="w-full border-collapse text-left">
+              <thead>
+                 <tr className="border-b border-white/10 bg-white/[0.02]">
+                    <th className="p-6 font-ui text-[9px] tracking-[0.3em] uppercase text-white/30">Lead ID</th>
+                    <th className="p-6 font-ui text-[9px] tracking-[0.3em] uppercase text-white/30">Contact / Company</th>
+                    <th className="p-6 font-ui text-[9px] tracking-[0.3em] uppercase text-white/30">Service / Bundle</th>
+                    <th className="p-6 font-ui text-[9px] tracking-[0.3em] uppercase text-white/30">Location / Sector</th>
+                    <th className="p-6 font-ui text-[9px] tracking-[0.3em] uppercase text-white/30 text-center">Score</th>
+                    <th className="p-6 font-ui text-[9px] tracking-[0.3em] uppercase text-white/30 text-center">Quality</th>
+                    <th className="p-6 font-ui text-[9px] tracking-[0.3em] uppercase text-white/30 text-center">Status</th>
+                    <th className="p-6 font-ui text-[9px] tracking-[0.3em] uppercase text-white/30">Date</th>
+                    <th className="p-6"></th>
+                 </tr>
+              </thead>
+              <tbody className="divide-y divide-white/5">
+                 {MOCK_LEADS.map((lead) => (
+                   <tr key={lead.id} className="hover:bg-white/[0.02] transition-colors group">
+                      <td className="p-6 font-ui text-[10px] tracking-widest text-white/40">{lead.id}</td>
+                      <td className="p-6">
+                         <div className="font-display text-lg text-white uppercase tracking-widest mb-1">{lead.name}</div>
+                         <div className="font-ui text-[9px] text-white/30 uppercase tracking-widest">{lead.company}</div>
+                      </td>
+                      <td className="p-6">
+                         <div className="font-ui text-[10px] text-white/60 uppercase tracking-widest mb-1">{lead.service}</div>
+                         <div className="font-ui text-[9px] text-accent/50 uppercase tracking-widest">{lead.bundle}</div>
+                      </td>
+                      <td className="p-6">
+                         <div className="font-ui text-[10px] text-white/60 uppercase tracking-widest mb-1">{lead.location}</div>
+                         <div className="font-ui text-[9px] text-white/30 uppercase tracking-widest">{lead.sector}</div>
+                      </td>
+                      <td className="p-6 text-center">
+                         <div className="font-display text-2xl text-white">{lead.score}</div>
+                      </td>
+                      <td className="p-6 text-center">
+                         <span className={`inline-block px-4 py-1 border font-ui text-[9px] tracking-[0.2em] uppercase rounded-full ${getQualityColor(lead.quality)}`}>
+                            {lead.quality}
+                         </span>
+                      </td>
+                      <td className="p-6 text-center">
+                         <div className={`font-ui text-[10px] tracking-widest uppercase ${getStatusColor(lead.status)}`}>
+                            {lead.status}
+                         </div>
+                      </td>
+                      <td className="p-6 font-ui text-[10px] tracking-widest text-white/30 uppercase">
+                         {lead.date}
+                      </td>
+                      <td className="p-6 text-right">
+                         <Link href={`/admin/leads/${lead.id}`} className="p-2 text-white/20 hover:text-accent transition-colors inline-block">
+                            <ChevronRight className="w-5 h-5" />
+                         </Link>
+                      </td>
+                   </tr>
+                 ))}
+              </tbody>
+           </table>
+        </div>
+
+        {/* Footer Metrics */}
+        <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+           <div className="bg-white/[0.02] border border-white/5 p-12">
+              <h3 className="font-display text-xl text-white uppercase tracking-widest mb-8">Highest Converting Service</h3>
+              <div className="space-y-6">
+                 {[
+                   { name: 'Roof Inspections', rate: '68%', count: '42' },
+                   { name: 'Construction Monitoring', rate: '54%', count: '31' },
+                   { name: 'Surveying & Mapping', rate: '42%', count: '18' }
+                 ].map(s => (
+                   <div key={s.name} className="flex items-end justify-between">
+                      <div>
+                         <div className="font-ui text-[10px] tracking-widest uppercase text-white/60 mb-2">{s.name}</div>
+                         <div className="h-1 bg-white/5 w-48 overflow-hidden">
+                            <motion.div initial={{ scaleX: 0 }} animate={{ scaleX: parseInt(s.rate)/100 }} className="h-full bg-accent origin-left" />
+                         </div>
+                      </div>
+                      <div className="text-right">
+                         <div className="font-display text-xl text-white">{s.rate}</div>
+                         <div className="font-ui text-[8px] text-white/20 tracking-widest uppercase">{s.count} Leads</div>
+                      </div>
+                   </div>
+                 ))}
+              </div>
+           </div>
+
+           <div className="bg-white/[0.02] border border-white/5 p-12">
+              <h3 className="font-display text-xl text-white uppercase tracking-widest mb-8">Leads From Tools</h3>
+              <div className="space-y-6">
+                 {[
+                   { name: 'Project Brief Assistant', count: '56', conversion: '12%' },
+                   { name: 'Output Selector', count: '42', conversion: '18%' },
+                   { name: 'Pricing Engine', count: '18', conversion: '24%' }
+                 ].map(tool => (
+                   <div key={tool.name} className="flex items-center justify-between p-4 bg-dark/40 border border-white/5">
+                      <div>
+                         <div className="font-ui text-[10px] tracking-widest uppercase text-white/60 mb-1">{tool.name}</div>
+                         <div className="font-ui text-[8px] text-accent/50 tracking-widest uppercase">{tool.conversion} Conv. Rate</div>
+                      </div>
+                      <div className="font-display text-2xl text-white">{tool.count}</div>
+                   </div>
+                 ))}
+              </div>
+           </div>
+
+           <div className="bg-accent/5 border border-accent/10 p-12">
+              <h3 className="font-display text-xl text-accent uppercase tracking-widest mb-8">Bundle Demand</h3>
+              <div className="space-y-6">
+                 {[
+                   { name: 'Roof Intelligence Pack', demand: 'High', leads: '28' },
+                   { name: 'Construction Progress Pack', demand: 'Medium', leads: '19' },
+                   { name: 'Survey Data Pack', demand: 'Medium', leads: '14' }
+                 ].map(b => (
+                   <div key={b.name} className="flex items-center justify-between">
+                      <div>
+                         <div className="font-ui text-[11px] tracking-widest uppercase text-accent mb-1">{b.name}</div>
+                         <div className="font-ui text-[8px] text-accent/30 tracking-widest uppercase">Demand: {b.demand}</div>
+                      </div>
+                      <div className="font-display text-2xl text-accent">{b.leads}</div>
+                   </div>
+                 ))}
+              </div>
+           </div>
+        </div>
+
       </div>
-    </div>
+    </main>
   )
 }

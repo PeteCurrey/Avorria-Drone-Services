@@ -3,6 +3,31 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+.homepage-snap-container {
+  scroll-snap-type: y mandatory;
+  overflow-y: auto;
+  height: 100svh;
+  scroll-behavior: smooth;
+  /* Hide scrollbar for a cleaner look */
+  scrollbar-width: none; 
+}
+.homepage-snap-container::-webkit-scrollbar {
+  display: none;
+}
+
+.homepage-snap-section {
+  min-height: 100svh;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  position: relative;
+}
+
 :root {
   --white:          #ffffff;
   --off-white:      #e8e4de;

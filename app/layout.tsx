@@ -28,24 +28,24 @@ const barlowCondensed = Barlow_Condensed({
 })
 
 export const metadata: Metadata = {
-  title: 'Altitude Drone — Professional UAV Services UK',
-  description: 'Altitude Drone delivers CAA-approved drone inspection, aerial photography, surveying & mapping, and construction monitoring across the UK. See further. Know more.',
-  keywords: 'drone inspection, aerial photography, UAV surveying, drone mapping, construction monitoring, drone services UK, CAA approved, Altitude Drone',
+  title: 'Altitude Hire — Professional UAV Services UK',
+  description: 'Altitude Hire delivers CAA-compliant drone inspection, aerial photography, surveying & mapping, and construction monitoring across the UK. See further. Know more.',
+  keywords: 'drone inspection, aerial photography, UAV surveying, drone mapping, construction monitoring, drone services UK, CAA compliant, Altitude Hire',
   metadataBase: new URL('https://altitude-hire.com'),
   alternates: {
     canonical: '/',
   },
   openGraph: {
-    title: 'Altitude Drone — Professional UAV Services UK',
-    description: 'Altitude Drone delivers professional UAV services for inspection, photography, surveying, and construction monitoring across the UK. See further. Know more.',
+    title: 'Altitude Hire — Professional UAV Services UK',
+    description: 'Altitude Hire delivers professional UAV services for inspection, photography, surveying, and construction monitoring across the UK. See further. Know more.',
     url: 'https://altitude-hire.com',
-    siteName: 'Altitude Drone',
+    siteName: 'Altitude Hire',
     images: [
       {
         url: '/images/og-default.jpg',
         width: 1200,
         height: 630,
-        alt: 'Altitude Drone — Professional UAV Services UK',
+        alt: 'Altitude Hire — Professional UAV Services UK',
       },
     ],
     type: 'website',
@@ -53,18 +53,18 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Altitude Drone — Professional UAV Services UK',
-    description: 'Altitude Drone delivers professional UAV services for inspection, photography, surveying, and construction monitoring.',
+    title: 'Altitude Hire — Professional UAV Services UK',
+    description: 'Altitude Hire delivers professional UAV services for inspection, photography, surveying, and construction monitoring.',
     images: ['/images/og-default.jpg'],
   },
 }
 
 const organizationSchema = {
   '@context': 'https://schema.org',
-  '@type': 'LocalBusiness',
+  '@type': 'Organization',
   '@id': 'https://altitude-hire.com',
-  name: 'Altitude Drone',
-  description: 'Professional CAA-approved drone services across the UK including inspection, aerial photography, surveying, thermal imaging, and agricultural surveys.',
+  name: 'Altitude Hire',
+  description: 'Professional CAA-compliant drone services across the UK including inspection, aerial photography, surveying, thermal imaging, and agricultural surveys.',
   url: 'https://altitude-hire.com',
   telephone: '+441234000000',
   email: 'hello@altitude-hire.com',
@@ -113,7 +113,7 @@ const faqSchema = {
       name: 'Do you have permission for night drone operations?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Yes. All our pilots are CAA GVC certified, which includes permissions for night operations across the UK. We utilise high-intensity lighting and thermal sensors for low-light infrastructure inspections.',
+        text: 'Drone operations at night are possible subject to pilot qualification, site-specific risk assessment and operational safety requirements.',
       },
     },
     {
@@ -129,7 +129,7 @@ const faqSchema = {
       name: 'Are you insured for high-risk drone environments?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Yes. We carry £10M Public Liability Insurance specifically tailored for industrial UAV operations, including flight in congested areas and critical infrastructure proximity.',
+        text: 'Yes. We carry comprehensive Public Liability Insurance specifically tailored for commercial UAV operations in industrial and urban environments.',
       },
     },
     {

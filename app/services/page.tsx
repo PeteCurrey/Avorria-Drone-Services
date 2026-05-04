@@ -260,7 +260,7 @@ export default function ServicesHubPage() {
             Altitude Hire provides commercial drone inspections, surveying and mapping, thermal imaging, construction monitoring, aerial media, Gaussian Splat capture and digital twin-style visualisation for property, construction, infrastructure, energy, insurance and asset management teams.
           </p>
           <div className="flex flex-col sm:flex-row gap-8 mb-16">
-            <Link href="/brief" className="bg-accent text-dark font-display text-2xl tracking-[0.1em] px-12 py-6 hover:bg-white transition-all text-center">
+            <Link href="/brief?source=services-hero" className="bg-accent text-dark font-display text-2xl tracking-[0.1em] px-12 py-6 hover:bg-white transition-all text-center">
               START PROJECT BRIEF
             </Link>
             <Link href="/bundles" className="border border-white/20 text-white font-display text-2xl tracking-[0.1em] px-12 py-6 hover:bg-white hover:text-dark transition-all text-center">
@@ -345,7 +345,10 @@ export default function ServicesHubPage() {
           <div className="text-center mb-24">
              <div className="svc-tag mb-8 inline-flex"><SectionTag number="05" text="Strategy" /></div>
              <h2 className="font-display text-6xl text-white uppercase mb-4 tracking-tighter">NOT SURE WHICH SERVICE YOU NEED?</h2>
-             <p className="font-ui text-xl text-accent tracking-[0.2em] uppercase">Start With the Outcome.</p>
+             <p className="font-ui text-xl text-accent tracking-[0.2em] uppercase mb-12">Start With the Required Output.</p>
+             <Link href="/choose-your-output?source=services-hub" className="inline-flex items-center gap-6 bg-accent text-dark px-12 py-6 font-display text-2xl tracking-widest hover:bg-white transition-all">
+                FIND THE RIGHT DELIVERABLE <ArrowRight className="w-6 h-6" />
+             </Link>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-px bg-white/10 border border-white/5">
@@ -363,7 +366,7 @@ export default function ServicesHubPage() {
                      </Link>
                    ))}
                 </div>
-                <Link href="/brief" className="bg-white/5 text-white font-ui text-[10px] tracking-[0.4em] uppercase py-4 text-center border border-white/10 hover:bg-accent hover:text-dark transition-all">
+                <Link href={`/brief?outcome=${outcome.title}&source=services-outcome-grid`} className="bg-white/5 text-white font-ui text-[10px] tracking-[0.4em] uppercase py-4 text-center border border-white/10 hover:bg-accent hover:text-dark transition-all">
                   {outcome.cta}
                 </Link>
               </div>
@@ -491,7 +494,7 @@ export default function ServicesHubPage() {
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-8">
             <Link 
-              href="/brief"
+              href="/brief?source=services-footer"
               className="group flex items-center gap-6 bg-dark text-white px-12 py-8 font-display text-4xl tracking-[0.1em] transition-all hover:bg-white hover:text-dark w-full sm:w-auto shadow-[0_30px_60px_rgba(0,0,0,0.2)]"
             >
               START PROJECT BRIEF <ArrowRight className="w-10 h-10 group-hover:translate-x-4 transition-transform duration-500" />

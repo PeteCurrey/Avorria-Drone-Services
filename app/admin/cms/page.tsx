@@ -1,5 +1,7 @@
 import { createClient } from '@/lib/supabase/server'
 import Image from 'next/image'
+
+export const dynamic = 'force-dynamic'
 import { 
   FileText, 
   Plus, 

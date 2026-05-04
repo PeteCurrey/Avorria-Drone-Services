@@ -3,6 +3,11 @@ export interface SpecItem {
   value: string
 }
 
+export interface FeatureItem {
+  name: string
+  desc: string
+}
+
 export interface FleetAsset {
   name: string
   slug: string
@@ -11,7 +16,7 @@ export interface FleetAsset {
   image: string
   heroImage?: string
   specs: SpecItem[]
-  features: string[]
+  features: FeatureItem[]
   payloads?: string[] // Slugs of compatible payloads
 }
 

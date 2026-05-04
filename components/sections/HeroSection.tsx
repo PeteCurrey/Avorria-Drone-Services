@@ -49,7 +49,7 @@ export default function HeroSection() {
   }
 
   return (
-    <section ref={sectionRef} data-index="0" className="noise-overlay flex flex-col md:flex-row items-center justify-center gap-12 md:gap-20">
+    <section ref={sectionRef} data-index="0" className="noise-overlay min-h-screen pt-32 pb-20 flex flex-col md:flex-row items-center justify-center gap-12 md:gap-20">
       <VideoBackground 
         src="/videos/hero.mp4" 
         poster="/images/hero_poster.jpg" 

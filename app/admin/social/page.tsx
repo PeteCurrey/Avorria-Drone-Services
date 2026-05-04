@@ -6,7 +6,7 @@ import {
   Sparkles, 
   Linkedin, 
   Instagram, 
-  Twitter, 
+  X, 
   Copy, 
   RefreshCcw,
   Terminal
@@ -82,7 +82,7 @@ export default function SocialGenPage() {
           {[
             { platform: 'LinkedIn', icon: Linkedin, content: output.linkedin, color: 'text-blue-400' },
             { platform: 'Instagram', icon: Instagram, content: output.instagram, color: 'text-pink-400' },
-            { platform: 'X Corridors', icon: Twitter, content: output.x, color: 'text-white' },
+            { platform: 'X Corridors', icon: X, content: output.x, color: 'text-white' },
           ].map((block, i) => (
             <div key={i} className="bg-white/[0.02] border border-white/5 p-8 flex flex-col justify-between">
               <div>

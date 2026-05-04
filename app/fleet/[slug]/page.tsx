@@ -4,8 +4,8 @@ import Image from 'next/image'
 import { ArrowLeft, ArrowRight, ShieldCheck, Zap, Cpu, Gauge } from 'lucide-react'
 import { FLEET_ASSETS, PAYLOADS } from '@/lib/data/fleet'
 
-export default async function FleetDetailPage({ params }: { params: { slug: string } }) {
-  const { slug } = params
+export default async function FleetDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
   const asset = FLEET_ASSETS.find((a) => a.slug === slug)
   
   // If not in primary assets, check payloads

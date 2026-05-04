@@ -4,7 +4,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { 
   ArrowRight, Search, Building2, Hammer, BarChart3, 
-  Camera, ShieldAlert, Zap, Box, LayoutGrid, 
+  Camera, ShieldAlert, ShieldCheck, Zap, Box, LayoutGrid, 
   ChevronRight, CheckCircle2, MapPin, Target, Activity
 } from 'lucide-react'
 import VideoBackground from '@/components/ui/VideoBackground'

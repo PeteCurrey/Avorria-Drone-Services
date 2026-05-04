@@ -1,16 +1,9 @@
 import { MetadataRoute } from 'next'
+import { servicesData } from '@/lib/services-data'
 
 const BASE_URL = 'https://altitude-hire.com'
 
-const services = [
-  'drone-inspection',
-  'aerial-photography',
-  'surveying-mapping',
-  'construction-monitoring',
-  'thermal-imaging',
-  'agricultural-surveys',
-  'events-media',
-]
+const services = servicesData.map(s => s.slug)
 
 const locations = [
   'london', 'manchester', 'birmingham', 'leeds', 'sheffield',

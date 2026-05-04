@@ -171,6 +171,45 @@ export default async function ServicePage({ params }: Props) {
         </div>
       </section>
 
+      {/* Outcomes / Deliverables Section */}
+      <section className="py-32 border-b border-white/5 bg-white/[0.02]">
+        <div className="container px-8 md:px-20">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+            <div className="max-w-2xl">
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-10 h-[1px] bg-accent" />
+                <span className="font-ui text-[10px] tracking-[0.4em] uppercase text-accent">Service Outcomes</span>
+              </div>
+              <h2 className="font-display text-5xl md:text-6xl text-white uppercase leading-none">
+                Tangible Intelligence <br/>& <span className="text-accent">Deliverables</span>
+              </h2>
+            </div>
+            <p className="font-body text-sm text-white/40 uppercase tracking-widest max-w-xs text-right">
+              Every mission is engineered to produce specific, high-utility assets for your business.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {servicesData.filter(s => s.relatedServices.includes(service.slug) || (service.relatedServices[0] && s.relatedServices.includes(service.relatedServices[0]))).slice(0, 6).map((outcome, i) => (
+              <Link 
+                key={outcome.slug} 
+                href={`/services/${outcome.slug}`}
+                className="group p-8 border border-white/5 bg-dark hover:border-accent/30 transition-all duration-500"
+              >
+                <span className="font-ui text-[10px] text-accent/40 mb-4 block tracking-widest uppercase">Outcome 0{i + 1}</span>
+                <h3 className="font-display text-xl text-white mb-4 group-hover:text-accent transition-colors uppercase">{outcome.title.replace(' UK', '')}</h3>
+                <p className="font-body text-xs text-white/30 leading-relaxed line-clamp-2 uppercase mb-6">
+                  {outcome.intro}
+                </p>
+                <div className="flex items-center gap-2 text-accent font-ui text-[10px] tracking-widest uppercase opacity-0 group-hover:opacity-100 transition-opacity">
+                  View Detail <ArrowRight className="w-3 h-3" />
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Detailed FAQ Section */}
       <section className="py-32 bg-dark relative overflow-hidden">
         <div className="grid-lines opacity-20" />

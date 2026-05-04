@@ -262,7 +262,7 @@ export const servicesData: ServiceData[] = [
     relatedServices: ['aerial-photography', 'drone-inspection'],
     cta: { label: 'DISCUSS YOUR EVENT', href: '/contact' },
   },
-,
+
   {
     slug: 'commercial-aerial-photography',
     title: 'Commercial aerial photography UK',

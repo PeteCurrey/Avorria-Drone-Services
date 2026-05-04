@@ -6,7 +6,7 @@ export interface ServiceDetail {
   image: string
   features: { name: string; desc: string }[]
   methodology: { step: string; title: string; desc: string }[]
-  deliverables: string[]
+  deliverables: { name: string; desc: string }[]
   equipment: string[] // slugs from fleet assets
 }
 

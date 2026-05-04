@@ -156,6 +156,10 @@ export default function Nav() {
               </Link>
             </div>
 
+            <Link href="/sectors" className="font-ui text-[14px] font-medium tracking-[0.2em] uppercase text-white/80 hover:text-white transition-colors">
+              Sectors
+            </Link>
+
             <Link href="/gaussian-splat" className="font-ui text-[14px] font-medium tracking-[0.2em] uppercase text-white/80 hover:text-white transition-colors">
               Gaussian Splat
             </Link>
@@ -174,12 +178,8 @@ export default function Nav() {
               </Link>
             </div>
 
-            <Link href="/fleet" className="font-ui text-[14px] font-medium tracking-[0.2em] uppercase text-white/80 hover:text-white transition-colors">
-              Fleet
-            </Link>
-
-            <Link href="/resources" className="font-ui text-[14px] font-medium tracking-[0.2em] uppercase text-white/80 hover:text-white transition-colors">
-              Resources
+            <Link href="/client-portal-demos" className="font-ui text-[14px] font-medium tracking-[0.2em] uppercase text-white/80 hover:text-white transition-colors">
+              Demo Portals
             </Link>
           </div>
 
@@ -416,6 +416,8 @@ export default function Nav() {
             </div>
           </div>
 
+          <Link href="/sectors" className="font-display text-5xl tracking-tighter text-white py-4 w-full" onClick={() => setMobileMenuOpen(false)}>SECTORS</Link>
+          <Link href="/client-portal-demos" className="font-display text-5xl tracking-tighter text-white py-4 w-full" onClick={() => setMobileMenuOpen(false)}>DEMO PORTALS</Link>
           <Link href="/gaussian-splat-capture" className="font-display text-5xl tracking-tighter text-white py-4 w-full" onClick={() => setMobileMenuOpen(false)}>GAUSSIAN SPLAT</Link>
           <Link href="/fleet" className="font-display text-5xl tracking-tighter text-white py-4 w-full" onClick={() => setMobileMenuOpen(false)}>FLEET</Link>
           <Link href="/resources" className="font-display text-5xl tracking-tighter text-white py-4 w-full" onClick={() => setMobileMenuOpen(false)}>RESOURCES</Link>

@@ -200,11 +200,39 @@ export default async function ServicePage({ params }: Props) {
               <div className="p-12 bg-white/[0.01] border border-white/5">
                 <h4 className="font-ui text-[10px] tracking-[0.3em] uppercase text-white/30 mb-8">Key Industrial Sectors</h4>
                 <div className="flex flex-wrap gap-3">
-                  {service.industries.map((ind, i) => (
-                    <span key={i} className="px-5 py-2 border border-white/10 font-ui text-[11px] tracking-widest uppercase text-white/60 hover:border-accent hover:text-accent transition-colors">
-                      {ind}
-                    </span>
-                  ))}
+                  {service.industries.map((ind, i) => {
+                    const sectorMap: Record<string, string> = {
+                      'Facilities Management': 'facilities-management',
+                      'Construction': 'construction',
+                      'Commercial Property': 'commercial-property',
+                      'Insurance': 'insurance-loss-adjusters',
+                      'Surveyors': 'surveyors',
+                      'Infrastructure': 'infrastructure',
+                      'Utilities': 'utilities-energy',
+                      'Solar PV': 'solar-renewable-energy',
+                      'Heritage': 'heritage-conservation',
+                      'Events': 'events-venues-media',
+                      'Agriculture': 'agriculture-rural-estates'
+                    }
+                    const slug = sectorMap[ind] || sectorMap[ind.split(' & ')[0]] || sectorMap[ind.split(' / ')[0]]
+                    
+                    if (slug) {
+                      return (
+                        <Link 
+                          key={i} 
+                          href={`/sectors/${slug}`}
+                          className="px-5 py-2 border border-white/10 font-ui text-[11px] tracking-widest uppercase text-white/60 hover:border-accent hover:text-accent transition-colors"
+                        >
+                          {ind}
+                        </Link>
+                      )
+                    }
+                    return (
+                      <span key={i} className="px-5 py-2 border border-white/10 font-ui text-[11px] tracking-widest uppercase text-white/60">
+                        {ind}
+                      </span>
+                    )
+                  })}
                 </div>
               </div>
             </div>

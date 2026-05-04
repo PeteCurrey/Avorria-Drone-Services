@@ -447,6 +447,53 @@ export default function ServicesHubPage() {
         </div>
       </section>
 
+      {/* Browse by Industry Sector Section */}
+      <section className="py-32 bg-[#0a0a0a] border-y border-white/5 relative overflow-hidden">
+        <div className="absolute bottom-0 right-0 p-12 opacity-5 pointer-events-none hidden md:block">
+          <span className="font-display text-[200px] leading-none text-white uppercase select-none">
+            AUTHORITY
+          </span>
+        </div>
+        <div className="container px-8 md:px-20">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+            <div>
+              <div className="svc-tag mb-8"><SectionTag number="03" text="Context" /></div>
+              <h2 className="font-display text-5xl md:text-7xl text-white mb-10 uppercase leading-none">
+                BROWSE BY <br/>
+                <span className="text-accent underline underline-offset-[10px] decoration-accent/30">INDUSTRY SECTOR</span>
+              </h2>
+              <p className="font-body text-xl md:text-2xl text-white/50 leading-relaxed font-light uppercase tracking-widest mb-12">
+                Altitude Hire provides specialist drone workflows for Facilities Management, Construction, Commercial Property, Insurance, Surveying and Infrastructure.
+              </p>
+              <Link 
+                href="/sectors"
+                className="group inline-flex items-center gap-6 bg-accent text-dark px-10 py-6 font-display text-2xl tracking-widest hover:bg-white transition-all"
+              >
+                VIEW ALL SECTOR HUBS <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform" />
+              </Link>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              {[
+                { name: 'Facilities Management', href: '/sectors/facilities-management' },
+                { name: 'Construction', href: '/sectors/construction' },
+                { name: 'Commercial Property', href: '/sectors/commercial-property' },
+                { name: 'Insurance', href: '/sectors/insurance-loss-adjusters' },
+                { name: 'Surveyors', href: '/sectors/surveyors' },
+                { name: 'Infrastructure', href: '/sectors/infrastructure' }
+              ].map((s, i) => (
+                <Link 
+                  key={i} 
+                  href={s.href}
+                  className="p-8 border border-white/5 bg-white/[0.02] hover:bg-white hover:text-dark transition-all group"
+                >
+                  <span className="font-display text-lg uppercase tracking-widest block">{s.name}</span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Process Section */}
       <section className="py-32 px-10 md:px-20 bg-mid border-y border-white/5 relative overflow-hidden">
         <div className="container mx-auto">

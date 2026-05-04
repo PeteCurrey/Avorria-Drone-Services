@@ -6,34 +6,18 @@ import { useSearchParams } from 'next/navigation'
 import { 
   ArrowRight, 
   CheckCircle2, 
-  ShieldCheck, 
   Target, 
-  Search, 
-  BarChart3, 
-  Camera, 
   Box, 
-  ArrowUpRight,
   Shield,
   Clock,
-  ChevronRight,
-  AlertCircle,
-  HelpCircle,
   Upload,
-  Calendar,
   MapPin,
   Mail,
   Phone,
   User,
   Building2,
-  Zap,
-  Activity,
-  FileText,
-  Thermometer,
-  Layers,
-  Video,
-  Database
+  Activity
 } from 'lucide-react'
-import SectionTag from '@/components/ui/SectionTag'
 import Link from 'next/link'
 
 function BriefFormContent() {
@@ -48,14 +32,14 @@ function BriefFormContent() {
     role: '',
     contactMethod: 'Email',
     
-    location: '',
+    location: searchParams.get('location') || '',
     town: '',
     region: '',
     easyAccess: 'Not sure',
     liveSite: 'Not sure',
     accessRestrictions: '',
     
-    outcomes: [] as string[],
+    outcomes: searchParams.get('outcome') ? [searchParams.get('outcome')!] : ([] as string[]),
     serviceInterest: searchParams.get('service') || 'Not sure yet',
     packageInterest: searchParams.get('package') || 'Not sure yet',
     
@@ -71,24 +55,6 @@ function BriefFormContent() {
     budget: 'Not sure yet',
     consent: false
   })
-
-  // Pre-fill from URL params
-  useEffect(() => {
-    const service = searchParams.get('service')
-    const packageParam = searchParams.get('package')
-    const locationParam = searchParams.get('location')
-    const outcomeParam = searchParams.get('outcome')
-
-    if (service || packageParam || locationParam || outcomeParam) {
-      setFormData(prev => ({
-        ...prev,
-        serviceInterest: service || prev.serviceInterest,
-        packageInterest: packageParam || prev.packageInterest,
-        location: locationParam || prev.location,
-        outcomes: outcomeParam ? [outcomeParam] : prev.outcomes
-      }))
-    }
-  }, [searchParams])
 
   const toggleCheckbox = (listName: 'outcomes' | 'deliverables' | 'constraints', value: string) => {
     setFormData(prev => {
@@ -722,7 +688,7 @@ export default function ProjectBriefPage() {
   )
 }
 
-function ClipboardCheck(props: any) {
+function ClipboardCheck(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}

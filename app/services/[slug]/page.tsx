@@ -307,7 +307,7 @@ export default async function ServicePage({ params }: Props) {
                   className="group p-10 border border-white/5 bg-dark hover:border-accent/30 transition-all duration-500 relative overflow-hidden"
                 >
                   <div className="relative z-10">
-                    <span className="font-ui text-[10px] text-accent/40 mb-6 block tracking-[0.3em] uppercase">0{i + 1} // COMPLEMENTARY</span>
+                    <span className="font-ui text-[10px] text-accent/40 mb-6 block tracking-[0.3em] uppercase">0{i + 1} {"//"} COMPLEMENTARY</span>
                     <h3 className="font-display text-2xl text-white mb-6 group-hover:text-accent transition-colors uppercase leading-none">{related.title.replace(' UK', '')}</h3>
                     <p className="font-body text-xs text-white/30 leading-relaxed uppercase mb-10 line-clamp-3">
                       {related.intro}

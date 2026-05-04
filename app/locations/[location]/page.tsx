@@ -403,7 +403,7 @@ export default async function LocationPage({ params }: Props) {
   )
 }
 
-function CheckCircle2(props: any) {
+function CheckCircle2(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}

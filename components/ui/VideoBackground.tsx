@@ -34,8 +34,10 @@ export default function VideoBackground({
     const mobileQuery = window.matchMedia('(max-width: 768px)')
     const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
     
-    setIsMobile(mobileQuery.matches)
-    setPrefersReducedMotion(motionQuery.matches)
+    setTimeout(() => {
+      setIsMobile(mobileQuery.matches)
+      setPrefersReducedMotion(motionQuery.matches)
+    }, 0)
 
     const handleMobileChange = (e: MediaQueryListEvent) => setIsMobile(e.matches)
     const handleMotionChange = (e: MediaQueryListEvent) => setPrefersReducedMotion(e.matches)

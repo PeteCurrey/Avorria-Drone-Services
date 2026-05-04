@@ -5,7 +5,7 @@ import { useEffect, useState, useRef } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useLenis } from '@/lib/lenis'
-import { Rocket, Menu, X, ChevronDown, ArrowRight, Package, Box, ShieldCheck, Zap, BarChart3, Hammer, Building2, Search, Camera } from 'lucide-react'
+import { Rocket, Menu, X, ChevronDown, Box, ShieldCheck, Zap, BarChart3, Hammer, Building2, Search, Camera } from 'lucide-react'
 
 const sectorMenu = [
   {

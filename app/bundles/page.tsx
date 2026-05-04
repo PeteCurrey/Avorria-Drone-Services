@@ -13,8 +13,7 @@ import {
   Box, 
   ChevronRight, 
   CheckCircle2, 
-  ArrowRight,
-  Rocket
+  ArrowRight
 } from 'lucide-react'
 import SectionTag from '@/components/ui/SectionTag'
 import FAQAccordion from '@/components/ui/FAQAccordion'
@@ -238,7 +237,7 @@ export default function BundlesPage() {
           </div>
           <div className="bg-dark/40 border border-white/5 p-12 backdrop-blur-sm">
             <p className="font-body text-lg italic text-accent/80 mb-6 leading-relaxed">
-              "A drone is only the capture method. The value is in what the client can do with the output."
+              &quot;A drone is only the capture method. The value is in what the client can do with the output.&quot;
             </p>
             <p className="font-body text-white/40 leading-relaxed">
               Whether the requirement is reducing access costs, documenting a roof condition, tracking construction progress, producing investor update content, calculating stockpile volumes or creating an immersive 3D site model, Altitude Hire structures each project around the final deliverable.
@@ -275,7 +274,7 @@ export default function BundlesPage() {
                 </div>
 
                 <div className="mb-8">
-                   <h4 className="font-ui text-[10px] tracking-[0.2em] uppercase text-accent mb-3">What's Included:</h4>
+                   <h4 className="font-ui text-[10px] tracking-[0.2em] uppercase text-accent mb-3">What&apos;s Included:</h4>
                    <ul className="space-y-2">
                      {bundle.includes.slice(0, 4).map((item, i) => (
                        <li key={i} className="flex items-start gap-3">

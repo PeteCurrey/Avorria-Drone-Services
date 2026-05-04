@@ -3,16 +3,10 @@ import { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
 import { 
-  Box, 
   Layers, 
   Video, 
-  Camera, 
   Eye, 
-  Users, 
-  HardHat, 
-  History,
-  ArrowRight,
-  Rocket
+  Users
 } from 'lucide-react'
 import SectionTag from '@/components/ui/SectionTag'
 

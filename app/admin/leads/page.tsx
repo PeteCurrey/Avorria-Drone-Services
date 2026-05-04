@@ -5,7 +5,6 @@ import {
   Filter, 
   Download,
   Mail,
-  ExternalLink,
   ChevronRight
 } from 'lucide-react'
 

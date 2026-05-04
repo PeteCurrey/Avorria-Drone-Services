@@ -1,4 +1,5 @@
 import { createClient } from '@/lib/supabase/server'
+import Link from 'next/link'
 import { 
   Users, 
   FileText, 
@@ -57,7 +58,7 @@ export default async function AdminDashboard() {
         <div className="xl:col-span-2 space-y-6">
            <div className="flex items-center justify-between border-b border-white/5 pb-4">
               <h3 className="font-display text-xl text-white tracking-widest uppercase">Latest Uplinks (Leads)</h3>
-              <a href="/admin/leads" className="font-ui text-[9px] text-accent tracking-widest uppercase hover:text-white transition-colors">View All Contacts →</a>
+              <Link href="/admin/leads" className="font-ui text-[9px] text-accent tracking-widest uppercase hover:text-white transition-colors">View All Contacts →</Link>
            </div>
 
            <div className="bg-white/[0.01] border border-white/5 overflow-hidden">

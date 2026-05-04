@@ -3,7 +3,6 @@ import { Metadata } from 'next'
 import Link from 'next/link'
 import { ArrowRight, Clock, User } from 'lucide-react'
 import { blogPosts } from '@/lib/blog-posts'
-import Image from 'next/image'
 
 export const metadata: Metadata = {
   title: 'Resources & Insights — Altitude Drone | UK UAV Intelligence',

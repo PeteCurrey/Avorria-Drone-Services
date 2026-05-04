@@ -1,4 +1,5 @@
 import { createClient } from '@/lib/supabase/server'
+import Image from 'next/image'
 import { 
   FileText, 
   Plus, 
@@ -60,7 +61,12 @@ export default async function CaseStudyCMSPage() {
             {/* Thumbnail Placeholder */}
             <div className="aspect-video bg-white/5 relative overflow-hidden">
                {study.main_image ? (
-                 <img src={study.main_image} alt="" className="w-full h-full object-cover opacity-50 group-hover:opacity-80 transition-opacity duration-500" />
+                <Image 
+                  src={study.main_image} 
+                  alt={study.title} 
+                  fill
+                  className="object-cover opacity-50 group-hover:opacity-80 transition-opacity duration-500" 
+                />
                ) : (
                  <div className="absolute inset-0 flex items-center justify-center opacity-10">
                    <FileText className="w-12 h-12" />

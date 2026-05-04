@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
-import { ArrowLeft, ArrowRight, ShieldCheck, Zap, Cpu, Gauge } from 'lucide-react'
+import { ArrowLeft, ShieldCheck } from 'lucide-react'
 import { FLEET_ASSETS, PAYLOADS } from '@/lib/data/fleet'
 
 export default async function FleetDetailPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -58,7 +58,7 @@ export default async function FleetDetailPage({ params }: { params: Promise<{ sl
 
           {!isPayload && asset?.features && (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-              {asset.features.map((feature: any) => (
+              {asset.features.map((feature: { name: string; desc: string }) => (
                 <div key={feature.name} className="border-l border-accent/30 pl-8 py-2">
                   <h4 className="font-display text-xl text-white mb-3 tracking-wide uppercase">{feature.name}</h4>
                   <p className="font-body text-sm text-white/40 leading-relaxed">{feature.desc}</p>

@@ -58,7 +58,7 @@ export default async function ServicePage({ params }: Props) {
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
       name: service.title,
-      itemListElement: service.capabilities.map((cap, i) => ({
+      itemListElement: service.capabilities.map((cap) => ({
         '@type': 'Offer',
         itemOffered: {
           '@type': 'Service',

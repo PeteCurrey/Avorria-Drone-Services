@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react'
 import { RefreshCw, ShieldAlert } from 'lucide-react'
+import Link from 'next/link'
 
 export default function Error({
   error,
@@ -48,12 +49,12 @@ export default function Error({
             REBOOT SYSTEM
           </button>
           
-          <a
+          <Link
             href="/"
             className="font-ui text-[12px] tracking-widest text-white/30 hover:text-white transition-colors uppercase py-5 px-10 border border-white/5 hover:bg-white/5"
           >
              Emergency Override (Home)
-          </a>
+          </Link>
         </div>
       </div>
 

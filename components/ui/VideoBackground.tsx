@@ -24,15 +24,11 @@ export default function VideoBackground({
 }: VideoBackgroundProps) {
   const videoRef = useRef<HTMLVideoElement>(null)
   const sourceRef = useRef<HTMLSourceElement>(null)
-  const [hasStarted, setHasStarted] = useState(false)
+  const [hasStarted, setHasStarted] = useState(isHero)
   const [videoLoaded, setVideoLoaded] = useState(false)
 
   useEffect(() => {
-    // Hero videos load immediately
-    if (isHero) {
-      setHasStarted(true)
-      return
-    }
+    if (hasStarted) return
 
     // Lazy load observer for non-hero videos
     const observer = new IntersectionObserver(
@@ -47,7 +43,7 @@ export default function VideoBackground({
 
     if (videoRef.current) observer.observe(videoRef.current)
     return () => observer.disconnect()
-  }, [isHero])
+  }, [hasStarted])
 
   useEffect(() => {
     if (hasStarted && videoRef.current && sourceRef.current) {

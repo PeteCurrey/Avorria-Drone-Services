@@ -4,6 +4,8 @@ import { useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { Shield, Lock, Terminal } from 'lucide-react'
 
+import Link from 'next/link'
+
 export default function AdminLoginPage() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -89,9 +91,9 @@ export default function AdminLoginPage() {
         </div>
 
         <div className="mt-12 text-center">
-          <a href="/" className="font-ui text-[9px] tracking-widest text-white/20 hover:text-accent transition-colors uppercase">
+          <Link href="/" className="font-ui text-[9px] tracking-widest text-white/20 hover:text-accent transition-colors uppercase">
             ← Return to public airspace
-          </a>
+          </Link>
         </div>
       </div>
 

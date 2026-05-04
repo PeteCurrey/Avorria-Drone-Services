@@ -134,6 +134,7 @@ const BUNDLES = [
     ]
   },
   {
+    slug: "immersive-digital",
     title: "Immersive Digital Capture Pack",
     icon: Box,
     positioning: "Advanced visual capture for clients who need more than flat photos — including 3D models, Gaussian Splats, digital twin-style assets and immersive site visualisation.",
@@ -149,6 +150,18 @@ const BUNDLES = [
       { name: "360 Aerial Panoramas", href: "/services/360-aerial-panorama" }
     ]
   }
+]
+
+// Add slugs to BUNDLES for ID anchors
+const BUNDLE_DATA = [
+  { ...BUNDLES[0], slug: 'roof-intelligence' },
+  { ...BUNDLES[1], slug: 'building-envelope' },
+  { ...BUNDLES[2], slug: 'construction-progress' },
+  { ...BUNDLES[3], slug: 'survey-data' },
+  { ...BUNDLES[4], slug: 'visual-sales' },
+  { ...BUNDLES[5], slug: 'insurance-incident' },
+  { ...BUNDLES[6], slug: 'solar-energy' },
+  { ...BUNDLES[7], slug: 'immersive-digital' },
 ]
 
 const SECTORS = [
@@ -244,8 +257,8 @@ export default function BundlesPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-[1px] bg-white/10 border border-white/5">
-            {BUNDLES.map((bundle) => (
-              <div key={bundle.title} className="bg-dark p-10 flex flex-col h-full group hover:bg-mid/50 transition-all duration-500">
+            {BUNDLE_DATA.map((bundle) => (
+              <div key={bundle.title} id={bundle.slug} className="bg-dark p-10 flex flex-col h-full group hover:bg-mid/50 transition-all duration-500 scroll-mt-32">
                 <bundle.icon className="w-10 h-10 text-accent mb-8" />
                 <h3 className="font-display text-3xl text-white mb-4 tracking-wider uppercase leading-none group-hover:text-accent transition-colors">
                   {bundle.title}

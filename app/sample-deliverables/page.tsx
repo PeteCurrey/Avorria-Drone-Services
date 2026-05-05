@@ -380,7 +380,7 @@ export default function SampleDeliverablesPage() {
                  </div>
               </div>
            </div>
-        </header>
+        </section>
 
         {/* Filters */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-8 mb-16">

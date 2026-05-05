@@ -25,7 +25,8 @@ import {
   Hammer,
   Image as ImageIcon,
   Box,
-  Copy
+  Copy,
+  ChevronRight
 } from 'lucide-react'
 import Link from 'next/link'
 import SectionTag from '@/components/ui/SectionTag'

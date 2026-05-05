@@ -426,7 +426,7 @@ export const industriesData: IndustryData[] = [
     ],
     serviceStack: [
       { name: 'Aerial Photography & Film', benefit: 'Prestige visual content for marketing and brand use.', deliverables: ['4K/6K video clips', 'Edited highlights', 'Pro image set'], href: '/services/aerial-photography-film' },
-      { name: 'Digital Twin Capture', desc: 'Immersive visual records of estates and buildings.', deliverables: ['Interactive model', 'Site walkthrough', 'Condition archive'], href: '/services/digital-twin-capture' },
+      { name: 'Digital Twin Capture', benefit: 'Immersive visual records of estates and buildings.', deliverables: ['Interactive model', 'Site walkthrough', 'Condition archive'], href: '/services/digital-twin-capture' },
       { name: '360 Aerial Panoramas', benefit: 'Interactive context views from fixed aerial points.', deliverables: ['360 viewer', 'Embedded map', 'High-res stills'], href: '/services/360-aerial-panoramas' }
     ],
     deliverables: [

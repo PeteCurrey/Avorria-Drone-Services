@@ -17,7 +17,8 @@ import {
   Phone,
   User,
   Building2,
-  Activity
+  Activity,
+  ChevronRight
 } from 'lucide-react'
 import Link from 'next/link'
 

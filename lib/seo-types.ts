@@ -40,6 +40,7 @@ export interface QualityFields {
   missingServiceLinkWarning: boolean;
   missingLocationLinkWarning: boolean;
   overclaimingRiskWarning: boolean;
+  missingSchemaWarning: boolean;
   humanReviewRequired: boolean;
   qualityScore: number; // 0-100
 }

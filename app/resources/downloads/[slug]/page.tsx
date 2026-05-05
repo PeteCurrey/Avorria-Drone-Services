@@ -17,11 +17,12 @@ import { leadMagnets } from '@/lib/lead-magnets-config'
 import LeadCaptureForm from '@/components/interactive/LeadCaptureForm'
 
 interface Props {
-  params: { slug: string }
+  params: Promise<{ slug: string }>
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const asset = leadMagnets.find(a => a.slug === params.slug)
+  const { slug } = await params
+  const asset = leadMagnets.find(a => a.slug === slug)
   if (!asset) return { title: 'Asset Not Found' }
 
   return {
@@ -36,8 +37,9 @@ export async function generateStaticParams() {
   }))
 }
 
-export default function LeadMagnetPage({ params }: Props) {
-  const asset = leadMagnets.find(a => a.slug === params.slug)
+export default async function LeadMagnetPage({ params }: Props) {
+  const { slug } = await params
+  const asset = leadMagnets.find(a => a.slug === slug)
 
   if (!asset) {
     notFound()

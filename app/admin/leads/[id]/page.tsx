@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, use } from 'react'
 import { motion } from 'framer-motion'
 import { 
   ChevronLeft, 
@@ -30,13 +30,14 @@ import {
 import Link from 'next/link'
 import SectionTag from '@/components/ui/SectionTag'
 
-export default function LeadDetailPage({ params }: { params: { id: string } }) {
+export default function LeadDetailPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = use(params)
   const [status, setStatus] = useState('New')
   const [copied, setCopied] = useState(false)
 
   // Mock lead detail data
   const lead = {
-    id: params.id,
+    id: id,
     name: 'James Harrison',
     company: 'Skyline FM Ltd',
     email: 'j.harrison@skylinefm.co.uk',

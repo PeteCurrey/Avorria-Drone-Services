@@ -22,6 +22,7 @@ import {
   Activity
 } from 'lucide-react'
 import Link from 'next/link'
+import SectionTag from '@/components/ui/SectionTag'
 import { LeadMagnetAsset, sectors, projectTypes, getAutomationRoute } from '@/lib/lead-magnets-config'
 
 interface LeadCaptureFormProps {

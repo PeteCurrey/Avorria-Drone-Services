@@ -19,19 +19,27 @@ import {
   LayoutDashboard,
   FileText,
   ChevronRight,
-  Activity
+  Activity,
+  BookOpen
 } from 'lucide-react'
 import Link from 'next/link'
 import SectionTag from '@/components/ui/SectionTag'
 import { LeadMagnetAsset, sectors, projectTypes, getAutomationRoute } from '@/lib/lead-magnets-config'
+import { getAssetContent } from '@/lib/asset-content'
+import AssetContentRenderer from '@/components/ui/AssetContentRenderer'
+import { trackEvent, recordJourneyStep } from '@/lib/analytics'
+import { useAttribution } from '@/components/analytics/useAttribution'
 
 interface LeadCaptureFormProps {
   asset: LeadMagnetAsset
+  hasContent?: boolean
 }
 
-export default function LeadCaptureForm({ asset }: LeadCaptureFormProps) {
-  const [step, setStep] = useState<'form' | 'success'>('form')
+export default function LeadCaptureForm({ asset, hasContent }: LeadCaptureFormProps) {
+  const [step, setStep] = useState<'form' | 'success' | 'reading'>('form')
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const content = getAssetContent(asset.slug)
+  const { getAttributionData } = useAttribution()
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -46,32 +54,53 @@ export default function LeadCaptureForm({ asset }: LeadCaptureFormProps) {
 
   const route = getAutomationRoute(formData.sector, formData.projectType)
 
+  const handleFormFocus = () => {
+    trackEvent(asset.analyticsEvents.formStarted, {
+      asset_name: asset.title,
+      asset_slug: asset.slug,
+      sector: formData.sector,
+      project_type: formData.projectType,
+    })
+    recordJourneyStep(`Started lead magnet form: ${asset.title}`)
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
     
-    // In a real app, this would send data to the API / Command Centre
-    console.log('Lead Magnet Submission:', { 
-      assetId: asset.id, 
-      formData, 
-      automationRoute: route 
+    const attribution = getAttributionData()
+
+    trackEvent(asset.analyticsEvents.formSubmitted, {
+      asset_name: asset.title,
+      asset_slug: asset.slug,
+      sector: formData.sector,
+      project_type: formData.projectType,
+      ...attribution
     })
     
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500))
+    // Save lead to Supabase via API
+    try {
+      await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ...formData,
+          type: 'lead_magnet',
+          asset_id: asset.id,
+          asset_title: asset.title,
+          automation_route: route,
+          attribution: attribution
+        })
+      })
+    } catch (err) {
+      console.error('Lead submission failed:', err)
+    }
     
+    await new Promise(resolve => setTimeout(resolve, 1500))
     setIsSubmitting(false)
     setStep('success')
-    
-    // Track event
-    if (typeof window !== 'undefined' && (window as any).gtag) {
-      (window as any).gtag('event', 'lead_magnet_form_submitted', {
-        asset_name: asset.title,
-        asset_id: asset.id,
-        sector: formData.sector,
-        project_type: formData.projectType
-      })
-    }
+    trackEvent(asset.analyticsEvents.assetUnlocked)
+    recordJourneyStep(`Unlocked asset: ${asset.title}`)
   }
 
   return (
@@ -263,7 +292,7 @@ export default function LeadCaptureForm({ asset }: LeadCaptureFormProps) {
               </button>
             </form>
           </motion.div>
-        ) : (
+        ) : step === 'success' ? (
           <motion.div
             key="success"
             initial={{ opacity: 0, scale: 0.95 }}
@@ -276,24 +305,50 @@ export default function LeadCaptureForm({ asset }: LeadCaptureFormProps) {
             
             <div className="space-y-6">
               <h3 className="font-display text-4xl text-white uppercase tracking-tight leading-none">
-                {asset.status === 'available' ? 'Download Ready' : 'Request Received'}
+                {asset.pdfStatus === 'ready' ? 'Download Ready' : 'Resource Unlocked'}
               </h3>
               <p className="font-body text-sm text-white/50 uppercase tracking-widest leading-relaxed max-w-2xl mx-auto">
-                {asset.status === 'available' 
-                  ? "Your guide is ready. You can download it below, and we've also prepared recommended next steps based on your sector and project type."
-                  : "Thanks — your request has been recorded. This guide is currently being prepared for release. We've identified the best project route for your requirements below."}
+                {asset.pdfStatus === 'ready'
+                  ? "Your guide is ready to download below. We've also prepared recommended next steps based on your sector and project type."
+                  : "Your request has been recorded. The full guide content is available to read below. A PDF version is currently being prepared for download."}
               </p>
             </div>
 
-            {asset.status === 'available' && asset.pdfUrl && (
-              <a 
-                href={asset.pdfUrl}
-                download
-                className="inline-flex items-center gap-6 bg-accent text-dark px-12 py-6 font-display text-3xl tracking-widest hover:bg-white transition-all shadow-[0_20px_50px_rgba(205,174,130,0.2)]"
-              >
-                DOWNLOAD PDF <Download className="w-8 h-8" />
-              </a>
-            )}
+            {/* Read inline or download PDF */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              {content && (
+                <button 
+                  onClick={() => {
+                    setStep('reading')
+                    trackEvent('inline_reading_started', {
+                      asset_slug: asset.slug
+                    })
+                    recordJourneyStep(`Started inline reading: ${asset.title}`)
+                  }}
+                  className="inline-flex items-center gap-4 bg-white/5 border border-white/10 text-white px-10 py-5 font-display text-2xl tracking-widest hover:bg-white hover:text-dark transition-all"
+                >
+                  READ GUIDE INLINE <ChevronRight className="w-6 h-6" />
+                </button>
+              )}
+              {asset.pdfStatus === 'ready' && asset.pdfUrl && (
+                <a
+                  href={asset.pdfUrl}
+                  download
+                  onClick={() => {
+                    trackEvent(asset.analyticsEvents.pdfDownloaded);
+                    recordJourneyStep(`Downloaded PDF: ${asset.title}`);
+                  }}
+                  className="inline-flex items-center gap-4 border border-accent text-accent px-10 py-5 font-display text-2xl tracking-widest hover:bg-accent hover:text-dark transition-all"
+                >
+                  DOWNLOAD PDF <Download className="w-6 h-6" />
+                </a>
+              )}
+              {asset.pdfStatus === 'pending' && (
+                <span className="inline-flex items-center gap-3 px-6 py-3 border border-white/10 font-ui text-[9px] tracking-widest uppercase text-white/20">
+                  PDF export pending
+                </span>
+              )}
+            </div>
 
             {/* Recommendation Panel */}
             <div className="pt-16 border-t border-white/10 text-left space-y-12">
@@ -307,7 +362,7 @@ export default function LeadCaptureForm({ asset }: LeadCaptureFormProps) {
                      <div className="svc-tag"><SectionTag number="REC" text="Bundle Route" /></div>
                      <h4 className="font-display text-2xl text-white uppercase tracking-widest">{route.recommendedBundle}</h4>
                      <p className="font-body text-xs text-white/40 uppercase tracking-widest leading-relaxed">
-                        Based on your profile, this package provides the most effective route for {formData.projectType.toLowerCase()} requirements.
+                        Based on your profile, this package provides the most effective route for your requirements.
                      </p>
                      <Link href={`/bundles#${route.recommendedBundle.toLowerCase().replace(/ /g, '-')}`} className="font-ui text-[10px] tracking-[0.4em] uppercase text-accent flex items-center gap-2 group-hover:text-white transition-colors">
                         View Bundle <ChevronRight className="w-3 h-3" />
@@ -316,9 +371,9 @@ export default function LeadCaptureForm({ asset }: LeadCaptureFormProps) {
 
                   <div className="bg-dark border border-white/5 p-10 space-y-8 group hover:border-accent/30 transition-all">
                      <div className="svc-tag"><SectionTag number="SEC" text="Industry Hub" /></div>
-                     <h4 className="font-display text-2xl text-white uppercase tracking-widest">{formData.sector}</h4>
+                     <h4 className="font-display text-2xl text-white uppercase tracking-widest">{formData.sector || 'Your Sector'}</h4>
                      <p className="font-body text-xs text-white/40 uppercase tracking-widest leading-relaxed">
-                        Explore specific drone workflows and outcomes tailored for the {formData.sector.toLowerCase()} sector.
+                        Explore specific drone workflows and outcomes tailored for your sector.
                      </p>
                      <Link href={`/sectors/${route.sectorSlug}`} className="font-ui text-[10px] tracking-[0.4em] uppercase text-accent flex items-center gap-2 group-hover:text-white transition-colors">
                         Explore Sector <ChevronRight className="w-3 h-3" />
@@ -335,6 +390,14 @@ export default function LeadCaptureForm({ asset }: LeadCaptureFormProps) {
                   </div>
                   <Link 
                     href={`/brief?source=lead-magnet&asset=${asset.slug}&sector=${formData.sector.toLowerCase().replace(/ \/ /g, '-').replace(/ /g, '-')}&projectType=${formData.projectType.toLowerCase().replace(/ \/ /g, '-').replace(/ /g, '-')}&package=${route.recommendedBundle.toLowerCase().replace(/ /g, '-')}`}
+                    onClick={() => {
+                      trackEvent('brief_clicked', {
+                        source_asset: asset.slug,
+                        sector: formData.sector,
+                        project_type: formData.projectType
+                      })
+                      recordJourneyStep(`Clicked Start Brief from ${asset.title} success screen`)
+                    }}
                     className="bg-accent text-dark px-12 py-5 font-display text-2xl tracking-widest hover:bg-white transition-all flex items-center gap-4"
                   >
                     START BRIEF <ArrowRight className="w-6 h-6" />
@@ -343,9 +406,47 @@ export default function LeadCaptureForm({ asset }: LeadCaptureFormProps) {
                
                <div className="flex justify-center pt-8">
                   <p className="font-ui text-[9px] tracking-widest uppercase text-white/20">
-                    Automation Integration Pending • Lead Routed to {route.category}
+                    Lead Routed to {route.category} · Automation Integration Pending
                   </p>
                </div>
+            </div>
+          </motion.div>
+        ) : (
+          /* Reading state — full inline guide content */
+          <motion.div
+            key="reading"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="bg-mid border border-white/10 p-8 md:p-16"
+          >
+            <div className="flex items-center justify-between mb-12 pb-8 border-b border-white/10">
+              <div>
+                <h3 className="font-display text-3xl text-white uppercase tracking-widest">{asset.title}</h3>
+                <p className="font-ui text-[9px] tracking-widest uppercase text-accent/60 mt-2">{asset.type} · Unlocked</p>
+              </div>
+              <button
+                onClick={() => setStep('success')}
+                className="font-ui text-[9px] tracking-widest uppercase text-white/30 hover:text-white transition-colors flex items-center gap-2"
+              >
+                ← Back to next steps
+              </button>
+            </div>
+
+            {content && <AssetContentRenderer content={content} />}
+
+            {/* Bottom CTA */}
+            <div className="mt-16 pt-12 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-8">
+              <div className="space-y-2">
+                <p className="font-ui text-[9px] tracking-widest uppercase text-white/20">Ready to move forward?</p>
+                <p className="font-body text-sm text-white/50 uppercase tracking-widest">Start a project brief with your context pre-applied.</p>
+              </div>
+              <Link
+                href={`/brief?source=lead-magnet&asset=${asset.slug}&sector=${formData.sector.toLowerCase().replace(/ \/ /g, '-').replace(/ /g, '-')}`}
+                onClick={() => trackEvent(asset.analyticsEvents.briefClicked)}
+                className="bg-accent text-dark px-10 py-5 font-display text-xl tracking-widest hover:bg-white transition-all flex items-center gap-4 shrink-0"
+              >
+                START PROJECT BRIEF <ArrowRight className="w-5 h-5" />
+              </Link>
             </div>
           </motion.div>
         )}
@@ -353,3 +454,4 @@ export default function LeadCaptureForm({ asset }: LeadCaptureFormProps) {
     </div>
   )
 }
+

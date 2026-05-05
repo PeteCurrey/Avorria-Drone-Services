@@ -78,13 +78,54 @@ export default async function CrossPage({ params }: Props) {
 
       {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
-        <VideoBackground 
-          src={`/videos/${service.slug}.mp4`} 
-          poster={`/images/posters/${service.slug}.jpg`}
-          alt={`${service.title} in ${location.name}`}
-          brightness={0.35} 
-          isHero={true}
-        />
+        {(() => {
+          const videoMap: Record<string, string> = {
+            'drone-inspection': 'inspection',
+            'roof-inspections': 'inspection',
+            'facade-inspections': 'inspection',
+            'building-envelope-inspections': 'inspection',
+            'facilities-management-inspections': 'inspection',
+            'commercial-property-drone-surveys': 'inspection',
+            'dilapidation-drone-surveys': 'inspection',
+            'infrastructure-inspections': 'inspection',
+            'bridge-drone-inspections': 'inspection',
+            'rail-corridor-surveys': 'inspection',
+            'pipeline-corridor-surveys': 'inspection',
+            'surveying-mapping': 'surveying',
+            'construction-monitoring': 'construction',
+            'volumetric-surveys': 'surveying',
+            'orthomosaic-mapping': 'surveying',
+            'lidar-point-cloud-surveys': 'surveying',
+            'photogrammetry': 'surveying',
+            'agricultural-surveys': 'agriculture',
+            'thermal-imaging': 'thermal',
+            'solar-panel-inspections': 'thermal',
+            'aerial-photography-film': 'photography',
+            'events-media': 'events',
+            'heritage-conservation-archaeology': 'photography',
+            'insurance-loss-adjuster-surveys': 'inspection',
+            'emergency-response': 'thermal',
+            'fpv-drone-filming': 'photography',
+            '360-aerial-panoramas': 'photography',
+            'digital-twin-capture': 'surveying',
+            'gaussian-splat-capture': 'surveying',
+            'construction-progress-photography': 'construction',
+            'drone-time-lapse-monitoring': 'construction'
+          }
+
+          const assetBase = videoMap[service.slug] || 'inspection'
+          const posterExt = assetBase === 'agriculture' || assetBase === 'events' || assetBase === 'thermal' ? 'jpg' : 'png'
+          
+          return (
+            <VideoBackground 
+              src={`/videos/${assetBase}.mp4`} 
+              poster={`/images/${assetBase}_poster.${posterExt}`}
+              alt={`${service.title} in ${location.name}`}
+              brightness={0.35} 
+              isHero={true}
+            />
+          )
+        })()}
         <div className="grid-lines" />
         <div className="noise-overlay" />
         

@@ -18,9 +18,10 @@ import { createClient } from '@/lib/supabase/client'
 const NAV_ITEMS = [
   { name: 'Overview', path: '/admin', icon: LayoutDashboard },
   { name: 'Leads (CRM)', path: '/admin/leads', icon: Users },
+  { name: 'Analytics & Attribution', path: '/admin/analytics', icon: Activity },
   { name: 'Lead Magnets', path: '/admin/lead-magnets', icon: Download },
   { name: 'Case Studies', path: '/admin/cms', icon: FileText },
-  { name: 'SEO Engine', path: '/admin/seo', icon: Activity },
+  { name: 'SEO Engine', path: '/admin/seo', icon: Target },
   { name: 'Social Gen', path: '/admin/social', icon: Share2 },
 ]
 

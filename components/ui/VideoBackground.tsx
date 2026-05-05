@@ -137,8 +137,13 @@ export default function VideoBackground({
         >
           <source 
             ref={sourceRef}
-            data-src={src} 
+            src={isHero ? src : undefined}
+            data-src={!isHero ? src : undefined} 
             type="video/mp4" 
+            onError={() => {
+              console.error(`Video failed to load: ${src}`);
+              setVideoLoaded(false);
+            }}
           />
         </video>
       )}

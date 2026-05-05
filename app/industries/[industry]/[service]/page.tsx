@@ -5,14 +5,14 @@ import { Metadata } from 'next'
 
 interface PageProps {
   params: Promise<{
-    sector: string
-    service: string
-  }>
+    industry: string;
+    service: string;
+  }>;
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { sector, service } = await params
-  const url = `/industries/${sector}/${service}`
+  const { industry, service } = await params
+  const url = `/industries/${industry}/${service}`
   const page = getSeoPageByUrl(url)
   
   if (!page) return { title: 'Page Not Found' }
@@ -31,8 +31,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 export default async function ServiceSectorPage({ params }: PageProps) {
-  const { sector, service } = await params
-  const url = `/industries/${sector}/${service}`
+  const { industry, service } = await params
+  const url = `/industries/${industry}/${service}`
   const page = getSeoPageByUrl(url)
   
   if (!page || page.status === 'Draft') {

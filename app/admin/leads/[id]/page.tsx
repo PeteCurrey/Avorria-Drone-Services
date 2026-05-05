@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, use } from 'react'
+import { useState, use, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { 
   ChevronLeft, 
@@ -26,69 +26,51 @@ import {
   Image as ImageIcon,
   Box,
   Copy,
-  ChevronRight
+  ChevronRight,
+  Loader2
 } from 'lucide-react'
 import Link from 'next/link'
 import SectionTag from '@/components/ui/SectionTag'
 
 export default function LeadDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params)
+  const [lead, setLead] = useState<any>(null)
+  const [loading, setLoading] = useState(true)
   const [status, setStatus] = useState('New')
   const [copied, setCopied] = useState(false)
 
-  // Mock lead detail data
-  const lead = {
-    id: id,
-    name: 'James Harrison',
-    company: 'Skyline FM Ltd',
-    email: 'j.harrison@skylinefm.co.uk',
-    phone: '+44 7700 900000',
-    role: 'Facilities Manager',
-    date: '2026-05-04 14:32',
-    
-    // Project context
-    service: 'Roof Inspections',
-    bundle: 'Roof Intelligence Pack',
-    outputFamily: 'Inspection Evidence',
-    location: 'Sheffield, S1 2BJ',
-    sector: 'Facilities Management',
-    siteType: 'Commercial Building',
-    urgency: 'Urgent / Deadline driven',
-    
-    // Deliverables
-    deliverables: [
-      'High-resolution image set',
-      'Annotated inspection images',
-      'PDF inspection summary'
-    ],
-    
-    // Constraints
-    constraints: [
-      'City centre',
-      'Tall buildings',
-      'Near airport / restricted'
-    ],
-    
-    description: 'We need a full roof condition audit for a 6-storey commercial building in Sheffield city centre. Specifically looking for gutter blockages and potential cladding defects. Must be completed before the end of the month for insurance renewal.',
-    
-    // Scoring
-    score: 88,
-    quality: 'Hot',
-    breakdown: {
-      intent: 22,
-      clarity: 18,
-      value: 15,
-      readiness: 13,
-      strategic: 20
-    },
-    
-    // Journey
-    toolJourney: 'Output Selector → Project Brief Assistant → Brief Submission',
-    sourceUrl: 'https://altitude-hire.com/services/roof-inspections',
-    ctaLabel: 'Start Project Brief',
-    
-    // Recommendations
-    nextAction: 'Contact within priority workflow and prepare a Roof Intelligence Pack quote.'
+  useEffect(() => {
+    async function fetchLead() {
+      try {
+        const response = await fetch(`/api/admin/leads`)
+        const data = await response.json()
+        const currentLead = data.find((l: any) => l.id === id)
+        if (currentLead) {
+          setLead(currentLead)
+          setStatus(currentLead.status)
+        }
+      } catch (err) {
+        console.error('Failed to fetch lead:', err)
+      } finally {
+        setLoading(false)
+      }
+    }
+    fetchLead()
+  }, [id])
+
+  const handleStatusChange = async (newStatus: string) => {
+    try {
+      const response = await fetch('/api/admin/leads', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id, status: newStatus })
+      })
+      if (response.ok) {
+        setStatus(newStatus)
+      }
+    } catch (err) {
+      console.error('Failed to update status:', err)
+    }
   }
 
   const getQualityColor = (quality: string) => {
@@ -101,10 +83,34 @@ export default function LeadDetailPage({ params }: { params: Promise<{ id: strin
   }
 
   const copyEmail = () => {
-    navigator.clipboard.writeText(lead.email)
-    setCopied(true)
-    setTimeout(() => setCopied(false), 2000)
+    if (lead) {
+      navigator.clipboard.writeText(lead.email)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    }
   }
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-dark flex flex-col items-center justify-center">
+        <Loader2 className="w-12 h-12 text-accent animate-spin mb-6" />
+        <span className="font-ui text-xs tracking-[0.4em] uppercase text-white/20">Decrypting Lead Intel...</span>
+      </div>
+    )
+  }
+
+  if (!lead) {
+    return (
+      <div className="min-h-screen bg-dark flex flex-col items-center justify-center">
+        <AlertCircle className="w-12 h-12 text-red-400 mb-6" />
+        <span className="font-ui text-xs tracking-[0.4em] uppercase text-white/20">Lead Signal Lost</span>
+        <Link href="/admin/leads" className="mt-8 text-accent underline underline-offset-4 font-ui text-[10px] tracking-widest uppercase">Return to Command Centre</Link>
+      </div>
+    )
+  }
+
+  const attr = lead.attribution || {}
+  const journey = attr.journey_summary || []
 
   return (
     <main className="min-h-screen bg-dark text-white pt-32 pb-20 px-8 md:px-20">
@@ -117,31 +123,31 @@ export default function LeadDetailPage({ params }: { params: Promise<{ id: strin
 
         {/* Lead Header */}
         <header className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-12 mb-16 pb-12 border-b border-white/5">
-           <div>
-              <div className="flex items-center gap-4 mb-6">
-                 <span className={`inline-block px-4 py-1 border font-ui text-[9px] tracking-[0.2em] uppercase rounded-full ${getQualityColor(lead.quality)}`}>
-                    {lead.quality} Lead
-                 </span>
-                 <span className="font-ui text-[10px] tracking-widest text-white/30 uppercase">{lead.id} · Submitted {lead.date}</span>
-              </div>
-              <h1 className="font-display text-5xl md:text-6xl text-white uppercase tracking-tighter mb-4 leading-none">
-                 {lead.name} <span className="text-white/20">/</span> <span className="text-accent">{lead.company}</span>
-              </h1>
-              <div className="flex flex-wrap gap-8">
-                 <button onClick={copyEmail} className="flex items-center gap-3 text-white/40 hover:text-white transition-colors group">
-                    <Mail className="w-4 h-4 group-hover:text-accent" />
-                    <span className="font-ui text-[10px] tracking-widest uppercase">{copied ? 'COPIED!' : lead.email}</span>
-                 </button>
-                 <div className="flex items-center gap-3 text-white/40">
-                    <Phone className="w-4 h-4" />
-                    <span className="font-ui text-[10px] tracking-widest uppercase">{lead.phone}</span>
-                 </div>
-                 <div className="flex items-center gap-3 text-white/40">
-                    <User className="w-4 h-4" />
-                    <span className="font-ui text-[10px] tracking-widest uppercase">{lead.role}</span>
-                 </div>
-              </div>
-           </div>
+            <div>
+               <div className="flex items-center gap-4 mb-6">
+                  <span className={`inline-block px-4 py-1 border font-ui text-[9px] tracking-[0.2em] uppercase rounded-full ${getQualityColor(lead.metadata?.quality || 'Hot')}`}>
+                     {lead.metadata?.quality || 'Hot'} Lead
+                  </span>
+                  <span className="font-ui text-[10px] tracking-widest text-white/30 uppercase">{lead.id.substring(0, 8)} · Submitted {new Date(lead.created_at).toLocaleString()}</span>
+               </div>
+               <h1 className="font-display text-5xl md:text-6xl text-white uppercase tracking-tighter mb-4 leading-none">
+                  {lead.full_name} <span className="text-white/20">/</span> <span className="text-accent">{lead.metadata?.company || 'Direct'}</span>
+               </h1>
+               <div className="flex flex-wrap gap-8">
+                  <button onClick={copyEmail} className="flex items-center gap-3 text-white/40 hover:text-white transition-colors group">
+                     <Mail className="w-4 h-4 group-hover:text-accent" />
+                     <span className="font-ui text-[10px] tracking-widest uppercase">{copied ? 'COPIED!' : lead.email_address}</span>
+                  </button>
+                  <div className="flex items-center gap-3 text-white/40">
+                     <Phone className="w-4 h-4" />
+                     <span className="font-ui text-[10px] tracking-widest uppercase">{lead.metadata?.phone || 'N/A'}</span>
+                  </div>
+                  <div className="flex items-center gap-3 text-white/40">
+                     <User className="w-4 h-4" />
+                     <span className="font-ui text-[10px] tracking-widest uppercase">{lead.metadata?.role || 'N/A'}</span>
+                  </div>
+               </div>
+            </div>
            
            <div className="flex flex-col items-end gap-6">
               <div className="text-right">
@@ -151,7 +157,7 @@ export default function LeadDetailPage({ params }: { params: Promise<{ id: strin
               <div className="flex gap-4">
                  <select 
                    value={status}
-                   onChange={e => setStatus(e.target.value)}
+                   onChange={e => handleStatusChange(e.target.value)}
                    className="bg-white/5 border border-white/10 px-6 py-3 font-ui text-[10px] tracking-widest uppercase text-white focus:outline-none"
                  >
                     <option value="New">Status: New</option>
@@ -178,7 +184,7 @@ export default function LeadDetailPage({ params }: { params: Promise<{ id: strin
                  <h3 className="font-display text-2xl text-white uppercase tracking-widest mb-8 border-l-2 border-accent pl-6">Project Brief</h3>
                  <div className="bg-white/[0.02] border border-white/5 p-10">
                     <p className="font-body text-lg text-white/70 leading-relaxed uppercase tracking-widest italic">
-                       &quot;{lead.description}&quot;
+                       &quot;{lead.message_body || 'No description provided.'}&quot;
                     </p>
                  </div>
               </section>
@@ -186,14 +192,14 @@ export default function LeadDetailPage({ params }: { params: Promise<{ id: strin
               {/* Classification Grid */}
               <section className="grid grid-cols-1 md:grid-cols-2 gap-px bg-white/10 border border-white/10">
                  {[
-                   { label: 'Service Interested', val: lead.service, icon: Activity },
-                   { label: 'Recommended Bundle', val: lead.bundle, icon: Target, accent: true },
-                   { label: 'Output Family', val: lead.outputFamily, icon: FileText },
-                   { label: 'Sector', val: lead.sector, icon: Building2 },
-                   { label: 'Location', val: lead.location, icon: MapPin },
-                   { label: 'Site Type', val: lead.siteType, icon: Briefcase },
-                   { label: 'Urgency', val: lead.urgency, icon: Clock },
-                   { label: 'Complexity', val: 'Medium Commercial', icon: AlertCircle }
+                   { label: 'Service Interested', val: lead.metadata?.serviceInterest || lead.lead_type, icon: Activity },
+                   { label: 'Recommended Bundle', val: lead.metadata?.packageInterest || 'N/A', icon: Target, accent: true },
+                   { label: 'Output Family', val: lead.metadata?.outcomes?.[0] || 'N/A', icon: FileText },
+                   { label: 'Sector', val: lead.metadata?.sector || 'N/A', icon: Building2 },
+                   { label: 'Location', val: lead.metadata?.location || 'Unknown', icon: MapPin },
+                   { label: 'Site Type', val: lead.metadata?.siteType || 'N/A', icon: Briefcase },
+                   { label: 'Urgency', val: lead.metadata?.urgency || 'N/A', icon: Clock },
+                   { label: 'Complexity', val: 'Assessment Pending', icon: AlertCircle }
                  ].map((item, i) => (
                    <div key={i} className="bg-dark p-8 group">
                       <div className="flex items-center gap-4 mb-4">
@@ -212,47 +218,76 @@ export default function LeadDetailPage({ params }: { params: Promise<{ id: strin
                  <div className="bg-white/[0.02] border border-white/5 p-10">
                     <h4 className="font-ui text-[11px] tracking-[0.4em] uppercase text-accent mb-8">Selected Deliverables</h4>
                     <ul className="space-y-4">
-                       {lead.deliverables.map(d => (
+                       {(lead.metadata?.deliverables || []).map((d: string) => (
                          <li key={d} className="flex items-center gap-4">
                             <CheckCircle2 className="w-4 h-4 text-accent/50" />
                             <span className="font-ui text-[10px] tracking-widest text-white/60 uppercase">{d}</span>
                          </li>
                        ))}
+                       {(!lead.metadata?.deliverables || lead.metadata?.deliverables.length === 0) && (
+                          <li className="font-ui text-[10px] tracking-widest text-white/20 uppercase italic">None specified</li>
+                       )}
                     </ul>
                  </div>
                  <div className="bg-white/[0.02] border border-white/5 p-10">
                     <h4 className="font-ui text-[11px] tracking-[0.4em] uppercase text-red-400 mb-8">Known Constraints</h4>
                     <ul className="space-y-4">
-                       {lead.constraints.map(c => (
+                       {(lead.metadata?.constraints || []).map((c: string) => (
                          <li key={c} className="flex items-center gap-4">
                             <AlertCircle className="w-4 h-4 text-red-400/30" />
                             <span className="font-ui text-[10px] tracking-widest text-white/60 uppercase">{c}</span>
                          </li>
                        ))}
+                       {(!lead.metadata?.constraints || lead.metadata?.constraints.length === 0) && (
+                          <li className="font-ui text-[10px] tracking-widest text-white/20 uppercase italic">None specified</li>
+                       )}
                     </ul>
                  </div>
               </div>
 
-              {/* Journey & Source */}
-              <section className="bg-dark/40 border border-white/5 p-10">
-                 <h4 className="font-ui text-[10px] tracking-[0.4em] uppercase text-white/30 mb-8">Conversion Intelligence</h4>
-                 <div className="space-y-8">
-                    <div>
-                       <span className="block font-ui text-[9px] tracking-widest text-white/20 uppercase mb-2">User Journey Path</span>
-                       <div className="flex items-center gap-4">
-                          <span className="font-ui text-[10px] tracking-widest uppercase text-white/70">{lead.toolJourney}</span>
-                       </div>
+              {/* Journey & Attribution */}
+              <section className="grid grid-cols-1 md:grid-cols-2 gap-12">
+                 <div className="bg-dark/40 border border-white/5 p-10">
+                    <h4 className="font-ui text-[10px] tracking-[0.4em] uppercase text-accent mb-8">Lead Journey Timeline</h4>
+                    <div className="space-y-6 relative before:absolute before:left-[7px] before:top-2 before:bottom-2 before:w-px before:bg-white/10">
+                       {lead.attribution.journey_summary.map((step, i) => (
+                         <div key={i} className="flex gap-4 relative">
+                            <div className="w-4 h-4 rounded-full bg-dark border border-white/20 flex-shrink-0 z-10 flex items-center justify-center">
+                               <div className={`w-1.5 h-1.5 rounded-full ${i === lead.attribution.journey_summary.length - 1 ? 'bg-accent animate-pulse' : 'bg-white/10'}`} />
+                            </div>
+                            <span className="font-ui text-[10px] tracking-widest uppercase text-white/50">{step}</span>
+                         </div>
+                       ))}
                     </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                 </div>
+
+                 <div className="bg-dark/40 border border-white/5 p-10">
+                    <h4 className="font-ui text-[10px] tracking-[0.4em] uppercase text-white/30 mb-8">Attribution Details</h4>
+                    <div className="space-y-8">
                        <div>
-                          <span className="block font-ui text-[9px] tracking-widest text-white/20 uppercase mb-2">Source URL</span>
-                          <Link href={lead.sourceUrl} className="font-ui text-[10px] tracking-widest uppercase text-accent hover:underline flex items-center gap-2">
-                             {lead.sourceUrl.split('/').pop()} <ExternalLink className="w-3 h-3" />
-                          </Link>
+                          <span className="block font-ui text-[8px] tracking-widest text-white/20 uppercase mb-2">First Touch</span>
+                          <div className="p-3 bg-white/[0.02] border border-white/5">
+                             <div className="font-ui text-[9px] tracking-widest uppercase text-accent mb-1">{lead.attribution.first_touch_source} / {lead.attribution.first_touch_medium}</div>
+                             <div className="font-ui text-[8px] tracking-widest uppercase text-white/40 truncate">{lead.attribution.first_touch_url}</div>
+                          </div>
                        </div>
                        <div>
-                          <span className="block font-ui text-[9px] tracking-widest text-white/20 uppercase mb-2">Entry CTA</span>
-                          <span className="font-ui text-[10px] tracking-widest uppercase text-white/60">{lead.ctaLabel}</span>
+                          <span className="block font-ui text-[8px] tracking-widest text-white/20 uppercase mb-2">Last Touch</span>
+                          <div className="p-3 bg-white/[0.02] border border-white/5">
+                             <div className="font-ui text-[9px] tracking-widest uppercase text-accent mb-1">{lead.attribution.last_touch_source} / {lead.attribution.last_touch_medium}</div>
+                             <div className="font-ui text-[8px] tracking-widest uppercase text-white/40 truncate">{lead.attribution.last_touch_url}</div>
+                          </div>
+                       </div>
+                       <div>
+                          <span className="block font-ui text-[8px] tracking-widest text-white/20 uppercase mb-2">Campaign Context (UTMs)</span>
+                          <div className="grid grid-cols-2 gap-2">
+                             {['source', 'medium', 'campaign', 'content', 'term'].map(key => (
+                               <div key={key} className="p-2 bg-white/[0.01] border border-white/5">
+                                  <span className="block font-ui text-[7px] text-white/20 uppercase mb-1">{key}</span>
+                                  <span className="block font-ui text-[8px] text-white/60 uppercase truncate">{(lead.attribution as any)[`utm_${key}`]}</span>
+                               </div>
+                             ))}
+                          </div>
                        </div>
                     </div>
                  </div>

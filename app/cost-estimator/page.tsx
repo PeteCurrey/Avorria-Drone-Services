@@ -29,6 +29,8 @@ import {
 import { estimatorConfig, EstimatorStep, CostBand } from '@/lib/estimator-config'
 import SectionTag from '@/components/ui/SectionTag'
 import FAQAccordion from '@/components/ui/FAQAccordion'
+import { trackEvent, recordJourneyStep } from '@/lib/analytics'
+import { useAttribution } from '@/components/analytics/useAttribution'
 
 // Helper for mapping project types to services and bundles
 const mapToRecommendations = (projectTypeId: string) => {
@@ -117,6 +119,11 @@ const mapToRecommendations = (projectTypeId: string) => {
 export default function CostEstimatorPage() {
   const [currentStep, setCurrentStep] = useState(0)
   const [selections, setSelections] = useState<Record<string, string | string[]>>({})
+  
+  useEffect(() => {
+    trackEvent('estimator_started')
+    recordJourneyStep('Started cost estimator')
+  }, [])
   const [isCompleted, setIsCompleted] = useState(false)
   const [showLeadForm, setShowLeadForm] = useState(false)
   const [leadSubmitted, setLeadSubmitted] = useState(false)
@@ -130,6 +137,7 @@ export default function CostEstimatorPage() {
     sector: '',
     consent: false
   })
+  const { getAttributionData } = useAttribution()
 
   const steps = estimatorConfig.steps
   const progress = ((currentStep) / steps.length) * 100
@@ -143,10 +151,23 @@ export default function CostEstimatorPage() {
       setSelections({ ...selections, [stepId]: updated })
     } else {
       setSelections({ ...selections, [stepId]: optionId })
+      
+      // Track step completion
+      trackEvent('estimator_step_completed', {
+        step_index: currentStep,
+        step_id: stepId,
+        option_id: optionId
+      })
+      recordJourneyStep(`Estimator: Completed step ${currentStep + 1} (${stepId})`)
+
       if (currentStep < steps.length - 1) {
         setTimeout(() => setCurrentStep(currentStep + 1), 300)
       } else {
         setIsCompleted(true)
+        trackEvent('estimator_completed', {
+          score: calculateScore()
+        })
+        recordJourneyStep('Completed cost estimator')
       }
     }
   }
@@ -188,11 +209,34 @@ export default function CostEstimatorPage() {
   const band = getCostBand(score)
   const recs = mapToRecommendations(selections['projectType'] as string)
 
-  const handleLeadSubmit = (e: React.FormEvent) => {
+  const handleLeadSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // In a real app, this would send data to the API/Dashboard
-    console.log('Estimator Lead:', { leadData, selections, score, band })
-    setLeadSubmitted(true)
+    const attribution = getAttributionData()
+
+    trackEvent('estimator_lead_submitted', {
+      score,
+      band: band.label,
+      ...attribution
+    })
+
+    try {
+      await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ...leadData,
+          type: 'estimator_lead',
+          selections,
+          score,
+          band,
+          attribution
+        })
+      })
+      setLeadSubmitted(true)
+      recordJourneyStep('Submitted cost estimator lead form')
+    } catch (err) {
+      console.error('Estimator lead failed:', err)
+    }
   }
 
   const copySummary = () => {

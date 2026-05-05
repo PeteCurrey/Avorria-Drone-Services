@@ -4,31 +4,48 @@ import { useState } from 'react'
 import Link from 'next/link'
 import VideoBackground from '@/components/ui/VideoBackground'
 import { Send, Phone, Mail, MapPin, ArrowRight } from 'lucide-react'
+import { trackEvent, recordJourneyStep } from '@/lib/analytics'
+import { useAttribution } from '@/components/analytics/useAttribution'
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' })
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success'>('idle')
+  const { getAttributionData } = useAttribution()
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setStatus('submitting')
+    
+    const attribution = getAttributionData()
+
+    trackEvent('contact_form_submitted', {
+      ...attribution
+    })
+
     try {
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           ...formData,
-          type: 'standard'
+          type: 'standard',
+          attribution: attribution
         })
       })
 
       if (!response.ok) throw new Error('Transmission failed')
       setStatus('success')
+      recordJourneyStep('Submitted standard contact form')
     } catch (err) {
       console.error('Contact error:', err)
       // Fallback for demo
       setTimeout(() => setStatus('success'), 1200)
     }
+  }
+
+  const handleFormFocus = () => {
+    trackEvent('contact_form_started')
+    recordJourneyStep('Started standard contact form')
   }
 
   return (
@@ -101,7 +118,7 @@ export default function ContactPage() {
               <button onClick={() => setStatus('idle')} className="mt-8 font-ui text-[10px] text-accent tracking-widest uppercase hover:text-white transition-colors">Send Another Signal</button>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-8">
+            <form onSubmit={handleSubmit} onFocus={handleFormFocus} className="space-y-8">
               <div className="space-y-3">
                 <label className="font-ui text-[10px] tracking-[0.3em] uppercase text-white/30">Signal Origin (Name)</label>
                 <input 

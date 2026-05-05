@@ -243,7 +243,7 @@ export default function ServicesHubPage() {
       <section className="relative h-[90vh] flex items-center justify-start px-10 md:px-20 pt-40 overflow-hidden">
         <VideoBackground 
           src="/videos/surveying.mp4" 
-          poster="/images/posters/surveying-mapping.jpg" 
+          poster="/images/surveying_poster.png" 
           brightness={0.25} 
           isHero={true}
         />

@@ -75,7 +75,7 @@ export default function SectorsPage() {
       <header className="relative h-[80vh] flex items-center justify-start px-10 md:px-20 pt-40 overflow-hidden">
         <VideoBackground 
           src="/videos/construction.mp4" 
-          poster="/images/posters/construction.jpg" 
+          poster="/images/construction_poster.png" 
           brightness={0.3} 
           isHero={true}
         />

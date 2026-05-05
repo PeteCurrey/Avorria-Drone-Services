@@ -21,6 +21,8 @@ import {
   ChevronRight
 } from 'lucide-react'
 import Link from 'next/link'
+import { trackEvent, recordJourneyStep } from '@/lib/analytics'
+import { useAttribution } from '@/components/analytics/useAttribution'
 
 function BriefFormContent() {
   const searchParams = useSearchParams()
@@ -68,6 +70,8 @@ function BriefFormContent() {
 
   const [showSummary, setShowSummary] = useState(!!(searchParams.get('service') || searchParams.get('package') || searchParams.get('outcome')))
 
+  const { getAttributionData } = useAttribution()
+
   const toggleCheckbox = (listName: 'outcomes' | 'deliverables' | 'constraints', value: string) => {
     setFormData(prev => {
       const list = [...prev[listName]]
@@ -83,11 +87,41 @@ function BriefFormContent() {
     e.preventDefault()
     setStatus('submitting')
     
-    // Simulate submission
-    setTimeout(() => {
+    const attribution = getAttributionData()
+
+    trackEvent('project_brief_submitted', {
+      service: formData.serviceInterest,
+      bundle: formData.packageInterest,
+      location: formData.location,
+      sector: formData.sector,
+      ...attribution
+    })
+
+    try {
+      await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ...formData,
+          type: 'brief',
+          attribution: attribution
+        })
+      })
       setStatus('success')
+      recordJourneyStep(`Submitted project brief: ${formData.serviceInterest}`)
       window.scrollTo({ top: 0, behavior: 'smooth' })
-    }, 1500)
+    } catch (err) {
+      console.error('Brief submission failed:', err)
+      setStatus('idle')
+    }
+  }
+
+  const handleFormFocus = () => {
+    trackEvent('project_brief_started', {
+      service: formData.serviceInterest,
+      bundle: formData.packageInterest
+    })
+    recordJourneyStep(`Started project brief form`)
   }
 
   if (status === 'success') {
@@ -183,14 +217,9 @@ function BriefFormContent() {
         </motion.div>
       )}
 
-      <form onSubmit={handleSubmit} className="space-y-24">
-        {/* Hidden Analytics Fields */}
-        <input type="hidden" name="source_url" value={typeof window !== 'undefined' ? window.location.href : ''} />
-        <input type="hidden" name="recommended_service" value={formData.serviceInterest} />
-        <input type="hidden" name="recommended_bundle" value={formData.packageInterest} />
-        <input type="hidden" name="lead_source" value={formData.source} />
-        <input type="hidden" name="cta_label" value={formData.ctaLabel} />
-        <input type="hidden" name="tool_path" value={formData.toolPath} />
+      <form onSubmit={handleSubmit} onFocus={handleFormFocus} className="space-y-24">
+        {/* Attribution context captured on submission */}
+
 
       {/* Step 1: Contact Details */}
       <div className="section-group">

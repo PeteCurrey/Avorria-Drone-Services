@@ -4,11 +4,13 @@ import { useEffect, useRef, useState } from 'react'
 import { gsap } from 'gsap'
 import { Send, Phone, Mail, MapPin } from 'lucide-react'
 import VideoBackground from '@/components/ui/VideoBackground'
+import { useAttribution } from '@/components/analytics/useAttribution'
 
 export default function ContactSection() {
   const sectionRef = useRef<HTMLElement>(null)
   const [formData, setFormData] = useState({ name: '', email: '', message: '' })
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success'>('idle')
+  const { getAttributionData } = useAttribution()
 
   useEffect(() => {
     if (!sectionRef.current) return
@@ -36,13 +38,16 @@ export default function ContactSection() {
     e.preventDefault()
     setStatus('submitting')
     
+    const attribution = getAttributionData()
+    
     try {
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           ...formData,
-          type: 'standard'
+          type: 'standard',
+          attribution
         })
       })
 

@@ -11,15 +11,16 @@ export async function POST(req: Request) {
     const supabase = await createClient()
 
     // 1. Save to Supabase
-    const { email, name, message, type, ...metadata } = data
+    const { email, name, message, type, attribution, ...metadata } = data
     
     // Normalize data for the 'leads' table
     const leadData = {
       full_name: name,
       email_address: email,
       message_body: message || '',
-      lead_type: type || 'standard', // 'standard' or 'brief'
-      metadata: metadata, // Store extra brief info as JSONB
+      lead_type: type || 'standard',
+      metadata: metadata,
+      attribution: attribution, // Store the full attribution context
       status: 'new',
       created_at: new Date().toISOString(),
     }
@@ -53,9 +54,18 @@ export async function POST(req: Request) {
               <p style="color: #ccc; line-height: 1.6;">${message || 'No additional message.'}</p>
             </div>
             ${type === 'brief' ? `
-              <div style="background: #111; padding: 20px; border-left: 2px solid #c8a96e;">
+              <div style="background: #111; padding: 20px; border-left: 2px solid #c8a96e; margin-bottom: 20px;">
                 <h3 style="margin-top: 0; font-size: 14px; text-transform: uppercase;">Technical Brief Data</h3>
                 <pre style="font-size: 12px; color: #888; white-space: pre-wrap;">${JSON.stringify(metadata, null, 2)}</pre>
+              </div>
+            ` : ''}
+            
+            ${attribution ? `
+              <div style="background: #0d0d0d; padding: 20px; border: 1px solid #1a1a1a;">
+                <h3 style="margin-top: 0; font-size: 12px; text-transform: uppercase; color: #666;">Attribution Intelligence</h3>
+                <p style="font-size: 11px; margin-bottom: 5px;"><strong style="color: #c8a96e;">Source:</strong> ${attribution.first_touch_source} / ${attribution.first_touch_medium}</p>
+                <p style="font-size: 11px; margin-bottom: 5px;"><strong style="color: #c8a96e;">Last URL:</strong> ${attribution.last_touch_url}</p>
+                <p style="font-size: 10px; color: #444; font-style: italic;">${attribution.journey_summary ? `Journey: ${attribution.journey_summary}` : ''}</p>
               </div>
             ` : ''}
             <hr style="border: none; border-top: 1px solid #1a1a1a; margin: 30px 0;" />

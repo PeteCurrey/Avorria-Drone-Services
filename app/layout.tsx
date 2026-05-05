@@ -5,6 +5,7 @@ import { LenisProvider } from '@/lib/lenis'
 import Nav from '@/components/layout/Nav'
 import Footer from '@/components/layout/Footer'
 import ProgressDots from '@/components/layout/ProgressDots'
+import TrackingProvider from '@/components/analytics/TrackingProvider'
 
 const bebasNeue = Bebas_Neue({
   weight: '400',
@@ -164,12 +165,14 @@ export default function RootLayout({
         />
       </head>
       <body className="bg-dark text-white selection:bg-accent selection:text-dark">
-        <LenisProvider>
-          <Nav />
-          <ProgressDots totalSections={12} />
-          {children}
-          <Footer />
-        </LenisProvider>
+        <TrackingProvider>
+          <LenisProvider>
+            <Nav />
+            <ProgressDots totalSections={12} />
+            {children}
+            <Footer />
+          </LenisProvider>
+        </TrackingProvider>
       </body>
     </html>
   )

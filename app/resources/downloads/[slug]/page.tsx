@@ -6,14 +6,15 @@ import {
   ChevronRight, 
   CheckCircle2, 
   Clock, 
-  Users, 
-  Target, 
   FileText,
   ShieldAlert,
-  Info
+  Info,
+  BookOpen,
+  Package
 } from 'lucide-react'
 import SectionTag from '@/components/ui/SectionTag'
 import { leadMagnets } from '@/lib/lead-magnets-config'
+import { getAssetContent } from '@/lib/asset-content'
 import LeadCaptureForm from '@/components/interactive/LeadCaptureForm'
 
 interface Props {
@@ -25,9 +26,33 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const asset = leadMagnets.find(a => a.slug === slug)
   if (!asset) return { title: 'Asset Not Found' }
 
+  const seoTitles: Record<string, string> = {
+    'commercial-drone-inspection-buyers-guide': "Commercial Drone Inspection Buyer's Guide | Altitude Hire",
+    'drone-roof-inspection-checklist': 'Drone Roof Inspection Checklist | Altitude Hire',
+    'facilities-manager-drone-survey-guide': "Facilities Manager's Drone Survey Guide | Altitude Hire",
+    'construction-progress-monitoring-template': 'Construction Progress Monitoring Template | Altitude Hire',
+    'insurance-evidence-drone-capture-checklist': 'Insurance Evidence Drone Capture Checklist | Altitude Hire',
+    'gaussian-splat-vs-photogrammetry-guide': 'Gaussian Splat vs Photogrammetry Guide | Altitude Hire',
+    'drone-survey-cost-guide': 'Drone Survey Cost Guide | Altitude Hire',
+  }
+
+  const seoDescriptions: Record<string, string> = {
+    'commercial-drone-inspection-buyers-guide': "Download Altitude Hire's commercial drone inspection buyer's guide for planning, scoping and evaluating drone inspections for roofs, buildings and access-restricted assets.",
+    'drone-roof-inspection-checklist': "Download Altitude Hire's drone roof inspection checklist for planning commercial roof, gutter, drainage and high-level building inspections.",
+    'facilities-manager-drone-survey-guide': "Download Altitude Hire's FM drone survey guide for planned maintenance, contractor scoping, thermal imaging and multi-site portfolio records.",
+    'construction-progress-monitoring-template': "Download Altitude Hire's construction progress monitoring template for repeat drone capture, milestone records and stakeholder-ready site updates.",
+    'insurance-evidence-drone-capture-checklist': "Download Altitude Hire's insurance evidence drone capture checklist for planning aerial evidence after storm, fire, flood or access-restricted property incidents.",
+    'gaussian-splat-vs-photogrammetry-guide': "Download Altitude Hire's guide comparing Gaussian Splats, photogrammetry, LiDAR and 360 panoramas for commercial site visualisation and measurement workflows.",
+    'drone-survey-cost-guide': "Download Altitude Hire's drone survey cost guide covering the factors that affect inspection, mapping and aerial data capture project costs.",
+  }
+
   return {
-    title: `${asset.title} | Commercial Drone Resources | Altitude Hire`,
-    description: asset.description,
+    title: seoTitles[slug] || `${asset.title} | Altitude Hire`,
+    description: seoDescriptions[slug] || asset.description,
+    openGraph: {
+      title: seoTitles[slug] || asset.title,
+      description: seoDescriptions[slug] || asset.description,
+    },
   }
 }
 
@@ -44,6 +69,8 @@ export default async function LeadMagnetPage({ params }: Props) {
   if (!asset) {
     notFound()
   }
+
+  const content = getAssetContent(slug)
 
   return (
     <main className="min-h-screen bg-dark">
@@ -75,7 +102,7 @@ export default async function LeadMagnetPage({ params }: Props) {
                     {asset.title}
                   </h1>
                   <p className="font-body text-xl text-white/50 leading-relaxed uppercase tracking-widest font-light italic border-l-2 border-accent/20 pl-8">
-                    {asset.description}
+                    {asset.subtitle}
                   </p>
                </div>
 
@@ -93,6 +120,23 @@ export default async function LeadMagnetPage({ params }: Props) {
                     ))}
                   </ul>
                </div>
+
+               {/* Sample Deliverables */}
+               {asset.sampleDeliverables && (
+                 <div className="p-10 bg-white/[0.02] border border-white/5">
+                   <h3 className="font-display text-xl text-white mb-8 uppercase tracking-widest border-b border-white/5 pb-4 flex items-center gap-4">
+                     <Package className="w-5 h-5 text-accent" /> Sample Deliverables
+                   </h3>
+                   <ul className="space-y-3">
+                     {asset.sampleDeliverables.map((d, i) => (
+                       <li key={i} className="flex items-start gap-4 font-ui text-[10px] tracking-widest uppercase text-white/40">
+                         <CheckCircle2 className="w-3.5 h-3.5 text-accent/40 shrink-0 mt-0.5" />
+                         {d}
+                       </li>
+                     ))}
+                   </ul>
+                 </div>
+               )}
 
                {/* Audience */}
                <div className="space-y-4">
@@ -114,6 +158,17 @@ export default async function LeadMagnetPage({ params }: Props) {
                  </div>
                )}
 
+               {/* Version & PDF Status */}
+               <div className="flex items-center justify-between pt-4 border-t border-white/5">
+                 <span className="font-ui text-[9px] tracking-widest uppercase text-white/20">
+                   {asset.version} · {asset.lastReviewed}
+                 </span>
+                 <span className={`font-ui text-[9px] tracking-widest uppercase flex items-center gap-2 ${asset.pdfStatus === 'ready' ? 'text-green-400' : 'text-white/20'}`}>
+                   {asset.pdfStatus === 'ready' ? <CheckCircle2 className="w-3 h-3" /> : <Clock className="w-3 h-3" />}
+                   PDF {asset.pdfStatus === 'ready' ? 'Ready' : 'Pending'}
+                 </span>
+               </div>
+
                {/* Related Services Links */}
                <div className="pt-8 border-t border-white/5">
                   <span className="block font-ui text-[9px] tracking-widest uppercase text-white/20 mb-6">Related Technical Services</span>
@@ -126,12 +181,25 @@ export default async function LeadMagnetPage({ params }: Props) {
                      ))}
                   </div>
                </div>
+
+               {/* Related Bundles */}
+               <div className="pt-8 border-t border-white/5">
+                  <span className="block font-ui text-[9px] tracking-widest uppercase text-white/20 mb-6">Recommended Bundles</span>
+                  <div className="space-y-3">
+                     {asset.relatedBundles.map(b => (
+                       <Link key={b.href} href={b.href} className="group p-4 bg-white/[0.01] border border-white/5 hover:border-accent/30 transition-all flex items-center justify-between">
+                          <span className="font-ui text-[9px] tracking-widest uppercase text-white/40 group-hover:text-white transition-colors">{b.name}</span>
+                          <ChevronRight className="w-3 h-3 text-white/10 group-hover:text-accent group-hover:translate-x-1 transition-all" />
+                       </Link>
+                     ))}
+                  </div>
+               </div>
             </div>
 
             {/* Right: Gated Form */}
             <div className="lg:col-span-7">
                <div className="sticky top-32">
-                  <LeadCaptureForm asset={asset} />
+                  <LeadCaptureForm asset={asset} hasContent={!!content} />
                   
                   <div className="mt-12 flex items-center gap-6 justify-center">
                      <div className="flex items-center gap-3">
@@ -141,6 +209,10 @@ export default async function LeadMagnetPage({ params }: Props) {
                      <div className="flex items-center gap-3">
                         <Info className="w-4 h-4 text-accent/40" />
                         <span className="font-ui text-[9px] tracking-widest uppercase text-white/20">Planning Support Tool</span>
+                     </div>
+                     <div className="flex items-center gap-3">
+                        <BookOpen className="w-4 h-4 text-accent/40" />
+                        <span className="font-ui text-[9px] tracking-widest uppercase text-white/20">{asset.version}</span>
                      </div>
                   </div>
                </div>

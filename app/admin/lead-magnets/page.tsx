@@ -154,8 +154,93 @@ export default function AdminLeadMagnetsPage() {
            ))}
         </div>
 
+        {/* Asset Library Management Table */}
+        <div className="mb-16">
+          <div className="flex items-center justify-between mb-8">
+            <h3 className="font-display text-2xl text-white uppercase tracking-widest">Asset Library</h3>
+            <span className="font-ui text-[9px] tracking-widest uppercase text-white/20 border border-white/10 px-3 py-1">7 Assets · PDF Export Pending</span>
+          </div>
+
+          <div className="bg-mid border border-white/5 overflow-x-auto">
+            <table className="w-full border-collapse text-left">
+              <thead>
+                <tr className="border-b border-white/10 bg-white/[0.02]">
+                  <th className="p-5 font-ui text-[9px] tracking-[0.3em] uppercase text-white/30">Asset Title</th>
+                  <th className="p-5 font-ui text-[9px] tracking-[0.3em] uppercase text-white/30">Type</th>
+                  <th className="p-5 font-ui text-[9px] tracking-[0.3em] uppercase text-white/30">Target Sector</th>
+                  <th className="p-5 font-ui text-[9px] tracking-[0.3em] uppercase text-white/30">Version</th>
+                  <th className="p-5 font-ui text-[9px] tracking-[0.3em] uppercase text-white/30 text-center">PDF</th>
+                  <th className="p-5 font-ui text-[9px] tracking-[0.3em] uppercase text-white/30 text-center">Downloads</th>
+                  <th className="p-5 font-ui text-[9px] tracking-[0.3em] uppercase text-white/30 text-center">Leads</th>
+                  <th className="p-5 font-ui text-[9px] tracking-[0.3em] uppercase text-white/30 text-center">Conversions</th>
+                  <th className="p-5 font-ui text-[9px] tracking-[0.3em] uppercase text-white/30">Admin Status</th>
+                  <th className="p-5 font-ui text-[9px] tracking-[0.3em] uppercase text-white/30">Actions</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-white/5">
+                {leadMagnets.map((asset) => {
+                  const statusColors: Record<string, string> = {
+                    draft: 'text-white/20',
+                    preview_available: 'text-blue-400',
+                    pdf_ready: 'text-green-400',
+                    live: 'text-accent',
+                    needs_update: 'text-orange-400',
+                    archived: 'text-white/10',
+                  }
+                  return (
+                    <tr key={asset.id} className="hover:bg-white/[0.02] transition-colors group">
+                      <td className="p-5">
+                        <div className="font-display text-sm text-white uppercase tracking-widest group-hover:text-accent transition-colors max-w-[220px]">
+                          {asset.title}
+                        </div>
+                        <div className="font-ui text-[9px] text-white/20 uppercase tracking-widest mt-1">{asset.slug}</div>
+                      </td>
+                      <td className="p-5">
+                        <span className="font-ui text-[9px] tracking-widest uppercase text-white/40 border border-white/10 px-2 py-1">{asset.type}</span>
+                      </td>
+                      <td className="p-5 font-ui text-[9px] tracking-widest uppercase text-white/40">{asset.targetSector}</td>
+                      <td className="p-5 font-ui text-[9px] tracking-widest uppercase text-white/40">{asset.version}</td>
+                      <td className="p-5 text-center">
+                        <span className={`font-ui text-[9px] tracking-widest uppercase ${asset.pdfStatus === 'ready' ? 'text-green-400' : 'text-white/20'}`}>
+                          {asset.pdfStatus === 'ready' ? '✓ Ready' : 'Pending'}
+                        </span>
+                      </td>
+                      <td className="p-5 text-center font-display text-lg text-white">{asset.downloadCount ?? '—'}</td>
+                      <td className="p-5 text-center font-display text-lg text-white">{asset.leadCount ?? '—'}</td>
+                      <td className="p-5 text-center font-display text-lg text-white">{asset.briefConversions ?? '—'}</td>
+                      <td className="p-5">
+                        <span className={`font-ui text-[9px] tracking-widest uppercase ${statusColors[asset.adminStatus] || 'text-white/20'}`}>
+                          {asset.adminStatus.replace(/_/g, ' ')}
+                        </span>
+                      </td>
+                      <td className="p-5">
+                        <Link
+                          href={`/resources/downloads/${asset.slug}`}
+                          className="font-ui text-[9px] tracking-widest uppercase text-accent/40 hover:text-accent transition-colors flex items-center gap-1"
+                          target="_blank"
+                        >
+                          View <ExternalLink className="w-3 h-3" />
+                        </Link>
+                      </td>
+                    </tr>
+                  )
+                })}
+              </tbody>
+            </table>
+          </div>
+
+          {/* PDF Export Note */}
+          <div className="mt-4 flex items-center gap-3 p-4 bg-accent/[0.03] border border-accent/10">
+            <Clock className="w-4 h-4 text-accent/30 shrink-0" />
+            <p className="font-ui text-[9px] tracking-widest uppercase text-white/20">
+              TODO: PDF export pending — implement PDF generation from <code className="text-accent/40">lib/asset-content.ts</code> data for all 7 assets and set <code className="text-accent/40">pdfStatus: 'ready'</code> + <code className="text-accent/40">pdfUrl</code> in <code className="text-accent/40">lib/lead-magnets-config.ts</code>
+            </p>
+          </div>
+        </div>
+
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
            {/* Asset Performance */}
+
            <div className="lg:col-span-2 bg-mid border border-white/5 p-12">
               <h3 className="font-display text-xl text-white uppercase tracking-widest mb-10 border-b border-white/5 pb-6">Asset Performance</h3>
               <div className="space-y-8">

@@ -17,90 +17,35 @@ import {
   BarChart3,
   ExternalLink,
   ChevronRight,
-  MoreVertical
+  MoreVertical,
+  Loader2
 } from 'lucide-react'
 import Link from 'next/link'
 import SectionTag from '@/components/ui/SectionTag'
 
-// --- Mock Data ---
-
-const MOCK_LEADS = [
-  {
-    id: 'L-001',
-    name: 'James Harrison',
-    company: 'Skyline FM Ltd',
-    email: 'j.harrison@skylinefm.co.uk',
-    service: 'Roof Inspections',
-    bundle: 'Roof Intelligence Pack',
-    location: 'Sheffield',
-    sector: 'Facilities Management',
-    score: 88,
-    quality: 'Hot',
-    date: '2026-05-04',
-    status: 'New'
-  },
-  {
-    id: 'L-002',
-    name: 'Sarah Chen',
-    company: 'Urban Build Group',
-    email: 's.chen@urbanbuild.com',
-    service: 'Construction Monitoring',
-    bundle: 'Construction Progress Pack',
-    location: 'Manchester',
-    sector: 'Construction',
-    score: 72,
-    quality: 'Qualified',
-    date: '2026-05-04',
-    status: 'Reviewed'
-  },
-  {
-    id: 'L-003',
-    name: 'Mark Thompson',
-    company: 'Global Logistics',
-    email: 'mark@globallogistics.com',
-    service: 'Not sure yet',
-    bundle: 'Not sure yet',
-    location: 'Bristol',
-    sector: 'Logistics',
-    score: 42,
-    quality: 'Nurture',
-    date: '2026-05-03',
-    status: 'Contacted'
-  },
-  {
-    id: 'L-004',
-    name: 'Elena Rossi',
-    company: 'Heritage Trust',
-    email: 'elena@heritagetrust.org',
-    service: 'Gaussian Splat Capture',
-    bundle: 'Immersive Digital Capture Pack',
-    location: 'Oxford',
-    sector: 'Heritage',
-    score: 91,
-    quality: 'Hot',
-    date: '2026-05-03',
-    status: 'New'
-  },
-  {
-    id: 'L-005',
-    name: 'David Webb',
-    company: 'Unknown',
-    email: 'dwebb99@gmail.com',
-    service: 'Aerial Photography',
-    bundle: 'Not sure yet',
-    location: 'London',
-    sector: 'Unknown',
-    score: 28,
-    quality: 'Low Intent',
-    date: '2026-05-02',
-    status: 'New'
-  }
-]
-
-// --- Components ---
-
 export default function AdminLeadsPage() {
   const [activeTab, setActiveTab] = useState('all')
+  const [leads, setLeads] = useState<any[]>([])
+  const [loading, setLoading] = useState(true)
+  const [searchTerm, setSearchTerm] = useState('')
+
+  useEffect(() => {
+    async function fetchLeads() {
+      setLoading(true)
+      try {
+        const response = await fetch(`/api/admin/leads?status=${activeTab}&search=${searchTerm}`)
+        const data = await response.json()
+        if (Array.isArray(data)) {
+          setLeads(data)
+        }
+      } catch (err) {
+        console.error('Failed to fetch leads:', err)
+      } finally {
+        setLoading(false)
+      }
+    }
+    fetchLeads()
+  }, [activeTab, searchTerm])
 
   const getQualityColor = (quality: string) => {
     switch (quality) {
@@ -112,10 +57,10 @@ export default function AdminLeadsPage() {
   }
 
   const getStatusColor = (status: string) => {
-    switch (status) {
-      case 'New': return 'text-accent'
-      case 'Won': return 'text-green-400'
-      case 'Lost': return 'text-red-400'
+    switch (status?.toLowerCase()) {
+      case 'new': return 'text-accent'
+      case 'won': return 'text-green-400'
+      case 'lost': return 'text-red-400'
       default: return 'text-white/50'
     }
   }
@@ -181,14 +126,16 @@ export default function AdminLeadsPage() {
               ))}
            </div>
            <div className="flex items-center gap-4 w-full lg:w-auto">
-              <div className="relative flex-1 lg:w-80">
-                 <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-white/20" />
-                 <input 
-                   type="text" 
-                   placeholder="SEARCH LEADS..." 
-                   className="w-full bg-white/5 border border-white/10 pl-12 pr-4 py-3 font-ui text-[10px] tracking-widest text-white uppercase focus:outline-none focus:border-accent/50 transition-colors"
-                 />
-              </div>
+               <div className="relative flex-1 lg:w-80">
+                  <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-white/20" />
+                  <input 
+                    type="text" 
+                    placeholder="SEARCH LEADS..." 
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="w-full bg-white/5 border border-white/10 pl-12 pr-4 py-3 font-ui text-[10px] tracking-widest text-white uppercase focus:outline-none focus:border-accent/50 transition-colors"
+                  />
+               </div>
               <button className="p-3 bg-white/5 border border-white/10 text-white/40 hover:text-white transition-colors">
                  <Filter className="w-4 h-4" />
               </button>
@@ -211,46 +158,59 @@ export default function AdminLeadsPage() {
                     <th className="p-6"></th>
                  </tr>
               </thead>
-              <tbody className="divide-y divide-white/5">
-                 {MOCK_LEADS.map((lead) => (
-                   <tr key={lead.id} className="hover:bg-white/[0.02] transition-colors group">
-                      <td className="p-6 font-ui text-[10px] tracking-widest text-white/40">{lead.id}</td>
-                      <td className="p-6">
-                         <div className="font-display text-lg text-white uppercase tracking-widest mb-1">{lead.name}</div>
-                         <div className="font-ui text-[9px] text-white/30 uppercase tracking-widest">{lead.company}</div>
+               <tbody className="divide-y divide-white/5">
+                  {loading ? (
+                    <tr>
+                      <td colSpan={9} className="p-20 text-center">
+                        <Loader2 className="w-8 h-8 text-accent animate-spin mx-auto mb-4" />
+                        <span className="font-ui text-[10px] tracking-widest uppercase text-white/20">Establishing Uplink...</span>
                       </td>
-                      <td className="p-6">
-                         <div className="font-ui text-[10px] text-white/60 uppercase tracking-widest mb-1">{lead.service}</div>
-                         <div className="font-ui text-[9px] text-accent/50 uppercase tracking-widest">{lead.bundle}</div>
+                    </tr>
+                  ) : leads.length === 0 ? (
+                    <tr>
+                      <td colSpan={9} className="p-20 text-center">
+                        <span className="font-ui text-[10px] tracking-widest uppercase text-white/20">No signals detected.</span>
                       </td>
-                      <td className="p-6">
-                         <div className="font-ui text-[10px] text-white/60 uppercase tracking-widest mb-1">{lead.location}</div>
-                         <div className="font-ui text-[9px] text-white/30 uppercase tracking-widest">{lead.sector}</div>
-                      </td>
-                      <td className="p-6 text-center">
-                         <div className="font-display text-2xl text-white">{lead.score}</div>
-                      </td>
-                      <td className="p-6 text-center">
-                         <span className={`inline-block px-4 py-1 border font-ui text-[9px] tracking-[0.2em] uppercase rounded-full ${getQualityColor(lead.quality)}`}>
-                            {lead.quality}
-                         </span>
-                      </td>
-                      <td className="p-6 text-center">
-                         <div className={`font-ui text-[10px] tracking-widest uppercase ${getStatusColor(lead.status)}`}>
-                            {lead.status}
-                         </div>
-                      </td>
-                      <td className="p-6 font-ui text-[10px] tracking-widest text-white/30 uppercase">
-                         {lead.date}
-                      </td>
-                      <td className="p-6 text-right">
-                         <Link href={`/admin/leads/${lead.id}`} className="p-2 text-white/20 hover:text-accent transition-colors inline-block">
-                            <ChevronRight className="w-5 h-5" />
-                         </Link>
-                      </td>
-                   </tr>
-                 ))}
-              </tbody>
+                    </tr>
+                  ) : leads.map((lead) => (
+                    <tr key={lead.id} className="hover:bg-white/[0.02] transition-colors group">
+                       <td className="p-6 font-ui text-[10px] tracking-widest text-white/40">{lead.id.substring(0, 8)}</td>
+                       <td className="p-6">
+                          <div className="font-display text-lg text-white uppercase tracking-widest mb-1">{lead.full_name}</div>
+                          <div className="font-ui text-[9px] text-white/30 uppercase tracking-widest">{lead.metadata?.company || 'N/A'}</div>
+                       </td>
+                       <td className="p-6">
+                          <div className="font-ui text-[10px] text-white/60 uppercase tracking-widest mb-1">{lead.metadata?.serviceInterest || lead.lead_type}</div>
+                          <div className="font-ui text-[9px] text-accent/50 uppercase tracking-widest">{lead.metadata?.packageInterest || 'Direct Enquiry'}</div>
+                       </td>
+                       <td className="p-6">
+                          <div className="font-ui text-[10px] text-white/60 uppercase tracking-widest mb-1">{lead.metadata?.location || 'Unknown'}</div>
+                          <div className="font-ui text-[9px] text-white/30 uppercase tracking-widest">{lead.metadata?.sector || 'N/A'}</div>
+                       </td>
+                       <td className="p-6 text-center">
+                          <div className="font-display text-2xl text-white">{lead.metadata?.score || '--'}</div>
+                       </td>
+                       <td className="p-6 text-center">
+                          <span className={`inline-block px-4 py-1 border font-ui text-[9px] tracking-[0.2em] uppercase rounded-full ${getQualityColor(lead.metadata?.quality || 'Qualified')}`}>
+                             {lead.metadata?.quality || 'Qualified'}
+                          </span>
+                       </td>
+                       <td className="p-6 text-center">
+                          <div className={`font-ui text-[10px] tracking-widest uppercase ${getStatusColor(lead.status)}`}>
+                             {lead.status}
+                          </div>
+                       </td>
+                       <td className="p-6 font-ui text-[10px] tracking-widest text-white/30 uppercase">
+                          {new Date(lead.created_at).toLocaleDateString()}
+                       </td>
+                       <td className="p-6 text-right">
+                          <Link href={`/admin/leads/${lead.id}`} className="p-2 text-white/20 hover:text-accent transition-colors inline-block">
+                             <ChevronRight className="w-5 h-5" />
+                          </Link>
+                       </td>
+                    </tr>
+                  ))}
+               </tbody>
            </table>
         </div>
 

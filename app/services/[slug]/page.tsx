@@ -78,13 +78,57 @@ export default async function ServicePage({ params }: Props) {
 
       {/* Hero Section */}
       <section className="relative h-[90vh] flex items-center justify-center overflow-hidden">
-        <VideoBackground 
-          src={`/videos/${service.slug}.mp4`} 
-          poster={`/images/posters/${service.slug}.jpg`}
-          alt={`${service.title} cinematic background`}
-          brightness={0.35} 
-          isHero={true}
-        />
+        {(() => {
+          const videoMap: Record<string, string> = {
+            'drone-inspection': 'inspection',
+            'roof-inspections': 'inspection',
+            'facade-inspections': 'inspection',
+            'building-envelope-inspections': 'inspection',
+            'facilities-management-inspections': 'inspection',
+            'commercial-property-drone-surveys': 'inspection',
+            'dilapidation-drone-surveys': 'inspection',
+            'insurance-loss-adjuster-surveys': 'inspection',
+            'infrastructure-inspections': 'inspection',
+            'utilities-energy-inspections': 'inspection',
+            'bridge-drone-inspections': 'inspection',
+            'rail-corridor-surveys': 'inspection',
+            'pipeline-corridor-surveys': 'inspection',
+            'surveying-mapping': 'surveying',
+            'volumetric-surveys': 'surveying',
+            'orthomosaic-mapping': 'surveying',
+            'lidar-point-cloud-surveys': 'surveying',
+            'photogrammetry': 'surveying',
+            'digital-twin-capture': 'surveying',
+            'gaussian-splat-capture': 'surveying',
+            'cut-fill-analysis': 'surveying',
+            'stockpile-volume-surveys': 'surveying',
+            'construction-monitoring': 'construction',
+            'construction-progress-photography': 'construction',
+            'drone-time-lapse-monitoring': 'construction',
+            'agricultural-surveys': 'agriculture',
+            'thermal-imaging': 'thermal',
+            'solar-panel-inspections': 'thermal',
+            'emergency-response': 'thermal',
+            'aerial-photography-film': 'photography',
+            'fpv-drone-filming': 'photography',
+            '360-aerial-panoramas': 'photography',
+            'heritage-conservation-archaeology': 'photography',
+            'events-media': 'events'
+          }
+
+          const assetBase = videoMap[slug] || 'inspection'
+          const posterExt = assetBase === 'agriculture' || assetBase === 'events' || assetBase === 'thermal' ? 'jpg' : 'png'
+          
+          return (
+            <VideoBackground 
+              src={`/videos/${assetBase}.mp4`} 
+              poster={`/images/${assetBase}_poster.${posterExt}`}
+              alt={`${service.title} cinematic background`}
+              brightness={0.35} 
+              isHero={true}
+            />
+          )
+        })()}
         <div className="grid-lines" />
         <div className="noise-overlay" />
         

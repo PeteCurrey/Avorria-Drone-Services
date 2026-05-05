@@ -45,13 +45,34 @@ export default async function IndustryPage({ params }: Props) {
     <main className="bg-dark min-h-screen">
       {/* Hero Section */}
       <section className="relative h-[80vh] flex items-center justify-center overflow-hidden">
-        <VideoBackground 
-          src={`/videos/industry-${data.slug}.mp4`} 
-          poster={`/images/posters/industry-${data.slug}.jpg`}
-          alt={`${data.title} cinematic background`}
-          brightness={0.35} 
-          isHero={true}
-        />
+        {(() => {
+          const videoMap: Record<string, string> = {
+            'facilities-management': 'inspection',
+            'construction': 'construction',
+            'insurance-loss-adjusters': 'inspection',
+            'infrastructure': 'inspection',
+            'utilities-energy': 'thermal',
+            'commercial-property': 'photography',
+            'surveyors': 'surveying',
+            'heritage-conservation': 'photography',
+            'agriculture-rural-estates': 'agriculture',
+            'events-venues-media': 'events',
+            'solar-renewable-energy': 'thermal'
+          }
+
+          const assetBase = videoMap[data.slug] || 'inspection'
+          const posterExt = assetBase === 'agriculture' || assetBase === 'events' || assetBase === 'thermal' ? 'jpg' : 'png'
+          
+          return (
+            <VideoBackground 
+              src={`/videos/${assetBase}.mp4`} 
+              poster={`/images/${assetBase}_poster.${posterExt}`}
+              alt={`${data.title} cinematic background`}
+              brightness={0.35} 
+              isHero={true}
+            />
+          )
+        })()}
         <div className="grid-lines" />
         <div className="noise-overlay" />
         

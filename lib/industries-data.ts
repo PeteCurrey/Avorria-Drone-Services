@@ -644,5 +644,131 @@ export const industriesData: IndustryData[] = [
       { q: 'Can drones map estate boundaries?', a: 'Yes. High-resolution orthomosaic mapping is an excellent tool for documenting estate boundaries and land use.' },
       { q: 'Can drones inspect estate buildings and roofs?', a: 'Drones provide a safe, efficient way to inspect high-level details on estate buildings without scaffolding.' }
     ]
+  },
+  {
+    slug: 'events-venues-media',
+    title: 'Events, Venues & Media',
+    headline: ['EVENTS', '& VENUES'],
+    description: 'Aerial photography, drone video, FPV flythroughs, and venue showcases for events, tourism and commercial media teams.',
+    metaTitle: 'Drone Services for Events, Venues & Media | Altitude Hire',
+    metaDescription: 'Aerial photography, drone video, FPV flythroughs, venue showcases, 360 panoramas and campaign-ready content for events, venues, tourism and commercial media teams.',
+    benefits: ['Venue and estate showcases', 'Cinematic 4K event filming', 'Dynamic FPV drone flythroughs', '360 aerial site panoramas'],
+    missions: ['Venue marketing reels', 'Event coverage', 'Indoor FPV tours', 'Brand campaigns'],
+    relatedServices: ['events-media', 'aerial-photography-film', 'fpv-drone-filming'],
+    
+    hero: {
+      title: 'Drone Services for Events, Venues and Media',
+      subheading: 'Aerial photography, drone video, FPV flythroughs, venue showcases, 360 panoramas and campaign-ready content for events, venues, tourism and commercial media teams.',
+      badges: ['Aerial Media', 'FPV Flythroughs', 'Venue Showcases', 'Campaign Content', 'Altitude Flight Desk Workflow'],
+      ctaPrimary: 'Start Media Brief'
+    },
+    challenge: {
+      title: 'The Media Challenge',
+      text: 'Marketing and managing venues or events requires high-impact visual content that communicates scale, energy and location. Traditional photography often fails to capture the prestige of a site or the dynamism of an event. Drone services provide cinematic, high-resolution media that drives engagement and supports brand storytelling.'
+    },
+    outcomes: [
+      { title: 'Cinematic venue showcases', desc: '4K aerial video and professional stills for venue marketing.', href: '/services/aerial-photography-film' },
+      { title: 'Dynamic FPV flythroughs', desc: 'Immersive indoor and outdoor tours for venues and brands.', href: '/services/fpv-drone-filming' },
+      { title: 'Event coverage and media', desc: 'High-energy aerial perspectives of events and venue activity.', href: '/services/events-media' },
+      { title: 'Interactive 360 panoramas', desc: 'Immersive site context views for web and digital use.', href: '/services/360-aerial-panoramas' }
+    ],
+    workflow: [
+      { title: 'Creative objective', desc: 'Define if you need cinematic film, dynamic FPV or 360 media.' },
+      { title: 'Site & shot planning', desc: 'Coordinate on shot requirements, venue access and safety.' },
+      { title: 'Cinematic capture', desc: 'Precision flight focusing on composition, lighting and movement.' },
+      { title: 'Media processing', desc: 'High-res image editing and video post-production.' },
+      { title: 'Final delivery', desc: 'Campaign-ready assets delivered via secure client portal.' }
+    ],
+    serviceStack: [
+      { name: 'Events & Media', benefit: 'Aerial filming and photography for venues and campaigns.', deliverables: ['Edited highlights', 'Pro image set', 'Social clips'], href: '/services/events-media' },
+      { name: 'FPV Drone Filming', benefit: 'Dynamic indoor and outdoor flythrough content.', deliverables: ['FPV flythrough video', 'Raw footage', 'Edited reel'], href: '/services/fpv-drone-filming' },
+      { name: '360 Aerial Panoramas', benefit: 'Interactive context views for venues and tourism.', deliverables: ['360 viewer', 'Embedded map', 'High-res stills'], href: '/services/360-aerial-panoramas' }
+    ],
+    deliverables: [
+      { name: 'High-Resolution Image Pack', desc: 'Curated set of professional aerial site and asset shots.', href: '/sample-deliverables' },
+      { name: 'Edited Drone Video', desc: 'Professional cinematic site tour or event highlight reel.', href: '/sample-deliverables' },
+      { name: 'FPV Flythrough Video', desc: 'Immersive, high-energy tour of venue or site spaces.', href: '/sample-deliverables' },
+      { name: '360 Aerial Panorama', desc: 'Interactive context view from a fixed site point.', href: '/sample-deliverables' }
+    ],
+    recommendedBundles: [
+      { name: 'Visual Sales Pack', fit: 'For premium venue marketing and brand campaigns.', outputs: ['Edited film', 'Pro image set', 'Social clips'], href: '/bundles#visual-sales-pack' },
+      { name: 'Immersive Digital Capture Pack', fit: 'For high-value asset visualisation and engagement.', outputs: ['Gaussian Splat', '3D model', 'Web viewer'], href: '/bundles#immersive-digital-capture-pack' }
+    ],
+    missionProfiles: [
+      { title: 'Prestige Venue Marketing Workflow', href: '/operations-standard' },
+      { title: 'Dynamic Indoor FPV Flythrough Workflow', href: '/operations-standard' }
+    ],
+    resources: [
+      { title: 'Drone Photography for Venue Marketing', href: '/blog' },
+      { title: 'The Impact of FPV Flythroughs', href: '/blog' }
+    ],
+    faqs: [
+      { q: 'How can drones enhance venue marketing?', a: 'Drones provide unique cinematic perspectives that showcase the scale and context of venues and property.' },
+      { q: 'What is an FPV drone flythrough?', a: 'FPV drones can fly dynamically through indoor and outdoor spaces, creating immersive, high-energy video content.' },
+      { q: 'Can drones film at events?', a: 'Yes, subject to site-specific risk assessment and CAA safety requirements.' }
+    ]
+  },
+  {
+    slug: 'solar-renewable-energy',
+    title: 'Solar & Renewable Energy',
+    headline: ['SOLAR', '& RENEWABLES'],
+    description: 'Visual and thermal drone inspections for rooftop solar arrays, commercial PV systems and solar farms.',
+    metaTitle: 'Drone Services for Solar PV & Renewable Energy | Altitude Hire',
+    metaDescription: 'Visual and thermal drone inspections for rooftop solar arrays, commercial PV systems and solar farms. Helping renewable energy teams identify anomalies and monitor asset health.',
+    benefits: ['Inspect without service outages', 'Rapid assessment of solar farms', 'Identify thermal anomalies early', 'Warranty and claim documentation'],
+    missions: ['Solar farm thermal audits', 'Rooftop PV inspections', 'Asset health monitoring', 'Claim evidence'],
+    relatedServices: ['solar-panel-inspections', 'thermal-imaging', 'utilities-inspections'],
+    
+    hero: {
+      title: 'Drone Services for Solar and Renewable Energy',
+      subheading: 'Visual and thermal drone inspections for rooftop solar arrays, commercial PV systems and solar farms. Helping renewable energy teams identify anomalies and monitor asset health.',
+      badges: ['Solar Audits', 'Thermal Anomaly Detection', 'Renewable Support', 'Asset Health Monitoring', 'Altitude Flight Desk Workflow'],
+      ctaPrimary: 'Start Solar Brief'
+    },
+    challenge: {
+      title: 'The Solar Challenge',
+      text: 'Inspecting thousands of solar panels for visual damage or thermal hotspots is time-consuming and labor-intensive when done manually. Issues like string failures, diode issues, and cracked cells can significantly impact yield and ROI. Drone-supported visual and thermal audits provide a fast, efficient way to survey solar farms and commercial arrays.'
+    },
+    outcomes: [
+      { title: 'Identify thermal anomalies', desc: 'Locate hotspots, string failures and panel defects from the air.', href: '/services/solar-panel-inspections' },
+      { title: 'Audit large solar farms', desc: 'Rapid assessment of thousands of assets in a single flight.', href: '/services/solar-panel-inspections' },
+      { title: 'Support warranty claims', desc: 'Objective visual and thermal evidence for maintenance and claims.', href: '/sectors/insurance-loss-adjusters' },
+      { title: 'Map solar site context', desc: 'High-resolution site mapping for layout and land management.', href: '/services/orthomosaic-mapping' }
+    ],
+    workflow: [
+      { title: 'Define requirement', desc: 'Thermal audit, visual inspection or site mapping.' },
+      { title: 'Review conditions', desc: 'Planning for appropriate irradiance and weather windows.' },
+      { title: 'Specialist capture', desc: 'Radiometric thermal and high-res visual capture flight.' },
+      { title: 'Anomaly analysis', desc: 'Identifying hotspots and string issues in the data.' },
+      { title: 'Final reporting', desc: 'Actionable anomaly reports and condition archives.' }
+    ],
+    serviceStack: [
+      { name: 'Solar Panel Inspections', benefit: 'Visual and thermal audits for commercial PV efficiency.', deliverables: ['Thermal anomaly report', 'Visual defect log', 'String failure map'], href: '/services/solar-panel-inspections' },
+      { name: 'Thermal Imaging', benefit: 'Identifying heat loss and electrical anomalies.', deliverables: ['Radiometric image set', 'Temperature data', 'Anomaly report'], href: '/services/thermal-imaging' },
+      { name: 'Orthomosaic Mapping', benefit: 'High-resolution mapping for solar site context.', deliverables: ['Orthomosaic map', 'Topographic data', 'GIS ready data'], href: '/services/orthomosaic-mapping' }
+    ],
+    deliverables: [
+      { name: 'Thermal Anomaly Evidence Pack', desc: 'Radiometric data showing heat distribution and hotspots.', href: '/sample-deliverables' },
+      { name: 'Visual PV Condition Report', desc: 'Detailed imagery of physical panel condition and assets.', href: '/sample-deliverables' },
+      { name: 'Solar Farm Orthomosaic', desc: 'High-resolution top-down site map for planning and records.', href: '/sample-deliverables' },
+      { name: 'Annotated Defect Image Pack', desc: 'Specific issues highlighted and categorised by severity.', href: '/sample-deliverables' }
+    ],
+    recommendedBundles: [
+      { name: 'Solar & Energy Asset Pack', fit: 'For renewable asset owners requiring technical auditing.', outputs: ['Thermal audit', 'Visual records', 'Anomaly report'], href: '/bundles#solar-energy-asset-pack' },
+      { name: 'Insurance & Incident Evidence Pack', fit: 'For rapid damage assessment after storm or fire.', outputs: ['Damage imagery', 'Annotated photos', 'PDF summary'], href: '/bundles#insurance-incident-evidence-pack' }
+    ],
+    missionProfiles: [
+      { title: 'Commercial Solar Farm Thermal Audit Workflow', href: '/operations-standard' },
+      { title: 'Rooftop Solar PV Visual Audit Workflow', href: '/operations-standard' }
+    ],
+    resources: [
+      { title: 'Thermal Drone Surveys for Solar PV', href: '/blog' },
+      { title: 'Maximising Solar Yield with Drone Data', href: '/blog' }
+    ],
+    faqs: [
+      { q: 'Can drones inspect solar panels efficiently?', a: 'Yes. Drones can survey hundreds of panels in minutes, identifying issues that are invisible to the naked eye.' },
+      { q: 'What is the benefit of thermal surveys?', a: 'Thermal surveys identify yield-impacting anomalies like diode issues and hotspots.' },
+      { q: 'When is the best time for a solar audit?', a: 'Thermal surveys require specific irradiance levels, usually during clear, sunny periods.' }
+    ]
   }
 ];

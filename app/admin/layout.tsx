@@ -11,7 +11,8 @@ import {
   Settings,
   Circle,
   Activity,
-  Download
+  Download,
+  Target
 } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
 

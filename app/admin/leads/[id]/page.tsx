@@ -34,7 +34,10 @@ import SectionTag from '@/components/ui/SectionTag'
 
 export default function LeadDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params)
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [lead, setLead] = useState<any>(null)
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [timeline, setTimeline] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
   const [status, setStatus] = useState('New')
   const [copied, setCopied] = useState(false)
@@ -250,7 +253,7 @@ export default function LeadDetailPage({ params }: { params: Promise<{ id: strin
                  <div className="bg-dark/40 border border-white/5 p-10">
                     <h4 className="font-ui text-[10px] tracking-[0.4em] uppercase text-accent mb-8">Lead Journey Timeline</h4>
                     <div className="space-y-6 relative before:absolute before:left-[7px] before:top-2 before:bottom-2 before:w-px before:bg-white/10">
-                       {lead.attribution.journey_summary.map((step, i) => (
+                       {lead.attribution.journey_summary.map((step: string, i: number) => (
                          <div key={i} className="flex gap-4 relative">
                             <div className="w-4 h-4 rounded-full bg-dark border border-white/20 flex-shrink-0 z-10 flex items-center justify-center">
                                <div className={`w-1.5 h-1.5 rounded-full ${i === lead.attribution.journey_summary.length - 1 ? 'bg-accent animate-pulse' : 'bg-white/10'}`} />
@@ -284,6 +287,7 @@ export default function LeadDetailPage({ params }: { params: Promise<{ id: strin
                              {['source', 'medium', 'campaign', 'content', 'term'].map(key => (
                                <div key={key} className="p-2 bg-white/[0.01] border border-white/5">
                                   <span className="block font-ui text-[7px] text-white/20 uppercase mb-1">{key}</span>
+                                  // eslint-disable-next-line @typescript-eslint/no-explicit-any
                                   <span className="block font-ui text-[8px] text-white/60 uppercase truncate">{(lead.attribution as any)[`utm_${key}`]}</span>
                                </div>
                              ))}

@@ -10,7 +10,8 @@ import {
   LogOut, 
   Settings,
   Circle,
-  Activity
+  Activity,
+  Download
 } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
 

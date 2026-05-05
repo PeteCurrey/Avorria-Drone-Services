@@ -1212,7 +1212,7 @@ export const servicesData: ServiceData[] = [
     slug: 'gaussian-splat-capture',
     title: 'Gaussian Splat Capture Service',
     headline: ['GAUSSIAN SPLAT', 'CAPTURE'],
-    category: 'Immersive Visualisation',
+    category: 'Specialist & Response',
     intro: 'Drone and ground-level image capture for photorealistic 3D visualisation, immersive site walkthroughs and digital twin-style visual records.',
     metaTitle: 'Gaussian Splat Capture Service | Drone 3D Visualisation | Altitude Hire',
     metaDescription: 'Altitude Hire provides Gaussian Splat capture services using drone and ground-level imagery for immersive site visualisation, stakeholder engagement, property, construction and heritage applications.',

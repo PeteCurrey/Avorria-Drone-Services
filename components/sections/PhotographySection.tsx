@@ -1,6 +1,7 @@
 // components/sections/PhotographySection.tsx
 'use client'
 
+import Link from 'next/link'
 import { useEffect, useRef } from 'react'
 import { gsap, registerGSAP } from '@/lib/gsap-init'
 import { useLenis } from '@/lib/lenis'
@@ -59,9 +60,9 @@ export default function PhotographySection() {
   ]
 
   const showreels = [
-    { label: 'SHOT 01 · PROPERTY REVEAL', quality: '4K' },
-    { label: 'SHOT 02 · COASTAL ORBIT', quality: '4K' },
-    { label: 'SHOT 03 · COMMERCIAL GLIDE', quality: '4K' },
+    { label: 'SHOT 01 · PROPERTY REVEAL', quality: '4K', href: '/showreel#shot-01' },
+    { label: 'SHOT 02 · COASTAL ORBIT', quality: '4K', href: '/showreel#shot-02' },
+    { label: 'SHOT 03 · COMMERCIAL GLIDE', quality: '4K', href: '/showreel#shot-03' },
   ]
 
   const scrollToContact = () => {
@@ -116,7 +117,7 @@ export default function PhotographySection() {
         <div className="bg-black/55 border border-white/7 p-4 backdrop-blur-md">
           <div className="flex flex-col gap-3">
             {showreels.map((item, idx) => (
-              <div key={idx} className="relative h-20 bg-white/[0.04] flex items-center px-6 group cursor-pointer transition-colors hover:bg-white/[0.08]">
+              <Link href={item.href} key={idx} className="relative h-20 bg-white/[0.04] flex items-center px-6 group cursor-pointer transition-colors hover:bg-white/[0.08]">
                 <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-accent" />
                 <span className="font-ui text-[11px] tracking-[0.2em] uppercase text-white/80">
                   {item.label}
@@ -124,7 +125,7 @@ export default function PhotographySection() {
                 <span className="absolute top-4 right-4 font-ui text-[10px] text-accent font-bold">
                   {item.quality}
                 </span>
-              </div>
+              </Link>
             ))}
           </div>
         </div>

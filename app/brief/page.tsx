@@ -705,6 +705,11 @@ export default function ProjectBriefPage() {
           <p className="font-body text-xl md:text-2xl font-light text-white/50 max-w-3xl uppercase tracking-widest leading-relaxed mb-12">
             Tell us what you need to inspect, measure, monitor, film or visualise. Altitude Hire will recommend the right drone capture method, deliverables and project route.
           </p>
+          <div className="flex flex-wrap gap-x-12 gap-y-6 mb-12">
+            <Link href="/cost-estimator" className="font-ui text-[11px] tracking-[0.4em] uppercase text-accent hover:text-white transition-colors flex items-center gap-3">
+               Want an Indicative Estimate First? <ChevronRight className="w-4 h-4" />
+            </Link>
+          </div>
           <div className="flex flex-wrap gap-x-8 gap-y-4 text-white/20 font-ui text-[10px] tracking-[0.3em] uppercase">
              <span>CAA-compliant operations</span>
              <span className="w-1 h-1 bg-white/20 rounded-full my-auto" />

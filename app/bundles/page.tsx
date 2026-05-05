@@ -204,11 +204,11 @@ export default function BundlesPage() {
             <Link href="/brief?source=bundles-hero" className="bg-accent text-dark font-display text-xl tracking-widest px-10 py-4 hover:bg-white transition-all duration-300">
               DISCUSS A PROJECT
             </Link>
-            <Link href="/project-brief-assistant?mode=package&source=bundles" className="bg-white text-dark font-display text-xl tracking-widest px-10 py-4 hover:bg-accent transition-all duration-300">
-              NOT SURE WHICH PACKAGE FITS?
+            <Link href="/cost-estimator" className="bg-white text-dark font-display text-xl tracking-widest px-10 py-4 hover:bg-accent transition-all duration-300">
+              ESTIMATE THIS PACKAGE
             </Link>
-            <Link href="/services" className="border border-white/20 font-ui text-[12px] tracking-[0.3em] uppercase px-10 py-4 hover:bg-white/5 transition-all">
-              VIEW DRONE SERVICES
+            <Link href="/project-brief-assistant?mode=package&source=bundles" className="border border-white/20 font-ui text-[12px] tracking-[0.3em] uppercase px-10 py-4 hover:bg-white/5 transition-all">
+              NOT SURE WHICH PACKAGE FITS?
             </Link>
           </div>
           <div className="mt-12 flex items-center justify-center gap-6 text-white/30">

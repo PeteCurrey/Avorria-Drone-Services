@@ -16,6 +16,7 @@ import {
   ArrowUpRight
 } from 'lucide-react'
 import SectionTag from '@/components/ui/SectionTag'
+import LeadMagnetTeaser from '@/components/sections/LeadMagnetTeaser'
 import { blogPosts } from '@/lib/blog-posts'
 
 export default function ResourcesHubPage() {
@@ -182,6 +183,8 @@ export default function ResourcesHubPage() {
           </div>
         </div>
       </section>
+
+      <LeadMagnetTeaser />
 
       {/* 4. Topic Categories Section */}
       <section className="px-10 md:px-20 mb-40">

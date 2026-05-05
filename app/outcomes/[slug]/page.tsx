@@ -11,7 +11,7 @@ interface PageProps {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params
-  const url = `/solutions/${slug}`
+  const url = `/outcomes/${slug}`
   const page = getSeoPageByUrl(url)
   
   if (!page) return { title: 'Page Not Found' }
@@ -29,9 +29,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 }
 
-export default async function SolutionPage({ params }: PageProps) {
+export default async function OutcomePage({ params }: PageProps) {
   const { slug } = await params
-  const url = `/solutions/${slug}`
+  const url = `/outcomes/${slug}`
   const page = getSeoPageByUrl(url)
   
   if (!page || page.status === 'Draft') {

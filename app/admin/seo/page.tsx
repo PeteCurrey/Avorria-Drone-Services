@@ -14,7 +14,10 @@ export default function SeoAdminDashboard() {
   const publishedPages = mockSeoPages.filter(p => p.status === 'Published')
   const draftPages = mockSeoPages.filter(p => p.status === 'Draft')
   const totalImpressions = mockSeoPages.reduce((acc, p) => acc + p.analytics.impressions, 0)
+  const totalClicks = mockSeoPages.reduce((acc, p) => acc + p.analytics.clicks, 0)
   const totalConversions = mockSeoPages.reduce((acc, p) => acc + p.analytics.conversions, 0)
+  const avgCtr = totalImpressions > 0 ? (totalClicks / totalImpressions) * 100 : 0
+  const avgConvRate = totalClicks > 0 ? (totalConversions / totalClicks) * 100 : 0
 
   const filteredPages = mockSeoPages.filter(p => 
     p.seoTitle.toLowerCase().includes(searchTerm.toLowerCase()) || 
@@ -40,12 +43,13 @@ export default function SeoAdminDashboard() {
       </div>
 
       {/* KPI Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-5 gap-6">
         {[
           { title: 'Total Pages', value: mockSeoPages.length, sub: `${publishedPages.length} Published`, icon: Layers },
           { title: 'Draft / Noindex', value: draftPages.length, sub: 'Awaiting review', icon: FileText },
-          { title: 'Total Impressions', value: totalImpressions, sub: 'Last 28 days', icon: BarChart3 },
-          { title: 'Total Conversions', value: totalConversions, sub: 'From organic search', icon: Target }
+          { title: 'Impressions', value: totalImpressions.toLocaleString(), sub: 'Last 28 days', icon: BarChart3 },
+          { title: 'Avg. CTR', value: `${avgCtr.toFixed(1)}%`, sub: 'Search performance', icon: Activity },
+          { title: 'Conversions', value: totalConversions, sub: `${avgConvRate.toFixed(1)}% Rate`, icon: Target }
         ].map((stat, i) => (
           <div key={i} className="p-6 border border-white/5 bg-white/[0.01]">
             <div className="flex items-center justify-between mb-4">

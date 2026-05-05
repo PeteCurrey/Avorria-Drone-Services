@@ -1210,46 +1210,50 @@ export const servicesData: ServiceData[] = [
   },
   {
     slug: 'gaussian-splat-capture',
-    title: 'Gaussian Splat Drone Capture UK',
+    title: 'Gaussian Splat Capture Service',
     headline: ['GAUSSIAN SPLAT', 'CAPTURE'],
-    category: 'Specialist & Response',
-    intro: 'The future of 3D visualisation — photorealistic reconstructions that capture light, depth, and complex geometry with unprecedented realism.',
-    metaTitle: 'Gaussian Splat Drone Capture UK | Photorealistic 3D | Altitude Hire',
-    metaDescription: 'Professional Gaussian Splatting drone services. The most realistic 3D site reconstructions available. CAA-compliant, next-gen visualisation.',
+    category: 'Immersive Visualisation',
+    intro: 'Drone and ground-level image capture for photorealistic 3D visualisation, immersive site walkthroughs and digital twin-style visual records.',
+    metaTitle: 'Gaussian Splat Capture Service | Drone 3D Visualisation | Altitude Hire',
+    metaDescription: 'Altitude Hire provides Gaussian Splat capture services using drone and ground-level imagery for immersive site visualisation, stakeholder engagement, property, construction and heritage applications.',
     heroStat: [
-      { value: 'ULTRA', label: 'Photorealistic' },
-      { value: 'NEXT', label: 'Gen visual' },
-      { value: 'WEB', label: 'Viewable' }
+      { value: 'PHOTO', label: 'Realistic 3D' },
+      { value: 'WEB', label: 'Ready Viewer' },
+      { value: 'STAKE', label: 'Holder engagement' }
     ],
-    problemStatement: 'Traditional 3D meshes can feel "flat" and artificial. Gaussian Splatting uses radiance fields to capture the true look of a site — including reflections, transparency, and complex vegetation — delivering a level of visual realism that traditional photogrammetry cannot match.',
+    problemStatement: 'Static photos and fixed-angle videos often fail to communicate the true scale, context and material feel of a complex commercial site. Gaussian Splatting bridges the gap between 2D media and 3D models, providing an immersive visual experience that allows stakeholders to explore a site from multiple perspectives with lifelike realism.',
     whatWeCapture: [
-      'High-overlap cinematic imagery',
+      'High-overlap aerial imagery',
+      'Ground-level viewpoint capture',
       'Volumetric radiance fields',
-      'Complex site geometry',
-      'Atmospheric and lighting data'
+      'Material and lighting data',
+      'Site context and connectivity'
     ],
     deliverables: [
-      'Interactive splat viewer',
-      'PLY splat file',
-      'Cinematic fly-through video',
-      'High-resolution 3D renders'
+      'Interactive Splat Viewer',
+      'Flythrough Video Pack',
+      'High-Res Screenshot Set',
+      'Source Model Files (.ply)',
+      'Digital Twin-Style Visuals'
     ],
     useCases: [
-      { title: 'Stakeholder Engagement', description: 'Wowing clients and investors with the most realistic site model possible.' },
-      { title: 'Film Location Scouting', description: 'Providing directors with a digital replica they can "walk through" remotely.' }
+      { title: 'Stakeholder Engagement', description: 'Enable non-technical stakeholders to virtually walk through a site before or during project phases.' },
+      { title: 'Property Presentation', description: 'Showcase commercial assets, estates and developments with photorealistic immersion.' },
+      { title: 'Site Records', description: 'Preserve high-fidelity visual documentation of site conditions for archives and reporting.' }
     ],
     capabilities: [
-      { title: 'Radiance Field Processing', description: 'Converting images into high-fidelity volumetric reconstructions.' },
-      { title: 'Immersive Navigation', description: 'Smooth, photorealistic walkthroughs of any site or structure.' }
+      { title: 'Multi-Sensor Capture', description: 'Integrating drone and ground-level data for total site coverage.' },
+      { title: 'Web-Ready Visualisation', description: 'Preparing heavy 3D data for smooth, browser-based stakeholder review.' },
+      { title: 'Flythrough Production', description: 'Creating guided cinematic tours through the reconstructed 3D scene.' }
     ],
-    industries: ['Luxury Property', 'Film & Production', 'Developers', 'Marketing Agencies'],
+    industries: ['Facilities Management', 'Construction', 'Commercial Property', 'Insurance', 'Heritage', 'Events'],
     faqs: [
-      { q: 'What is a Gaussian Splat?', a: 'It is a new type of 3D reconstruction that uses points with transparency and colour to create photorealistic views.' },
-      { q: 'Is it better than a 3D mesh?', a: 'For visual realism and immersion, yes. For measurement, a mesh or point cloud is still preferred.' },
-      { q: 'Can I view it in my browser?', a: 'Yes, we provide web-viewers that allow anyone to explore the splat without special software.' }
+      { q: 'Is a Gaussian Splat survey-grade?', a: 'Gaussian Splats are primarily visualisation assets. For measurement-critical work, we pair capture with photogrammetry or LiDAR workflows.' },
+      { q: 'What sites are suitable?', a: 'Almost any commercial site, building or estate can be captured, provided we have suitable access and lighting conditions.' },
+      { q: 'Can it be embedded on my site?', a: 'Yes, we can provide a web-ready viewer that can be embedded or shared via a secure link.' }
     ],
-    relatedServices: ['digital-twin-capture', 'fpv-drone-filming', 'drone-photogrammetry'],
-    cta: { label: 'EXPERIENCE GAUSSIAN SPLAT', href: '/contact' }
+    relatedServices: ['digital-twin-capture', 'drone-photogrammetry', '360-aerial-panoramas', 'aerial-photography-film'],
+    cta: { label: 'EXPLORE SHOWCASE', href: '/gaussian-splat' }
   },
   {
     slug: 'bridge-drone-inspections',

@@ -263,6 +263,9 @@ export default function ServicesHubPage() {
             <Link href="/brief?source=services-hero" className="bg-accent text-dark font-display text-2xl tracking-[0.1em] px-12 py-6 hover:bg-white transition-all text-center">
               START PROJECT BRIEF
             </Link>
+            <Link href="/cost-estimator" className="border border-white/20 text-white font-display text-2xl tracking-[0.1em] px-12 py-6 hover:bg-white hover:text-dark transition-all text-center">
+              ESTIMATE PROJECT COST
+            </Link>
             <Link href="/bundles" className="border border-white/20 text-white font-display text-2xl tracking-[0.1em] px-12 py-6 hover:bg-white hover:text-dark transition-all text-center">
               VIEW COMMERCIAL PACKAGES
             </Link>

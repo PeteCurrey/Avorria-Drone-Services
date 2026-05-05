@@ -17,6 +17,8 @@ import PortfolioTeaser from '@/components/sections/PortfolioTeaser'
 import ContactSection from '@/components/sections/ContactSection'
 import BriefAssistantTeaser from '@/components/sections/BriefAssistantTeaser'
 import OutputSelectorTeaser from '@/components/sections/OutputSelectorTeaser'
+import CostEstimatorTeaser from '@/components/sections/CostEstimatorTeaser'
+import LeadMagnetTeaser from '@/components/sections/LeadMagnetTeaser'
 import { TrustedByStrip, AccreditationsStrip } from '@/components/ui/Strips'
 
 import OutputTeaser from '@/components/sections/OutputTeaser'
@@ -37,10 +39,12 @@ export default function Home() {
       <div className="homepage-snap-section"><AgricultureSection /></div>
       <div className="homepage-snap-section"><EventsSection /></div>
       <div className="homepage-snap-section"><OperationsTrust /></div>
+      <div className="homepage-snap-section"><CostEstimatorTeaser /></div>
       <div className="homepage-snap-section"><BriefAssistantTeaser /></div>
       <div className="homepage-snap-section"><OutputSelectorTeaser /></div>
       <div className="homepage-snap-section"><MetricsSection /></div>
       <div className="homepage-snap-section"><SectorSection /></div>
+      <div className="homepage-snap-section"><LeadMagnetTeaser /></div>
       <div className="homepage-snap-section"><PortfolioTeaser /></div>
       <div className="homepage-snap-section"><BundlesTeaser /></div>
       <div className="homepage-snap-section"><FAQSection /></div>

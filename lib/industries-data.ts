@@ -581,5 +581,68 @@ export const industriesData: IndustryData[] = [
       { q: 'Can you fly at sensitive heritage sites?', a: 'Yes, we coordinate with heritage bodies and site managers to ensure minimal disruption.' },
       { q: 'What is the level of detail?', a: 'We can achieve sub-centimetre visual detail for structural and material analysis.' }
     ]
+  },
+  {
+    slug: 'agriculture-rural-estates',
+    title: 'Agriculture & Rural Estates',
+    headline: ['AGRICULTURE', '& RURAL ESTATES'],
+    description: 'Drone mapping, land surveys, estate visual records, and agricultural aerial imagery for farms, estates and landowners.',
+    metaTitle: 'Drone Services for Agriculture & Rural Estates | Altitude Hire',
+    metaDescription: 'Drone mapping, land surveys, estate visual records, agricultural aerial imagery, drainage context, rural asset inspections and development site capture for farms, estates and landowners.',
+    benefits: ['Estate boundary and land mapping', 'Rural asset and building inspections', 'Drainage and water management context', 'Agricultural land-use evidence'],
+    missions: ['Estate boundary surveys', 'Drainage audits', 'Crop health context', 'Asset condition checks'],
+    relatedServices: ['surveying-mapping', 'orthomosaic-mapping', 'roof-inspections'],
+    
+    hero: {
+      title: 'Drone Services for Agriculture and Rural Estates',
+      subheading: 'Drone mapping, land surveys, estate visual records, agricultural aerial imagery, drainage context, rural asset inspections and development site capture for farms, estates and landowners.',
+      badges: ['Land Mapping', 'Estate Records', 'Crop Health Context', 'Asset Inspections', 'Altitude Flight Desk Workflow'],
+      ctaPrimary: 'Start Agricultural Brief'
+    },
+    challenge: {
+      title: 'The Agriculture Challenge',
+      text: 'Managing large rural estates and agricultural land requires regular visibility of boundaries, drainage, asset condition and land use. Traditional ground-based surveys over hundreds of acres are time-consuming and labor-intensive. Drone capture provides high-resolution mapping, land-use evidence and asset inspection data that help estate managers and landowners make better decisions about drainage, boundary management, maintenance and potential development.'
+    },
+    outcomes: [
+      { title: 'Estate boundary mapping', desc: 'Accurate top-down maps for boundary management and land records.', href: '/services/orthomosaic-mapping' },
+      { title: 'Rural asset inspections', desc: 'High-resolution building and structure condition checks.', href: '/services/roof-inspections' },
+      { title: 'Drainage context audits', desc: 'Identify water management issues and drainage patterns from the air.', href: '/services/surveying-mapping' },
+      { title: 'Land-use evidence', desc: 'Chronological visual records of agricultural activity.', href: '/operations-standard' }
+    ],
+    workflow: [
+      { title: 'Define requirement', desc: 'Mapping, inspection, monitoring or media.' },
+      { title: 'Review site access', desc: 'Coordination with estate managers and review of rural airspace.' },
+      { title: 'Select capture pattern', desc: 'Nadir mapping, oblique inspection or cinematic media flight.' },
+      { title: 'Process land data', desc: 'Orthomosaics, image sets, reports or video summaries.' },
+      { title: 'Final delivery', desc: 'Deliverables issued via secure portal with technical guidance.' }
+    ],
+    serviceStack: [
+      { name: 'Agricultural Surveys', benefit: 'Drone mapping and land surveys for estates and agriculture.', deliverables: ['Estate map', 'Asset log', 'Boundary record'], href: '/services/agricultural-surveys-crops' },
+      { name: 'Surveying & Mapping', benefit: 'High-accuracy site mapping and 3D data.', deliverables: ['Orthomosaic map', 'Topographic data', 'Point cloud'], href: '/services/surveying-mapping' },
+      { name: 'Aerial Photography & Film', benefit: 'Premium marketing visuals for estates and venues.', deliverables: ['Edited film', 'Pro image set', '360 panorama'], href: '/services/aerial-photography-film' }
+    ],
+    deliverables: [
+      { name: 'Estate Orthomosaic Map', desc: 'High-resolution top-down site map for planning and records.', href: '/sample-deliverables' },
+      { name: 'Land-Use Image Archive', desc: 'Chronological record of land activity and condition.', href: '/sample-deliverables' },
+      { name: 'Rural Asset Inspection Set', desc: 'Detailed visual evidence for building and asset maintenance.', href: '/sample-deliverables' },
+      { name: '360 Estate Panorama', desc: 'Interactive aerial context view from a fixed site point.', href: '/sample-deliverables' }
+    ],
+    recommendedBundles: [
+      { name: 'Survey Data Pack', fit: 'For teams needing high-accuracy mapping and terrain modelling.', outputs: ['Orthomosaic', 'Point cloud', 'DTM/DSM'], href: '/bundles#survey-data-pack' },
+      { name: 'Visual Sales Pack', fit: 'For estate marketing and prestige development reveals.', outputs: ['Edited film', 'Pro image set', 'Social clips'], href: '/bundles#visual-sales-pack' }
+    ],
+    missionProfiles: [
+      { title: 'Large Estate Boundary Mapping Workflow', href: '/operations-standard' },
+      { title: 'Rural Building Condition Audit Workflow', href: '/operations-standard' }
+    ],
+    resources: [
+      { title: 'Drone Surveys for Rural Estate Managers', href: '/blog' },
+      { title: 'Mapping Estate Boundaries with Drones', href: '/blog' }
+    ],
+    faqs: [
+      { q: 'How can drones help rural estate managers?', a: 'Drones provide fast, site-wide visibility of boundaries, drainage, and asset condition over large acreages.' },
+      { q: 'Can drones map estate boundaries?', a: 'Yes. High-resolution orthomosaic mapping is an excellent tool for documenting estate boundaries and land use.' },
+      { q: 'Can drones inspect estate buildings and roofs?', a: 'Drones provide a safe, efficient way to inspect high-level details on estate buildings without scaffolding.' }
+    ]
   }
 ];

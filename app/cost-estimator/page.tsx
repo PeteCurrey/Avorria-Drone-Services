@@ -550,7 +550,7 @@ Location: ${selections['locationComplexity']}`
                      </p>
                      <div className="flex gap-4 w-full md:w-auto">
                         <Link 
-                          href={`/brief?source=cost-estimator&service=${recs.service.toLowerCase().replace(/ /g, '-')}&package=${recs.bundle.toLowerCase().replace(/ /g, '-')}&estimateBand=${band.range.replace(/£/g, '').replace(/–/g, '-')}`}
+                          href={`/brief?source=cost-estimator&service=${recs.service.toLowerCase().replace(/ /g, '-')}&package=${recs.bundle.toLowerCase().replace(/ /g, '-')}&estimateBand=${(band.range || '').replace(/£/g, '').replace(/–/g, '-')}`}
                           className="flex-1 md:flex-none bg-accent text-dark px-12 py-6 font-display text-2xl tracking-[0.1em] hover:bg-white transition-all flex items-center justify-center gap-4 group"
                         >
                           SUBMIT BRIEF <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform" />

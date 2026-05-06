@@ -42,7 +42,7 @@ export const SERVICE_DETAILS: ServiceDetail[] = [
     desc: 'Transform your site into a high-precision digital environment. We utilize RTK positioning and LiDAR to deliver surveys with unprecedented accuracy and speed.',
     image: '/images/surveying_poster.png',
     features: [
-      { name: 'LiDAR Acquisition', desc: 'Punching through vegetation to capture true ground topography with high-accuracy laser documentation.' },,
+      { name: 'LiDAR Acquisition', desc: 'Punching through vegetation to capture true ground topography with high-accuracy laser documentation.' },
       { name: 'RTK Workflow', desc: 'Real-time kinematic positioning reduces the heavy reliance on ground control points.' },
       { name: '3D Digital Twins', desc: 'Photorealistic 3D models for stakeholder visualization and planning.' },
       { name: 'Volumetric Analysis', desc: 'Instant, precise measurement of stockpiles, excavations, and site clearings.' }

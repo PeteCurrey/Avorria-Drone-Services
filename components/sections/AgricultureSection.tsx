@@ -88,20 +88,20 @@ export default function AgricultureSection() {
       <div className="panel-left relative z-10 flex-1 w-full max-w-[450px] flex flex-col gap-6">
         <div className="grid grid-cols-2 gap-[1px] bg-white/10 border border-white/5 overflow-hidden">
           <div className="bg-dark/60 backdrop-blur-md p-6">
-            <div className="font-display text-4xl text-accent mb-1">98%</div>
-            <div className="font-ui text-[10px] tracking-[0.2em] uppercase text-white/40">Mapping<br/>Accuracy</div>
+            <div className="font-display text-4xl text-accent mb-1">HIGH</div>
+            <div className="font-ui text-[10px] tracking-[0.2em] uppercase text-white/40">Mapping<br/>Precision</div>
           </div>
           <div className="bg-dark/60 backdrop-blur-md p-6">
             <div className="font-display text-4xl text-accent mb-1">NDVI</div>
             <div className="font-ui text-[10px] tracking-[0.2em] uppercase text-white/40">Multispectral<br/>Analysis</div>
           </div>
           <div className="bg-dark/60 backdrop-blur-md p-6">
-            <div className="font-display text-4xl text-accent mb-1">400+</div>
-            <div className="font-ui text-[10px] tracking-[0.2em] uppercase text-white/40">Hectares<br/>Per Flight</div>
+            <div className="font-display text-4xl text-accent mb-1">SCALE</div>
+            <div className="font-ui text-[10px] tracking-[0.2em] uppercase text-white/40">Large Area<br/>Capture</div>
           </div>
           <div className="bg-dark/60 backdrop-blur-md p-6">
             <div className="font-display text-4xl text-accent mb-1">RTK</div>
-            <div className="font-ui text-[10px] tracking-[0.2em] uppercase text-white/40">Centimeter<br/>Precision</div>
+            <div className="font-ui text-[10px] tracking-[0.2em] uppercase text-white/40">Enabled<br/>Workflows</div>
           </div>
         </div>
         <div className="bg-accent/10 border border-accent/20 p-5 backdrop-blur-md">

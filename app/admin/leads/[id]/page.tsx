@@ -47,6 +47,7 @@ export default function LeadDetailPage({ params }: { params: Promise<{ id: strin
       try {
         const response = await fetch(`/api/admin/leads`)
         const data = await response.json()
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const currentLead = data.find((l: any) => l.id === id)
         if (currentLead) {
           setLead(currentLead)
@@ -287,7 +288,7 @@ export default function LeadDetailPage({ params }: { params: Promise<{ id: strin
                              {['source', 'medium', 'campaign', 'content', 'term'].map(key => (
                                <div key={key} className="p-2 bg-white/[0.01] border border-white/5">
                                   <span className="block font-ui text-[7px] text-white/20 uppercase mb-1">{key}</span>
-                                  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                                  {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
                                   <span className="block font-ui text-[8px] text-white/60 uppercase truncate">{(lead.attribution as any)[`utm_${key}`]}</span>
                                </div>
                              ))}

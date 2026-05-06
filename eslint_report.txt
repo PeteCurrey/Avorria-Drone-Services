@@ -1,0 +1,37 @@
+
+C:\Users\pete\OneDrive\Desktop\Altitude Hire Com\Avorria-Drone-Services\app\admin\analytics\page.tsx
+   30:36  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  132:43  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  159:34  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  187:43  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\pete\OneDrive\Desktop\Altitude Hire Com\Avorria-Drone-Services\app\admin\lead-magnets\page.tsx
+  236:207  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+  236:213  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+C:\Users\pete\OneDrive\Desktop\Altitude Hire Com\Avorria-Drone-Services\app\admin\leads\[id]\page.tsx
+   50:43   error  Unexpected any. Specify a different type                                @typescript-eslint/no-explicit-any
+  289:119  error  Comments inside children section of tag should be placed inside braces  react/jsx-no-comment-textnodes
+  291:133  error  Unexpected any. Specify a different type                                @typescript-eslint/no-explicit-any
+
+C:\Users\pete\OneDrive\Desktop\Altitude Hire Com\Avorria-Drone-Services\app\admin\seo\generator\page.tsx
+  18:50  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\pete\OneDrive\Desktop\Altitude Hire Com\Avorria-Drone-Services\app\api\admin\analytics\summary\route.ts
+  43:40  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  58:37  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\pete\OneDrive\Desktop\Altitude Hire Com\Avorria-Drone-Services\app\choose-your-output\page.tsx
+  37:10  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\pete\OneDrive\Desktop\Altitude Hire Com\Avorria-Drone-Services\app\pricing-guidance\page.tsx
+  198:35  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  198:54  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  198:70  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  198:92  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+
+C:\Users\pete\OneDrive\Desktop\Altitude Hire Com\Avorria-Drone-Services\app\project-brief-assistant\page.tsx
+  184:56  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+✖ 18 problems (18 errors, 0 warnings)
+

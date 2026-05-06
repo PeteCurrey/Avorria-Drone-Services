@@ -91,7 +91,7 @@ export const locationsData: LocationData[] = [
     ],
     faqs: [
       { q: 'Do you offer warehouse roof surveys in Chesterfield?', a: 'Yes, we specialise in large-scale roof and gutter inspections for warehouses and industrial units across Chesterfield and North Derbyshire.' },
-      { q: 'Can you provide survey-grade mapping in Chesterfield?', a: 'Yes, we use RTK-enabled drones to provide high-accuracy mapping and stockpile volume calculations for construction and industrial sites.' }
+      { q: 'Can you provide high-accuracy mapping in Chesterfield?', a: 'Yes, we use RTK-enabled drones to provide high-accuracy mapping and stockpile volume calculations for construction and industrial sites.' }
     ]
   },
   { 

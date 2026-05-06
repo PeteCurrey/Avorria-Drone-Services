@@ -26,7 +26,13 @@ export interface AnalyticsEvent {
   referrer?: string;
   device_type?: string;
   browser?: string;
-  properties_json?: any;
+  score?: number;
+  asset_name?: string;
+  asset_slug?: string;
+  source_asset?: string;
+  properties_json?: Record<string, unknown>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  [key: string]: any;
 }
 
 export interface AttributionData {
@@ -176,7 +182,9 @@ export async function trackEvent(eventName: string, properties: Partial<Analytic
   }
 
   // 2. Mirror to GA4 if present
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   if ((window as any).gtag) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (window as any).gtag('event', eventName, properties);
   }
 

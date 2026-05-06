@@ -166,7 +166,7 @@ const SECTORS = [
   { name: "Infrastructure", desc: "Bridge, rail, mast and chimney inspections with detailed defect reporting." },
   { name: "Utilities & Energy", desc: "Solar farm thermal audits, powerline inspections and corridor mapping." },
   { name: "Insurance", desc: "Fast aerial evidence capture for damage, claims, access-restricted areas and post-incident documentation." },
-  { name: "Surveying", desc: "Topographic surveys, volumetric analysis and CAD-ready photogrammetry data." },
+  { name: "Surveying", desc: "Topographic surveys, volumetric analysis and photogrammetry data exports." },
   { name: "Heritage & Conservation", desc: "Digital preservation, 3D modelling and non-invasive condition monitoring for historic assets." },
   { name: "Agriculture & Estates", desc: "Land mapping, crop health imagery and rural asset condition records." },
   { name: "Marketing & Media", desc: "Cinematic 4K/6K video, professional stills and immersive visual content." }
@@ -198,7 +198,7 @@ export default function BundlesPage() {
             <span className="text-accent">BUILT AROUND PROJECT OUTCOMES</span>
           </h1>
           <p className="font-body text-xl text-white/60 max-w-[800px] mx-auto mb-12 leading-relaxed">
-            From roof inspections and construction progress reports to survey-grade mapping, cinematic content and immersive 3D capture, Altitude Hire packages drone services around the result you actually need — not just the flight.
+            From roof inspections and construction progress reports to high-accuracy mapping, cinematic content and immersive 3D capture, Altitude Hire packages drone services around the result you actually need — not just the flight.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
             <Link href="/brief?source=bundles-hero" className="bg-accent text-dark font-display text-xl tracking-widest px-10 py-4 hover:bg-white transition-all duration-300">

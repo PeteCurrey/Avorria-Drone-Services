@@ -6,25 +6,26 @@ import { Plus, Minus } from 'lucide-react'
 const FAQS = [
   {
     question: "WHAT ARE THE WEATHER CONSTRAINTS FOR FLIGHT?",
-    answer: "Our enterprise assets like the Matrice 350 RTK are IP55 rated, allowing for operation in light rain and winds up to 12m/s. However, for high-precision surveying or thermal auditing, we recommend dry conditions for maximum data integrity."
+    answer: "Drone operations are subject to weather minimums. While some specialist platforms have enhanced weather resistance, we generally recommend dry, calm conditions for maximum data integrity, especially for thermal auditing or precision surveying."
   },
   {
     question: "DO YOU HAVE PERMISSION FOR NIGHT OPERATIONS?",
-    answer: "Yes. All our pilots are CAA GVC certified, which includes permissions for night operations across the UK. We utilize high-intensity lighting and thermal sensors for low-light infrastructure inspections."
+    answer: "Our GVC-qualified pilots can conduct night operations subject to site-specific risk assessments, flight planning, and operational safety requirements."
   },
   {
     question: "HOW QUICKLY IS THE DATA DELIVERED?",
-    answer: "Standard visual data is delivered within 24-48 hours. Complex LiDAR point clouds or 3D digital twins typically require 3-5 business days for full processing and quality assurance."
+    answer: "Delivery timelines depend on the project scope and deliverables. Standard visual data is typically delivered promptly, while complex outputs like point clouds or digital twin-style records require additional processing and quality assurance time."
   },
   {
-    question: "ARE YOU INSURED FOR HIGH-RISK ENVIRONMENTS?",
-    answer: "Absolutely. We carry £10M Public Liability Insurance specifically tailored for industrial UAV operations, including flight in congested areas and critical infrastructure proximity."
+    question: "ARE YOU FULLY INSURED?",
+    answer: "Yes. Altitude Hire provides fully insured commercial drone services. Insurance documentation is available for approved projects where required."
   },
   {
-    question: "DO YOU HANDLE ALL NEIGHBOURING PERMISSIONS?",
-    answer: "As part of our mission planning, we manage all necessary NOTAMs, landowner permissions, and stakeholder notifications to ensure a fully compliant and friction-free deployment."
+    question: "HOW DO YOU HANDLE AIRSPACE PERMISSIONS?",
+    answer: "As part of our mission planning, we manage all necessary airspace reviews, NOTAMs, landowner permissions, and stakeholder notifications to ensure a fully compliant and safe deployment."
   }
 ]
+
 
 export default function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(null)

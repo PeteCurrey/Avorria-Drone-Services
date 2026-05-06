@@ -172,15 +172,15 @@ export default async function LocationPage({ params }: Props) {
                <div className="flex items-start gap-4">
                   <ShieldCheck className="w-6 h-6 text-accent shrink-0" />
                   <div>
-                    <h4 className="font-display text-lg text-white uppercase tracking-widest mb-2">CAA Approved</h4>
-                    <p className="font-body text-[10px] text-white/40 uppercase tracking-widest">Full Operational Authorisation for commercial flights.</p>
+                    <h4 className="font-display text-lg text-white uppercase tracking-widest mb-2">CAA-Compliant</h4>
+                    <p className="font-body text-[10px] text-white/40 uppercase tracking-widest">Operational Authorisation for commercial drone flights.</p>
                   </div>
                </div>
                <div className="flex items-start gap-4">
                   <Target className="w-6 h-6 text-accent shrink-0" />
                   <div>
                     <h4 className="font-display text-lg text-white uppercase tracking-widest mb-2">Technical Data</h4>
-                    <p className="font-body text-[10px] text-white/40 uppercase tracking-widest">Survey-grade mapping and high-resolution inspection evidence.</p>
+                    <p className="font-body text-[10px] text-white/40 uppercase tracking-widest">High-accuracy mapping and high-resolution inspection evidence.</p>
                   </div>
                </div>
             </div>

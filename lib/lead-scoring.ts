@@ -14,6 +14,7 @@ export interface LeadScoreResult {
   }
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function calculateLeadScore(data: any): LeadScoreResult {
   let intent = 0
   let clarity = 0

@@ -260,7 +260,7 @@ export default function PortalLayout({
   )
 }
 
-function SnapshotItem({ icon: Icon, label, value }: { icon: any, label: string, value: string }) {
+function SnapshotItem({ icon: Icon, label, value }: { icon: React.ElementType, label: string, value: string }) {
   return (
     <div className="flex items-center gap-4 group">
       <div className="w-10 h-10 bg-white/5 border border-white/10 flex items-center justify-center rounded-sm group-hover:border-accent/40 transition-colors">

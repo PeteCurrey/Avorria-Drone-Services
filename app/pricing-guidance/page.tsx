@@ -195,7 +195,7 @@ export default function PricingGuidancePage() {
           <div className="svc-tag mb-10 inline-flex bg-dark/10"><SectionTag number="03" text="Philosophy" /></div>
           <h2 className="font-display text-5xl md:text-7xl uppercase tracking-tighter mb-10">Value-Led <br/><span className="underline decoration-dark/20 underline-offset-8">Engagement</span></h2>
           <p className="font-body text-xl md:text-2xl uppercase tracking-widest font-medium opacity-80 mb-16 leading-relaxed">
-             We do not compete on "cheapest day rate." We compete on "best project outcome." Our pricing reflects the quality of planning, the reliability of capture, the accuracy of processing and the professional utility of the final deliverable.
+             We do not compete on &quot;cheapest day rate.&quot; We compete on &quot;best project outcome.&quot; Our pricing reflects the quality of planning, the reliability of capture, the accuracy of processing and the professional utility of the final deliverable.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-left max-w-4xl mx-auto">
              <div className="p-8 bg-dark/5 border border-dark/10">

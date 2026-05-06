@@ -15,10 +15,13 @@ export async function GET() {
       .select('*', { count: 'exact', head: true })
 
     // 2. Fetch conversions (leads) with attribution
-    const { data: leads } = await supabase
+    const { data: leadsData } = await supabase
       .from('leads')
-      .select('attribution, created_at, lead_type')
+      .select('attribution, created_at, lead_type, metadata')
       .order('created_at', { ascending: false })
+    
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const leads = leadsData as any[]
 
     // 3. Fetch top pages
     const { data: pageEvents } = await supabase
@@ -40,7 +43,8 @@ export async function GET() {
     // 4. Source performance from leads
     const sourceStats: Record<string, number> = {}
     leads?.forEach(lead => {
-      const attr = lead.attribution as any
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const attr = (lead as any).attribution
       const source = attr?.first_touch_source || 'direct'
       const medium = attr?.first_touch_medium || 'none'
       const key = `${source} / ${medium}`
@@ -55,7 +59,8 @@ export async function GET() {
     // 5. Service breakdown
     const serviceStats: Record<string, number> = {}
     leads?.forEach(lead => {
-      const meta = lead.metadata as any
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const meta = (lead as any).metadata
       const service = meta?.serviceInterest || 'Other'
       serviceStats[service] = (serviceStats[service] || 0) + 1
     })

@@ -51,7 +51,7 @@ export async function getGA4Metrics(): Promise<GA4Metric[]> {
 /**
  * Logic to identify "Commercial Intelligence" opportunities
  */
-export function identifyOpportunities(gsc: GSCPerformance[], siteLeads: any[]) {
+export function identifyOpportunities(gsc: GSCPerformance[], siteLeads: unknown[]) {
   const opportunities = []
   
   // Rule 1: High impressions, good position, low CTR (CTR < 2%)

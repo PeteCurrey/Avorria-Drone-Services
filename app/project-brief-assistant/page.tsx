@@ -181,6 +181,7 @@ export default function ProjectBriefAssistant() {
     constraints: []
   })
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [recommendation, setRecommendation] = useState<any>(null)
 
   const progress = {

@@ -96,7 +96,7 @@ export default function SectorLayout({
 }: SectorLayoutProps) {
   
   // Analytics event simulation
-  const trackEvent = (name: string, props: any) => {
+  const trackEvent = (name: string, props: Record<string, unknown>) => {
     console.log(`[Analytics] ${name}`, { sector: slug, ...props });
   };
 

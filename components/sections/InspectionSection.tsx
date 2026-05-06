@@ -54,8 +54,8 @@ export default function InspectionSection() {
   const features = ['Roofing & Facades', 'Powerlines', 'Bridges & Structures', 'Solar Panels', 'Thermal Imaging', 'Defect Reports']
   const specs = [
     { label: 'Resolution', value: '4K / 48MP' },
-    { label: 'Thermal Sensor', value: 'FLIR Radiometric' },
-    { label: 'Max Structure Ht', value: 'Unlimited' },
+    { label: 'Thermal Sensor', value: 'Radiometric' },
+    { label: 'Max Structure Ht', value: 'Subject to Flight Plan' },
     { label: 'Report Format', value: 'PDF + Raw Data' },
     { label: 'Turnaround', value: '48 Hours' },
     { label: 'Coverage', value: 'Nationwide' },

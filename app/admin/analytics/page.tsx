@@ -27,6 +27,7 @@ import Link from 'next/link'
 
 export default function AnalyticsOverviewPage() {
   const [loading, setLoading] = useState(true)
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [data, setData] = useState<any>(null)
   const [dateRange, setDateRange] = useState('Last 28 Days')
 
@@ -129,7 +130,7 @@ export default function AnalyticsOverviewPage() {
             <Link href="/admin/analytics/sources" className="font-ui text-[9px] tracking-widest uppercase text-accent/40 hover:text-accent transition-colors">Full Report</Link>
           </div>
           <div className="space-y-6">
-            {sourcePerformance.map((item: any, i: number) => (
+            {sourcePerformance.map((item: { source: string; leads: number }, i: number) => (
               <div key={i} className="flex items-center justify-between p-4 bg-white/[0.02] border border-white/5 group hover:border-accent/20 transition-all">
                 <div className="flex items-center gap-4">
                   <div className="w-1.5 h-1.5 rounded-full bg-accent/40" />
@@ -156,7 +157,7 @@ export default function AnalyticsOverviewPage() {
             <Link href="/admin/analytics/pages" className="font-ui text-[9px] tracking-widest uppercase text-accent/40 hover:text-accent transition-colors">Full Report</Link>
           </div>
           <div className="space-y-6">
-            {topPages.map((item: any, i: number) => (
+            {topPages.map((item: { url: string; views: number }, i: number) => (
               <div key={i} className="group">
                 <div className="flex justify-between items-end mb-2">
                   <div className="font-ui text-[10px] tracking-widest text-white/60 uppercase max-w-[280px] truncate">{item.url}</div>
@@ -184,7 +185,7 @@ export default function AnalyticsOverviewPage() {
             <span className="font-ui text-[9px] tracking-widest uppercase text-white/20">Leads by Category</span>
           </div>
           <div className="grid grid-cols-2 gap-4">
-             {serviceBreakdown.map((item: any, i: number) => (
+             {serviceBreakdown.map((item: { service: string; leads: number }, i: number) => (
                <div key={i} className="p-6 bg-dark border border-white/5 space-y-4">
                   <div className="font-ui text-[10px] tracking-widest uppercase text-white/60 leading-tight">{item.service}</div>
                   <div className="flex justify-between items-end">

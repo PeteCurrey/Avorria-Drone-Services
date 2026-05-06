@@ -53,7 +53,7 @@ export default function ThermalSection() {
     return () => ctx.revert()
   }, [])
 
-  const features = ['Building Envelope', 'Roof Moisture Surveys', 'Solar Panel Audits', 'Electrical Inspection', 'Energy Loss Mapping', 'RICS-Compatible Reports']
+  const features = ['Building Envelope', 'Roof Moisture Surveys', 'Solar Panel Audits', 'Electrical Inspection', 'Energy Loss Mapping', 'Data For Condition Reports']
   
   const applications = [
     { label: 'COMMERCIAL BUILDINGS', detail: 'Energy loss and moisture ingress mapping for full-envelope assessments.' },

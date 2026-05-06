@@ -15,6 +15,7 @@ export default function PageGenerator() {
   const [selectedLocation, setSelectedLocation] = useState('')
   const [selectedSector, setSelectedSector] = useState('')
   const [isGenerating, setIsGenerating] = useState(false)
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [previewData, setPreviewData] = useState<any>(null)
 
   const handleGenerate = () => {

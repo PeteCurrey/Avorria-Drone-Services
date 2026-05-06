@@ -233,7 +233,7 @@ export default function AdminLeadMagnetsPage() {
           <div className="mt-4 flex items-center gap-3 p-4 bg-accent/[0.03] border border-accent/10">
             <Clock className="w-4 h-4 text-accent/30 shrink-0" />
             <p className="font-ui text-[9px] tracking-widest uppercase text-white/20">
-              TODO: PDF export pending — implement PDF generation from <code className="text-accent/40">lib/asset-content.ts</code> data for all 7 assets and set <code className="text-accent/40">pdfStatus: 'ready'</code> + <code className="text-accent/40">pdfUrl</code> in <code className="text-accent/40">lib/lead-magnets-config.ts</code>
+              TODO: PDF export pending — implement PDF generation from <code className="text-accent/40">lib/asset-content.ts</code> data for all 7 assets and set <code className="text-accent/40">pdfStatus: &apos;ready&apos;</code> + <code className="text-accent/40">pdfUrl</code> in <code className="text-accent/40">lib/lead-magnets-config.ts</code>
             </p>
           </div>
         </div>

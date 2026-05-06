@@ -188,7 +188,7 @@ const FAQS = [
   },
   { 
     question: "Are drone survey outputs survey-grade?", 
-    answer: "They can be where the project is planned with the correct methodology, ground control, RTK workflow, processing and accuracy verification. Survey-grade accuracy should not be assumed unless it is part of the agreed scope." 
+    answer: "Survey-grade outputs are available where the project is scoped with appropriate methodology, control, processing and accuracy verification. Survey-grade accuracy should not be assumed unless it is part of the agreed scope." 
   },
   { 
     question: "Can you provide reports as well as images?", 
@@ -285,7 +285,7 @@ export default function ServicesHubPage() {
             </div>
             <div className="flex items-center gap-3">
               <ShieldCheck className="w-5 h-5 text-accent" />
-              <span className="font-ui text-[10px] tracking-[0.2em] uppercase text-white/40">Fully Insured £10M PL</span>
+              <span className="font-ui text-[10px] tracking-[0.2em] uppercase text-white/40">Fully Insured Operations</span>
             </div>
           </div>
         </div>

@@ -104,7 +104,7 @@ export default function ConstructionSection() {
         </h2>
 
         <p className="svc-body font-body text-[16px] font-light leading-relaxed text-white/50 mb-8 max-w-[500px]">
-          Repeatable aerial records that track your project from groundworks to handover. Whether it&apos;s weekly progress shoots, monthly stakeholder reporting, or volumetric earthworks analysis — we provide the visual evidence that keeps projects on track and stakeholders informed.
+          Repeatable drone capture can support project records, progress meetings, stakeholder updates and visual reporting for contractors, developers and client-side teams.
         </p>
 
         <div className="feature-tags">

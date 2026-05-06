@@ -66,7 +66,7 @@ export default function EventsSection() {
     return () => ctx.revert()
   }, [])
 
-  const features = ['Live Broadcast', 'Festival Coverage', 'Sports Events', 'Crowd Monitoring', 'CAA-Compliant Ops', 'Dual Operator']
+  const features = ['Visual Content', 'Festival Highlights', 'Sports Venues', 'Commercial Photography', 'CAA-Compliant Ops', 'Dual Operator']
 
   const timelineSteps = [
     { label: 'RISK ASSESSMENT', detail: 'Pre-flight safety & airspace compliance.' },
@@ -83,7 +83,7 @@ export default function EventsSection() {
       <div className="relative z-10 flex-1 max-w-[640px]">
         <div className="svc-tag"><SectionTag number="07" text="Service" /></div>
         <h2 className="svc-headline font-display text-section text-white mb-8">EVENTS &<br/>MEDIA</h2>
-        <p className="svc-body font-body text-[16px] font-light leading-relaxed text-white/50 mb-8 max-w-[500px]">Capture the scale and energy of live events from breathtaking vantage points. Operating under relevant CAA-compliant authorisations, we deliver cinema-grade aerials and live broadcast feeds in complex environments where professional capture is essential.</p>
+        <p className="svc-body font-body text-[16px] font-light leading-relaxed text-white/50 mb-8 max-w-[500px]">Aerial photography, drone video and FPV-style content can support venues, property, events and brand campaigns where operations can be safely and lawfully planned.</p>
         <div className="feature-tags"><FeatureTags tags={features} /></div>
         <div className="svc-cta flex flex-col sm:flex-row gap-6 mt-12">
           <Link href="/services/events-media" className="flex items-center gap-4 font-ui text-[13px] tracking-[0.25em] text-accent group transition-all">

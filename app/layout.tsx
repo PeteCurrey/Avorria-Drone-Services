@@ -122,7 +122,7 @@ const faqSchema = {
       name: 'How quickly is drone survey data delivered?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Standard visual data is delivered within 24-48 hours. Complex LiDAR point clouds or 3D digital twins typically require 3-5 business days for full processing and quality assurance.',
+        text: 'Standard visual data is delivered within defined working days. Complex LiDAR point clouds or 3D digital twins typically require 3-5 business days for full processing and quality assurance.',
       },
     },
     {

@@ -71,7 +71,7 @@ export const industriesData: IndustryData[] = [
     description: 'Non-disruptive envelope inspections and thermal audits that inform planned maintenance and protect property value.',
     metaTitle: 'Drone Services for Facilities Management | Roof & Asset Inspections | Altitude Hire',
     metaDescription: 'Roof inspections, building envelope capture, and thermal imaging for FM teams managing commercial buildings and estates. Professional reporting without scaffolding.',
-    benefits: ['Zero-scaffold site inspection', 'Budget-certain planned maintenance', 'Total building envelope data', 'Non-disruptive site operation'],
+    benefits: ['Reduced need for scaffolding', 'Budget-certain planned maintenance', 'Total building envelope data', 'Non-disruptive site operation'],
     missions: ['Annual roof inspections', 'Thermal air leakage surveys', 'Facade condition audits', 'Gutter and drainage checks'],
     relatedServices: ['roof-inspections', 'facade-inspections', 'thermal-imaging', 'drone-inspection'],
     
@@ -86,7 +86,7 @@ export const industriesData: IndustryData[] = [
       text: 'Facilities management teams often need fast visibility across roofs, gutters, facades, plant areas and access-restricted assets, but traditional access methods can be slow, disruptive and expensive. Drone capture helps create early-stage visual evidence for maintenance planning, contractor scoping, internal reporting and portfolio records.'
     },
     outcomes: [
-      { title: 'Inspect roofs without scaffolding', desc: 'Avoid expensive access costs for early-stage condition assessments.', href: '/services/roof-inspections' },
+      { title: 'Inspect roofs without scaffolding', desc: 'Reduce the need for expensive access costs for early-stage condition assessments.', href: '/services/roof-inspections' },
       { title: 'Check gutters and drainage', desc: 'Identify blockages and structural integrity of water management systems.', href: '/services/roof-inspections' },
       { title: 'Capture building envelope evidence', desc: 'High-resolution facade and structural condition documentation.', href: '/services/facade-inspections' },
       { title: 'Support planned maintenance', desc: 'Objective data to inform budget allocation and project priority.', href: '/pricing-guidance' },
@@ -139,7 +139,7 @@ export const industriesData: IndustryData[] = [
     description: 'From site appraisal to final handover, drone technology provides the aerial intelligence required to keep projects on track, on budget, and site-safe.',
     metaTitle: 'Drone Services for Construction | Progress Monitoring & Site Surveys | Altitude Hire',
     metaDescription: 'Construction monitoring, progress photography, stockpile volumes, and site surveying. High-accuracy data to keep projects on track and stakeholders informed.',
-    benefits: ['Reduce site walkdown time by 80%', 'Millimetre-accurate earthworks tracking', 'Real-time stakeholder site visibility', 'Claim prevention with objective data'],
+    benefits: ['Increase site visibility', 'High-accuracy earthworks tracking', 'Stakeholder communication support', 'Claim prevention with objective data'],
     missions: ['Weekly progress surveys', 'Stockpile volume calculations', 'Pre-construction site appraisal', 'Roof and facade inspections'],
     relatedServices: ['construction-monitoring', 'surveying-mapping', 'gaussian-splat'],
     
@@ -195,7 +195,7 @@ export const industriesData: IndustryData[] = [
     faqs: [
       { q: 'How often can a construction site be captured?', a: 'We can capture sites weekly, fortnightly, or monthly depending on the project pace and reporting requirements.' },
       { q: 'Can drone images support progress meetings?', a: 'Yes, our progress archives and reports are designed specifically for project stakeholder communication.' },
-      { q: 'Can drones help with stockpile measurement?', a: 'Absolutely. We provide volumetric surveys with accuracy that rivals or exceeds traditional GPS pole surveys.' }
+      { q: 'Can drones help with stockpile measurement?', a: 'Absolutely. We provide volumetric surveys with accuracy suitable for commercial inventory and earthworks tracking.' }
     ]
   },
   {
@@ -256,7 +256,7 @@ export const industriesData: IndustryData[] = [
       { title: 'Can Drone Inspections Replace Scaffolding?', href: '/blog' }
     ],
     faqs: [
-      { q: 'Is drone evidence accepted by insurers?', a: 'Yes, drone imagery is a widely accepted form of objective visual evidence in the insurance industry.' },
+      { q: 'Is drone evidence accepted for insurance documentation?', a: 'Yes, drone imagery is an accepted form of objective visual evidence in the insurance industry, subject to specific policy requirements.' },
       { q: 'How quickly can you respond to a claim?', a: 'We typically offer a 24-48 hour response for urgent insurance evidence capture.' },
       { q: 'Can you fly in high-risk areas after fire or flood?', a: 'Yes, drones are ideal for inspecting structures where internal or physical access is prohibited due to safety risks.' }
     ],
@@ -268,8 +268,8 @@ export const industriesData: IndustryData[] = [
     headline: ['INFRASTRUCTURE', '& TRANSPORT'],
     description: 'Precision mapping and structural assessment for railways, highways, bridges, and maritime assets.',
     metaTitle: 'Drone Services for Infrastructure & Transport | Altitude Hire',
-    metaDescription: 'Specialist drone services for infrastructure. Bridge inspection, rail corridor mapping, and port surveys. CAA approved, high-accuracy LiDAR and photogrammetry.',
-    benefits: ['Minimise asset downtime', 'Reduce operative trackside risk', 'Scalable mapping for long corridors', 'High-accuracy LiDAR data'],
+    metaDescription: 'Specialist drone services for infrastructure. Bridge inspection, rail corridor mapping, and port surveys. CAA-compliant, high-accuracy LiDAR and photogrammetry.',
+    benefits: ['Minimise asset downtime', 'Reduce operative trackside risk', 'Scalable mapping for long corridors', 'High-accuracy data'],
     missions: ['Bridge and pier inspection', 'Rail corridor LiDAR mapping', 'Highway as-built surveys', 'Port and maritime audits'],
     relatedServices: ['surveying-mapping', 'drone-inspection', 'lidar-point-cloud-surveys'],
     
@@ -303,7 +303,7 @@ export const industriesData: IndustryData[] = [
     ],
     deliverables: [
       { name: 'Structural Inspection Report', desc: 'Categorised defect log with severity and location.', href: '/sample-deliverables' },
-      { name: 'High-Accuracy Point Cloud', desc: 'Millimetre-accurate 3D geometric site data.', href: '/sample-deliverables' },
+      { name: 'High-Accuracy Point Cloud', desc: 'High-detail 3D geometric site data.', href: '/sample-deliverables' },
       { name: 'Orthomosaic Corridor Map', desc: 'Measurable top-down map of rail or road assets.', href: '/sample-deliverables' },
       { name: 'Vegetation Encroachment Audit', desc: 'Risk-profile map of vegetation near critical assets.', href: '/sample-deliverables' }
     ],
@@ -322,7 +322,7 @@ export const industriesData: IndustryData[] = [
     ],
     faqs: [
       { q: 'Can you fly near live rail or highways?', a: 'Yes, we coordinate with the relevant agencies to ensure compliance and safe separation.' },
-      { q: 'How accurate is the LiDAR data?', a: 'We typically deliver LiDAR data with +/- 20-50mm relative accuracy depending on the site and requirements.' },
+      { q: 'How accurate is the LiDAR data?', a: 'Accuracy depends on capture methodology, site conditions, control points and equipment.' },
       { q: 'Can you inspect bridge soffits?', a: 'Yes, using upward-facing gimbals and specialized sensors.' }
     ]
   },
@@ -332,8 +332,8 @@ export const industriesData: IndustryData[] = [
     headline: ['UTILITIES', '& ENERGY'],
     description: 'Safely inspect high-voltage infrastructure, renewable energy assets, and pipeline corridors without service interruptions.',
     metaTitle: 'Drone Services for Utilities & Energy | Solar, Wind & Power | Altitude Hire',
-    metaDescription: 'Specialist drone services for utilities. Solar farm audits, powerline inspection, and wind turbine assessment. CAA approved, thermal imaging specialist.',
-    benefits: ['Inspect without service outages', 'Eliminate high-voltage risk to life', 'Rapid assessment of remote assets', 'Early detection of thermal anomalies'],
+    metaDescription: 'Specialist drone services for utilities. Solar farm audits, powerline inspection, and wind turbine assessment. CAA-compliant, thermal imaging specialist.',
+    benefits: ['Inspect without service outages', 'Reduce risk to life for high-voltage inspections', 'Rapid assessment of remote assets', 'Early detection of thermal anomalies'],
     missions: ['Pylon and insulator checks', 'Solar farm radiometric auditing', 'Vegetation encroachment mapping', 'Pipeline corridor surveillance'],
     relatedServices: ['thermal-imaging', 'drone-inspection', 'solar-panel-inspections'],
     
@@ -460,8 +460,8 @@ export const industriesData: IndustryData[] = [
     headline: ['SURVEYORS', '& ENGINEERS'],
     description: 'High-accuracy aerial data to support topographic, engineering and condition survey workflows.',
     metaTitle: 'Drone Data for Surveyors & Engineers | RTK/LiDAR | Altitude Hire',
-    metaDescription: 'Professional drone data for surveyors. Orthomosaic mapping, topographic surveys, LiDAR point clouds and as-built verification. Survey-grade accuracy.',
-    benefits: ['Reduce site walkdown time by 80%', 'Millimetre-accurate earthworks tracking', 'Scalable mapping for complex sites', 'Objective as-built documentation'],
+    metaDescription: 'Professional drone data for surveyors. Orthomosaic mapping, topographic surveys, LiDAR point clouds and as-built verification. High-accuracy data outputs.',
+    benefits: ['Efficient site documentation', 'High-accuracy earthworks tracking', 'Scalable mapping for complex sites', 'Objective as-built documentation'],
     missions: ['Topographic site mapping', 'Stockpile volumetrics', 'Elevation and facade surveys', 'Point cloud generation'],
     relatedServices: ['surveying-mapping', 'lidar-point-cloud-surveys', 'drone-photogrammetry'],
     
@@ -473,11 +473,11 @@ export const industriesData: IndustryData[] = [
     },
     challenge: {
       title: 'The Surveyor Challenge',
-      text: 'Traditional land surveying is time-intensive and can be dangerous on active construction sites or steep terrain. Capturing large-scale topographic data with GPS poles alone is slow. Drones equipped with RTK and LiDAR sensors can capture millions of data points in a single flight, significantly reducing site time while maintaining survey-grade accuracy.'
+      text: 'Traditional land surveying is time-intensive and can be dangerous on active construction sites or steep terrain. Capturing large-scale topographic data with GPS poles alone is slow. Drone mapping can support orthomosaics, point clouds, site records, volumetric outputs and planning data. Accuracy depends on capture methodology, control, site conditions and processing workflow.'
     },
     outcomes: [
       { title: 'Capture topographic site data', desc: 'Generate high-accuracy terrain and surface models.', href: '/services/surveying-mapping' },
-      { title: 'Produce orthomosaic maps', desc: 'Millimetre-accurate, measurable top-down site imagery.', href: '/services/surveying-mapping' },
+      { title: 'Produce orthomosaic maps', desc: 'High-accuracy, measurable top-down site imagery.', href: '/services/surveying-mapping' },
       { title: 'Generate geometric point clouds', desc: 'Detailed 3D data for CAD and BIM integration.', href: '/services/drone-photogrammetry' },
       { title: 'Conduct volumetric analysis', desc: 'Accurate earthworks, stockpile and material volume tracking.', href: '/services/volumetric-surveys' }
     ],
@@ -513,7 +513,7 @@ export const industriesData: IndustryData[] = [
       { title: 'LiDAR vs Photogrammetry for Surveyors', href: '/blog' }
     ],
     faqs: [
-      { q: 'How accurate is drone survey data?', a: 'With proper ground control or RTK workflows, we typically achieve relative accuracy of +/- 20-50mm.' },
+      { q: 'How accurate is drone survey data?', a: 'Accuracy depends on capture methodology, site conditions, control points and equipment.' },
       { q: 'What coordinate systems do you use?', a: 'We can deliver data in OSGB36 or any specified local coordinate system.' },
       { q: 'Can drone data be used in CAD/BIM?', a: 'Yes, our outputs are compatible with AutoCAD, Revit, Civil 3D and other industry-standard software.' }
     ]
@@ -524,7 +524,7 @@ export const industriesData: IndustryData[] = [
     headline: ['HERITAGE', '& CONSERVATION'],
     description: 'Sensitive documentation and digital preservation for listed buildings, monuments and historic assets.',
     metaTitle: 'Drone Surveys for Heritage & Conservation | Digital Preservation | Altitude Hire',
-    metaDescription: 'Specialist drone services for heritage sites. High-resolution building documentation, listed structure audits and digital twin preservation. CAA approved, sensitive approach.',
+    metaDescription: 'Specialist drone services for heritage sites. High-resolution building documentation, listed structure audits and digital twin preservation. CAA-compliant, sensitive approach.',
     benefits: ['Zero-contact asset documentation', 'Safe access to fragile structures', 'High-fidelity digital preservation', 'Non-disruptive site operation'],
     missions: ['Listed building inspections', 'Monument condition audits', 'Digital twin reconstruction', 'Heritage site mapping'],
     relatedServices: ['drone-inspection', 'gaussian-splat-capture', 'digital-twin-capture'],
@@ -579,7 +579,7 @@ export const industriesData: IndustryData[] = [
     faqs: [
       { q: 'Is drone capture safe for fragile structures?', a: 'Yes, our zero-contact approach ensures no physical risk to the asset.' },
       { q: 'Can you fly at sensitive heritage sites?', a: 'Yes, we coordinate with heritage bodies and site managers to ensure minimal disruption.' },
-      { q: 'What is the level of detail?', a: 'We can achieve sub-centimetre visual detail for structural and material analysis.' }
+      { q: 'What is the level of detail?', a: 'We can achieve high-detail visual documentation for structural and material analysis.' }
     ]
   },
   {

@@ -33,7 +33,7 @@ export const FLEET_ASSETS: FleetAsset[] = [
       { label: 'Max Payload', value: '2.7 kg' },
       { label: 'Transmission', value: '20 km (O3 Enterprise)' },
       { label: 'Operating Temp', value: '-20°C to 50°C' },
-      { label: 'Positioning', value: 'RTK (Centimeter-level)' }
+      { label: 'Positioning', value: 'RTK (High-Accuracy)' }
     ],
     features: [
       { name: 'Triple Payload Support', desc: 'Single upward and dual downward gimbals for multi-spectral capture.' },
@@ -90,7 +90,7 @@ export const FLEET_ASSETS: FleetAsset[] = [
     name: 'DJI Mavic 3 Enterprise',
     slug: 'mavic-3e',
     type: 'Precision Mapping',
-    desc: 'Portable power optimized for high-speed mapping. Featuring a mechanical shutter and RTK module for precision photogrammetry whereScoped correctly.',
+    desc: 'Portable power optimized for high-speed mapping. Featuring a mechanical shutter and RTK module for photogrammetry where scoped correctly.',
     image: '/images/surveying_poster.png',
     specs: [
       { label: 'Max Flight Time', value: '45 Minutes' },
@@ -127,13 +127,13 @@ export const PAYLOADS = [
     name: 'Zenmuse L1',
     slug: 'l1',
     type: 'LiDAR + RGB',
-    desc: 'Support for digital twin-style visual records with real-time true-color point clouds.',
+    desc: 'Support for digital documentation with real-time true-color point clouds.',
     image: '/images/surveying_poster.png',
     specs: [
       { label: 'Points/sec', value: '480,000' },
       { label: 'Returns', value: 'Up to 3' },
       { label: 'RGB Sensor', value: '20MP 1-inch' },
-      { label: 'Accuracy', value: 'Typical 5-10cm (Project Scoped)' }
+      { label: 'Accuracy', value: 'Typical accuracies dependent on project scope' }
     ]
   },
   {

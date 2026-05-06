@@ -19,7 +19,7 @@ const CARDS = [
   },
   {
     title: "Aerial Media & 3D Capture",
-    desc: "Aerial photography, video, 360 panoramas, Gaussian Splats and digital twin-style visual records.",
+    desc: "Aerial photography, video, 360 panoramas, Gaussian Splats and immersive digital site records.",
     icon: Video
   },
   {

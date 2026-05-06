@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!data) return {}
 
   const title = `${data.service.title} ${data.location.name} — Altitude Hire`
-  const description = `Professional ${data.service.title.toLowerCase()} in ${data.location.name}. ${data.service.intro} Serving ${data.location.region} with CAA approved UAV technology.`
+  const description = `Professional ${data.service.title.toLowerCase()} in ${data.location.name}. ${data.service.intro} Serving ${data.location.region} with CAA-compliant UAV technology.`
 
   return {
     title,

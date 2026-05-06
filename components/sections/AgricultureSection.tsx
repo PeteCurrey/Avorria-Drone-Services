@@ -73,7 +73,7 @@ export default function AgricultureSection() {
         <div className="svc-tag"><SectionTag number="06" text="Service" /></div>
         <h2 className="svc-headline font-display text-section text-white mb-8">AGRICULTURAL<br/>SURVEYS</h2>
         <p className="svc-body font-body text-[16px] font-light leading-relaxed text-white/50 mb-8 max-w-[500px]">
-          Multispectral aerial data to support precision farming. Our NDVI and high-resolution crop health surveys help identify stress, map drainage issues, and improve yield predictability with data delivered directly to farm management software.
+          Agricultural and rural estate drone capture can support land context, estate records, mapping, development planning and visual asset documentation, scoped around site size and required outputs.
         </p>
         <div className="feature-tags"><FeatureTags tags={features} /></div>
         <div className="svc-cta flex flex-col sm:flex-row gap-6 mt-12">

@@ -50,7 +50,7 @@ Detailed 45MP+ imagery and radiometric thermal data can reveal:
 - Thermal anomalies indicating moisture ingress or heat loss
 
 ## When drones reduce the need for scaffolding
-Drones are ideal for initial condition audits, PPM (Planned Preventative Maintenance) checks, and insurance evidence capture. By using drones first, property teams can often eliminate the disruption and high cost of scaffolding for the "finding the problem" stage.
+Drones are ideal for initial condition audits, PPM (Planned Preventative Maintenance) checks, and insurance evidence capture. By using drones first, property teams can often reduce the disruption and high cost of scaffolding for the "finding the problem" stage.
 
 ## When physical access may still be needed
 While drones are exceptional for inspection, they cannot carry out repairs. Once a defect is identified and scoped via drone, targeted access (such as a cherry picker or localized scaffolding) can be deployed specifically where work is required, rather than scaffolding the entire building.
@@ -124,14 +124,14 @@ Drone data provides an indisputable record of condition. This is invaluable when
     relatedBundle: { name: 'Survey Data Pack', slug: 'survey-data-pack' },
     content: `
 ## Why pricing varies
-Drone survey pricing is not a single "off-the-shelf" figure. It is based on the complexity of the operation, the risk profile of the site, and the technical value of the output. A simple "drone photo" is very different from a survey-grade, RTK-corrected point cloud.
+Drone survey pricing is not a single "off-the-shelf" figure. It is based on the complexity of the operation, the risk profile of the site, and the technical value of the output. A simple "drone photo" is very different from a high-accuracy, RTK-corrected point cloud.
 
 ## Key cost factors
 - **Location & Airspace**: Operations in Central London or near major airports involve significant planning and permit costs.
 - **Site Size**: A 1-acre site vs a 100-acre infrastructure corridor impacts flight time and processing.
 - **Risk Profile**: Flying over busy public areas requires additional safety personnel and planning.
 - **Deliverables**: Raw photos are included; 3D meshes, CAD drawings, and volume reports require professional post-processing.
-- **Accuracy**: Survey-grade accuracy using Ground Control Points (GCPs) and RTK systems increases the technical requirement.
+- **Accuracy**: High-accuracy results using Ground Control Points (GCPs) and RTK systems increases the technical requirement.
 
 ## Inspection vs Mapping vs Media vs 3D Capture
 Each service uses different hardware and software. A Gaussian Splat or a Digital Twin requires significantly more processing time and data than a standard roof inspection set.
@@ -164,7 +164,7 @@ We recommend requesting a quote as soon as you have a site location and a clear 
 Thermal drone capture uses radiometric sensors to detect heat signatures (Infrared) instead of visible light. Each pixel in a radiometric image contains a temperature value, allowing for precise thermal analysis of building envelopes and industrial assets.
 
 ## Common commercial uses
-- **Heat Loss**: Identifying insulation failures in large commercial warehouses.
+- **Heat Loss**: Identifying thermal anomalies in large commercial warehouses.
 - **Roof Anomalies**: Finding moisture trapped under membrane roofs (which retains heat differently than dry areas).
 - **Solar Panels**: Identifying failing cells, strings, or bypass diodes that impact generation.
 - **Electrical Assets**: Monitoring transformers, substations, and high-voltage lines for hotspots.
@@ -263,7 +263,7 @@ If your goal is to show a client a site and make them "feel" the space, choose a
     `,
     faqs: [
       { q: 'Can you have both?', a: 'Yes! We often capture for both workflows in a single flight to provide the best of both worlds—visual impact and technical data.' },
-      { q: 'Is a Gaussian Splat survey-grade?', a: 'Not by default. It is a visualisation asset. For measurements, we use survey-controlled photogrammetry or LiDAR.' }
+      { q: 'Is a Gaussian Splat suitable for professional surveying?', a: 'Not by default. It is a visualisation asset. For measurements, we use high-accuracy photogrammetry or LiDAR where scoped.' }
     ]
   },
   {
@@ -370,7 +370,7 @@ We provide PDF inspection summaries, annotated image sets showing prioritized de
     `,
     faqs: [
       { q: 'Can drones inspect the inside of our warehouse?', a: 'Yes, we have specialist indoor drone systems designed to fly in internal environments without GPS.' },
-      { q: 'How much notice do you need for a survey?', a: 'While we can sometimes respond within 48 hours, 1–2 weeks is ideal for full airspace and site planning.' }
+      { q: 'How much notice do you need for a survey?', a: 'While we can often respond rapidly, 1–2 weeks is ideal for full airspace and site planning.' }
     ]
   },
   {

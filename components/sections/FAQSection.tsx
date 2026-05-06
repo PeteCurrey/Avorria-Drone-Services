@@ -14,7 +14,7 @@ const FAQS = [
   },
   {
     question: "HOW QUICKLY IS THE DATA DELIVERED?",
-    answer: "Delivery timelines depend on the project scope and deliverables. Standard visual data is typically delivered promptly, while complex outputs like point clouds or digital twin-style records require additional processing and quality assurance time."
+    answer: "Delivery timelines depend on the project scope and deliverables. Standard visual data is typically delivered promptly, while complex outputs like point clouds or immersive digital site records require additional processing and quality assurance time."
   },
   {
     question: "ARE YOU FULLY INSURED?",

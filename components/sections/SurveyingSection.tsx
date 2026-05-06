@@ -79,7 +79,7 @@ export default function SurveyingSection() {
         </h2>
 
         <p className="svc-body font-body text-[16px] font-light leading-relaxed text-white/50 mb-8 max-w-[500px]">
-          High-accuracy topographic surveys, orthomosaic maps, and point cloud data — delivered faster than traditional ground surveys. We provide the spatial intelligence needed for planning, design, and construction workflows.
+          Drone mapping can support orthomosaics, point clouds, site records, volumetric outputs and planning data. Accuracy depends on capture methodology, control, site conditions and processing workflow.
         </p>
 
         <div className="feature-tags">

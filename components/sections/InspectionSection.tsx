@@ -57,7 +57,7 @@ export default function InspectionSection() {
     { label: 'Thermal Sensor', value: 'Radiometric' },
     { label: 'Max Structure Ht', value: 'Subject to Flight Plan' },
     { label: 'Report Format', value: 'PDF + Raw Data' },
-    { label: 'Turnaround', value: '48 Hours' },
+    { label: 'Turnaround', value: 'Subject to Scope' },
     { label: 'Coverage', value: 'Nationwide' },
   ]
 
@@ -69,7 +69,7 @@ export default function InspectionSection() {
       <div className="relative z-10 flex-1 max-w-[640px]">
         <div className="svc-tag"><SectionTag number="01" text="Service" /></div>
         <h2 className="svc-headline font-display text-section text-white mb-8">DRONE<br/>INSPECTION</h2>
-        <p className="svc-body font-body text-[16px] font-light leading-relaxed text-white/50 mb-8 max-w-[500px]">Eliminate risk. Eliminate scaffolding. Our inspection drones access the inaccessible — delivering thermal imaging, HD visual data, and detailed defect reporting for structures where traditional access is costly or dangerous.</p>
+        <p className="svc-body font-body text-[16px] font-light leading-relaxed text-white/50 mb-8 max-w-[500px]">Drone inspection can help property, FM and contractor teams gather early-stage visual evidence without defaulting to scaffolding or MEWPs immediately. Physical access may still be required for repairs, intrusive checks or professional sign-off.</p>
         <div className="feature-tags"><FeatureTags tags={features} /></div>
         <div className="svc-cta flex flex-col sm:flex-row gap-6 mt-12">
           <Link href="/services/drone-inspection" className="flex items-center gap-4 font-ui text-[13px] tracking-[0.25em] text-accent group transition-all">

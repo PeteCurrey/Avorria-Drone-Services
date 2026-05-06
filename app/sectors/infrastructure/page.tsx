@@ -5,7 +5,7 @@ import { notFound } from 'next/navigation'
 
 export const metadata: Metadata = {
   title: 'Drone Services for Infrastructure & Transport | Altitude Hire',
-  description: 'Specialist drone services for infrastructure. Bridge inspection, rail corridor mapping, and port surveys. CAA approved, high-accuracy LiDAR and photogrammetry.',
+  description: 'Specialist drone services for infrastructure. Bridge inspection, rail corridor mapping, and port surveys. CAA-compliant, high-accuracy LiDAR and photogrammetry.',
 }
 
 export default function InfrastructureSector() {

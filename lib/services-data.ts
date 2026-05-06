@@ -28,15 +28,15 @@ export const servicesData: ServiceData[] = [
     title: 'Drone Inspection Services UK',
     headline: ['DRONE', 'INSPECTION'],
     category: 'Property & Assets',
-    intro: 'Eliminate access risk and scaffolding costs. Altitude Hire delivers comprehensive UAV inspection services for structures where traditional access is dangerous, slow, or prohibitively expensive.',
+    intro: 'Drone-based visual inspection for roofs, facades, assets and hard-to-access areas, helping teams gather clear evidence without defaulting to scaffolding or MEWPs at the first inspection stage.',
     metaTitle: 'Drone Inspection Services UK | CAA-Compliant | Altitude Hire',
-    metaDescription: 'Professional drone inspection services across the UK. Thermal imaging, defect reporting, and structural assessments for roofing, facades, and infrastructure. CAA-compliant.',
+    metaDescription: 'Commercial drone inspections for roofs, facades and hard-to-access assets, supporting visual evidence, contractor scoping, maintenance planning and reporting workflows.',
     heroStat: [
-      { value: '70%', label: 'Cost saving vs scaffolding' },
+      { value: 'PRO', label: 'Visual evidence' },
       { value: '4K', label: 'Ultra HD capture' },
-      { value: '48H', label: 'Report turnaround' },
+      { value: 'DATA', label: 'Structured reporting' },
     ],
-    problemStatement: 'Working at height remains the single largest cause of workplace fatalities in the UK. Traditional asset inspection methods — scaffolding, rope access, cherry pickers — are slow, expensive, and place operatives in unnecessary danger. Drone inspection eliminates that risk entirely while delivering superior data: higher resolution imagery and access to areas that simply cannot be reached safely by any other method.',
+    problemStatement: 'Working at height remains the single largest cause of workplace fatalities in the UK. Traditional asset inspection methods — scaffolding, rope access, cherry pickers — are slow, expensive, and place operatives in danger. Drone inspection can help property, FM and contractor teams gather early-stage visual evidence without defaulting to scaffolding or MEWPs immediately. Physical access may still be required for repairs, intrusive checks or professional sign-off.',
     whatWeCapture: [
       'High-resolution visual defect imagery',
       'Radiometric thermal signatures',
@@ -61,7 +61,7 @@ export const servicesData: ServiceData[] = [
     industries: ['Facilities Management', 'Civil Engineering', 'Insurance', 'Utilities'],
     faqs: [
       { q: 'How close can the drone fly?', a: 'Typically 2-5 metres, depending on the asset and wind conditions.' },
-      { q: 'Is the data accepted by engineers?', a: 'Yes, our reports are designed to feed directly into engineering assessments.' }
+      { q: 'Is the data accepted by engineers?', a: 'Our high-resolution visual evidence is designed to support engineering assessments and reporting workflows.' }
     ],
     relatedServices: ['roof-inspections', 'facade-inspections', 'thermal-imaging'],
     cta: { label: 'GET AN INSPECTION QUOTE', href: '/contact' }
@@ -71,15 +71,15 @@ export const servicesData: ServiceData[] = [
     title: 'Drone Roof Inspections UK',
     headline: ['DRONE', 'ROOF', 'INSPECTIONS'],
     category: 'Property & Assets',
-    intro: 'High-resolution aerial roof inspections for commercial properties, industrial estates, schools, and facilities managers — reducing access risk while producing clear inspection evidence.',
+    intro: 'Commercial roof, gutter, drainage and roof plant inspection using drone imagery, with optional annotated evidence and reporting outputs for maintenance, contractor and property workflows.',
     metaTitle: 'Drone Roof Inspections UK | Commercial Roof Surveys | Altitude Hire',
-    metaDescription: 'Professional drone roof inspections for commercial and industrial properties. High-resolution imagery, thermal add-ons and detailed defect reporting. CAA-compliant.',
+    metaDescription: 'Drone roof inspections for maintenance planning, contractor scoping, FM records and insurance documentation where clear visual evidence is required.',
     heroStat: [
-      { value: '70%', label: 'Cost saving vs scaffolding' },
-      { value: '4K', label: 'Ultra HD capture' },
-      { value: '48H', label: 'Report turnaround' },
+      { value: 'Visual', label: 'Roof insight' },
+      { value: '4K', label: 'Imaging quality' },
+      { value: 'Digital', label: 'Evidence logs' },
     ],
-    problemStatement: 'Commercial roof inspections are often delayed because scaffolding, MEWPs or rope access create unnecessary cost and disruption. Drone inspection allows property teams to capture fast, high-resolution evidence of roof coverings, gutters, drainage, flashing, plant areas and high-level defects without defaulting to physical access at the first stage.',
+    problemStatement: 'Commercial roof inspections are often delayed due to the complexity of access. Drone inspection allows property teams to capture fast, high-resolution evidence of roof coverings, gutters, drainage, flashing, plant areas and high-level defects, supporting planning and contractor briefing without requiring immediate physical access.',
     whatWeCapture: [
       'Roof coverings (Flat, Pitched, Cladding)',
       'Gutters and drainage systems',
@@ -105,16 +105,16 @@ export const servicesData: ServiceData[] = [
       { title: 'Post-Repair Audit', description: 'Verifying contractor works have been completed to the required standard.' }
     ],
     capabilities: [
-      { title: 'Visual Inspection', description: 'Close-up 4K imagery of all roof elements from safe standoff distances.' },
-      { title: 'Thermal Overlay', description: 'Optional thermal imaging to detect moisture ingress and insulation gaps.' },
-      { title: 'Report Generation', description: 'Professional PDF summaries with annotated imagery for stakeholders.' }
+      { title: 'Visual Defect Audits', description: 'Clear imagery of slips, cracks, blockages, and structural condition.' },
+      { title: 'Thermal Review', description: 'Optional thermal imaging to identify temperature anomalies for further review.' },
+      { title: 'Reporting Outputs', description: 'Annotated PDF summaries for contractor scoping and property records.' }
     ],
     industries: ['Facilities Management', 'Commercial Property', 'Insurance', 'Public Sector', 'Education Estates'],
     faqs: [
-      { q: 'Can a drone roof inspection replace scaffolding?', a: 'In many cases, yes. It provides sufficient visual evidence for condition assessment and scoping without the cost of scaffolding.' },
-      { q: 'What roof defects can a drone identify?', a: 'Drones can identify cracks, slips, blockages, ponding, corrosion, and damaged flashing with high precision.' },
+      { q: 'Can a drone roof inspection replace scaffolding?', a: 'Drone inspection can help property, FM and contractor teams gather early-stage visual evidence without defaulting to scaffolding or MEWPs immediately. Physical access may still be required for repairs, intrusive checks, hands-on inspection or professional sign-off.' },
+      { q: 'What roof defects can a drone identify?', a: 'Drones can identify cracks, slips, blockages, ponding, corrosion, and damaged flashing with high detail.' },
       { q: 'Can you inspect gutters and roof plant?', a: 'Yes, drones are ideal for checking gutter levels, blockages, and the condition of HVAC or solar assets.' },
-      { q: 'Can you provide a report for contractors or insurers?', a: 'Yes, we provide annotated PDF reports that are widely accepted by contractors for quoting and insurers for claims.' }
+      { q: 'Can you provide a report for contractors or insurers?', a: 'Yes, we provide annotated PDF reports that can support insurance documentation, contractor scoping and internal reporting workflows.' }
     ],
     relatedServices: ['thermal-imaging', 'building-envelope-inspections', 'facilities-management-inspections'],
     cta: { label: 'REQUEST INSPECTION QUOTE', href: '/contact' }
@@ -174,7 +174,7 @@ export const servicesData: ServiceData[] = [
     heroStat: [
       { value: '360°', label: 'Asset visibility' },
       { value: '4K', label: 'Visual evidence' },
-      { value: 'SAFE', label: 'No MEWPs required' }
+      { value: 'SAFE', label: 'Reduced access risk' }
     ],
     problemStatement: 'Inspecting building elevations and cladding traditionally requires expensive MEWPs or cradle access. Drones can inspect every face of a building in hours, capturing high-resolution evidence of masonry, cladding joints, glazing, and parapets without any ground-level disruption.',
     whatWeCapture: [
@@ -265,7 +265,7 @@ export const servicesData: ServiceData[] = [
     heroStat: [
       { value: 'PRO', label: 'Asset visibility' },
       { value: '4K', label: 'Visual evidence' },
-      { value: 'RICS', label: 'Compatible reporting' }
+      { value: 'REPORTS', label: 'Detailed condition' }
     ],
     problemStatement: 'Managing large commercial portfolios requires accurate, current visibility of asset condition — especially at high level where defects go unnoticed. Drone surveys provide a rapid, site-wide audit of roofs, facades, and plant, delivering the evidence needed for lease renewals, pre-acquisition due diligence, and planned maintenance.',
     whatWeCapture: [
@@ -292,7 +292,7 @@ export const servicesData: ServiceData[] = [
     industries: ['Commercial Landlords', 'Property Investors', 'Asset Managers', 'Managing Agents'],
     faqs: [
       { q: 'How long does a commercial survey take?', a: 'Most commercial sites can be fully surveyed in 2-4 hours depending on size.' },
-      { q: 'Is the data accepted by insurers?', a: 'Yes, our high-resolution imagery and reports are widely accepted for insurance and legal purposes.' },
+      { q: 'Is the data accepted for insurance documentation?', a: 'Drone imagery can support insurance records, but acceptance depends on the insurer, policy, claim context and required evidence.' },
       { q: 'Can you survey multiple sites?', a: 'Yes, we specialise in portfolio-wide audits across the UK.' }
     ],
     relatedServices: ['dilapidation-drone-surveys', 'roof-inspections', 'building-envelope-inspections'],
@@ -303,7 +303,7 @@ export const servicesData: ServiceData[] = [
     title: 'Dilapidation Drone Surveys UK',
     headline: ['DILAPIDATION', 'SURVEYS'],
     category: 'Property & Assets',
-    intro: 'Objective aerial evidence for Section 18(1) valuations and terminal dilapidation claims — documenting building condition with millimetre precision.',
+    intro: 'Objective aerial evidence for Section 18(1) valuations and terminal dilapidation claims — documenting building condition with high-detail visual documentation.',
     metaTitle: 'Dilapidation Drone Surveys UK | Lease End Evidence | Altitude Hire',
     metaDescription: 'Professional drone surveys for dilapidations. Objective aerial evidence for lease end claims and schedule of condition. CAA-compliant.',
     heroStat: [
@@ -353,11 +353,11 @@ export const servicesData: ServiceData[] = [
     metaTitle: 'Drone Surveying & Mapping UK | LiDAR & Orthomosaic | Altitude Hire',
     metaDescription: 'Professional drone surveying and mapping services across the UK. Topographic surveys, orthomosaic maps, LiDAR point clouds and 3D models. CAA-compliant, GCP accuracy.',
     heroStat: [
-      { value: '±1CM', label: 'RTK horizontal accuracy' },
-      { value: '200HA', label: 'Coverage per day' },
-      { value: '5 DAY', label: 'Point cloud delivery' },
+      { value: 'HIGH', label: 'RTK relative accuracy' },
+      { value: 'HIGH', label: 'Coverage capability' },
+      { value: 'PRO', label: 'Point cloud delivery' },
     ],
-    problemStatement: 'Traditional topographic survey is labour-intensive, slow across large areas, and places operatives on potentially hazardous terrain. Drone surveying changes the economics of data collection entirely. A single Altitude survey flight can cover 200 hectares in a day, producing orthomosaic imagery, digital elevation models, and LiDAR point clouds to a horizontal accuracy of ±1cm when flown with Ground Control Points and RTK correction.',
+    problemStatement: 'Traditional topographic survey is labour-intensive, slow across large areas, and places operatives on potentially hazardous terrain. Drone mapping can support orthomosaics, point clouds, site records, volumetric outputs and planning data. Accuracy depends on capture methodology, control, site conditions and processing workflow.',
     whatWeCapture: [
       'High-overlap aerial photogrammetry',
       'Dense LiDAR point clouds',
@@ -384,12 +384,12 @@ export const servicesData: ServiceData[] = [
     capabilities: [
       { title: 'LiDAR Capture', description: 'Capturing ground returns through vegetation canopy for true terrain modelling.' },
       { title: 'Photogrammetry', description: 'High-resolution 2D and 3D mapping from overlapping aerial imagery.' },
-      { title: 'RTK Correction', description: 'Centimetre-level positioning accuracy without extensive ground control.' }
+      { title: 'RTK Correction', description: 'Higher-accuracy mapping outputs available where RTK, ground control and suitable processing are scoped.' }
     ],
     industries: ['Civil Engineering', 'Construction', 'Planning & Architecture', 'Quarrying', 'Agriculture'],
     faqs: [
-      { q: 'Are drone surveys high-accuracy survey data outputs?', a: 'Yes, when planned with appropriate methodology, RTK workflow, and ground control, they meet survey-grade requirements.' },
-      { q: 'What accuracy can be achieved?', a: 'We typically achieve ±1-2cm horizontal accuracy and ±3-5cm vertical accuracy on survey missions.' },
+      { q: 'Are drone surveys high-accuracy survey data outputs?', a: 'High-accuracy survey documentation is available where the project is scoped with appropriate methodology, RTK workflow, ground control, processing and accuracy verification.' },
+      { q: 'What accuracy can be achieved?', a: 'Accuracy depends on methodology, site conditions, control points, equipment and processing workflow.' },
       { q: 'What file formats are available?', a: 'Deliverables include GeoTIFF, LAS, LAZ, DXF, DWG, and CSV, compatible with CAD and GIS software.' },
       { q: 'Do you use ground control points?', a: 'Yes, we use GCPs to verify and ensure absolute global accuracy across the entire survey area.' }
     ],
@@ -406,7 +406,7 @@ export const servicesData: ServiceData[] = [
     metaDescription: 'Professional construction drone monitoring. Scheduled progress flights, earthworks volumetrics, and stakeholder updates. CAA-compliant.',
     heroStat: [
       { value: '4D', label: 'Time-lapse documentation' },
-      { value: '±0.5%', label: 'Earthworks accuracy' },
+      { value: 'HIGH', label: 'Earthworks tracking' },
       { value: 'WEEKLY', label: 'Flight frequency' },
     ],
     problemStatement: 'Construction projects generate enormous volumes of decisions daily — and the best decisions are made with the most current site intelligence. A weekly drone survey flight delivers something no site walkdown or static CCTV can: a complete, georeferenced record of the site from every angle, updated on a fixed schedule.',
@@ -448,11 +448,11 @@ export const servicesData: ServiceData[] = [
     title: 'Volumetric Drone Surveys UK',
     headline: ['VOLUMETRIC', 'SURVEYS'],
     category: 'Construction & Surveying',
-    intro: 'Accurate stockpile and earthworks volume measurements for construction, quarries, and aggregate sites — delivered with ±0.5% precision.',
+    intro: 'Stockpile and earthworks volume measurements for construction, quarries, and aggregate sites — delivered with repeatable visual records.',
     metaTitle: 'Volumetric Drone Surveys UK | Stockpile & Earthworks | Altitude Hire',
     metaDescription: 'Professional volumetric drone surveys for quarries, construction and aggregate sites. Accurate stockpile measurements and cut/fill analysis. CAA-compliant.',
     heroStat: [
-      { value: '±0.5%', label: 'Typical accuracy' },
+      { value: 'SCOPED', label: 'Typical accuracy' },
       { value: '24H', label: 'Report delivery' },
       { value: 'SAFE', label: 'No stockpiling climbing' }
     ],
@@ -482,7 +482,7 @@ export const servicesData: ServiceData[] = [
     ],
     industries: ['Quarrying & Mining', 'Main Contractors', 'Earthworks Contractors', 'Aggregate Suppliers'],
     faqs: [
-      { q: 'How accurate are drone volume surveys?', a: 'We typically achieve within 0.5% - 1% of total volume when compared to traditional survey methods.' },
+      { q: 'How accurate are drone volume surveys?', a: 'Earthworks and volume outputs can be scoped where suitable capture, control and processing methodology are applied. Accuracy is dependent on site conditions and methodology.' },
       { q: 'What materials can be measured?', a: 'Any bulk material including gravel, sand, topsoil, aggregates, and waste.' },
       { q: 'How often can you provide measurements?', a: 'Many clients choose monthly or quarterly audits to align with commercial cycles.' }
     ],
@@ -498,7 +498,7 @@ export const servicesData: ServiceData[] = [
     metaTitle: 'Orthomosaic Mapping UK | High-Resolution Aerial Maps | Altitude Hire',
     metaDescription: 'Professional drone orthomosaic mapping services. High-resolution georeferenced maps for site management and GIS. CAA-compliant, 1-3cm GSD.',
     heroStat: [
-      { value: '1CM', label: 'Max resolution' },
+      { value: 'HIGH', label: 'Resolution' },
       { value: 'GEO', label: 'Referenced data' },
       { value: 'GIS', label: 'Ready outputs' }
     ],
@@ -521,7 +521,7 @@ export const servicesData: ServiceData[] = [
       { title: 'Environmental Surveys', description: 'Large-scale mapping of habitats, drainage, and land use.' }
     ],
     capabilities: [
-      { title: 'GSD Precision', description: 'Achieving ground sampling distances as fine as 1cm per pixel.' },
+      { title: 'GSD Precision', description: 'Achieving high ground sampling distances suitable for site management.' },
       { title: 'Coordinate Alignment', description: 'Aligning maps to OSGB36 or custom site grids for total compatibility.' }
     ],
     industries: ['Construction', 'Planning', 'Agriculture', 'Environmental Agencies'],
@@ -542,7 +542,7 @@ export const servicesData: ServiceData[] = [
     metaTitle: 'LiDAR Point Cloud Surveys UK | Drone Laser Scanning | Altitude Hire',
     metaDescription: 'Professional drone LiDAR surveying services. High-density 3D point clouds, vegetation penetration and DTM generation. CAA-compliant.',
     heroStat: [
-      { value: '240', label: 'Points per m²' },
+      { value: 'DENSE', label: 'Points per m²' },
       { value: 'VEG', label: 'Penetration' },
       { value: 'LAZ', label: 'Standard output' }
     ],
@@ -565,13 +565,13 @@ export const servicesData: ServiceData[] = [
       { title: 'Flood Modelling', description: 'Capturing accurate bare-earth models for hydraulic studies.' }
     ],
     capabilities: [
-      { title: 'Laser Precision', description: 'Capturing data at 240,000 points per second for unmatched density.' },
+      { title: 'Laser Precision', description: 'Capturing dense point cloud data for detailed site modelling.' },
       { title: 'Bare Earth Extraction', description: 'Filtering non-ground points to reveal the true site topography.' }
     ],
     industries: ['Forestry', 'Civil Engineering', 'Utilities', 'Environmental Planning'],
     faqs: [
       { q: 'What is the advantage of LiDAR?', a: 'It can capture ground levels through vegetation and is highly accurate over complex geometry.' },
-      { q: 'How dense is the point cloud?', a: 'We can achieve densities of up to 240 points per square metre.' },
+      { q: 'How dense is the point cloud?', a: 'We can achieve high densities suitable for professional terrain modelling.' },
       { q: 'Is it better than photogrammetry?', a: 'For mapping terrain under trees, yes. For visual realism, photogrammetry is often preferred.' }
     ],
     relatedServices: ['surveying-mapping', 'orthomosaic-mapping', 'volumetric-surveys'],
@@ -584,7 +584,7 @@ export const servicesData: ServiceData[] = [
     category: 'Construction & Surveying',
     intro: 'Turning aerial imagery into accurate 3D models, point clouds, and maps — the science of extracting precise measurements from drone data.',
     metaTitle: 'Drone Photogrammetry UK | 3D Mapping & Models | Altitude Hire',
-    metaDescription: 'Professional drone photogrammetry services. High-accuracy 3D models, maps and point clouds from aerial data. CAA-compliant, survey-grade results.',
+    metaDescription: 'Professional drone photogrammetry services. High-accuracy 3D models, maps and point clouds from aerial data. CAA-compliant documentation.',
     heroStat: [
       { value: '3D', label: 'Site modelling' },
       { value: 'GCP', label: 'Controlled accuracy' },
@@ -614,7 +614,7 @@ export const servicesData: ServiceData[] = [
     ],
     industries: ['Heritage', 'Construction', 'Architecture', 'Media'],
     faqs: [
-      { q: 'How accurate is drone photogrammetry?', a: 'With ground control, we can achieve absolute accuracies within 2-5cm across large sites.' },
+      { q: 'How accurate is drone photogrammetry?', a: 'Accuracy depends on capture methodology, RTK/GCP use, site conditions and processing workflow.' },
       { q: 'What is the difference between photogrammetry and LiDAR?', a: 'Photogrammetry uses images to build models, while LiDAR uses laser pulses. Photogrammetry is often better for visual texture.' },
       { q: 'Can it be used for BIM?', a: 'Yes, our point clouds and meshes are compatible with major BIM software.' }
     ],
@@ -634,7 +634,7 @@ export const servicesData: ServiceData[] = [
       { value: 'FAST', label: 'Coverage at scale' },
       { value: 'PRO', label: 'Agronomy support' },
     ],
-    problemStatement: 'UK agriculture operates under intense margin pressure. Farmers need accurate, timely data to replace blanket input application with precision intervention. Satellite imagery is often too low-resolution or obscured by cloud; drones deliver 5cm GSD multispectral data exactly when you need it.',
+    problemStatement: 'UK agriculture operates under intense margin pressure. Farmers need accurate, timely data to replace blanket input application with precision intervention. Satellite imagery is often too low-resolution or obscured by cloud; drones deliver high-detail multispectral data exactly when you need it.',
     whatWeCapture: [
       'NDVI / multispectral health maps',
       'High-resolution RGB field overviews',
@@ -675,7 +675,7 @@ export const servicesData: ServiceData[] = [
     metaTitle: 'Infrastructure Drone Inspections UK | Bridge & Mast Surveys | Altitude Hire',
     metaDescription: 'Professional drone inspections for infrastructure assets. Bridge, rail, telecom and highway corridor surveys. CAA-compliant, high-detail reporting.',
     heroStat: [
-      { value: 'ZERO', label: 'Access risk' },
+      { value: 'LOW', label: 'Access risk' },
       { value: '4K', label: 'Ultra HD detail' },
       { value: 'GVC', label: 'Certified pilots' }
     ],
@@ -723,7 +723,7 @@ export const servicesData: ServiceData[] = [
     metaDescription: 'Professional drone inspections for utilities and energy infrastructure. Powerline, pylon and substation surveys. CAA-compliant, radiometric thermal data.',
     heroStat: [
       { value: 'NO', label: 'Outage required' },
-      { value: '±2°C', label: 'Thermal accuracy' },
+      { value: 'HIGH', label: 'Thermal accuracy' },
       { value: '23X', label: 'Optical zoom' }
     ],
     problemStatement: 'Inspecting high-voltage energy assets traditionally requires expensive outages and puts personnel at risk. Drones allow for the inspection of pylons, conductors, and insulators while the grid remains live, identifying hotspots and mechanical failures before they lead to service interruption.',
@@ -748,7 +748,7 @@ export const servicesData: ServiceData[] = [
       { title: 'Corridor Mapping', description: 'Ensuring safe distances between infrastructure and surrounding vegetation.' }
     ],
     capabilities: [
-      { title: 'Thermal Radiometry', description: 'Detecting resistive heating in electrical components with FLIR sensors.' },
+      { title: 'Thermal Radiometry', description: 'Detecting resistive heating in electrical components with radiometric sensors.' },
       { title: 'Multi-Sensor Payloads', description: 'Simultaneous visual and thermal capture for comprehensive assessment.' }
     ],
     industries: ['Energy Networks', 'Utility Providers', 'Renewable Energy Developers', 'Asset Managers'],
@@ -814,15 +814,15 @@ export const servicesData: ServiceData[] = [
     title: 'Thermal Drone Imaging UK',
     headline: ['THERMAL', 'IMAGING'],
     category: 'Specialist & Response',
-    intro: 'Radiometric thermal drone surveys that reveal moisture ingress, insulation failure, and energy loss mapped precisely across entire structures.',
-    metaTitle: 'Thermal Drone Imaging UK | FLIR Building Surveys | Altitude Hire',
-    metaDescription: 'Professional thermal drone imaging surveys. FLIR radiometric surveys for building envelopes, solar farms, and electrical inspection. CAA-compliant.',
+    intro: 'Thermal drone capture for buildings, roofs, solar panels and assets, helping identify temperature anomalies that may support further investigation, maintenance planning or energy-related review.',
+    metaTitle: 'Thermal Drone Imaging UK | Radiometric Building Surveys | Altitude Hire',
+    metaDescription: 'Professional thermal drone imaging surveys. Radiometric surveys for building envelopes, solar farms, and electrical inspection. CAA-compliant.',
     heroStat: [
-      { value: '±2°C', label: 'Radiometric accuracy' },
-      { value: 'FLIR', label: 'Radiometric sensor' },
-      { value: 'RICS', label: 'Compatible reporting' },
+      { value: 'HIGH', label: 'Radiometric resolution' },
+      { value: 'PRO', label: 'Thermal sensor' },
+      { value: 'PRO', label: 'Professional reporting' },
     ],
-    problemStatement: 'Thermal imaging from altitude transforms building assessment. Where a physical survey sees surface condition, a drone-mounted FLIR radiometric sensor sees temperature differentials across an entire building envelope in minutes — revealing moisture pathways behind cladding and insulation voids within flat roofs.',
+    problemStatement: 'Thermal imaging from altitude transforms building assessment. Thermal drone capture can highlight temperature anomalies that may indicate heat loss, solar panel issues, roof concerns or asset condition questions, subject to suitable conditions and interpretation.',
     whatWeCapture: [
       'Radiometric thermal imagery',
       'Building envelope heat signatures',
@@ -849,7 +849,7 @@ export const servicesData: ServiceData[] = [
     industries: ['Facilities Management', 'Insurance', 'Solar Energy', 'Building Consultancy'],
     faqs: [
       { q: 'What conditions are required for a thermal survey?', a: 'Ideally a 10°C differential between internal and external temperatures, often requiring dawn or night flights.' },
-      { q: 'What can thermal imaging detect?', a: 'It detects moisture, insulation gaps, air leaks, electrical hotspots, and failing mechanical parts.' },
+      { q: 'What can thermal imaging detect?', a: 'It identifies temperature anomalies that may indicate moisture, insulation concerns, air leaks, or hotspots for further investigation.' },
       { q: 'Is thermal data radiometric?', a: 'Yes, we only use radiometric sensors where each pixel contains a temperature value.' }
     ],
     relatedServices: ['roof-inspections', 'solar-panel-inspections', 'facilities-management-inspections'],
@@ -903,15 +903,15 @@ export const servicesData: ServiceData[] = [
     title: 'Events Drone Coverage UK',
     headline: ['EVENTS', '& MEDIA'],
     category: 'Specialist & Response',
-    intro: 'Article 16 licensed aerial coverage for festivals, sports, film, and corporate events. CAA-approved for operations over crowds — with live FPV feed.',
+    intro: 'Aerial photography, drone video, FPV-style visual content and venue media assets for commercial campaigns, property, events and brand storytelling, subject to safe operating conditions.',
     metaTitle: 'Events Drone Coverage UK | Festivals & Sports | Altitude Hire',
-    metaDescription: 'Professional events drone coverage. Article 16 licensed for operations over crowds. Festivals, concerts, sport and film. CAA-compliant.',
+    metaDescription: 'Aerial media for venues, events and commercial campaigns, planned around site constraints, permissions, airspace and operational safety requirements.',
     heroStat: [
-      { value: 'A16', label: 'Licensed for crowds' },
+      { value: 'PRO', label: 'Event media' },
       { value: 'LIVE', label: 'FPV feed available' },
       { value: '24H', label: 'Rapid delivery' },
     ],
-    problemStatement: 'Most drone operators cannot legally fly over crowds. This severely limits the ability to capture the scale and atmosphere of major events. Altitude holds the necessary Article 16 authorisation and specialist insurance to operate safely and legally over people, delivering the footage others can\'t.',
+    problemStatement: 'Aerial photography, drone video and FPV-style content can support venues, property, events and brand campaigns where operations can be safely and lawfully planned. Event drone operations are subject to site-specific risk assessment, separation distances, permissions, airspace constraints and CAA operational requirements.',
     whatWeCapture: [
       'Dynamic crowd overviews',
       'Stage and performance highlights',
@@ -931,11 +931,11 @@ export const servicesData: ServiceData[] = [
     ],
     capabilities: [
       { title: 'Crowd Safety', description: 'Rigorous risk management for operations over people.' },
-      { title: 'Article 16 Ops', description: 'Specific legal authorisation for event filming.' }
+      { title: 'Safe Operations', description: 'Project planning focused on safety and compliance.' }
     ],
     industries: ['Event Organisers', 'Sponsors', 'Broadcasters', 'Local Authorities'],
     faqs: [
-      { q: 'Is it legal to fly over crowds?', a: 'Only with specific Article 16 authorisation, which Altitude holds.' },
+      { q: 'Is it safe for events?', a: 'Yes, we follow strict safety protocols and separation requirements for event-related filming.' },
       { q: 'Can you provide a live feed?', a: 'Yes, we can stream HD video to your production desk in real-time.' }
     ],
     relatedServices: ['fpv-drone-filming', 'aerial-photography-film', '360-aerial-panoramas'],
@@ -1116,7 +1116,7 @@ export const servicesData: ServiceData[] = [
     faqs: [
       { q: 'Can you fly FPV indoors?', a: 'Yes, we use specialised "cinewhoop" drones with guarded propellers for safe indoor flight.' },
       { q: 'What is the video quality?', a: 'We capture in 4K or 6K at high bitrates, ready for professional grading.' },
-      { q: 'Is it safe for events?', a: 'Yes, we are Article 16 licensed and follow strict safety protocols for event filming.' }
+      { q: 'Is it safe for events?', a: 'Yes, we follow strict safety protocols and operational authorisations for event filming.' }
     ],
     relatedServices: ['aerial-photography-film', 'events-media', 'digital-twin-capture'],
     cta: { label: 'REQUEST FPV FILMING', href: '/contact' }
@@ -1177,7 +1177,7 @@ export const servicesData: ServiceData[] = [
       { value: '3D', label: 'Site replica' },
       { value: 'PRO', label: 'Management tool' }
     ],
-    problemStatement: 'A digital twin is only as good as the data it is built on. Drone capture provides the external high-fidelity 3D geometry needed to ground-truth your digital models, ensuring your twin matches the "as-built" reality of the site with millimetre precision.',
+    problemStatement: 'A digital twin is only as good as the data it is built on. Drone capture provides the external high-fidelity 3D geometry needed to ground-truth your digital models, ensuring your twin matches the "as-built" reality of the site with high-accuracy documentation.',
     whatWeCapture: [
       'Full-site 3D geometry',
       'High-resolution texture maps',
@@ -1203,7 +1203,7 @@ export const servicesData: ServiceData[] = [
     faqs: [
       { q: 'What software is the data compatible with?', a: 'We deliver in formats ready for Matterport, Autodesk, and custom twin platforms.' },
       { q: 'Can you update the twin periodically?', a: 'Yes, we offer scheduled rescans to keep your digital twin current.' },
-      { q: 'How accurate is the twin?', a: 'With survey control, we can achieve millimetre-level accuracy for engineering-grade twins.' }
+      { q: 'How accurate is the twin?', a: 'With survey control, we can achieve high-accuracy documentation for engineering-grade twins.' }
     ],
     relatedServices: ['gaussian-splat-capture', 'drone-photogrammetry', 'lidar-point-cloud-surveys'],
     cta: { label: 'BUILD YOUR DIGITAL TWIN', href: '/contact' }
@@ -1248,7 +1248,7 @@ export const servicesData: ServiceData[] = [
     ],
     industries: ['Facilities Management', 'Construction', 'Commercial Property', 'Insurance', 'Heritage', 'Events'],
     faqs: [
-      { q: 'Is a Gaussian Splat survey-grade?', a: 'Gaussian Splats are primarily visualisation assets. For measurement-critical work, we pair capture with photogrammetry or LiDAR workflows.' },
+      { q: 'Is a Gaussian Splat suitable for professional surveying?', a: 'Gaussian Splats are primarily visualisation assets. For measurement-critical work, we pair capture with photogrammetry or LiDAR workflows.' },
       { q: 'What sites are suitable?', a: 'Almost any commercial site, building or estate can be captured, provided we have suitable access and lighting conditions.' },
       { q: 'Can it be embedded on my site?', a: 'Yes, we can provide a web-ready viewer that can be embedded or shared via a secure link.' }
     ],
@@ -1264,7 +1264,7 @@ export const servicesData: ServiceData[] = [
     metaTitle: 'Bridge Drone Inspections UK | Structural Surveys | Altitude Hire',
     metaDescription: 'Professional drone bridge inspections. High-detail surveys for soffits, piers and abutments. CAA-compliant, zero disruption to traffic.',
     heroStat: [
-      { value: 'ZERO', label: 'Traffic disruption' },
+      { value: 'MINIMAL', label: 'Traffic disruption' },
       { value: 'UP', label: 'Facing gimbal' },
       { value: '4K', label: 'Visual audit' }
     ],
@@ -1307,7 +1307,7 @@ export const servicesData: ServiceData[] = [
     metaTitle: 'Rail Corridor Drone Surveys UK | Network Rail Standard | Altitude Hire',
     metaDescription: 'Professional drone surveys for rail corridors. Track condition, embankment stability and vegetation monitoring. CAA-compliant, zero-closure surveys.',
     heroStat: [
-      { value: 'ZERO', label: 'Line closures' },
+      { value: 'MINIMAL', label: 'Line closures' },
       { value: 'PRO', label: 'Safe systems' },
       { value: 'FAST', label: 'Corridor audit' }
     ],
@@ -1350,7 +1350,7 @@ export const servicesData: ServiceData[] = [
     metaTitle: 'Pipeline Corridor Drone Surveys UK | Leak Detection | Altitude Hire',
     metaDescription: 'Professional drone surveys for pipeline corridors. Leak detection, land movement and third-party interference monitoring. CAA-compliant.',
     heroStat: [
-      { value: 'FLIR', label: 'Leak detection' },
+      { value: 'PRO', label: 'Leak detection' },
       { value: 'PRO', label: 'Safety audit' },
       { value: 'GEO', label: 'Referenced data' }
     ],
@@ -1393,7 +1393,7 @@ export const servicesData: ServiceData[] = [
     metaTitle: 'Drone Cut & Fill Analysis UK | Earthworks Tracking | Altitude Hire',
     metaDescription: 'Professional drone cut and fill analysis. Accurately compare site levels against design models for earthworks tracking. CAA-compliant.',
     heroStat: [
-      { value: '±0.5%', label: 'Volumetric accuracy' },
+      { value: 'HIGH', label: 'Volumetric accuracy' },
       { value: 'CAD', label: 'Design overlay' },
       { value: 'FAST', label: 'Reporting speed' }
     ],
@@ -1421,7 +1421,7 @@ export const servicesData: ServiceData[] = [
     industries: ['Earthworks Contractors', 'Quantity Surveyors', 'Main Contractors', 'Developers'],
     faqs: [
       { q: 'Can you compare against my CAD files?', a: 'Yes, we overlay our drone data directly onto your design surfaces (DXF/DWG).' },
-      { q: 'How accurate is the volume data?', a: 'Typically within 0.5-1% of actual volume on well-controlled sites.' }
+      { q: 'How accurate is the volume data?', a: 'Typically within professional tolerances on well-controlled sites.' }
     ],
     relatedServices: ['volumetric-surveys', 'surveying-mapping', 'stockpile-volume-surveys'],
     cta: { label: 'START EARTHWORKS AUDIT', href: '/contact' }
@@ -1436,7 +1436,7 @@ export const servicesData: ServiceData[] = [
     metaDescription: 'Professional drone stockpile volume surveys. Accurate measurements for aggregates, minerals and earthworks. CAA-compliant, 24h reporting.',
     heroStat: [
       { value: 'SAFE', label: 'No climbing' },
-      { value: '±1%', label: 'Volume accuracy' },
+      { value: 'HIGH', label: 'Volume accuracy' },
       { value: '24H', label: 'Data delivery' }
     ],
     problemStatement: 'Inventory audits of bulk materials are traditionally slow and dangerous. Walking on stockpiles with a GPS pole is inaccurate and poses a significant fall risk. Drone-based volumetrics capture millions of points across every pile, delivering accurate commercial stock data in a fraction of the time.',
@@ -1675,7 +1675,7 @@ export const servicesData: ServiceData[] = [
     ],
     industries: ['Creative Agencies', 'Event Organisers', 'Production Houses', 'Tourism Boards'],
     faqs: [
-      { q: 'Can you fly over crowds?', a: 'Yes, with the appropriate operational authorisation and safety mitigation in place.' },
+      { q: 'Can you fly near people?', a: 'Yes, with the appropriate operational authorisation and safety mitigation in place.' },
       { q: 'Do you provide edited content?', a: 'Yes, we can provide anything from raw logs to fully color-graded social edits.' }
     ],
     relatedServices: ['fpv-drone-filming', '360-aerial-panoramas', 'aerial-photography-film'],

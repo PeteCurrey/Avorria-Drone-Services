@@ -5,7 +5,7 @@ import { notFound } from 'next/navigation'
 
 export const metadata: Metadata = {
   title: 'Drone Services for Utilities & Energy | Altitude Hire',
-  description: 'Specialist drone services for utilities. Solar farm audits, powerline inspection, and wind turbine assessment. CAA approved, thermal imaging specialist.',
+  description: 'Specialist drone services for utilities. Solar farm audits, powerline inspection, and wind turbine assessment. CAA-compliant, thermal imaging specialist.',
 }
 
 export default function UtilitiesSector() {

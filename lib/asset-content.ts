@@ -415,20 +415,20 @@ export const assetContent: AssetContent[] = [
   },
   {
     slug: 'gaussian-splat-vs-photogrammetry-guide',
-    disclaimer: 'Gaussian Splats are visualisation-first assets and are not survey-grade outputs. For measurement-critical work, use photogrammetry, LiDAR or survey-control workflows. Output accuracy depends on methodology, control and verification.',
+    disclaimer: 'Gaussian Splats are visualisation-first assets and are not professional mapping outputs. For measurement-critical work, we recommend photogrammetry, LiDAR or appropriate survey-control workflows. Output accuracy depends on methodology, control and verification.',
     version: 'Version 1.0 · Altitude Hire · 2026',
     sections: [
       {
         heading: 'What Is a Gaussian Splat?',
         paragraphs: [
           'Gaussian Splatting is a technique for creating photorealistic 3D scenes from overlapping imagery. Unlike traditional 3D models, it represents the scene as millions of small transparent ellipsoids (splats) that together create an immersive, photo-realistic view.',
-          'Gaussian Splats are best for: stakeholder engagement, property visualisation, immersive site walkthroughs, heritage capture and public consultation. They are not primarily designed for measurement or survey-grade outputs.',
+          'Gaussian Splats are best for: stakeholder engagement, property visualisation, immersive site walkthroughs, heritage capture and public consultation. They are not primarily designed for measurement or professional surveying outputs.',
         ],
       },
       {
         heading: 'What Is Photogrammetry?',
         paragraphs: [
-          'Photogrammetry uses overlapping images to calculate 3D geometry. When combined with ground control points (GCPs) and proper methodology, it can produce survey-grade orthomosaics, point clouds and digital terrain models.',
+          'Photogrammetry uses overlapping images to calculate 3D geometry. When combined with ground control points (GCPs) and proper methodology, it can produce high-accuracy orthomosaics, point clouds and digital terrain models.',
           'Photogrammetry is best for: site mapping, volumetric surveys, construction monitoring, orthomosaic production and measurement-critical outputs. Accuracy depends on methodology, control and verification.',
         ],
       },
@@ -455,7 +455,7 @@ export const assetContent: AssetContent[] = [
           col4: 'Limitations',
           rows: [
             ['Gaussian Splat', 'Stakeholder engagement, marketing', 'Photorealistic, immersive, web-ready', 'Visualisation only — not measurement-grade'],
-            ['Photogrammetry', 'Surveying, mapping, monitoring', 'Survey-grade when controlled, versatile', 'Accuracy requires GCPs and verification'],
+            ['Photogrammetry', 'Surveying, mapping, monitoring', 'High-accuracy when controlled, versatile', 'Accuracy requires GCPs and verification'],
             ['LiDAR', 'Infrastructure, terrain, forestry', 'Penetrates canopy, high-density geometry', 'Specialist workflow, higher cost'],
             ['360 Panorama', 'Context, marketing, consultation', 'Lightweight, interactive, web-embeddable', 'Fixed viewpoints — not full 3D'],
             ['Drone Video', 'Marketing, events, media', 'Cinematic, engaging, widely understood', 'No spatial data — visual only'],
@@ -464,7 +464,7 @@ export const assetContent: AssetContent[] = [
       },
       {
         heading: 'Visualisation vs Measurement — Key Rule',
-        warning: 'Gaussian Splats are ideal for visualisation. If your project requires measurement, volume calculations, survey-grade mapping or engineering data, use photogrammetry or LiDAR with appropriate methodology, control and verification.',
+        warning: 'Gaussian Splats are ideal for visualisation. If your project requires measurement, volume calculations, high-accuracy mapping or engineering data, use photogrammetry or LiDAR with appropriate methodology, control and verification.',
         paragraphs: [
           'The choice between output types depends on what the data needs to do. Immersive stakeholder presentations favour Gaussian Splats. Quantity surveying, engineering and spatial analysis favour photogrammetry or LiDAR.',
           'Many projects benefit from combining approaches — for example, a Gaussian Splat for the client presentation alongside an orthomosaic for the QS team.',
@@ -481,7 +481,7 @@ export const assetContent: AssetContent[] = [
         heading: 'Why Drone Project Costs Vary',
         paragraphs: [
           'Flight time is only one element of a drone project. Planning, permissions, processing, reporting, deliverable production and logistics all contribute to the total cost.',
-          'A simple aerial photo shoot and a survey-grade orthomosaic with GCPs and volume analysis are both "drone projects" — but they involve very different workflows, specialist equipment and professional time.',
+          'A simple aerial photo shoot and a high-accuracy orthomosaic with GCPs and volume analysis are both "drone projects" — but they involve very different workflows, specialist equipment and professional time.',
         ],
       },
       {
@@ -495,7 +495,7 @@ export const assetContent: AssetContent[] = [
           { label: 'Deliverables scope', note: 'Raw images cost less than annotated reports; point clouds cost more than orthomosaics' },
           { label: 'Reporting level', note: 'A basic image set is different from a full written inspection summary' },
           { label: 'Processing complexity', note: 'GCP-controlled photogrammetry and LiDAR require more processing time' },
-          { label: 'Accuracy requirements', note: 'Survey-grade outputs require additional ground control and verification' },
+          { label: 'Accuracy requirements', note: 'High-accuracy outputs require additional ground control and verification' },
           { label: 'Thermal or LiDAR sensors', note: 'Specialist payloads add equipment and expertise costs' },
           { label: 'Repeat visits', note: 'Contracted repeat programmes may benefit from pre-agreed pricing' },
           { label: 'Urgency', note: 'Emergency or same-day deployments carry a premium' },
@@ -521,7 +521,7 @@ export const assetContent: AssetContent[] = [
           'Explain site access and any known restrictions',
           'Confirm deadline or programme constraints',
           'Clarify reporting requirements (who sees it and in what format)',
-          'State accuracy requirements if survey-grade data is needed',
+          'State accuracy requirements if high-accuracy data is needed',
           'Confirm which deliverables are essential vs. optional',
         ],
       },

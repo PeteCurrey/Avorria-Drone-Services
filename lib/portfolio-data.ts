@@ -130,7 +130,7 @@ export const portfolioProjects: PortfolioProject[] = [
     scenario: 'Manual stockpile measurement is time-consuming, inconsistent and often dangerous. Drone photogrammetry allows for rapid, precise volume calculations across large areas with improved accuracy and safety for site staff.',
     workflow: [
       'Define site boundaries and material types for measurement.',
-      'Set ground control points (GCPs) for survey-grade accuracy where required.',
+      'Set ground control points (GCPs) for high-accuracy mapping data where required.',
       'Perform high-overlap nadir and oblique mapping flights.',
       'Process imagery into a dense 3D point cloud and mesh.',
       'Calculate volumes based on site base-level data and current topography.'

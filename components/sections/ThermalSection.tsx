@@ -85,7 +85,7 @@ export default function ThermalSection() {
         <div className="svc-tag"><SectionTag number="05" text="Service" /></div>
         <h2 className="svc-headline font-display text-section text-white mb-8">THERMAL<br/>IMAGING</h2>
         <p className="svc-body font-body text-[16px] font-light leading-relaxed text-white/50 mb-8 max-w-[500px]">
-          Radiometric thermal signatures reveal temperature differentials that the naked eye cannot see. Our thermal drone surveys support the identification of anomalies, moisture ingress, and energy loss across building envelopes, rooftops, and solar installations.
+          Thermal drone capture can highlight temperature anomalies that may indicate heat loss, solar panel issues, roof concerns or asset condition questions, subject to suitable conditions and interpretation.
         </p>
         <div className="feature-tags"><FeatureTags tags={features} /></div>
         <div className="svc-cta flex flex-col sm:flex-row gap-6 mt-12">

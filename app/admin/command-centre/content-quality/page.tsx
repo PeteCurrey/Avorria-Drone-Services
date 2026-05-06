@@ -19,10 +19,10 @@ export default function ContentQualityPage() {
   ]
 
   const riskyTerms = [
-     'PFCO', 'CAA Approved', 'Fly anywhere', 'Guaranteed permissions', 
-     'Millimetre accurate', 'Survey-grade', 'Accepted by insurers', 
-     'RICS report', 'Chartered surveyor', '£10M insurance', 
-     'Article 16', 'Crowd operations'
+     'Legacy PFCO Reference', 'Unqualified CAA Approval', 'Absolute Claims', 'Unsupported Accuracy', 
+     'Relative Accuracy Claims', 'Survey-grade Assertions', 'Insurance Acceptance Claims', 
+     'Unverified RICS Reference', 'Unqualified Surveyor Title', 'High-value Insurance Claims', 
+     'Legacy A16 Reference', 'Unmitigated Crowd Ops'
   ]
 
   return (

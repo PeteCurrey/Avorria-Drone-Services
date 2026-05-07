@@ -77,16 +77,6 @@ export default function ContactPage() {
           <div className="space-y-8">
             <div className="flex items-center gap-6 group cursor-pointer">
               <div className="w-12 h-12 bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-accent transition-colors duration-500">
-                <Phone className="w-5 h-5 text-accent group-hover:text-dark" />
-              </div>
-              <div>
-                <div className="font-ui text-[9px] tracking-[0.2em] uppercase text-white/30">Direct Line</div>
-                <div className="font-display text-xl text-white group-hover:text-accent transition-colors">+44 (0) 121 270 5440</div>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-6 group cursor-pointer">
-              <div className="w-12 h-12 bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-accent transition-colors duration-500">
                 <Mail className="w-5 h-5 text-accent group-hover:text-dark" />
               </div>
               <div>

@@ -136,7 +136,7 @@ export default function Nav() {
             >
               <Link 
                 href="/services" 
-                className={`font-ui text-[14px] font-medium tracking-[0.2em] uppercase transition-colors flex items-center gap-2 ${activeMenu === 'services' ? 'text-accent' : 'text-white/80 hover:text-white'}`}
+                className={`font-ui text-[15px] font-medium tracking-[0.2em] uppercase transition-colors flex items-center gap-2 ${activeMenu === 'services' ? 'text-accent' : 'text-white/80 hover:text-white'}`}
               >
                 Services <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-300 ${activeMenu === 'services' ? 'rotate-180 text-accent' : ''}`} />
               </Link>
@@ -150,17 +150,17 @@ export default function Nav() {
             >
               <Link 
                 href="/bundles" 
-                className={`font-ui text-[14px] font-medium tracking-[0.2em] uppercase transition-colors flex items-center gap-2 ${activeMenu === 'packages' ? 'text-accent' : 'text-white/80 hover:text-white'}`}
+                className={`font-ui text-[15px] font-medium tracking-[0.2em] uppercase transition-colors flex items-center gap-2 ${activeMenu === 'packages' ? 'text-accent' : 'text-white/80 hover:text-white'}`}
               >
                 Packages <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-300 ${activeMenu === 'packages' ? 'rotate-180 text-accent' : ''}`} />
               </Link>
             </div>
 
-            <Link href="/sectors" className="font-ui text-[14px] font-medium tracking-[0.2em] uppercase text-white/80 hover:text-white transition-colors">
+            <Link href="/sectors" className="font-ui text-[15px] font-medium tracking-[0.2em] uppercase text-white/80 hover:text-white transition-colors">
               Sectors
             </Link>
 
-            <Link href="/gaussian-splat" className="font-ui text-[14px] font-medium tracking-[0.2em] uppercase text-white/80 hover:text-white transition-colors">
+            <Link href="/gaussian-splat" className="font-ui text-[15px] font-medium tracking-[0.2em] uppercase text-white/80 hover:text-white transition-colors">
               Gaussian Splat
             </Link>
 
@@ -172,13 +172,13 @@ export default function Nav() {
             >
               <Link 
                 href="/portfolio" 
-                className={`font-ui text-[14px] font-medium tracking-[0.2em] uppercase transition-colors flex items-center gap-2 ${activeMenu === 'portfolio' ? 'text-accent' : 'text-white/80 hover:text-white'}`}
+                className={`font-ui text-[15px] font-medium tracking-[0.2em] uppercase transition-colors flex items-center gap-2 ${activeMenu === 'portfolio' ? 'text-accent' : 'text-white/80 hover:text-white'}`}
               >
                 Portfolio <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-300 ${activeMenu === 'portfolio' ? 'rotate-180 text-accent' : ''}`} />
               </Link>
             </div>
 
-            <Link href="/client-portal-demos" className="font-ui text-[14px] font-medium tracking-[0.2em] uppercase text-white/80 hover:text-white transition-colors">
+            <Link href="/client-portal-demos" className="font-ui text-[15px] font-medium tracking-[0.2em] uppercase text-white/80 hover:text-white transition-colors">
               Demo Portals
             </Link>
           </div>

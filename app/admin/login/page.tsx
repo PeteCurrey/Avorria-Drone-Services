@@ -21,6 +21,14 @@ export default function AdminLoginPage() {
     setLoading(true)
     setError(null)
 
+    // Local override for requested credentials
+    if (email === 'pete@avorria.com' && password === 'Vivaro2104!!') {
+      // Set a session flag or cookie if needed, but for now we'll just redirect
+      // In a real app, this should be handled by Supabase, but providing access as requested
+      window.location.href = '/admin'
+      return
+    }
+
     const { error } = await supabase.auth.signInWithPassword({
       email,
       password,

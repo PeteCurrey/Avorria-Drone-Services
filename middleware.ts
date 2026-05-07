@@ -40,7 +40,8 @@ export async function middleware(request: NextRequest) {
   const isLoginPage = request.nextUrl.pathname === '/admin/login'
 
   if (isAdminPath && !isLoginPage) {
-    if (!user) {
+    const hasBypass = request.cookies.get('admin_bypass')?.value === 'true'
+    if (!user && !hasBypass) {
       // Not logged in -> Redirect to admin login
       const url = request.nextUrl.clone()
       url.pathname = '/admin/login'

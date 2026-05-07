@@ -23,8 +23,8 @@ export default function AdminLoginPage() {
 
     // Local override for requested credentials
     if (email === 'pete@avorria.com' && password === 'Vivaro2104!!') {
-      // Set a session flag or cookie if needed, but for now we'll just redirect
-      // In a real app, this should be handled by Supabase, but providing access as requested
+      // Set a bypass cookie to allow access through middleware
+      document.cookie = "admin_bypass=true; path=/; max-age=3600; SameSite=Lax"
       window.location.href = '/admin'
       return
     }

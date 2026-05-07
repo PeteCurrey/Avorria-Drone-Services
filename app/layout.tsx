@@ -144,6 +144,8 @@ const faqSchema = {
   ],
 }
 
+import PublicLayoutWrapper from '@/components/layout/PublicLayoutWrapper'
+
 export default function RootLayout({
   children,
 }: {
@@ -167,10 +169,9 @@ export default function RootLayout({
       <body className="bg-dark text-white selection:bg-accent selection:text-dark">
         <TrackingProvider>
           <LenisProvider>
-            <Nav />
-            <ProgressDots totalSections={12} />
-            {children}
-            <Footer />
+            <PublicLayoutWrapper>
+              {children}
+            </PublicLayoutWrapper>
           </LenisProvider>
         </TrackingProvider>
       </body>
